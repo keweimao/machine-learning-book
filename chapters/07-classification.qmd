@@ -87,14 +87,12 @@ $$\begin{aligned}
 \end{aligned}$$
 
 where $m$ is the number of dimensions (features) to represent each data
-instance. Figure [\[fig-bin-ed\]](#fig-bin-ed){reference-type="ref"
-reference="fig-bin-ed"} shows the shapes data on two dimensions, i.e.
+instance. @fig-bin-ed shows the shapes data on two dimensions, i.e.
 *width* and *height*. Suppose a new instance at $(4,7)$, i.e. $width=4$
 and $height=7$, is to be tested. The dashed lines are the euclidean
 distances from the test instance to the training instances.
 
-::: marginfigure
-:::
+![Nearest neighbors $k=1$, $+$ denotes *standing* (positive) and $\circ$ denotes *lying* (negative). $\otimes$ is the test instance.](../assets/figures/chapter07/fig-bin-ed){#fig-bin-ed fig-alt="Nearest neighbors k=1, + denotes standing (positive) and denotes lying (negative). is the test instance." width="70%"}
 
 If we set $k=1$ for the kNN algorithm, we will use only $1$ nearest
 neighbor in prediction. The instance at $(5,9)$, which belongs to the
@@ -118,11 +116,9 @@ conflicting answers. For binary classification, one strategy is to pick
 an odd number for $k$ and let the nearest neighbors vote for the final
 prediction.
 
-::: marginfigure
-:::
+![Nearest neighbors $k=3$, $+$ denotes *standing* (positive) and $\circ$ denotes *lying* (negative). $\otimes$ is the test instance.](../assets/figures/chapter07/fig-bin-ed2){#fig-bin-ed2 fig-alt="Nearest neighbors k=3, + denotes standing (positive) and denotes lying (negative). is the test instance." width="70%"}
 
-Figure [\[fig-bin-ed2\]](#fig-bin-ed2){reference-type="ref"
-reference="fig-bin-ed2"} shows another test instance at $(3,4)$. With
+@fig-bin-ed2 shows another test instance at $(3,4)$. With
 $k=3$, it turns out that the three nearest neighbors include $1$
 positive and $2$ negatives. Using a majority vote strategy, the test
 instance will be mistakenly classified into the negative (lying) class.
@@ -134,8 +130,7 @@ on one single instance for each test and is hardly robust. A larger $k$
 can reduce the likelihood of predicting with atypical neighbors but it
 introduces noise, e.g. instances from across the class boundary as
 illustrated in
-Figure [\[fig-bin-ed2\]](#fig-bin-ed2){reference-type="ref"
-reference="fig-bin-ed2"}. Finding the optimal $k$ may require
+@fig-bin-ed2. Finding the optimal $k$ may require
 experimentation with data.
 
 Second, more important, a lazy learner such as kNN does not have a
@@ -194,8 +189,7 @@ different functional forms one can choose the model from. We start with
 the simplest, a linear function.
 
 With the shapes data in
-Figure [\[fig-bin-ed\]](#fig-bin-ed){reference-type="ref"
-reference="fig-bin-ed"}, there are two variables $width$ ($v_1$ for the
+@fig-bin-ed, there are two variables $width$ ($v_1$ for the
 $x$ axis) and $height$ ($v_2$ for $y$ axis). $y$ as a linear function of
 $x$ can be written as $f(x) = a + b x$ or $a + b x - y = 0$, with two
 parameters $a$ and $b$ for two variables.
@@ -253,8 +247,7 @@ $$\begin{aligned}
   & = & \big( 6, \frac{10}{3} \big)
 \end{aligned}$$
 
-Figure [\[fig-bin-lin_cent\]](#fig-bin-lin_cent){reference-type="ref"
-reference="fig-bin-lin_cent"} shows the two centroids and a dashed line
+@fig-bin-lin_cent shows the two centroids and a dashed line
 with an arrowhead connecting them. The arrow represents a vector in the
 direction
 $\vec{\mu} = (6-\frac{8}{3}, \frac{10}{3} - 7) = (\frac{10}{3}, - \frac{11}{3})$,
@@ -304,11 +297,9 @@ reference="eq-bin-lin2"}, we have identified the parameters $w_0=-1$,
 $w_1=-\frac{20}{27}$, and $w_2=\frac{22}{27}$ for the linear
 classification function. This is the solid straight line separating the
 two classes (centroids) in
-Figure [\[fig-bin-lin_cent\]](#fig-bin-lin_cent){reference-type="ref"
-reference="fig-bin-lin_cent"}.
+@fig-bin-lin_cent.
 
-::: marginfigure
-:::
+![Linear classification with centroids, $+$ denotes *standing* (positive) and $\circ$ denotes *lying* (negative). $\bullet$ represents a centroid of the respective class. $\otimes$ is a test instance.](../assets/figures/chapter07/fig-bin-lin-cent){#fig-bin-lin_cent fig-alt="Linear classification with centroids, + denotes standing (positive) and denotes lying (negative). represents a centroid of the respective class. is a test instance." width="70%"}
 
 With the identified linear function
 $f(v) = 1 + \frac{20}{27} v_1 - \frac{22}{27} v_2$, one can plug in
@@ -316,8 +307,7 @@ values of a test instance and make a prediction. If the result is
 positive, it will predict positive (standing); otherwise, it will
 predict negative (lying). For example, given a test instance at $(4,7)$
 ($\otimes$ on
-Figure [\[fig-bin-lin_cent\]](#fig-bin-lin_cent){reference-type="ref"
-reference="fig-bin-lin_cent"}), we can put the values in the linear
+@fig-bin-lin_cent), we can put the values in the linear
 function and get:
 
 $$\begin{aligned}
@@ -344,13 +334,10 @@ of the training set and where most data instances are. For example,
 having more data instances with smaller width and height in the negative
 class change its centroid, which will, in turn, lead to a very different
 linear function, illustrated in
-Figure [\[fig-bin-lin_cent2\]](#fig-bin-lin_cent2){reference-type="ref"
-reference="fig-bin-lin_cent2"} (compare to
-Figure [\[fig-bin-lin_cent\]](#fig-bin-lin_cent){reference-type="ref"
-reference="fig-bin-lin_cent"}).
+@fig-bin-lin_cent2 (compare to
+@fig-bin-lin_cent).
 
-::: marginfigure
-:::
+![Linear classification with centroids, with smaller values in the negative class](../assets/figures/chapter07/fig-bin-lin-cent2){#fig-bin-lin_cent2 fig-alt="Linear classification with centroids, with smaller values in the negative class" width="70%"}
 
 The centroid-based approach to linear classification is greatly
 influenced by all data points in the training set and how they are
@@ -389,11 +376,9 @@ words, if a line is drawn in the positive (standing class), then 1) data
 in it will test all positive (or all negative), and 2) data in the other
 class will test the opposite, negative (or conversely positive).
 
-::: marginfigure
-:::
+![Linear classification with SVM, one candidate margin](../assets/figures/chapter07/fig-bin-svm){#fig-bin-svm fig-alt="Linear classification with SVM, one candidate margin" width="70%"}
 
-Figure [\[fig-bin-svm\]](#fig-bin-svm){reference-type="ref"
-reference="fig-bin-svm"} illustrates the idea with the shapes data. [^ch07-2]
+@fig-bin-svm illustrates the idea with the shapes data. [^ch07-2]
 Pairwise lines drawn in the figure all satisfy the $1^{st}$ condition
 and collectively form a *convex hull* for each class. However, not all
 lines meet the $2^{nd}$ condition. In fact, only the lines marked $1$,
@@ -403,28 +388,23 @@ For each of the three candidate lines, we can draw a line perpendicular
 to it from any point in the other class. From this process, we can find
 out the margin between that candidate support vector line and the other
 class (convex hull), which is where the boundary can be defined. For
-example, in Figure [\[fig-bin-svm\]](#fig-bin-svm){reference-type="ref"
-reference="fig-bin-svm"}, the two dotted lines show the margin between
+example, in @fig-bin-svm, the two dotted lines show the margin between
 line $\#3$ and the negative class.
 
-::: marginfigure
-:::
+![Linear classification with SVM, support vectors and maximum margin](../assets/figures/chapter07/fig-bin-svm2){#fig-bin-svm2 fig-alt="Linear classification with SVM, support vectors and maximum margin" width="70%"}
 
 Yet a greater margin -- in fact the greatest margin of all -- can be
 found between line $\#1$ and point $(2,4)$ in the positive class, as the
 two dotted lines in
-Figure [\[fig-bin-svm2\]](#fig-bin-svm2){reference-type="ref"
-reference="fig-bin-svm2"} show. The greatest margin will be chosen as
+@fig-bin-svm2 show. The greatest margin will be chosen as
 the decision boundary, which is defined by a few data points known as
 the *support vectors*. As shown as circled data points in
-Figure [\[fig-bin-svm2\]](#fig-bin-svm2){reference-type="ref"
-reference="fig-bin-svm2"}, support vectors are those that determine the
+@fig-bin-svm2, support vectors are those that determine the
 maximum margin between the two *convex hulls* of the two classes.
 
 With this, it is now easy to identify the linear equation in the margin
 to separate the two classes. In
-Figure [\[fig-bin-svm2\]](#fig-bin-svm2){reference-type="ref"
-reference="fig-bin-svm2"}, for example, the solid line at
+@fig-bin-svm2, for example, the solid line at
 $v_2 = 1.1 + 0.667 v_1$ can be used as the linear classifier. One can
 certainly use the linear functions on the support vectors for
 classification as well, e.g. to predict one class vs. another if a test
@@ -443,20 +423,17 @@ Chapter  has details on the mathematics for SVM.
 
 The linear function $f(v)=w_0 + w_1 v_1 + w_2 v_2$ can be visualized as
 a *perceptron* in
-Figure [\[fig-bin-perceptron\]](#fig-bin-perceptron){reference-type="ref"
-reference="fig-bin-perceptron"}, where the node at $\sum$ computes the
+@fig-bin-perceptron, where the node at $\sum$ computes the
 weighted sum of input variables. Obviously, this can be extended to
 include any number of variables $m$ for which
 $f(v)=\sum_{i=1}^{m} w_i v_i$.
 
-::: marginfigure
-:::
+![Linear classification with a Perceptron, where the output is a step function based on the weighted sum of input variables](../assets/figures/chapter07/fig-bin-perceptron){#fig-bin-perceptron fig-alt="Linear classification with a Perceptron, where the output is a step function based on the weighted sum of input variables" width="70%"}
 
 A perceptron is a simple, one-layer neural network -- besides the input
 variables, there is only one layer of nodes (only one $\sum$ node) in
 the model, as shown in
-Figure [\[fig-bin-perceptron\]](#fig-bin-perceptron){reference-type="ref"
-reference="fig-bin-perceptron"}. The final output of the perceptron is
+@fig-bin-perceptron. The final output of the perceptron is
 binary $0$ or $1$ by using a step function, which simply converts values
 higher than a threshold to $1$ and those lower to $0$. For example, one
 can use $0$ as the threshold for a step function $f(s)$:
@@ -470,11 +447,9 @@ $$\begin{aligned}
 \end{aligned}$$
 
 which is visualized in
-Figure [\[fig-bin-step\]](#fig-bin-step){reference-type="ref"
-reference="fig-bin-step"}.
+@fig-bin-step.
 
-::: marginfigure
-:::
+![Example of a step function. Output is $0$ for any value below zero, and is $1$ if above zero.](../assets/figures/chapter07/fig-bin-step){#fig-bin-step fig-alt="Example of a step function. Output is 0 for any value below zero, and is 1 if above zero." width="70%"}
 
 Before training, the weights are unknown and should be initialized with
 certain values, e.g. all $0$. For each training instance, its values
@@ -482,8 +457,7 @@ $v_1$ and $v_2$ will be fed into the input layer and multiplied with
 their weights $w_1$ and $w_2$ respectively.
 
 Note that in
-Figure [\[fig-bin-perceptron\]](#fig-bin-perceptron){reference-type="ref"
-reference="fig-bin-perceptron"}, the input with weight $w_0$ is always
+@fig-bin-perceptron, the input with weight $w_0$ is always
 $1$ for every training instance. This is referred to as the *bias*,
 which adds the constant $w_0$ to the linear function. Once every input
 is multiplied by its weight, the output computes the sum of the weighted
@@ -587,8 +561,7 @@ $1$ (low) to $4$ (very high).
 While it is possible to include other variables such as the number of
 doors and safety features, we will focus on the cost factors in the
 discussion here.
-Figure [\[fig-bin-car\]](#fig-bin-car){reference-type="ref"
-reference="fig-bin-car"} plots *maintenance cost* vs. *buying price*,
+@fig-bin-car plots *maintenance cost* vs. *buying price*,
 with the $+$ indicating an *acceptable* car and $\circ$ unacceptable.
 The two classes appear not separable linearly on the two-dimensional
 space -- that is, there is no straight line that can be drawn to
@@ -606,14 +579,12 @@ is no longer one linear equation of the two variables that can fit in
 with a linear model. Alternatively, we can still draw a curve (a
 non-linear function) to separate them. For example, as shown as the
 dashed line in
-Figure [\[fig-bin-car\]](#fig-bin-car){reference-type="ref"
-reference="fig-bin-car"}, a circular function such as
+@fig-bin-car, a circular function such as
 $(v_1-1)^2 + (v_2 -1)^2 = 3$ can set the boundary between the two
 classes. The question is: how can we identify such as a non-linear
 function from the training data?
 
-::: marginfigure
-:::
+![Car evaluation data. $+$ is the positive (acceptable) class and $\circ$ is the negative (unacceptable).](../assets/figures/chapter07/fig-bin-car){#fig-bin-car fig-alt="Car evaluation data. + is the positive (acceptable) class and is the negative (unacceptable)." width="70%"}
 
 ### Kernel SVM
 
@@ -649,14 +620,12 @@ three, which can be visualized.
 
 With the $v_1^2$ and $v_2^2$ transformation, data in the two classes
 already appear to be linearly separable. As shown in
-Figure [\[fig-bin-car_q2\]](#fig-bin-car_q2){reference-type="ref"
-reference="fig-bin-car_q2"}, the solid line at $v_1+v_2-9=0$ can
+@fig-bin-car_q2, the solid line at $v_1+v_2-9=0$ can
 separate the data we have so far. However, this does not necessarily
 represent the general idea of car evaluation and new data may violate
 the rule (cross the decision boundary).
 
-::: marginfigure
-:::
+![Car evaluation data, with transformed $v_1^2$ and $v_2^2$.](../assets/figures/chapter07/fig-bin-car-q2){#fig-bin-car_q2 fig-alt="Car evaluation data, with transformed v_1^2 and v_2^2." width="70%"}
 
 Whether a car is acceptable or not may depend on some form of
 interaction between the buying price and maintenance cost. With the
@@ -665,49 +634,20 @@ be seen as an interaction variable in the form of multiplication.
 
 When all three expanded features are considered, the data are mapped to
 a three-dimensional space shown in
-Figure [1.1](#fig-bin-car_q3){reference-type="ref"
-reference="fig-bin-car_q3"}, where they may be separated linearly. Of
+@fig-bin-car_q3, where they may be separated linearly. Of
 all linear equations (planes) formed by any three points in each class,
 we have identified two planes closest to their opposite classes.
 
-<figure id="fig-bin-car_q3">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">(a) All data points</td>
-<td style="text-align: center;">(b) Zoom in on support vectors</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<figcaption>Car evaluation data, mapped to higher dimensions with <span
-class="math inline"><em>v</em><sub>1</sub><sup>2</sup></span>, <span
-class="math inline"><em>v</em><sub>2</sub><sup>2</sup></span>, and <span
-class="math inline">$\sqrt{2} v_1 v_2$</span>. The two planes are
-closest to the opposite class. The projected shadows are for reference
-only. (a) shows all data points in the three dimensional space, and (b)
-is a closer view of the two planes with support vectors. Dashed line is
-the gap (margin) between the two classes. Circled data points are
-support vectors.</figcaption>
-</figure>
+![Car evaluation data, mapped to higher dimensions with $v_1^2$, $v_2^2$, and $\sqrt{2} v_1 v_2$. The two planes are closest to the opposite class. The projected shadows are for reference only. (a) shows all data points in the three dimensional space, and (b) is a closer view of the two planes with support vectors. Dashed line is the gap (margin) between the two classes. Circled data points are support vectors.](../assets/figures/chapter07/fig-bin-car-q3){#fig-bin-car_q3 fig-alt="Car evaluation data, mapped to higher dimensions with v_1^2, v_2^2, and 2 v_1 v_2. The two planes are closest to the opposite class. The projected shadows are for reference only. (a) shows all data points in the three dimensional space, and (b) is a closer view of the two planes with support vectors. Dashed line is the gap (margin) between the two classes. Circled data points are support vectors." width="70%"}
 
-Figure [1.1](#fig-bin-car_q3){reference-type="ref"
-reference="fig-bin-car_q3"} (a) shows all data points in the expanded
+@fig-bin-car_q3 (a) shows all data points in the expanded
 dimensional space with quadratic mapping. The two planes formed by data
 points are the closest to the opposite class, which are candidate
 support vectors. Shadows of the planes are projected to the \"ground\"
 (i.e. $v_2^2$ vs. $v_1^2$ dimensions) for easier reading of related data
 points.
 
-Figure [1.1](#fig-bin-car_q3){reference-type="ref"
-reference="fig-bin-car_q3"} (b) zooms in on the planes formed by
+@fig-bin-car_q3 (b) zooms in on the planes formed by
 candidate support vectors in the three-dimensional space, where a
 decision boundary can be identified to maximize the margin between the
 two classes (convex hulls). The dashed line connects the closest points
@@ -727,8 +667,7 @@ analysis.
 
 We know the single perceptron can only be applied to linearly separable
 data. The car evaluation data, as shown in
-Figure [\[fig-bin-car\]](#fig-bin-car){reference-type="ref"
-reference="fig-bin-car"}, cannot be separated by one linear function.
+@fig-bin-car, cannot be separated by one linear function.
 However, with a step function, one can transform the data into something
 linearly separable. Specifically, for a value $s$ on the $v_1$ or $v_2$
 dimension, we use the following step function:
@@ -744,32 +683,24 @@ $$\begin{aligned}
 So it returns $1$ for a value above $2.5$, and $0$ for a value below.
 Applying the step function to both $v_1$ (buying price) and $v_2$
 (maintenance cost), we have transformed data in
-Figure [\[fig-bin-car_step\]](#fig-bin-car_step){reference-type="ref"
-reference="fig-bin-car_step"}. All positive (acceptable) data have been
+@fig-bin-car_step. All positive (acceptable) data have been
 mapped to the $(0,0)$ point whereas the negative (unacceptable) ones are
 at $(0,1)$, $(1,1)$, and $(1,0)$. As the solid line in
-Figure [\[fig-bin-car_step\]](#fig-bin-car_step){reference-type="ref"
-reference="fig-bin-car_step"} shows, the transformed data are now
+@fig-bin-car_step shows, the transformed data are now
 linearly separable.
 
-::: marginfigure
-:::
+![Car evaluation data, transformed by a step function. A step function with a threshold $2.5$ converts the original data ($+$ and $\circ$ in faded colors) to those with $0$ and $1$ values ($+$ and $\circ$ in bright colors). The solid line at $v_1+v_2=0.5$ separate the two classes.](../assets/figures/chapter07/fig-bin-car-step){#fig-bin-car_step fig-alt="Car evaluation data, transformed by a step function. A step function with a threshold 2.5 converts the original data (+ and in faded colors) to those with 0 and 1 values (+ and in bright colors). The solid line at v_1+v_2=0.5 separate the two classes." width="70%"}
 
 This non-linear classification with step function transformation can be
 represented with a multi-layer neural network. As shown in
-Figure [1.2](#fig-bin-nn){reference-type="ref" reference="fig-bin-nn"},
+@fig-bin-nn,
 each of the input variables $v_1$ and $v_2$ is normalized by a step
 function and then multiplied by $-1$ before feeding into the final
 output, which is combined with the bias weighted $0.5$. This is
 equivalent to $0.5 \times 1 -1\times f(v_1) - 1\times f(v_2)$, where $f$
 is the step function for $v_1$ and $v_2$ values.
 
-<figure id="fig-bin-nn">
-
-<figcaption>Multi-layer neural network with step functions. <span
-class="math inline">∑</span> represents the weighted sum of input values
-leading to the present node. </figcaption>
-</figure>
+![Multi-layer neural network with step functions. $\sum$ represents the weighted sum of input values leading to the present node.](../assets/figures/chapter07/fig-bin-nn){#fig-bin-nn fig-alt="Multi-layer neural network with step functions. represents the weighted sum of input values leading to the present node." width="70%"}
 
 For example, with data point $(2,2)$, the step function will convert
 them into $(0,0)$. With the bias $0.5\times1$, the weighted sum is
@@ -782,7 +713,7 @@ negative (unacceptable).
 Using the multi-layer neural network, based on the additional hidden
 layer with step functions between the input and final output, it is now
 possible to establish a non-linear model such as the one in
-Figure [1.2](#fig-bin-nn){reference-type="ref" reference="fig-bin-nn"}.
+@fig-bin-nn.
 
 But the question remains -- how can the weights of the model, together
 with the step function, be identified properly? While it is tempting to
@@ -797,8 +728,7 @@ contributes to the final output via the hidden layer? The general
 optimization technique called *gradient descent* makes it possible to
 find optimal values (weights) by searching in the derivatives of related
 functions. However, a step function, as illustrated in
-Figure [\[fig-bin-step\]](#fig-bin-step){reference-type="ref"
-reference="fig-bin-step"}, has a sudden jump (not smooth transition)
+@fig-bin-step, has a sudden jump (not smooth transition)
 between $0$ and $1$ and is not differentiable.
 
 If we are to retain the idea of a step function, can we develop one that
@@ -810,8 +740,7 @@ $$\begin{aligned}
 \end{aligned}$$
 
 for a value $v$.
-Figure [\[fig-bin-sigmoid\]](#fig-bin-sigmoid){reference-type="ref"
-reference="fig-bin-sigmoid"} shows the functional curve of sigmoid,
+@fig-bin-sigmoid shows the functional curve of sigmoid,
 which transforms the weighted sum of a node to a value approaching $0$
 or $1$. The threshold is $0$ by default but we can use any threshold for
 the transformation. For example, with a threshold of $5$, the sigmoid
@@ -823,32 +752,21 @@ $$\begin{aligned}
 
 which shifts the functional curve on the $x$ coordinates by $+5$ (dashed
 line in
-Figure [\[fig-bin-sigmoid\]](#fig-bin-sigmoid){reference-type="ref"
-reference="fig-bin-sigmoid"}). $v-5 = 1\times v + (-5)\times 1$ is
+@fig-bin-sigmoid). $v-5 = 1\times v + (-5)\times 1$ is
 equivalent to the weighted sum of variable $v$ (with weight $w=1$) and
 bias $1$ (with weight $w_0=-5$). It can be generalized as a linear
 function of any number of input variables with bias in the form of
 $\sum = w_0 + \sum_i w_i v_i$.
 
-::: marginfigure
-:::
+![Sigmoid function](../assets/figures/chapter07/fig-bin-sigmoid){#fig-bin-sigmoid fig-alt="Sigmoid function" width="70%"}
 
 Now if we replace the step function with the sigmoid function in
-Figure [1.2](#fig-bin-nn){reference-type="ref" reference="fig-bin-nn"},
+@fig-bin-nn,
 we have the multi-layer neural network in
-Figure [1.3](#fig-bin-nn_sigmoid){reference-type="ref"
-reference="fig-bin-nn_sigmoid"}, in which each layer (node) is
+@fig-bin-nn_sigmoid, in which each layer (node) is
 differentiable and the weight can be learned by gradient descent.
 
-<figure id="fig-bin-nn_sigmoid">
-
-<figcaption>Multi-layer neural network with the sigmoid function. <span
-class="math inline"><em>s</em><sub>1</sub></span> and <span
-class="math inline"><em>s</em><sub>2</sub></span> are the weighted sum
-of input values leading to the respective hidden nodes whereas <span
-class="math inline"><em>s</em></span> is the weighted sum of input
-values leading to the output layer. </figcaption>
-</figure>
+![Multi-layer neural network with the sigmoid function. $s_1$ and $s_2$ are the weighted sum of input values leading to the respective hidden nodes whereas $s$ is the weighted sum of input values leading to the output layer.](../assets/figures/chapter07/fig-bin-nn-sigmoid){#fig-bin-nn_sigmoid fig-alt="Multi-layer neural network with the sigmoid function. s_1 and s_2 are the weighted sum of input values leading to the respective hidden nodes whereas s is the weighted sum of input values leading to the output layer." width="70%"}
 
 The weighted sum for each hidden node $i$ can be computed by:
 
@@ -866,8 +784,7 @@ $$\begin{aligned}
   & = & f(\sum_{j=0}^{m} w_{ij} v_j)
 \end{aligned}$$
 
-In Figure [1.3](#fig-bin-nn_sigmoid){reference-type="ref"
-reference="fig-bin-nn_sigmoid"}, this can be written as:
+In @fig-bin-nn_sigmoid, this can be written as:
 
 $$\begin{aligned}
   h_1
@@ -891,8 +808,7 @@ $$\begin{aligned}
 \end{aligned}$$
 
 which, for the model in
-Figure [1.3](#fig-bin-nn_sigmoid){reference-type="ref"
-reference="fig-bin-nn_sigmoid"}, can be computed by:
+@fig-bin-nn_sigmoid, can be computed by:
 
 $$\begin{aligned}
   \hat{y}
@@ -922,8 +838,7 @@ where $s$ is the weighted sum at the output layer and $f'(s)$ is the
 derivative of the sigmoid function $f(s)$, which is as simple as
 $f(s)(1-f(s))$. This gives the differentials needed to optimize $w_i$
 weights from the hidden layer to the output, i.e. $w_0$, $w_1$, and
-$w_2$ weights in Figure [1.3](#fig-bin-nn_sigmoid){reference-type="ref"
-reference="fig-bin-nn_sigmoid"}.
+$w_2$ weights in @fig-bin-nn_sigmoid.
 
 Now that values in the hidden layer $h$ are based on weighted sums of
 the input layer, we also need to optimize $w_{ij}$ weights connecting
@@ -945,8 +860,7 @@ of $w_0$, $w_1$, and $w_2$. The differential $\frac{dE(v)}{dw_{ij}}$ in
 Equation [\[eq-bin-dwij\]](#eq-bin-dwij){reference-type="ref"
 reference="eq-bin-dwij"} will be used to subtract from existing weights
 of $w_{10}$ and $w_{11}$ for $h_1$; $w_{20}$ and $w_{22}$ for $h_2$ in
-Figure [1.3](#fig-bin-nn_sigmoid){reference-type="ref"
-reference="fig-bin-nn_sigmoid"}. This approach of revising weights to
+@fig-bin-nn_sigmoid. This approach of revising weights to
 the two layers can thought of as propagating differentials of squared
 errors *backward* in the feed-forward neural network, and is referred to
 as *backpropagation*.
@@ -971,12 +885,10 @@ all $0$ values. Note that we use $0$ initial weights for easy
 demonstration. This is not necessarily the best strategy for
 initialization.
 
-::: marginfigure
-:::
+![Backpropagation step 1 with $0$ initial weights.](../assets/figures/chapter07/fig-bin-nn-sigmoid-0){#fig-bin-nn_sigmoid_0 fig-alt="Backpropagation step 1 with 0 initial weights." width="70%"}
 
 Now with the model and initial weights in
-Figure [\[fig-bin-nn_sigmoid_0\]](#fig-bin-nn_sigmoid_0){reference-type="ref"
-reference="fig-bin-nn_sigmoid_0"}, given the first training instance of
+@fig-bin-nn_sigmoid_0, given the first training instance of
 $(2,2)$, we can compute:
 
 $$\begin{aligned}
@@ -1054,11 +966,9 @@ Subtracting these from current $0$ values, we obtain new weights for of
 all $w_{ij}$, namely $w_{10}=0.0313$ and $w_{11}=0.0625$ to hidden node
 $h_1$, and $w_{20}=0.0313$ and $w_{22}=0.0625$ for hidden node $h_2$.
 
-::: marginfigure
-:::
+![Backpropagation step 2 with updated weights](../assets/figures/chapter07/fig-bin-nn-sigmoid-1){#fig-bin-nn_sigmoid_1 fig-alt="Backpropagation step 2 with updated weights" width="70%"}
 
-Figure [\[fig-bin-nn_sigmoid_1\]](#fig-bin-nn_sigmoid_1){reference-type="ref"
-reference="fig-bin-nn_sigmoid_1"} shows the model with updated weights
+@fig-bin-nn_sigmoid_1 shows the model with updated weights
 after training by the first instance $(2,2)$ with a known class label
 $1$. We can continue to train the model with additional data instances
 in Table [1.3](#tab-bin-car_nn){reference-type="ref"
@@ -1066,35 +976,9 @@ reference="tab-bin-car_nn"}. This can be repeated with the same data
 until weights are stabilized and the error is reduced to a certain
 level.
 
-<figure id="fig-bin-car_nn_converge">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">(a) Weight <span
-class="math inline">$\frac{w_{11}}{w_{10}}$</span> to hidden layer</td>
-<td style="text-align: center;">(b) Weight <span
-class="math inline">$\frac{w_1}{w_0}$</span> to output</td>
-<td style="text-align: center;">(c) Error <span
-class="math inline">$\frac{(y - \hat{y})^2}{2}$</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<figcaption>Neural network training iterations and
-convergence</figcaption>
-</figure>
+![Neural network training iterations and convergence](../assets/figures/chapter07/fig-bin-car-nn-converge){#fig-bin-car_nn_converge fig-alt="Neural network training iterations and convergence" width="70%"}
 
-Figure [1.4](#fig-bin-car_nn_converge){reference-type="ref"
-reference="fig-bin-car_nn_converge"} shows relative weights and error
+@fig-bin-car_nn_converge shows relative weights and error
 over time, via iterations of repeated training with data in
 Table [1.3](#tab-bin-car_nn){reference-type="ref"
 reference="tab-bin-car_nn"}. Note that in linear equations, absolute
@@ -1105,17 +989,14 @@ weights relative to $w_0$, i.e. divided by the *bias* weight.
 Overall, the figures show the weights and error all appear to converge.
 However, they seem to differ in the number of iterations needed for
 their convergence. In
-Figure [1.4](#fig-bin-car_nn_converge){reference-type="ref"
-reference="fig-bin-car_nn_converge"} (a), the relative weight of
+@fig-bin-car_nn_converge (a), the relative weight of
 $w_{11}$ (the weight of $v_1$ to the hidden node $h_1$) fluctuates a lot
 in the first $10$ iterations but stabilizes quickly after a few dozen
 iterations. In
-Figure [1.4](#fig-bin-car_nn_converge){reference-type="ref"
-reference="fig-bin-car_nn_converge"} (b), $w_1$ -- the weight from the
+@fig-bin-car_nn_converge (b), $w_1$ -- the weight from the
 hidden node $h_1$ to the final output -- appears to take hundreds of
 iterations to converge. The squared error, as shown in
-Figure [1.4](#fig-bin-car_nn_converge){reference-type="ref"
-reference="fig-bin-car_nn_converge"} (c), takes even even more
+@fig-bin-car_nn_converge (c), takes even even more
 iterations to be minimized.
 
 In the end, we obtain the weights in
@@ -1134,45 +1015,28 @@ The result of
 Table [\[tab-bin-car_nn_result\]](#tab-bin-car_nn_result){reference-type="ref"
 reference="tab-bin-car_nn_result"} can be represented as the final
 (converged) model in
-Figure [1.5](#fig-bin-car_nn_result){reference-type="ref"
-reference="fig-bin-car_nn_result"}, which is highly similar to the one
-in Figure [1.3](#fig-bin-nn_sigmoid){reference-type="ref"
-reference="fig-bin-nn_sigmoid"}. For example, the weighted sum for
+@fig-bin-car_nn_result, which is highly similar to the one
+in @fig-bin-nn_sigmoid. For example, the weighted sum for
 hidden node $h_1$ is $2.5 - v_1$ in the model here, which is simply the
 negative of what is in
-Figure [1.3](#fig-bin-nn_sigmoid){reference-type="ref"
-reference="fig-bin-nn_sigmoid"}, where the sum is $v_1 - 2.5$. We
+@fig-bin-nn_sigmoid, where the sum is $v_1 - 2.5$. We
 observe the same with the hidden node $h_2$. This leads to the different
 signs of $w_1, w_2$ vs. $w_0$ to the output layer.
 
-<figure id="fig-bin-car_nn_result">
+![Neural network final model. Compare to the referenced figure. Note that we transform the bias node on the hidden layer with the sigmoid as well, i.e. $h_0 = f(1) = \frac{1}{1+e^{-1}} = 0.73$. In the final model, $w_0 h_0 = -1.92\times0.73=-1.4$.](../assets/figures/chapter07/fig-bin-car-nn-result){#fig-bin-car_nn_result fig-alt="Neural network final model. Compare to the referenced figure. Note that we transform the bias node on the hidden layer with the sigmoid as well, i.e. h_0 = f(1) = 11+e^-1 = 0.73. In the final model, w_0 h_0 = -1.920.73=-1.4." width="70%"}
 
-<figcaption>Neural network final model. Compare to Figure <a
-href="#fig-bin-nn_sigmoid" data-reference-type="ref"
-data-reference="fig-bin-nn_sigmoid">1.3</a>. Note that we transform the
-bias node on the hidden layer with the sigmoid as well, i.e. <span
-class="math inline">$h_0 = f(1) = \frac{1}{1+e^{-1}} = 0.73$</span>. In
-the final model, <span
-class="math inline"><em>w</em><sub>0</sub><em>h</em><sub>0</sub> = −1.92 × 0.73 = −1.4</span>.
-</figcaption>
-</figure>
-
-Figure [\[fig-bin-car_nn_result_plot\]](#fig-bin-car_nn_result_plot){reference-type="ref"
-reference="fig-bin-car_nn_result_plot"} visualizes how the model
+@fig-bin-car_nn_result_plot visualizes how the model
 transforms the original data into something separable. A sigmoid
 function with a weighted sum of $2.5 - v$ (for both $v_1$ and $v_2$)
 converts the original data ($+$ and $\circ$ in faded colors) to values
 close to $0$ (if $v>2.5$) and $1$ values (if $v<2.5$).
 
-::: marginfigure
-:::
+![Visualization of the final model on car evaluation. Data transformed by the sigmoid function $h_i = f(s_i) = \frac{1}{1+e^{-s_i}}$, where $s_i$ is the weighted sum of each hidden node: $s_1=2.5 - v_1$ and $s_2 = 2.5 - v_2$. The solid line at $h_1+h_2 - 1.92 f(1)=0$ is where the sigmoid of the output layer makes the cut.](../assets/figures/chapter07/fig-bin-car-nn-result-plot){#fig-bin-car_nn_result_plot fig-alt="Visualization of the final model on car evaluation. Data transformed by the sigmoid function h_i = f(s_i) = 11+e^-s_i, where s_i is the weighted sum of each hidden node: s_1=2.5 - v_1 and s_2 = 2.5 - v_2. The solid line at h_1+h_2 - 1.92 f(1)=0 is where the sigmoid of the output layer makes the cut." width="70%"}
 
 Given the limited training data we have, there are many non-linear
 solutions to the classification problem. In the end, we obtain the model
-in Figure [1.5](#fig-bin-car_nn_result){reference-type="ref"
-reference="fig-bin-car_nn_result"} which is different from what we
-proposed in Figure [1.3](#fig-bin-nn_sigmoid){reference-type="ref"
-reference="fig-bin-nn_sigmoid"}. Both models will make perfect
+in @fig-bin-car_nn_result which is different from what we
+proposed in @fig-bin-nn_sigmoid. Both models will make perfect
 classifications on the training data presented in
 Table [1.3](#tab-bin-car_nn){reference-type="ref"
 reference="tab-bin-car_nn"}. However, a model thus obtained has not

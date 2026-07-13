@@ -37,10 +37,12 @@ occurrence. Flipping a *perfect* coin, for example, has a $50\%$
 probability to turn up a head and $50\%$ tail because each side has
 equal chances (frequencies) if it is repeated for *sufficient* times.
 
-::: marginfigure
-  ------------------------------------------------ ------------------------------------------------
-   ![image](../assets/figures/prob/coin_head.png){width="1in"}   ![image](../assets/figures/prob/coin_tail.png){width="1in"}
-  ------------------------------------------------ ------------------------------------------------
+::: {#fig-prob-head-tail layout-ncol="2"}
+![Head](../assets/figures/prob/coin_head.png){fig-alt="Heads side of a coin."}
+
+![Tail](../assets/figures/prob/coin_tail.png){fig-alt="Tails side of a coin."}
+
+Head versus tail.
 :::
 
 On the other hand, the *Bayesian* view of probability is associated with
@@ -97,15 +99,12 @@ P(A \cup B)
 & = & P(A) + P(B)
 \end{aligned}$$
 
-::: marginfigure
-![image](../assets/figures/prob/p_no_overlap.png){width="2in"}
-:::
+![Mutually exclusive events.](../assets/figures/prob/p_no_overlap.png){#fig-prob-no-overlap fig-alt="Two separate circles representing events A and B with no overlap." width="45%"}
 
 where the symbol $\cup$ (union) is equivalent to logical OR and implies
 addition of the events. When two events are mutually exclusive, they do
 not occur simultaneously and, as visualized in
-Figure [\[fig-prob-no_overlap\]](#fig-prob-no_overlap){reference-type="ref"
-reference="fig-prob-no_overlap"}, have *no overlap* or intersection in
+@fig-prob-no-overlap, have *no overlap* or intersection in
 their probability space. Because of that, we can simply add the two
 together.
 
@@ -139,14 +138,10 @@ P(A \cup B)
   & = & P(A) + P(B) - P(A \cap B)
 \end{aligned}$$
 
-::: marginfigure
-![image](../assets/figures/prob/p_overlap.png){width="2in"}
-:::
+![Events that are not mutually exclusive.](../assets/figures/prob/p_overlap.png){#fig-prob-overlap fig-alt="Two overlapping circles representing events A and B." width="45%"}
 
 The reason for subtracting the joint probability $P(A \cap B)$ can be
-illustrated in
-Figure [\[fig-prob-overlap\]](#fig-prob-overlap){reference-type="ref"
-reference="fig-prob-overlap"}. As shown in the figure, when A and B can
+illustrated in @fig-prob-overlap. As shown in the figure, when A and B can
 occur simultaneously, they have an overlap (intersection) which should
 be discounted so it is not counted *twice* in the addition.
 
@@ -160,9 +155,7 @@ P(Ace) & = & \frac{4}{52} \\
 P(Spade) & = & \frac{13}{52}
 \end{aligned}$$
 
-::: marginfigure
-![image](../assets/figures/prob/ace_spades.png){width="2in"}
-:::
+![Ace $\cap$ spade: a joint (AND) event.](../assets/figures/prob/ace_spades.png){#fig-prob-ace-spade fig-alt="An ace of spades card representing the intersection of aces and spades." width="35%"}
 
 Because there is $1$ card that is both an Ace and a Spade, the joint
 probability is $P(Ace \cap Spade) = \frac{1}{52}$ and the union
@@ -510,8 +503,7 @@ with external knowledge.](../assets/figures/prob/elephant.jpg){#fig-prob-elephan
 width="3in"}
 
 Data may be localized, just as the story of *blind men and elephant*
-shows (Figure [1.1](#fig-prob-elephant){reference-type="ref"
-reference="fig-prob-elephant"}). But we should aim to see the whole
+shows (@fig-prob-elephant). But we should aim to see the whole
 picture.
 
 In addition, there is also an undesired consequence for having a zero
@@ -606,12 +598,7 @@ distributions* on the analysis.
 We shall now prepare us with an introductory discussion of probability
 distributions, from discrete to continuous cases.
 
-<figure id="fig-prob-coin_freq">
-
-<figcaption>Frequency distribution of flipping a coin, 500 heads vs. 500
-tails after <span class="math inline">1, 000</span> trials in the ideal
-world. </figcaption>
-</figure>
+![Frequency distribution of flipping a coin: 500 heads versus 500 tails after $1,000$ trials in the ideal world.](../assets/figures/chapter04/fig-prob-coin-freq){#fig-prob-coin-freq fig-alt="Bar chart with equal frequencies of 500 for heads and tails." width="55%"}
 
 First let's look at some discrete cases. Imagine you toss a coin for
 1000 times and in the perfect world you get 500 heads and 500 tails. And
@@ -619,30 +606,21 @@ you can create a simple bar plot to show the frequency distribution of
 500 for both heads and tails. This is a uniform distribution because
 every event, head vs. tail, has an equal chance.
 
-<figure id="fig-prob-coin_prob">
-
-<figcaption>Probability distribution of flipping a coin (500 heads vs.
-500 tails). </figcaption>
-</figure>
+![Probability distribution of flipping a coin: heads and tails each have probability $0.5$.](../assets/figures/chapter04/fig-prob-coin-prob){#fig-prob-coin-prob fig-alt="Bar chart with probability 0.5 for heads and 0.5 for tails." width="55%"}
 
 Now instead of talking about frequencies or counts, we can describe the
 distribution in terms of chance (probabilities). And in this case, head
 and tail have equal chances (probabilities) of 50% or 0.5 in the
-distribution, as Figure [1.3](#fig-prob-coin_prob){reference-type="ref"
-reference="fig-prob-coin_prob"} shows.
+distribution, as @fig-prob-coin-prob shows.
 
 For the sake of discussion, let's extend the binary case, head vs. tail,
 to a larger number of exclusive outcomes. For example, imagine you roll
 a dice. If you roll it for a sufficient number of times, the sides will
 have equal chances to appear, that is, each side from 1 to 6 has a
 probability of 1/6 to occur, as shown in
-Figure [1.4](#fig-prob-dice){reference-type="ref"
-reference="fig-prob-dice"}.
+@fig-prob-dice.
 
-<figure id="fig-prob-dice">
-
-<figcaption>Probability distribution of rolling a dice</figcaption>
-</figure>
+![Probability distribution of rolling a die.](../assets/figures/chapter04/fig-prob-dice){#fig-prob-dice fig-alt="Uniform bar chart assigning probability one sixth to each face from one through six." width="65%"}
 
 Two simple but important observations here:
 
@@ -660,15 +638,9 @@ continuous distribution. If the outcome $x$ is no longer limited to such
 integers or specific labels. Perhaps the outcome of the question at hand
 can be any number in the range of 1 and 6, and you are to predict that
 number. If it is a uniform distribution in with the continuous variable,
-it remains a flat line in the range of 1 - 6, shown in
-Figure [1.5](#fig-prob-cont){reference-type="ref"
-reference="fig-prob-cont"}.
+it remains a flat line in the range of 1 - 6, shown in @fig-prob-cont.
 
-<figure id="fig-prob-cont">
-
-<figcaption>Probability distribution of a continuous variable <span
-class="math inline"><em>x</em></span></figcaption>
-</figure>
+![Probability density of a continuous variable $x$.](../assets/figures/chapter04/fig-prob-cont){#fig-prob-cont fig-alt="Flat probability-density line between one and six." width="65%"}
 
 Again, when we add all probabilities up in the distribution, the total
 should still be $1$. But because this is a continuous space, we are
@@ -681,8 +653,7 @@ result of the integration or the entire area will *always* be $1$, as
 long as the plotted range includes all possible outcomes.
 
 With a uniform (flat) distribution, the area is a rectangle as shown in
-Figure [1.5](#fig-prob-cont){reference-type="ref"
-reference="fig-prob-cont"} and it is easy to calculate the area. In the
+@fig-prob-cont and it is easy to calculate the area. In the
 above case, the area of the rectangle between $1$ and $6$ can be
 computed by width times height, which is $(6-1) \times 0.2 = 1$. So this
 meets the expectation that the sum of the entire probability
@@ -690,8 +661,7 @@ distribution is $1$.
 
 Although the above is discussed as a *probability* distribution, we
 shall clarify on an important concept. The uniform height $0.2$ in
-Figure [1.5](#fig-prob-cont){reference-type="ref"
-reference="fig-prob-cont"} is NOT a probability value per se. It is what
+@fig-prob-cont is NOT a probability value per se. It is what
 we refer to as a *probability density*, but not exactly a probability.
 For now, let us move on from the uniform distribution to a more common
 distribution in the real world before we come back to elaborate on the
@@ -705,11 +675,7 @@ of (average) people have the average height around 70 inches. And much
 rarer are shorter than 62 or taller than 78. The whole distribution is a
 bell curve as shown in the figure here.
 
-<figure id="fig-prob-height">
-
-<figcaption>Distribution of adult male heights, approximately a normal
-distribution (bell curve)</figcaption>
-</figure>
+![Distribution of adult male heights, approximately a normal distribution (bell curve).](../assets/figures/chapter04/fig-prob-height){#fig-prob-height fig-alt="Bell-shaped probability-density curve centered near the average adult male height." width="65%"}
 
 This is again a probability density distribution so if you integrate the
 curve, the total area under it will be $1$ or $100\%$ probability. When
@@ -742,9 +708,7 @@ you can integrate the area under the bell curve in the range to find
 out.
 
 To reiterate this point -- on the simpler example of the uniform
-distribution presented in
-Figure [1.5](#fig-prob-cont){reference-type="ref"
-reference="fig-prob-cont"}, the $0.2$ value on y is not probability but
+distribution presented in @fig-prob-cont, the $0.2$ value on y is not probability but
 probability density or probability per unit. You can still tell that all
 probabilities are equal by looking at the flat line. And you can ask the
 question about how likely you will get a value between 2 and 4 by
@@ -754,9 +718,7 @@ will get a value *in that range*.
 
 As always, all probabilities add up to $1$ as you can verify by
 $0.2 \times (6-1) = 1$. So if you ask how likely a value occurs in the
-range between $1$ and $6$, given the distribution in
-Figure [1.5](#fig-prob-cont){reference-type="ref"
-reference="fig-prob-cont"}, the answer is that it will *always be true*.
+range between $1$ and $6$, given the distribution in @fig-prob-cont, the answer is that it will *always be true*.
 
 There are several major categories of probability distributions beyond
 the uniform and normal distributions we discussed here. Some of these
@@ -775,11 +737,9 @@ effect is also known as the *cumulative advantage*[@Price1976] or
 
 Spoken language (word frequencies) follows the Zipf law, which can be
 regarded as a special case of the power-law distribution.
-Figure [1.7](#fig-prob-word_freq){reference-type="ref"
-reference="fig-prob-word_freq"} shows the distribution of word
+@fig-prob-word-freq shows the distribution of word
 frequencies taken from the novel *Moby Dick*. As shown in
-Figure [1.7](#fig-prob-word_freq){reference-type="ref"
-reference="fig-prob-word_freq"} (a), there is a great divide between the
+@fig-prob-word-freq (a), there is a great divide between the
 rich and the poor -- a large number of words have only been used once or
 twice in the novel (tall bars on the left of the distribution) where
 very few words have a frequency higher than $100$ (the long tail).
@@ -787,28 +747,17 @@ very few words have a frequency higher than $100$ (the long tail).
 It is difficult, however, to examine the long tail on normal coordinates
 as the values are very small (low) within a long range. Logarithmic
 transformation is often conducted to better visualize the distribution.
-The result is Figure [1.7](#fig-prob-word_freq){reference-type="ref"
-reference="fig-prob-word_freq"} (b), where both $x$ (words' occurrences)
+The result is @fig-prob-word-freq (b), where both $x$ (words' occurrences)
 and $y$ (frequencies of the occurrences) have been transformed with
 logarithm.[^ch04-7]
 
-<figure id="fig-prob-word_freq">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;"><img src="../assets/figures/prob/word_freq.png"
-style="width:2in" alt="image" /></td>
-<td style="text-align: center;"><img src="../assets/figures/prob/word_freq_log.png"
-style="width:2in" alt="image" /></td>
-</tr>
-<tr>
-<td style="text-align: center;">(a) normal coordinates</td>
-<td style="text-align: center;">(b) log-log coordinates</td>
-</tr>
-</tbody>
-</table>
-<figcaption>Word frequency distribution</figcaption>
-</figure>
+::: {#fig-prob-word-freq layout-ncol=2}
+![Normal coordinates](../assets/figures/prob/word_freq.png){fig-alt="Word frequency distribution on normal coordinates" width="2in"}
+
+![Log-log coordinates](../assets/figures/prob/word_freq_log.png){fig-alt="Word frequency distribution on log-log coordinates" width="2in"}
+
+Word frequency distribution
+:::
 
 One prominent characteristic of a power-law distribution is that it
 follows a straight line on log-transformed coordinates spanning across a

@@ -167,13 +167,11 @@ completely dominates and the average suffers.
 In applications where a model can be adjusted or tuned, we can evaluate
 the model based on more than one pairs of precision and recall scores. A
 common practice is to plot the precision-recall curve.
-Figure [\[fig-eval-pr_curve\]](#fig-eval-pr_curve){reference-type="ref"
-reference="fig-eval-pr_curve"} shows precision-recall curves of two
+@fig-eval-pr_curve shows precision-recall curves of two
 methods, where method 1 appears to perform better as its curve is closer
 to the top-right (higher precision and recall).
 
-::: marginfigure
-:::
+![Precision-recall curve](../assets/figures/chapter14/fig-eval-pr-curve){#fig-eval-pr_curve fig-alt="Precision-recall curve" width="70%"}
 
 ## Sensitivity and Specificity
 
@@ -207,11 +205,9 @@ enables the evaluation of model effectiveness in terms of true positive
 and true negative rates, but can also help identify best practice with
 cost constraints.
 
-::: marginfigure
-:::
+![ROC curve and area under curve (AUC)](../assets/figures/chapter14/fig-eval-roc){#fig-eval-roc fig-alt="ROC curve and area under curve (AUC)" width="70%"}
 
-Figure [\[fig-eval-roc\]](#fig-eval-roc){reference-type="ref"
-reference="fig-eval-roc"} illustrates a plot of an ROC curve, where the
+@fig-eval-roc illustrates a plot of an ROC curve, where the
 diagonal line (dashed) defines the acceptable performance. To understand
 what the diagonal line means, imagine we create a random model that
 takes a 50-50 guess during classification. As a result of this random
@@ -231,8 +227,7 @@ where $N_{\hat{\oplus}}$ and $N_{\hat{\ominus}}$ are the numbers of
 predicted positives and negatives respectively. It follows that
 $TPR = FNR$, i.e. $Sensitivity = 1 - Specificity$ or
 $Sensitivity + Specificity=1$. This equation defines the diagonal line
-in Figure [\[fig-eval-roc\]](#fig-eval-roc){reference-type="ref"
-reference="fig-eval-roc"} and is the result of random guessing.
+in @fig-eval-roc and is the result of random guessing.
 
 Below the diagonal line $Sensitivity+Specificity=1$, the model performs
 worse than random and is undesirable. The farther the ROC curve is above
@@ -548,19 +543,16 @@ $$\begin{aligned}
 Pearson correlation measures the similarity in their variances from
 means and is equivalent to cosine of $v$ and $\hat{v}$ as vectors from
 their means.
-Figure [\[fig-eval-cor\]](#fig-eval-cor){reference-type="ref"
-reference="fig-eval-cor"} illustrates the connection using a
+@fig-eval-cor illustrates the connection using a
 2-dimensional space. To simplify the discussion, suppose there are only
 $N=2$ instances on which the actual outcomes are $(v_1, v_2)$ and
 predicted values are $(\hat{v_1},\hat{v_2})$, with means $\mu$ and
 $\hat{\mu}$ respectively.
 
-::: marginfigure
-:::
+![Pearson correlation as cosine of vectors originated from means, with $N=2$ for a 2-dimensional visualization](../assets/figures/chapter14/fig-eval-cor){#fig-eval-cor fig-alt="Pearson correlation as cosine of vectors originated from means, with N=2 for a 2-dimensional visualization" width="70%"}
 
 As shown in
-Figure [\[fig-eval-cor\]](#fig-eval-cor){reference-type="ref"
-reference="fig-eval-cor"}, the actual values can be regarded as a vector
+@fig-eval-cor, the actual values can be regarded as a vector
 pointing in the $\vec{v} = (v_1-\mu, v_2-\mu)$ direction, whereas the
 predicted is represented by the vector
 $\vec{\hat{v}}=(\hat{v_1}-\hat{\mu}, \hat{v_2}-\hat{\mu})$. In this

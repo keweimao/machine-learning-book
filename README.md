@@ -19,7 +19,7 @@ The migrated project has been successfully rendered and checked as a 240-page PD
 Install [Quarto](https://quarto.org/docs/get-started/) and use the existing MacTeX installation:
 
 ```bash
-cd /Users/wk77/Documents/git/book/newbook26
+cd /Users/wk77/Documents/git/machine-learning-book
 quarto preview
 quarto render --to html
 quarto render --to pdf
@@ -27,6 +27,58 @@ quarto render --to epub
 ```
 
 During this migration, a project-local Quarto 1.9.38 runtime was used because the system installer requires an administrator password.
+
+## Ongoing workflow
+
+The `main` branch contains the canonical source. The `gh-pages` branch contains generated publication files and is managed automatically by Quarto; do not edit it directly.
+
+Start a writing session by updating the local checkout and opening the live preview:
+
+```bash
+cd /Users/wk77/Documents/git/machine-learning-book
+git pull --ff-only
+quarto preview
+```
+
+Stop the preview with `Ctrl-C`. Before committing, render every publication format and review the change list:
+
+```bash
+quarto render
+git status
+git diff
+```
+
+Commit and push the source changes:
+
+```bash
+git add chapters assets references.bib _quarto.yml README.md
+git status
+git commit -m "Describe the chapter or editorial update"
+git push
+```
+
+A push to `main` triggers `.github/workflows/publish.yml`, which renders the book and updates GitHub Pages. Monitor or diagnose the deployment with:
+
+```bash
+gh run list --limit 5
+gh run watch
+gh run view --log-failed
+```
+
+The public edition is available at <https://keweimao.github.io/machine-learning-book/>. To request a deployment without changing content, run the **Publish Quarto Book** workflow from the GitHub Actions page or use:
+
+```bash
+gh workflow run publish.yml
+gh run watch
+```
+
+If the `gh-pages` publication configuration ever needs to be reinitialized, use:
+
+```bash
+quarto publish gh-pages --no-browser
+```
+
+Generated `_book/`, `.quarto/`, and `site_libs/` directories are ignored on `main`. PDF, EPUB, HTML, and `site_libs/` belong in the generated `gh-pages` publication, not in source commits.
 
 ## Authoring rule
 

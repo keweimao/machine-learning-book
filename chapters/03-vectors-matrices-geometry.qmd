@@ -50,16 +50,12 @@ $$\begin{aligned}
 \end{aligned}$$
 
 where each row is a 2-dimensional vector and can be visualized in
-Figure [\[fig-matrix-x\]](#fig-matrix-x){reference-type="ref"
-reference="fig-matrix-x"}.
+@fig-matrix-x.
 
-::: marginfigure
-:::
+![Row vectors of matrix $X$.](../assets/figures/chapter03/fig-matrix-x){#fig-matrix-x fig-alt="Three vectors representing company revenue and profit in a two-dimensional coordinate plane." width="60%"}
 
 Let $Y$ be this year's data as follow, which, likewise, can be
-visualized as $3$ row vectors in
-Figure [\[fig-matrix-y\]](#fig-matrix-y){reference-type="ref"
-reference="fig-matrix-y"}:
+visualized as $3$ row vectors in @fig-matrix-y:
 
 $$\begin{aligned}
     Y   & = &
@@ -75,8 +71,7 @@ $$\begin{aligned}
     \end{pmatrix}
 \end{aligned}$$
 
-::: marginfigure
-:::
+![Row vectors of matrix $Y$.](../assets/figures/chapter03/fig-matrix-y){#fig-matrix-y fig-alt="Three updated company vectors in a two-dimensional coordinate plane." width="60%"}
 
 Apparently, $X$ and $Y$ have the same dimensionality --
 $X \in \mathbb{R}^{3\times2}$ and $Y \in \mathbb{R}^{3\times2}$ -- as they are about the
@@ -123,13 +118,11 @@ $$\begin{aligned}
 Matrix $G$, the result of the subtraction, contains data about growth
 (increases and decreases). The rows of matrix $G$ are vectors connecting
 respective $X$ vectors to $Y$ vectors. Let's single out the $3^{rd}$
-company from the data, i.e. $x_3$, $y_3$, and $g_3$. As shown
-Figure [\[fig-matrix-xy\]](#fig-matrix-xy){reference-type="ref"
-reference="fig-matrix-xy"}, subtraction $g_3=y_3-x_3$ is the vector that
+company from the data, i.e. $x_3$, $y_3$, and $g_3$. As shown in
+@fig-matrix-xy, subtraction $g_3=y_3-x_3$ is the vector that
 starts at $x_3$ and ends at $y_3$.
 
-::: marginfigure
-:::
+![Subtraction geometry.](../assets/figures/chapter03/fig-matrix-xy){#fig-matrix-xy fig-alt="Vectors x3 and y3 connected by their difference vector g3." width="60%"}
 
 Suppose the rate of growth in $G$ is projected to continue (the same)
 next year. This will double the growth, which can be computed by:
@@ -156,13 +149,11 @@ $$\begin{aligned}
     \end{pmatrix}
 \end{aligned}$$
 
-::: marginfigure
-:::
+![Geometry of $g_3 \times 2$, as part of scalar multiplication $G\times2$.](../assets/figures/chapter03/fig-matrix-2g){#fig-matrix-2g fig-alt="Growth vector g3 and a vector in the same direction with twice its length." width="60%"}
 
 Here every value in matrix $G$ is doubled; so is every vector -- row or
 column -- in the matrix. For example,
-Figure [\[fig-matrix-2g\]](#fig-matrix-2g){reference-type="ref"
-reference="fig-matrix-2g"} shows when $g_3$, the growth vector of the
+@fig-matrix-2g shows when $g_3$, the growth vector of the
 $3^{rd}$ company (row), multiplies $2$, the vector doubles its length
 (magnitude) in the same direction. Multiplying a matrix with a scalar
 (single number) results in a matrix of the same dimensionality, in which
@@ -207,8 +198,7 @@ Z & = & Y + 2G \\
   \end{pmatrix}
 \end{aligned}$$
 
-::: marginfigure
-:::
+![Geometry of addition $z_3=x_3 + g_3\times2$.](../assets/figures/chapter03/fig-matrix-z){#fig-matrix-z fig-alt="Head-to-tail vector addition showing x3 plus twice g3 resulting in z3." width="60%"}
 
 Note that the data matrix $Z$ projected from last year's numbers in $X$
 should be the same as that projected based on this year's data in $Y$,
@@ -216,15 +206,11 @@ i.e. $Z=X+2G=Y+G$ given that $G=Y-X$.
 
 Geometrically, for corresponding vectors in the matrices, the addition
 operation is to connect them head to tail. For example, as shown by the
-solid lines in
-Figure [\[fig-matrix-z\]](#fig-matrix-z){reference-type="ref"
-reference="fig-matrix-z"}, for the $3^{rd}$ row vector, $x_3+g_3\times2$
+solid lines in @fig-matrix-z, for the $3^{rd}$ row vector, $x_3+g_3\times2$
 is to connect vectors $x_3$ and $2g_3$ and the result is $z_3$, which
 draws from the tail of $x_3$ to the head of $2g_3$. Vector and matrix
 addition is communicative, the same result can be obtained by
-$2g_3 + x_3$, as shown by dashed lines in
-Figure [\[fig-matrix-z\]](#fig-matrix-z){reference-type="ref"
-reference="fig-matrix-z"}.
+$2g_3 + x_3$, as shown by dashed lines in @fig-matrix-z.
 
 ## Sum of Squares
 
@@ -352,12 +338,9 @@ $$\begin{aligned}
     \end{matrix}
 \end{aligned}$$
 
-::: marginfigure
-:::
+![Vector magnitude.](../assets/figures/chapter03/fig-matrix-magnitude){#fig-matrix-magnitude fig-alt="A vector from the origin to the point 3,4, forming a right triangle with length 5." width="55%"}
 
-which is the length shown in
-Figure [\[fig-matrix-magnitude\]](#fig-matrix-magnitude){reference-type="ref"
-reference="fig-matrix-magnitude"}.
+which is the length shown in @fig-matrix-magnitude.
 
 ## Vector Distance
 
@@ -451,8 +434,7 @@ $$\begin{aligned}
   \end{matrix}
 \end{aligned}$$
 
-::: marginfigure
-:::
+![Vector distance.](../assets/figures/chapter03/fig-matrix-distance){#fig-matrix-distance fig-alt="Two vectors from the origin and the difference vector connecting their endpoints." width="55%"}
 
 Their Euclidean distance can be computed by the magnitude of their
 difference:
@@ -466,9 +448,7 @@ $$\begin{aligned}
 
 Euclidean distance is symmetric as a metric, i.e.
 $\left\lVert v-u \right\rVert = \left\lVert u-v \right\rVert$. The distance between the two vectors is
-illustrated in
-Figure [\[fig-matrix-distance\]](#fig-matrix-distance){reference-type="ref"
-reference="fig-matrix-distance"}.
+illustrated in @fig-matrix-distance.
 
 ## Vector Angle
 
@@ -595,12 +575,9 @@ $$\begin{aligned}
   \end{matrix}
 \end{aligned}$$
 
-::: marginfigure
-:::
+![Normalization to unit vectors.](../assets/figures/chapter03/fig-matrix-unit){#fig-matrix-unit fig-alt="Two vectors and their normalized versions ending on a unit circle." width="60%"}
 
-As shown in
-Figure [\[fig-matrix-unit\]](#fig-matrix-unit){reference-type="ref"
-reference="fig-matrix-unit"}, the normalized unit vectors $\hat{u}$ and
+As shown in @fig-matrix-unit, the normalized unit vectors $\hat{u}$ and
 $\hat{v}$ point to the same directions of their original vectors $u$ and
 $v$ respectively. However, the normalization produce vectors of equal
 magnitudes. As the dotted circle shows, the unit vectors are part of a
@@ -630,21 +607,16 @@ $$\begin{aligned}
   \end{matrix}
 \end{aligned}$$
 
-::: marginfigure
-[]{#fig-matrix-cosine label="fig-matrix-cosine"}
-:::
+![Cosine values for special angles.](../assets/figures/chapter03/fig-matrix-cosine){#fig-matrix-cosine fig-alt="Unit circle diagram showing cosine values for parallel, perpendicular, and opposite vectors." width="60%"}
 
 which is the cosine of the angle between $u$ and $v$, shown in
-Figure [\[fig-matrix-unit\]](#fig-matrix-unit){reference-type="ref"
-reference="fig-matrix-unit"}. The arc cosine of $0.894$ corresponds to
+@fig-matrix-unit. The arc cosine of $0.894$ corresponds to
 an angle of roughly $27^\circ$ out of a $360^\circ$ full circle, or
 $0.465$ on a $2\pi$ scale. Cosine values range between $-1$ and $1$: it
 is $1$ when two vector are in the exact same direction (parallel) and
 $-1$ when they are in the opposite direction (a $180^\circ$ or $\pi$
 angle). Cosine is $0$ when two vectors are orthogonal (perpendicular) to
-each other (right angle). See
-Figure [\[fig-matrix-cosine\]](#fig-matrix-cosine){reference-type="ref"
-reference="fig-matrix-cosine"}.
+each other (right angle). See @fig-matrix-cosine.
 
 ## Vector Cross Product
 

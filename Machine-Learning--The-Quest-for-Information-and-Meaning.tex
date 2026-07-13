@@ -386,31 +386,20 @@ values of the first \(3\) columns might have something to do with the
 When examining their relations, it is often helpful to use
 visualizations. We may start with a scatter plot for the \(4^{th}\)
 column vs.~each of the first \(3\) columns, as shown in
-Figure~\hyperref[fig-data-plot1]{1.1}.
+Figure~\ref{fig-data-plot1}.
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  {V4} vs.~{V1}
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    {V4} vs.~{V2}
+\centering{
 
-    \begin{enumerate}
-    \def\labelenumiii{(\alph{enumiii})}
-    \tightlist
-    \item
-      {V4} vs.~{V3}
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio,alt={Three scatter plots comparing the binary fourth variable with each of the first three variables.}]{chapters/../assets/figures/chapter01/scatter-individual.pdf}
 
-      Scatter plots: {V4} vs.~{V1}, {V2}, {V3}
-    \end{enumerate}
-  \end{enumerate}
-\end{enumerate}
+}
+
+\caption{\label{fig-data-plot1}Scatter plots: \(V_4\) vs.~\(V_1\),
+\(V_2\), and \(V_3\).}
+
+\end{figure}%
 
 Now that the scatter plots hardly reveal any obvious relation, we may
 start to look at the interplay of multiple variables. We may ask, for
@@ -419,48 +408,36 @@ associated with the relation between the first two columns?" To answer
 this question, we may create a scatter plot of the \(1^{st}\) and
 \(2^{nd}\) columns while color-coding the \(4^{th}\). When we do the
 same for \(2^{nd}\) vs.~\(3^{rd}\) and \(1^{st}\) vs.~\(3^{rd}\) as
-well, we get Figure~\hyperref[fig-data-plot2]{1.2}.
+well, we get Figure~\ref{fig-data-plot2}.
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  {V2} vs.~{V1}
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    {V3} vs.~{V2}
+\centering{
 
-    \begin{enumerate}
-    \def\labelenumiii{(\alph{enumiii})}
-    \tightlist
-    \item
-      {V1} vs.~{V3}
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio,alt={Three pairwise scatter plots. The middle panel clearly separates red circles below the diagonal from blue plus signs above it.}]{chapters/../assets/figures/chapter01/scatter-pairs.pdf}
 
-      Scatter plots with color-coded {V4}. Mark {∘} for {0} and {+} for
-      {1} values.
-    \end{enumerate}
-  \end{enumerate}
-\end{enumerate}
+}
+
+\caption{\label{fig-data-plot2}Pairwise scatter plots with the value of
+\(V_4\) encoded by symbol and color. Red circles represent \(0\); blue
+plus signs represent \(1\).}
+
+\end{figure}%
 
 It appears the data are nicely separated in terms of \(4^{th}\) column
-values in Figure~\hyperref[fig-data-plot2]{1.2} (b), showing the scatter
-plot of the \(3^{rd}\) vs.~\(2^{nd}\) column. When the value of the
-\(3^{rd}\) column is greater than the value of the \(2^{nd}\), it is
-\(1\) in the \(4^{th}\) column; otherwise, it gives \(0\). This can be
-written as:
+values in Figure~\ref{fig-data-plot2} (b), showing the scatter plot of
+the \(3^{rd}\) vs.~\(2^{nd}\) column. When the value of the \(3^{rd}\)
+column is greater than the value of the \(2^{nd}\), it is \(1\) in the
+\(4^{th}\) column; otherwise, it gives \(0\). This can be written as:
 
-\[
+\begin{equation}\protect\phantomsection\label{eq-data-ne}{
 V_4 = \left\{
 \begin{array}{l l}
   1     & if\ V_3 > V_2 \\
   0     & otherwise
 \end{array}
 \right.
-\]
+}\end{equation}
 
 This appears to be the pattern so far and can be further verified when
 we receive more data. Ultimately, if this is consistent with the
@@ -471,19 +448,31 @@ analyzing the data.
 
 In the machine learning context, we refer to the result of learning,
 i.e.~the new "knowledge", as the \emph{concept}.
-Equation~\hyperref[eq-data-ne]{{[}eq-data-ne{]}} is a rule-based
-approach to concept representation (descriptor). Sometimes, a (linear)
-equation may also be used to represent the result of learning. In this
-example, equation \(V_3 - V_2 = 0\) is the straight line that separates
-the \(0\) and \(1\) values of column \(4\), as shown in
-Figure~\hyperref[fig-data-plot3]{{[}fig-data-plot3{]}}.
+Equation~\ref{eq-data-ne} is a rule-based approach to concept
+representation (descriptor). Sometimes, a (linear) equation may also be
+used to represent the result of learning. In this example, equation
+\(V_3 - V_2 = 0\) is the straight line that separates the \(0\) and
+\(1\) values of column \(4\), as shown in Figure~\ref{fig-data-plot3}.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Scatter plot of V3 against V2 with red circles below a diagonal separator and blue plus signs above it.}]{chapters/../assets/figures/chapter01/linear-separator.pdf}
+
+}
+
+\caption{\label{fig-data-plot3}Separating \(0\) vs.~\(1\) in \(V_4\)
+with the linear equation \(V_3 - V_2 = 0\).}
+
+\end{figure}%
 
 Whether the concept representation is based on the rules in
-Equation~\hyperref[eq-data-ne]{{[}eq-data-ne{]}} or the linear equation
-in Figure~\hyperref[fig-data-plot3]{{[}fig-data-plot3{]}}, it can be
-identified by computing and comparing values in the data. Normally such
-concept representation is discovered through \emph{training data} and to
-be applied on testing data, where decisions or predictions will be made.
+Equation~\ref{eq-data-ne} or the linear equation in
+Figure~\ref{fig-data-plot3}, it can be identified by computing and
+comparing values in the data. Normally such concept representation is
+discovered through \emph{training data} and to be applied on testing
+data, where decisions or predictions will be made.
 
 \section{Concept Generalizability}\label{concept-generalizability}
 
@@ -524,11 +513,24 @@ height, and a code indicating whether the shape is \emph{standing} or
 \protect\phantomsection\label{tab-data-shapes}{}
 
 Data in Table~\hyperref[tab-data-shapes]{1.3} represent the shapes shown
-in Figure~\hyperref[fig-data-shapes]{{[}fig-data-shapes{]}}.
-Intuitively, the \emph{concept} of standing can be understood as
-describing a human-like object -- when a person stands, her height is
-greater than the width; when one lies down, the horizontal measurement
-(width) becomes relatively greater.
+in Figure~\ref{fig-data-shapes}. Intuitively, the \emph{concept} of
+standing can be understood as describing a human-like object -- when a
+person stands, her height is greater than the width; when one lies down,
+the horizontal measurement (width) becomes relatively greater.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio,alt={Six triangles and rectangles on a grid. Tall gray shapes are standing; wide white shapes are lying.}]{chapters/../assets/figures/chapter01/shape-examples.pdf}
+
+}
+
+\caption{\label{fig-data-shapes}Shapes of different numbers of sides,
+widths, and heights, based on the shapes data. Gray shapes are
+classified as \emph{standing}.}
+
+\end{figure}%
 
 It is in this context of human-like shapes that the concept of standing
 is injected into the data and can be discovered by mining. It is also in
@@ -539,9 +541,21 @@ for predictions, decision making, etc.
 With related assumptions attached, the concept does not represent
 universal truth. The same notion of \emph{standing} might be very
 different with a more complex shape or structure. In
-Figure~\hyperref[fig-data-building]{{[}fig-data-building{]}}, for
-example, the shape of a building may be flat in terms of its
-height-width ratio but we see it \emph{standing as an architecture}.
+Figure~\ref{fig-data-building}, for example, the shape of a building may
+be flat in terms of its height-width ratio but we see it \emph{standing
+as an architecture}.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio,alt={A wide, low building with a roof, doors, and windows on a measurement grid.}]{chapters/../assets/figures/chapter01/standing-building.pdf}
+
+}
+
+\caption{\label{fig-data-building}A \emph{standing} architecture.}
+
+\end{figure}%
 
 It takes an in-depth analysis with proper evaluation and interpretation
 to assess the learned concept, its generalizability, and applicability.
@@ -692,6 +706,18 @@ B & = & \{InfoVis, Math, R, SQL, Stats\}
 It is easy to count the number of skills in each team and identify their
 cardinalities: \(|A|=4\) and \(|B|=5\).
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.45\linewidth,height=\textheight,keepaspectratio,alt={Two overlapping circles labeled A and B, with their intersection shaded.}]{chapters/../assets/figures/chapter02/fig-num-overlap.pdf}
+
+}
+
+\caption{\label{fig-num-overlap}Intersection \(A \cap B\).}
+
+\end{figure}%
+
 The common skill set of the two teams is their \emph{intersection}:
 
 \[\begin{aligned}
@@ -699,9 +725,8 @@ A \cap B & = & \{Math, SQL\} \\
 |A \cap B| & = & 2
 \end{aligned}\]
 
-which is illustrated by the shaded area in
-Figure~\hyperref[fig-num-overlap]{{[}fig-num-overlap{]}}. The
-interaction operation is communicative, i.e.~\(A \cap B=B \cap A\),
+which is illustrated by the shaded area in Figure~\ref{fig-num-overlap}.
+The intersection operation is communicative, i.e.~\(A \cap B=B \cap A\),
 because the order does not matter.
 
 Now, if we are to put the two team together on one project, the overall
@@ -712,6 +737,18 @@ two:
 A \cup B
 & = & \{AI, InfoVis, Math, Python, R, SQL, Stats\}
 \end{aligned}\]
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.45\linewidth,height=\textheight,keepaspectratio,alt={Two overlapping circles labeled A and B, with both circles shaded.}]{chapters/../assets/figures/chapter02/fig-num-union.pdf}
+
+}
+
+\caption{\label{fig-num-union}Union \(A \cup B\).}
+
+\end{figure}%
 
 In this case, the cardinality of the union is:
 
@@ -736,11 +773,34 @@ property, that is:
 (A \cap B) \cap C & = & A \cap (B \cap C)
 \end{aligned}\]
 
-for any sets A, B, and C. As illustrated in Figure
-\hyperref[fig-num-union3]{{[}fig-num-union3{]}}, we will obtain the same
-union set (the shaded circles) regardless of which two are combined
-first. The same is true with intersection, as illustrated in
-Figure~\hyperref[fig-num-overlap3]{{[}fig-num-overlap3{]}}.
+for any sets A, B, and C. As illustrated in Figure~\ref{fig-num-union3},
+we will obtain the same union set (the shaded circles) regardless of
+which two are combined first. The same is true with intersection, as
+illustrated in Figure~\ref{fig-num-overlap3}.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.45\linewidth,height=\textheight,keepaspectratio,alt={Three overlapping circles labeled A, B, and C, all shaded.}]{chapters/../assets/figures/chapter02/fig-num-union3.pdf}
+
+}
+
+\caption{\label{fig-num-union3}Union of three sets.}
+
+\end{figure}%
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.45\linewidth,height=\textheight,keepaspectratio,alt={Three overlapping circles labeled A, B, and C, with the common intersection shaded.}]{chapters/../assets/figures/chapter02/fig-num-overlap3.pdf}
+
+}
+
+\caption{\label{fig-num-overlap3}Intersection of three sets.}
+
+\end{figure}%
 
 The union (\(\cup\)) operation is similar to \emph{addition} (\(+\)),
 whereas the intersection \(\cap\) operation can be likened to
@@ -779,12 +839,24 @@ A \cap 1  & = & A \times 1 \\
           & = & A
 \end{aligned}\]
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.45\linewidth,height=\textheight,keepaspectratio,alt={A small shaded circle A entirely contained in a larger circle B.}]{chapters/../assets/figures/chapter02/fig-num-sub.pdf}
+
+}
+
+\caption{\label{fig-num-sub}Subset \(A \subseteq B\).}
+
+\end{figure}%
+
 The intersection between any set (A or 1) and an empty set 0 is always
 an empty set: \(A \cap 0 = 0\) and \(1 \cap 0=0\). The intersection
 between a set A and the universal set \(1\) is A, because the universal
 includes A as a subset. In fact, for any set A that is a subset of B
-(see Figure~\hyperref[fig-num-sub]{{[}fig-num-sub{]}}), their
-intersection is A and their union is B:
+(see Figure~\ref{fig-num-sub}), their intersection is A and their union
+is B:
 
 \[\begin{aligned}
 A \cap B & \stackrel{\forall A \in B}{=} & A \\
@@ -796,7 +868,19 @@ and multiplication, there is also the subtraction operator on sets. For
 two sets \(A\) and \(B\), \(A-B\) computes the difference between A and
 B, or the elements of A that do not appear in B. This is essentially the
 removal of their intersection from set A, as shown in
-Figure~\hyperref[fig-num-minus]{{[}fig-num-minus{]}}.
+Figure~\ref{fig-num-minus}.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.45\linewidth,height=\textheight,keepaspectratio,alt={Two overlapping circles labeled A and B, with only the portion of A outside B shaded.}]{chapters/../assets/figures/chapter02/fig-num-minus.pdf}
+
+}
+
+\caption{\label{fig-num-minus}Set subtraction \(A-B\).}
+
+\end{figure}%
 
 The cardinality of the subtracted set can be computed by:
 
@@ -813,12 +897,23 @@ communicative, as \(A-B \ne B-A\).
 In geometrical terms, a \emph{vector} is an entity having both magnitude
 (length) and direction, in a vector space with multiple dimensions.
 
-Figure~\hyperref[fig-num-vectors]{{[}fig-num-vectors{]}} shows data
-\(v_1\) and \(v_2\) in a space with \(X\) and \(Y\) dimensions. In the
-vector space, each data point is a vector from the origin \((0,0)\), as
-shown as directed lines in
-Figure~\hyperref[fig-num-vectors]{{[}fig-num-vectors{]}}, and can be
-represented by its dimensional values:
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.65\linewidth,height=\textheight,keepaspectratio,alt={Coordinate plane with vectors from the origin to two points, v1 and v2.}]{chapters/../assets/figures/chapter02/fig-num-vectors.pdf}
+
+}
+
+\caption{\label{fig-num-vectors}Two-dimensional vector space.}
+
+\end{figure}%
+
+Figure~\ref{fig-num-vectors} shows data \(v_1\) and \(v_2\) in a space
+with \(X\) and \(Y\) dimensions. In the vector space, each data point is
+a vector from the origin \((0,0)\), as shown as directed lines in
+Figure~\ref{fig-num-vectors}, and can be represented by its dimensional
+values:
 
 \[\begin{aligned}
 v_1 & = & (2,3) \\
@@ -936,11 +1031,22 @@ companies. Let \(X\) be last year's data (in million dollars):
 \end{aligned}\]
 
 where each row is a 2-dimensional vector and can be visualized in
-Figure~\hyperref[fig-matrix-x]{{[}fig-matrix-x{]}}.
+Figure~\ref{fig-matrix-x}.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio,alt={Three vectors representing company revenue and profit in a two-dimensional coordinate plane.}]{chapters/../assets/figures/chapter03/fig-matrix-x.pdf}
+
+}
+
+\caption{\label{fig-matrix-x}Row vectors of matrix \(X\).}
+
+\end{figure}%
 
 Let \(Y\) be this year's data as follow, which, likewise, can be
-visualized as \(3\) row vectors in
-Figure~\hyperref[fig-matrix-y]{{[}fig-matrix-y{]}}:
+visualized as \(3\) row vectors in Figure~\ref{fig-matrix-y}:
 
 \[\begin{aligned}
     Y   & = &
@@ -955,6 +1061,18 @@ Figure~\hyperref[fig-matrix-y]{{[}fig-matrix-y{]}}:
         16 & 2
     \end{pmatrix}
 \end{aligned}\]
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio,alt={Three updated company vectors in a two-dimensional coordinate plane.}]{chapters/../assets/figures/chapter03/fig-matrix-y.pdf}
+
+}
+
+\caption{\label{fig-matrix-y}Row vectors of matrix \(Y\).}
+
+\end{figure}%
 
 Apparently, \(X\) and \(Y\) have the same dimensionality --
 \(X \in \mathbb{R}^{3\times2}\) and \(Y \in \mathbb{R}^{3\times2}\) --
@@ -1003,9 +1121,21 @@ Matrix \(G\), the result of the subtraction, contains data about growth
 (increases and decreases). The rows of matrix \(G\) are vectors
 connecting respective \(X\) vectors to \(Y\) vectors. Let's single out
 the \(3^{rd}\) company from the data, i.e.~\(x_3\), \(y_3\), and
-\(g_3\). As shown Figure~\hyperref[fig-matrix-xy]{{[}fig-matrix-xy{]}},
-subtraction \(g_3=y_3-x_3\) is the vector that starts at \(x_3\) and
-ends at \(y_3\).
+\(g_3\). As shown in Figure~\ref{fig-matrix-xy}, subtraction
+\(g_3=y_3-x_3\) is the vector that starts at \(x_3\) and ends at
+\(y_3\).
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio,alt={Vectors x3 and y3 connected by their difference vector g3.}]{chapters/../assets/figures/chapter03/fig-matrix-xy.pdf}
+
+}
+
+\caption{\label{fig-matrix-xy}Subtraction geometry.}
+
+\end{figure}%
 
 Suppose the rate of growth in \(G\) is projected to continue (the same)
 next year. This will double the growth, which can be computed by:
@@ -1032,15 +1162,28 @@ next year. This will double the growth, which can be computed by:
     \end{pmatrix}
 \end{aligned}\]
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio,alt={Growth vector g3 and a vector in the same direction with twice its length.}]{chapters/../assets/figures/chapter03/fig-matrix-2g.pdf}
+
+}
+
+\caption{\label{fig-matrix-2g}Geometry of \(g_3 \times 2\), as part of
+scalar multiplication \(G\times2\).}
+
+\end{figure}%
+
 Here every value in matrix \(G\) is doubled; so is every vector -- row
-or column -- in the matrix. For example,
-Figure~\hyperref[fig-matrix-2g]{{[}fig-matrix-2g{]}} shows when \(g_3\),
-the growth vector of the \(3^{rd}\) company (row), multiplies \(2\), the
-vector doubles its length (magnitude) in the same direction. Multiplying
-a matrix with a scalar (single number) results in a matrix of the same
-dimensionality, in which every value is multiplied by the same scalar.
-Note the multiplication can be written as \(2 \cdot G\), \(2G\) or, more
-generally, \(aG\) given a scalar \(a\) and a matrix \(G\).
+or column -- in the matrix. For example, Figure~\ref{fig-matrix-2g}
+shows when \(g_3\), the growth vector of the \(3^{rd}\) company (row),
+multiplies \(2\), the vector doubles its length (magnitude) in the same
+direction. Multiplying a matrix with a scalar (single number) results in
+a matrix of the same dimensionality, in which every value is multiplied
+by the same scalar. Note the multiplication can be written as
+\(2 \cdot G\), \(2G\) or, more generally, \(aG\) given a scalar \(a\)
+and a matrix \(G\).
 
 Now with the projected growth (or decrease) data in the \(2G\) matrix,
 we can add them to the last year's data matrix \(X\) to compute the
@@ -1079,19 +1222,31 @@ Z & = & Y + 2G \\
   \end{pmatrix}
 \end{aligned}\]
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio,alt={Head-to-tail vector addition showing x3 plus twice g3 resulting in z3.}]{chapters/../assets/figures/chapter03/fig-matrix-z.pdf}
+
+}
+
+\caption{\label{fig-matrix-z}Geometry of addition
+\(z_3=x_3 + g_3\times2\).}
+
+\end{figure}%
+
 Note that the data matrix \(Z\) projected from last year's numbers in
 \(X\) should be the same as that projected based on this year's data in
 \(Y\), i.e.~\(Z=X+2G=Y+G\) given that \(G=Y-X\).
 
 Geometrically, for corresponding vectors in the matrices, the addition
 operation is to connect them head to tail. For example, as shown by the
-solid lines in Figure~\hyperref[fig-matrix-z]{{[}fig-matrix-z{]}}, for
-the \(3^{rd}\) row vector, \(x_3+g_3\times2\) is to connect vectors
-\(x_3\) and \(2g_3\) and the result is \(z_3\), which draws from the
-tail of \(x_3\) to the head of \(2g_3\). Vector and matrix addition is
-communicative, the same result can be obtained by \(2g_3 + x_3\), as
-shown by dashed lines in
-Figure~\hyperref[fig-matrix-z]{{[}fig-matrix-z{]}}.
+solid lines in Figure~\ref{fig-matrix-z}, for the \(3^{rd}\) row vector,
+\(x_3+g_3\times2\) is to connect vectors \(x_3\) and \(2g_3\) and the
+result is \(z_3\), which draws from the tail of \(x_3\) to the head of
+\(2g_3\). Vector and matrix addition is communicative, the same result
+can be obtained by \(2g_3 + x_3\), as shown by dashed lines in
+Figure~\ref{fig-matrix-z}.
 
 \section{Sum of Squares}\label{sum-of-squares}
 
@@ -1219,8 +1374,19 @@ Its magnitude can be computed by:
     \end{matrix}
 \end{aligned}\]
 
-which is the length shown in
-Figure~\hyperref[fig-matrix-magnitude]{{[}fig-matrix-magnitude{]}}.
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.55\linewidth,height=\textheight,keepaspectratio,alt={A vector from the origin to the point 3,4, forming a right triangle with length 5.}]{chapters/../assets/figures/chapter03/fig-matrix-magnitude.pdf}
+
+}
+
+\caption{\label{fig-matrix-magnitude}Vector magnitude.}
+
+\end{figure}%
+
+which is the length shown in Figure~\ref{fig-matrix-magnitude}.
 
 \section{Vector Distance}\label{vector-distance}
 
@@ -1313,6 +1479,18 @@ There difference can be computed by:
   \end{matrix}
 \end{aligned}\]
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.55\linewidth,height=\textheight,keepaspectratio,alt={Two vectors from the origin and the difference vector connecting their endpoints.}]{chapters/../assets/figures/chapter03/fig-matrix-distance.pdf}
+
+}
+
+\caption{\label{fig-matrix-distance}Vector distance.}
+
+\end{figure}%
+
 Their Euclidean distance can be computed by the magnitude of their
 difference:
 
@@ -1326,7 +1504,7 @@ difference:
 Euclidean distance is symmetric as a metric, i.e.
 \(\left\lVert v-u \right\rVert = \left\lVert u-v \right\rVert\). The
 distance between the two vectors is illustrated in
-Figure~\hyperref[fig-matrix-distance]{{[}fig-matrix-distance{]}}.
+Figure~\ref{fig-matrix-distance}.
 
 \section{Vector Angle}\label{vector-angle}
 
@@ -1454,12 +1632,23 @@ The two vectors can be normalized to unit vectors:
   \end{matrix}
 \end{aligned}\]
 
-As shown in Figure~\hyperref[fig-matrix-unit]{{[}fig-matrix-unit{]}},
-the normalized unit vectors \(\hat{u}\) and \(\hat{v}\) point to the
-same directions of their original vectors \(u\) and \(v\) respectively.
-However, the normalization produce vectors of equal magnitudes. As the
-dotted circle shows, the unit vectors are part of a unit circle with
-radius \(1\).
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio,alt={Two vectors and their normalized versions ending on a unit circle.}]{chapters/../assets/figures/chapter03/fig-matrix-unit.pdf}
+
+}
+
+\caption{\label{fig-matrix-unit}Normalization to unit vectors.}
+
+\end{figure}%
+
+As shown in Figure~\ref{fig-matrix-unit}, the normalized unit vectors
+\(\hat{u}\) and \(\hat{v}\) point to the same directions of their
+original vectors \(u\) and \(v\) respectively. However, the
+normalization produce vectors of equal magnitudes. As the dotted circle
+shows, the unit vectors are part of a unit circle with radius \(1\).
 
 Please note that we can use a circle to visualize the unit vectors on
 the 2-dimensional space (for the 2-dimensional vectors here). For \(3\)
@@ -1485,18 +1674,27 @@ Now the dot product of the two unit vectors is:
   \end{matrix}
 \end{aligned}\]
 
-\protect\phantomsection\label{fig-matrix-cosine}{}
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio,alt={Unit circle diagram showing cosine values for parallel, perpendicular, and opposite vectors.}]{chapters/../assets/figures/chapter03/fig-matrix-cosine.pdf}
+
+}
+
+\caption{\label{fig-matrix-cosine}Cosine values for special angles.}
+
+\end{figure}%
 
 which is the cosine of the angle between \(u\) and \(v\), shown in
-Figure~\hyperref[fig-matrix-unit]{{[}fig-matrix-unit{]}}. The arc cosine
-of \(0.894\) corresponds to an angle of roughly \(27^\circ\) out of a
-\(360^\circ\) full circle, or \(0.465\) on a \(2\pi\) scale. Cosine
-values range between \(-1\) and \(1\): it is \(1\) when two vector are
-in the exact same direction (parallel) and \(-1\) when they are in the
-opposite direction (a \(180^\circ\) or \(\pi\) angle). Cosine is \(0\)
-when two vectors are orthogonal (perpendicular) to each other (right
-angle). See
-Figure~\hyperref[fig-matrix-cosine]{{[}fig-matrix-cosine{]}}.
+Figure~\ref{fig-matrix-unit}. The arc cosine of \(0.894\) corresponds to
+an angle of roughly \(27^\circ\) out of a \(360^\circ\) full circle, or
+\(0.465\) on a \(2\pi\) scale. Cosine values range between \(-1\) and
+\(1\): it is \(1\) when two vector are in the exact same direction
+(parallel) and \(-1\) when they are in the opposite direction (a
+\(180^\circ\) or \(\pi\) angle). Cosine is \(0\) when two vectors are
+orthogonal (perpendicular) to each other (right angle). See
+Figure~\ref{fig-matrix-cosine}.
 
 \section{Vector Cross Product}\label{vector-cross-product}
 
@@ -1544,17 +1742,33 @@ example, has a \(50\%\) probability to turn up a head and \(50\%\) tail
 because each side has equal chances (frequencies) if it is repeated for
 \emph{sufficient} times.
 
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}rl@{}}
-\toprule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\pandocbounded{\includegraphics[keepaspectratio,alt={image}]{chapters/../assets/figures/prob/coin_head.png}}\{w
-& idth=``1in''\}
-\includegraphics[width=1in,height=\textheight,keepaspectratio,alt={image}]{chapters/../assets/figures/prob/coin_tail.png} \\
-\end{longtable}
+\begin{figure}
+
+\begin{minipage}[t]{0.50\linewidth}
+
+\raisebox{-\height}{
+
+\pandocbounded{\includegraphics[keepaspectratio,alt={Head}]{chapters/../assets/figures/prob/coin_head.png}}
+
 }
+
+\subcaption{\label{}Head}
+\end{minipage}%
+%
+\begin{minipage}[t]{0.50\linewidth}
+
+\raisebox{-\height}{
+
+\pandocbounded{\includegraphics[keepaspectratio,alt={Tail}]{chapters/../assets/figures/prob/coin_tail.png}}
+
+}
+
+\subcaption{\label{}Tail}
+\end{minipage}%
+
+\caption{\label{fig-prob-head-tail}Head versus tail.}
+
+\end{figure}%
 
 On the other hand, the \emph{Bayesian} view of probability is associated
 with the degree of belief without complete information or knowledge.
@@ -1612,22 +1826,24 @@ P(A \cup B)
 & = & P(A) + P(B)
 \end{aligned}\]
 
-\begin{figure}[H]
+\begin{figure}
 
-{\centering \includegraphics[width=2in,height=\textheight,keepaspectratio]{chapters/../assets/figures/prob/p_no_overlap.png}
+\centering{
+
+\includegraphics[width=0.45\linewidth,height=\textheight,keepaspectratio,alt={Two separate circles representing events A and B with no overlap.}]{chapters/../assets/figures/prob/p_no_overlap.png}
 
 }
 
-\caption{image}
+\caption{\label{fig-prob-no-overlap}Mutually exclusive events.}
 
 \end{figure}%
 
 where the symbol \(\cup\) (union) is equivalent to logical OR and
 implies addition of the events. When two events are mutually exclusive,
 they do not occur simultaneously and, as visualized in
-Figure~\hyperref[fig-prob-no_overlap]{{[}fig-prob-no\_overlap{]}}, have
-\emph{no overlap} or intersection in their probability space. Because of
-that, we can simply add the two together.
+Figure~\ref{fig-prob-no-overlap}, have \emph{no overlap} or intersection
+in their probability space. Because of that, we can simply add the two
+together.
 
 In the case of flipping a coin, Head and Tail are mutually exclusive. By
 the same rule, we have:
@@ -1659,20 +1875,22 @@ P(A \cup B)
   & = & P(A) + P(B) - P(A \cap B)
 \end{aligned}\]
 
-\begin{figure}[H]
+\begin{figure}
 
-{\centering \includegraphics[width=2in,height=\textheight,keepaspectratio]{chapters/../assets/figures/prob/p_overlap.png}
+\centering{
+
+\includegraphics[width=0.45\linewidth,height=\textheight,keepaspectratio,alt={Two overlapping circles representing events A and B.}]{chapters/../assets/figures/prob/p_overlap.png}
 
 }
 
-\caption{image}
+\caption{\label{fig-prob-overlap}Events that are not mutually
+exclusive.}
 
 \end{figure}%
 
 The reason for subtracting the joint probability \(P(A \cap B)\) can be
-illustrated in
-Figure~\hyperref[fig-prob-overlap]{{[}fig-prob-overlap{]}}. As shown in
-the figure, when A and B can occur simultaneously, they have an overlap
+illustrated in Figure~\ref{fig-prob-overlap}. As shown in the figure,
+when A and B can occur simultaneously, they have an overlap
 (intersection) which should be discounted so it is not counted
 \emph{twice} in the addition.
 
@@ -1686,13 +1904,16 @@ P(Ace) & = & \frac{4}{52} \\
 P(Spade) & = & \frac{13}{52}
 \end{aligned}\]
 
-\begin{figure}[H]
+\begin{figure}
 
-{\centering \includegraphics[width=2in,height=\textheight,keepaspectratio]{chapters/../assets/figures/prob/ace_spades.png}
+\centering{
+
+\includegraphics[width=0.35\linewidth,height=\textheight,keepaspectratio,alt={An ace of spades card representing the intersection of aces and spades.}]{chapters/../assets/figures/prob/ace_spades.png}
 
 }
 
-\caption{image}
+\caption{\label{fig-prob-ace-spade}Ace \(\cap\) spade: a joint (AND)
+event.}
 
 \end{figure}%
 
@@ -2066,8 +2287,8 @@ the elephant) and should be corrected with external knowledge.}
 \end{figure}%
 
 Data may be localized, just as the story of \emph{blind men and
-elephant} shows (Figure~\hyperref[fig-prob-elephant]{1.1}). But we
-should aim to see the whole picture.
+elephant} shows (Figure~\ref{fig-prob-elephant}). But we should aim to
+see the whole picture.
 
 In addition, there is also an undesired consequence for having a zero
 probability in the Naive Bayes model. With \(E_{prize}\) as one of the
@@ -2165,8 +2386,19 @@ analysis.
 We shall now prepare us with an introductory discussion of probability
 distributions, from discrete to continuous cases.
 
-Frequency distribution of flipping a coin, 500 heads vs.~500 tails after
-{1, 000} trials in the ideal world.
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.55\linewidth,height=\textheight,keepaspectratio,alt={Bar chart with equal frequencies of 500 for heads and tails.}]{chapters/../assets/figures/chapter04/fig-prob-coin-freq.pdf}
+
+}
+
+\caption{\label{fig-prob-coin-freq}Frequency distribution of flipping a
+coin: 500 heads versus 500 tails after \(1,000\) trials in the ideal
+world.}
+
+\end{figure}%
 
 First let's look at some discrete cases. Imagine you toss a coin for
 1000 times and in the perfect world you get 500 heads and 500 tails. And
@@ -2174,21 +2406,42 @@ you can create a simple bar plot to show the frequency distribution of
 500 for both heads and tails. This is a uniform distribution because
 every event, head vs.~tail, has an equal chance.
 
-Probability distribution of flipping a coin (500 heads vs. 500 tails).
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.55\linewidth,height=\textheight,keepaspectratio,alt={Bar chart with probability 0.5 for heads and 0.5 for tails.}]{chapters/../assets/figures/chapter04/fig-prob-coin-prob.pdf}
+
+}
+
+\caption{\label{fig-prob-coin-prob}Probability distribution of flipping
+a coin: heads and tails each have probability \(0.5\).}
+
+\end{figure}%
 
 Now instead of talking about frequencies or counts, we can describe the
 distribution in terms of chance (probabilities). And in this case, head
 and tail have equal chances (probabilities) of 50\% or 0.5 in the
-distribution, as Figure~\hyperref[fig-prob-coin_prob]{1.3} shows.
+distribution, as Figure~\ref{fig-prob-coin-prob} shows.
 
 For the sake of discussion, let's extend the binary case, head vs.~tail,
 to a larger number of exclusive outcomes. For example, imagine you roll
 a dice. If you roll it for a sufficient number of times, the sides will
 have equal chances to appear, that is, each side from 1 to 6 has a
-probability of 1/6 to occur, as shown in
-Figure~\hyperref[fig-prob-dice]{1.4}.
+probability of 1/6 to occur, as shown in Figure~\ref{fig-prob-dice}.
 
-Probability distribution of rolling a dice
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.65\linewidth,height=\textheight,keepaspectratio,alt={Uniform bar chart assigning probability one sixth to each face from one through six.}]{chapters/../assets/figures/chapter04/fig-prob-dice.pdf}
+
+}
+
+\caption{\label{fig-prob-dice}Probability distribution of rolling a
+die.}
+
+\end{figure}%
 
 Two simple but important observations here:
 
@@ -2212,9 +2465,20 @@ such integers or specific labels. Perhaps the outcome of the question at
 hand can be any number in the range of 1 and 6, and you are to predict
 that number. If it is a uniform distribution in with the continuous
 variable, it remains a flat line in the range of 1 - 6, shown in
-Figure~\hyperref[fig-prob-cont]{1.5}.
+Figure~\ref{fig-prob-cont}.
 
-Probability distribution of a continuous variable {x}
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.65\linewidth,height=\textheight,keepaspectratio,alt={Flat probability-density line between one and six.}]{chapters/../assets/figures/chapter04/fig-prob-cont.pdf}
+
+}
+
+\caption{\label{fig-prob-cont}Probability density of a continuous
+variable \(x\).}
+
+\end{figure}%
 
 Again, when we add all probabilities up in the distribution, the total
 should still be \(1\). But because this is a continuous space, we are
@@ -2227,18 +2491,18 @@ The result of the integration or the entire area will \emph{always} be
 \(1\), as long as the plotted range includes all possible outcomes.
 
 With a uniform (flat) distribution, the area is a rectangle as shown in
-Figure~\hyperref[fig-prob-cont]{1.5} and it is easy to calculate the
-area. In the above case, the area of the rectangle between \(1\) and
-\(6\) can be computed by width times height, which is
-\((6-1) \times 0.2 = 1\). So this meets the expectation that the sum of
-the entire probability distribution is \(1\).
+Figure~\ref{fig-prob-cont} and it is easy to calculate the area. In the
+above case, the area of the rectangle between \(1\) and \(6\) can be
+computed by width times height, which is \((6-1) \times 0.2 = 1\). So
+this meets the expectation that the sum of the entire probability
+distribution is \(1\).
 
 Although the above is discussed as a \emph{probability} distribution, we
 shall clarify on an important concept. The uniform height \(0.2\) in
-Figure~\hyperref[fig-prob-cont]{1.5} is NOT a probability value per se.
-It is what we refer to as a \emph{probability density}, but not exactly
-a probability. For now, let us move on from the uniform distribution to
-a more common distribution in the real world before we come back to
+Figure~\ref{fig-prob-cont} is NOT a probability value per se. It is what
+we refer to as a \emph{probability density}, but not exactly a
+probability. For now, let us move on from the uniform distribution to a
+more common distribution in the real world before we come back to
 elaborate on the concept of \emph{probability density} again.
 
 In the real world, you do not often see uniform
@@ -2251,8 +2515,18 @@ of (average) people have the average height around 70 inches. And much
 rarer are shorter than 62 or taller than 78. The whole distribution is a
 bell curve as shown in the figure here.
 
-Distribution of adult male heights, approximately a normal distribution
-(bell curve)
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.65\linewidth,height=\textheight,keepaspectratio,alt={Bell-shaped probability-density curve centered near the average adult male height.}]{chapters/../assets/figures/chapter04/fig-prob-height.pdf}
+
+}
+
+\caption{\label{fig-prob-height}Distribution of adult male heights,
+approximately a normal distribution (bell curve).}
+
+\end{figure}%
 
 This is again a probability density distribution so if you integrate the
 curve, the total area under it will be \(1\) or \(100\%\) probability.
@@ -2285,20 +2559,19 @@ question of how likely an adult height is \(70\) \emph{something}
 the bell curve in the range to find out.
 
 To reiterate this point -- on the simpler example of the uniform
-distribution presented in Figure~\hyperref[fig-prob-cont]{1.5}, the
-\(0.2\) value on y is not probability but probability density or
-probability per unit. You can still tell that all probabilities are
-equal by looking at the flat line. And you can ask the question about
-how likely you will get a value between 2 and 4 by multiplying the
-density which is \(0.2\) and the range which is \(2\) and the result
-turns out to be \(0.4\) -- that is \(40\%\) of the chance you will get a
-value \emph{in that range}.
+distribution presented in Figure~\ref{fig-prob-cont}, the \(0.2\) value
+on y is not probability but probability density or probability per unit.
+You can still tell that all probabilities are equal by looking at the
+flat line. And you can ask the question about how likely you will get a
+value between 2 and 4 by multiplying the density which is \(0.2\) and
+the range which is \(2\) and the result turns out to be \(0.4\) -- that
+is \(40\%\) of the chance you will get a value \emph{in that range}.
 
 As always, all probabilities add up to \(1\) as you can verify by
 \(0.2 \times (6-1) = 1\). So if you ask how likely a value occurs in the
 range between \(1\) and \(6\), given the distribution in
-Figure~\hyperref[fig-prob-cont]{1.5}, the answer is that it will
-\emph{always be true}.
+Figure~\ref{fig-prob-cont}, the answer is that it will \emph{always be
+true}.
 
 There are several major categories of probability distributions beyond
 the uniform and normal distributions we discussed here. Some of these
@@ -2322,39 +2595,49 @@ Albert 1999).
 
 Spoken language (word frequencies) follows the Zipf law, which can be
 regarded as a special case of the power-law distribution.
-Figure~\hyperref[fig-prob-word_freq]{1.7} shows the distribution of word
+Figure~\ref{fig-prob-word-freq} shows the distribution of word
 frequencies taken from the novel \emph{Moby Dick}. As shown in
-Figure~\hyperref[fig-prob-word_freq]{1.7} (a), there is a great divide
-between the rich and the poor -- a large number of words have only been
-used once or twice in the novel (tall bars on the left of the
-distribution) where very few words have a frequency higher than \(100\)
-(the long tail).
+Figure~\ref{fig-prob-word-freq} (a), there is a great divide between the
+rich and the poor -- a large number of words have only been used once or
+twice in the novel (tall bars on the left of the distribution) where
+very few words have a frequency higher than \(100\) (the long tail).
 
 It is difficult, however, to examine the long tail on normal coordinates
 as the values are very small (low) within a long range. Logarithmic
 transformation is often conducted to better visualize the distribution.
-The result is Figure~\hyperref[fig-prob-word_freq]{1.7} (b), where both
-\(x\) (words' occurrences) and \(y\) (frequencies of the occurrences)
-have been transformed with logarithm.\footnote{Essentially
-  log-transformation reduces a number to its order, e.g. \(1000\) to
-  \(3\) and \(100\) to \(2\) with \(log_{10}\).}
+The result is Figure~\ref{fig-prob-word-freq} (b), where both \(x\)
+(words' occurrences) and \(y\) (frequencies of the occurrences) have
+been transformed with logarithm.\footnote{Essentially log-transformation
+  reduces a number to its order, e.g. \(1000\) to \(3\) and \(100\) to
+  \(2\) with \(log_{10}\).}
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  normal coordinates
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    log-log coordinates
+\begin{minipage}[t]{0.50\linewidth}
 
-    Word frequency distribution
-  \end{enumerate}
-\end{enumerate}
+\raisebox{-\height}{
+
+\includegraphics[width=2in,height=\textheight,keepaspectratio,alt={Normal coordinates}]{chapters/../assets/figures/prob/word_freq.png}
+
+}
+
+\subcaption{\label{}Normal coordinates}
+\end{minipage}%
+%
+\begin{minipage}[t]{0.50\linewidth}
+
+\raisebox{-\height}{
+
+\includegraphics[width=2in,height=\textheight,keepaspectratio,alt={Log-log coordinates}]{chapters/../assets/figures/prob/word_freq_log.png}
+
+}
+
+\subcaption{\label{}Log-log coordinates}
+\end{minipage}%
+
+\caption{\label{fig-prob-word-freq}Word frequency distribution}
+
+\end{figure}%
 
 One prominent characteristic of a power-law distribution is that it
 follows a straight line on log-transformed coordinates spanning across a
@@ -2685,11 +2968,23 @@ fact, Shannon started with several desired properties about such an
 function that meets the expected properties. We shall discuss some of
 the important properties.
 
-Figure~\hyperref[fig-info-h]{{[}fig-info-h{]}} shows that the entropy
-function is smooth with regard to changes in the probability \(p_1\).
-When the two mutually exclusive events are equally likely
-\(p_1=p_2=0.5\), the entropy of the system is at its maximum (the peak
-in the middle).
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.55\linewidth,height=\textheight,keepaspectratio,alt={Entropy curve peaking when two outcomes each have probability one half.}]{chapters/../assets/figures/chapter05/fig-info-h.pdf}
+
+}
+
+\caption{\label{fig-info-h}Shannon entropy of two mutually exclusive
+events.}
+
+\end{figure}%
+
+Figure~\ref{fig-info-h} shows that the entropy function is smooth with
+regard to changes in the probability \(p_1\). When the two mutually
+exclusive events are equally likely \(p_1=p_2=0.5\), the entropy of the
+system is at its maximum (the peak in the middle).
 
 It has been proved that, with any number of mutually exclusive events,
 the greatest entropy is achieved when all events are equally possible.
@@ -2697,11 +2992,24 @@ Imagine a number of applicants compete for the same position. When
 everyone has an equal chance and there is no leading candidate, it is
 the most uncertain situation with the greatest entropy.
 
-Figure~\hyperref[fig-info-h_m]{{[}fig-info-h\_m{]}} plots entropy \(H\)
-vs.~the number of equally likely events \(m\). When the number of events
-(choices) increases, so does the entropy. With an increasingly larger
-pool of applicants for a position -- supposedly with equal chances --
-the harder it is to predict who will be hired in the end.
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.55\linewidth,height=\textheight,keepaspectratio,alt={Increasing logarithmic curve showing entropy as the number of equally likely outcomes grows.}]{chapters/../assets/figures/chapter05/fig-info-h-m.pdf}
+
+}
+
+\caption{\label{fig-info-h-m}Shannon entropy of \(m\) equally likely
+events.}
+
+\end{figure}%
+
+Figure~\ref{fig-info-h-m} plots entropy \(H\) vs.~the number of equally
+likely events \(m\). When the number of events (choices) increases, so
+does the entropy. With an increasingly larger pool of applicants for a
+position -- supposedly with equal chances -- the harder it is to predict
+who will be hired in the end.
 
 A third property of the Shannon entropy is related to how the entropy of
 one system can be computed based on entropies of its sub-systems. Let us
@@ -3131,9 +3439,21 @@ inequality.
 For any distance function \(d\), the triangle inequality requires that,
 given three points (sets of values or probability distributions) \(A\),
 \(B\), and \(C\), the sum of two distances (sides) is no less than the
-third. This can be illustrated in
-Figure~\hyperref[fig-info-triangle]{{[}fig-info-triangle{]}}, where any
-two distances (sides) \(d(A,B) + d(B,C) \ge d(A,C)\).
+third. This can be illustrated in Figure~\ref{fig-info-triangle}, where
+any two distances (sides) \(d(A,B) + d(B,C) \ge d(A,C)\).
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.5\linewidth,height=\textheight,keepaspectratio,alt={Triangle with vertices A, B, and C and labeled distances between them.}]{chapters/../assets/figures/chapter05/fig-info-triangle.pdf}
+
+}
+
+\caption{\label{fig-info-triangle}Triangle inequality: the sum of two
+distances is never less than the third, \(d(A,B) + d(B,C) \ge d(A,C)\).}
+
+\end{figure}%
 
 KL divergence does not satisfy the triangle inequality. That is, it does
 allow \(KL(A||B) + KL(B||C) < KL(A||C)\) to happen under certain
@@ -3376,15 +3696,15 @@ fact, it can lead to entropy change in any direction. In addition, it
 does not consider the removal of information, which can be regarded as
 new information that refutes prior knowledge.
 
-Figure~\hyperref[fig-info-lit]{1.1} compares least information (LIT)
-with Shannon entropy and KL divergence, using a binary example (of two
-mutually exclusive inferences). The figure assumes the \(1^{st}\)
-inference to be the ultimate outcome -- that is, it starts with a
-probability distribution \(P\) (with some \(p_1\) and \(p_2\)) and ends
-with changed distribution \(Q\), where \(q_1=1\) and \(q_2=0\). For
-example, the reading of \((0.5, 1)\) on the LIT curve indicates the
-amount of least information is \(1\) that changes the probability
-distribution from \(P(0.5, 0.5)\) to \(Q(1, 0)\).
+Figure~\ref{fig-info-lit} compares least information (LIT) with Shannon
+entropy and KL divergence, using a binary example (of two mutually
+exclusive inferences). The figure assumes the \(1^{st}\) inference to be
+the ultimate outcome -- that is, it starts with a probability
+distribution \(P\) (with some \(p_1\) and \(p_2\)) and ends with changed
+distribution \(Q\), where \(q_1=1\) and \(q_2=0\). For example, the
+reading of \((0.5, 1)\) on the LIT curve indicates the amount of least
+information is \(1\) that changes the probability distribution from
+\(P(0.5, 0.5)\) to \(Q(1, 0)\).
 
 \begin{figure}
 
@@ -3443,7 +3763,7 @@ Least Information Theory (LIT) possesses several important properties:
   possible inferences, the amount of \emph{least information} needed to
   explain/interpret an outcome (certainty) is one:
   \(I(p_1=p_2=\frac{1}{2} \to q_1 =1,q_2=0) = 1\) (see data point
-  \((\frac{1}{2},1)\) in Figure~\hyperref[fig-info-lit]{1.1}).
+  \((\frac{1}{2},1)\) in Figure~\ref{fig-info-lit}).
 \item
   In the special case of reducing uncertain inferences to certainty (the
   ultimate case):
@@ -3462,10 +3782,21 @@ The first four properties listed above mean that the Least Information
 (LIT) function is a distance metric. The \(5^{th}\) property can be
 likened to a function such as euclidean distance, where small distances
 in the same direction can add up to the overall distance. This is
-illustrated in
-Figure~\hyperref[fig-info-dist_add]{{[}fig-info-dist\_add{]}}, where
-\(a+b=c\). This is the only situation in which they are equal with the
-triangle inequality.
+illustrated in Figure~\ref{fig-info-dist-add}, where \(a+b=c\). This is
+the only situation in which they are equal with the triangle inequality.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.55\linewidth,height=\textheight,keepaspectratio,alt={Three collinear points with adjacent distances a and b summing to total distance c.}]{chapters/../assets/figures/chapter05/fig-info-dist-add.pdf}
+
+}
+
+\caption{\label{fig-info-dist-add}Sum of distances in the same
+direction, \(a+b=c\).}
+
+\end{figure}%
 
 We can test the Least Information Theory (LIT) on the example of 2016
 election. Given the probability change from election day estimates of
@@ -3681,11 +4012,25 @@ instances \(u\) and \(v\) in dimensional space:
 \end{aligned}\]
 
 where \(m\) is the number of dimensions (features) to represent each
-data instance. Figure~\hyperref[fig-bin-ed]{{[}fig-bin-ed{]}} shows the
-shapes data on two dimensions, i.e. \emph{width} and \emph{height}.
-Suppose a new instance at \((4,7)\), i.e.~\(width=4\) and \(height=7\),
-is to be tested. The dashed lines are the euclidean distances from the
-test instance to the training instances.
+data instance. Figure~\ref{fig-bin-ed} shows the shapes data on two
+dimensions, i.e. \emph{width} and \emph{height}. Suppose a new instance
+at \((4,7)\), i.e.~\(width=4\) and \(height=7\), is to be tested. The
+dashed lines are the euclidean distances from the test instance to the
+training instances.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Nearest neighbors k=1, + denotes standing (positive) and denotes lying (negative). is the test instance.}]{chapters/../assets/figures/chapter07/fig-bin-ed.pdf}
+
+}
+
+\caption{\label{fig-bin-ed}Nearest neighbors \(k=1\), \(+\) denotes
+\emph{standing} (positive) and \(\circ\) denotes \emph{lying}
+(negative). \(\otimes\) is the test instance.}
+
+\end{figure}%
 
 If we set \(k=1\) for the kNN algorithm, we will use only \(1\) nearest
 neighbor in prediction. The instance at \((5,9)\), which belongs to the
@@ -3709,11 +4054,24 @@ conflicting answers. For binary classification, one strategy is to pick
 an odd number for \(k\) and let the nearest neighbors vote for the final
 prediction.
 
-Figure~\hyperref[fig-bin-ed2]{{[}fig-bin-ed2{]}} shows another test
-instance at \((3,4)\). With \(k=3\), it turns out that the three nearest
-neighbors include \(1\) positive and \(2\) negatives. Using a majority
-vote strategy, the test instance will be mistakenly classified into the
-negative (lying) class.
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Nearest neighbors k=3, + denotes standing (positive) and denotes lying (negative). is the test instance.}]{chapters/../assets/figures/chapter07/fig-bin-ed2.pdf}
+
+}
+
+\caption{\label{fig-bin-ed2}Nearest neighbors \(k=3\), \(+\) denotes
+\emph{standing} (positive) and \(\circ\) denotes \emph{lying}
+(negative). \(\otimes\) is the test instance.}
+
+\end{figure}%
+
+Figure~\ref{fig-bin-ed2} shows another test instance at \((3,4)\). With
+\(k=3\), it turns out that the three nearest neighbors include \(1\)
+positive and \(2\) negatives. Using a majority vote strategy, the test
+instance will be mistakenly classified into the negative (lying) class.
 
 Two observations on the misclassification. First, the selection of \(k\)
 does have an impact on the classification result. This is especially
@@ -3721,8 +4079,8 @@ true when training instances are sparse. With \(k=1\), the method relies
 on one single instance for each test and is hardly robust. A larger
 \(k\) can reduce the likelihood of predicting with atypical neighbors
 but it introduces noise, e.g.~instances from across the class boundary
-as illustrated in Figure~\hyperref[fig-bin-ed2]{{[}fig-bin-ed2{]}}.
-Finding the optimal \(k\) may require experimentation with data.
+as illustrated in Figure~\ref{fig-bin-ed2}. Finding the optimal \(k\)
+may require experimentation with data.
 
 Second, more important, a lazy learner such as kNN does not have a
 general function (model) to represent a concept of learning. It purely
@@ -3780,11 +4138,11 @@ of those parameters from training data. Surely there are way too many
 different functional forms one can choose the model from. We start with
 the simplest, a linear function.
 
-With the shapes data in Figure~\hyperref[fig-bin-ed]{{[}fig-bin-ed{]}},
-there are two variables \(width\) (\(v_1\) for the \(x\) axis) and
-\(height\) (\(v_2\) for \(y\) axis). \(y\) as a linear function of \(x\)
-can be written as \(f(x) = a + b x\) or \(a + b x - y = 0\), with two
-parameters \(a\) and \(b\) for two variables.
+With the shapes data in Figure~\ref{fig-bin-ed}, there are two variables
+\(width\) (\(v_1\) for the \(x\) axis) and \(height\) (\(v_2\) for \(y\)
+axis). \(y\) as a linear function of \(x\) can be written as
+\(f(x) = a + b x\) or \(a + b x - y = 0\), with two parameters \(a\) and
+\(b\) for two variables.
 
 To make it extendable, We can rewrite this two-variable linear equation
 as:
@@ -3843,9 +4201,9 @@ be obtained:
   & = & \big( 6, \frac{10}{3} \big)
 \end{aligned}\]
 
-Figure~\hyperref[fig-bin-lin_cent]{{[}fig-bin-lin\_cent{]}} shows the
-two centroids and a dashed line with an arrowhead connecting them. The
-arrow represents a vector in the direction
+Figure~\ref{fig-bin-lin_cent} shows the two centroids and a dashed line
+with an arrowhead connecting them. The arrow represents a vector in the
+direction
 \(\vec{\mu} = (6-\frac{8}{3}, \frac{10}{3} - 7) = (\frac{10}{3}, - \frac{11}{3})\),
 whereas the middle of the dashed line is
 \(\bar{\mu} = (\frac{13}{3}, \frac{31}{6})\).
@@ -3891,16 +4249,30 @@ Comparing this to Equation~\hyperref[eq-bin-lin2]{{[}eq-bin-lin2{]}}, we
 have identified the parameters \(w_0=-1\), \(w_1=-\frac{20}{27}\), and
 \(w_2=\frac{22}{27}\) for the linear classification function. This is
 the solid straight line separating the two classes (centroids) in
-Figure~\hyperref[fig-bin-lin_cent]{{[}fig-bin-lin\_cent{]}}.
+Figure~\ref{fig-bin-lin_cent}.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Linear classification with centroids, + denotes standing (positive) and denotes lying (negative). represents a centroid of the respective class. is a test instance.}]{chapters/../assets/figures/chapter07/fig-bin-lin-cent.pdf}
+
+}
+
+\caption{\label{fig-bin-lin_cent}Linear classification with centroids,
+\(+\) denotes \emph{standing} (positive) and \(\circ\) denotes
+\emph{lying} (negative). \(\bullet\) represents a centroid of the
+respective class. \(\otimes\) is a test instance.}
+
+\end{figure}%
 
 With the identified linear function
 \(f(v) = 1 + \frac{20}{27} v_1 - \frac{22}{27} v_2\), one can plug in
 values of a test instance and make a prediction. If the result is
 positive, it will predict positive (standing); otherwise, it will
 predict negative (lying). For example, given a test instance at
-\((4,7)\) (\(\otimes\) on
-Figure~\hyperref[fig-bin-lin_cent]{{[}fig-bin-lin\_cent{]}}), we can put
-the values in the linear function and get:
+\((4,7)\) (\(\otimes\) on Figure~\ref{fig-bin-lin_cent}), we can put the
+values in the linear function and get:
 
 \[\begin{aligned}
 f(4,7)
@@ -3926,9 +4298,21 @@ In particular, the centroid approach is greatly impacted by the density
 of the training set and where most data instances are. For example,
 having more data instances with smaller width and height in the negative
 class change its centroid, which will, in turn, lead to a very different
-linear function, illustrated in
-Figure~\hyperref[fig-bin-lin_cent2]{{[}fig-bin-lin\_cent2{]}} (compare
-to Figure~\hyperref[fig-bin-lin_cent]{{[}fig-bin-lin\_cent{]}}).
+linear function, illustrated in Figure~\ref{fig-bin-lin_cent2} (compare
+to Figure~\ref{fig-bin-lin_cent}).
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Linear classification with centroids, with smaller values in the negative class}]{chapters/../assets/figures/chapter07/fig-bin-lin-cent2.pdf}
+
+}
+
+\caption{\label{fig-bin-lin_cent2}Linear classification with centroids,
+with smaller values in the negative class}
+
+\end{figure}%
 
 The centroid-based approach to linear classification is greatly
 influenced by all data points in the training set and how they are
@@ -3968,36 +4352,59 @@ other words, if a line is drawn in the positive (standing class), then
 the other class will test the opposite, negative (or conversely
 positive).
 
-Figure~\hyperref[fig-bin-svm]{{[}fig-bin-svm{]}} illustrates the idea
-with the shapes data. \footnote{Please note additional data points than
-  previously discussed in the illustration.} Pairwise lines drawn in the
-figure all satisfy the \(1^{st}\) condition and collectively form a
-\emph{convex hull} for each class. However, not all lines meet the
-\(2^{nd}\) condition. In fact, only the lines marked \(1\), \(2\), and
-\(3\) meet both conditions. They are candidate \emph{support vectors}.
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Linear classification with SVM, one candidate margin}]{chapters/../assets/figures/chapter07/fig-bin-svm.pdf}
+
+}
+
+\caption{\label{fig-bin-svm}Linear classification with SVM, one
+candidate margin}
+
+\end{figure}%
+
+Figure~\ref{fig-bin-svm} illustrates the idea with the shapes data.
+\footnote{Please note additional data points than previously discussed
+  in the illustration.} Pairwise lines drawn in the figure all satisfy
+the \(1^{st}\) condition and collectively form a \emph{convex hull} for
+each class. However, not all lines meet the \(2^{nd}\) condition. In
+fact, only the lines marked \(1\), \(2\), and \(3\) meet both
+conditions. They are candidate \emph{support vectors}.
 
 For each of the three candidate lines, we can draw a line perpendicular
 to it from any point in the other class. From this process, we can find
 out the margin between that candidate support vector line and the other
 class (convex hull), which is where the boundary can be defined. For
-example, in Figure~\hyperref[fig-bin-svm]{{[}fig-bin-svm{]}}, the two
-dotted lines show the margin between line \(\#3\) and the negative
-class.
+example, in Figure~\ref{fig-bin-svm}, the two dotted lines show the
+margin between line \(\#3\) and the negative class.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Linear classification with SVM, support vectors and maximum margin}]{chapters/../assets/figures/chapter07/fig-bin-svm2.pdf}
+
+}
+
+\caption{\label{fig-bin-svm2}Linear classification with SVM, support
+vectors and maximum margin}
+
+\end{figure}%
 
 Yet a greater margin -- in fact the greatest margin of all -- can be
 found between line \(\#1\) and point \((2,4)\) in the positive class, as
-the two dotted lines in
-Figure~\hyperref[fig-bin-svm2]{{[}fig-bin-svm2{]}} show. The greatest
+the two dotted lines in Figure~\ref{fig-bin-svm2} show. The greatest
 margin will be chosen as the decision boundary, which is defined by a
 few data points known as the \emph{support vectors}. As shown as circled
-data points in Figure~\hyperref[fig-bin-svm2]{{[}fig-bin-svm2{]}},
-support vectors are those that determine the maximum margin between the
-two \emph{convex hulls} of the two classes.
+data points in Figure~\ref{fig-bin-svm2}, support vectors are those that
+determine the maximum margin between the two \emph{convex hulls} of the
+two classes.
 
 With this, it is now easy to identify the linear equation in the margin
-to separate the two classes. In
-Figure~\hyperref[fig-bin-svm2]{{[}fig-bin-svm2{]}}, for example, the
-solid line at \(v_2 = 1.1 + 0.667 v_1\) can be used as the linear
+to separate the two classes. In Figure~\ref{fig-bin-svm2}, for example,
+the solid line at \(v_2 = 1.1 + 0.667 v_1\) can be used as the linear
 classifier. One can certainly use the linear functions on the support
 vectors for classification as well, e.g.~to predict one class
 vs.~another if a test instance is within the support vector boundary or
@@ -4015,20 +4422,32 @@ Chapter~ has details on the mathematics for SVM.
 Network}\label{perceptron-toward-a-neural-network}
 
 The linear function \(f(v)=w_0 + w_1 v_1 + w_2 v_2\) can be visualized
-as a \emph{perceptron} in
-Figure~\hyperref[fig-bin-perceptron]{{[}fig-bin-perceptron{]}}, where
-the node at \(\sum\) computes the weighted sum of input variables.
+as a \emph{perceptron} in Figure~\ref{fig-bin-perceptron}, where the
+node at \(\sum\) computes the weighted sum of input variables.
 Obviously, this can be extended to include any number of variables \(m\)
 for which \(f(v)=\sum_{i=1}^{m} w_i v_i\).
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Linear classification with a Perceptron, where the output is a step function based on the weighted sum of input variables}]{chapters/../assets/figures/chapter07/fig-bin-perceptron.pdf}
+
+}
+
+\caption{\label{fig-bin-perceptron}Linear classification with a
+Perceptron, where the output is a step function based on the weighted
+sum of input variables}
+
+\end{figure}%
+
 A perceptron is a simple, one-layer neural network -- besides the input
 variables, there is only one layer of nodes (only one \(\sum\) node) in
-the model, as shown in
-Figure~\hyperref[fig-bin-perceptron]{{[}fig-bin-perceptron{]}}. The
-final output of the perceptron is binary \(0\) or \(1\) by using a step
-function, which simply converts values higher than a threshold to \(1\)
-and those lower to \(0\). For example, one can use \(0\) as the
-threshold for a step function \(f(s)\):
+the model, as shown in Figure~\ref{fig-bin-perceptron}. The final output
+of the perceptron is binary \(0\) or \(1\) by using a step function,
+which simply converts values higher than a threshold to \(1\) and those
+lower to \(0\). For example, one can use \(0\) as the threshold for a
+step function \(f(s)\):
 
 \[\begin{aligned}
   f(s) & = &
@@ -4038,20 +4457,31 @@ threshold for a step function \(f(s)\):
   \end{cases}
 \end{aligned}\]
 
-which is visualized in
-Figure~\hyperref[fig-bin-step]{{[}fig-bin-step{]}}.
+which is visualized in Figure~\ref{fig-bin-step}.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Example of a step function. Output is 0 for any value below zero, and is 1 if above zero.}]{chapters/../assets/figures/chapter07/fig-bin-step.pdf}
+
+}
+
+\caption{\label{fig-bin-step}Example of a step function. Output is \(0\)
+for any value below zero, and is \(1\) if above zero.}
+
+\end{figure}%
 
 Before training, the weights are unknown and should be initialized with
 certain values, e.g.~all \(0\). For each training instance, its values
 \(v_1\) and \(v_2\) will be fed into the input layer and multiplied with
 their weights \(w_1\) and \(w_2\) respectively.
 
-Note that in
-Figure~\hyperref[fig-bin-perceptron]{{[}fig-bin-perceptron{]}}, the
-input with weight \(w_0\) is always \(1\) for every training instance.
-This is referred to as the \emph{bias}, which adds the constant \(w_0\)
-to the linear function. Once every input is multiplied by its weight,
-the output computes the sum of the weighted values.
+Note that in Figure~\ref{fig-bin-perceptron}, the input with weight
+\(w_0\) is always \(1\) for every training instance. This is referred to
+as the \emph{bias}, which adds the constant \(w_0\) to the linear
+function. Once every input is multiplied by its weight, the output
+computes the sum of the weighted values.
 
 For the shapes data, we can decide that the model will predict positive
 (standing) if the output is greater than \(0\); negative (lying) if
@@ -4163,12 +4593,11 @@ equal-interval numeric scale from \(1\) (low) to \(4\) (very high).
 
 While it is possible to include other variables such as the number of
 doors and safety features, we will focus on the cost factors in the
-discussion here. Figure~\hyperref[fig-bin-car]{{[}fig-bin-car{]}} plots
-\emph{maintenance cost} vs.~\emph{buying price}, with the \(+\)
-indicating an \emph{acceptable} car and \(\circ\) unacceptable. The two
-classes appear not separable linearly on the two-dimensional space --
-that is, there is no straight line that can be drawn to separate the
-two.
+discussion here. Figure~\ref{fig-bin-car} plots \emph{maintenance cost}
+vs.~\emph{buying price}, with the \(+\) indicating an \emph{acceptable}
+car and \(\circ\) unacceptable. The two classes appear not separable
+linearly on the two-dimensional space -- that is, there is no straight
+line that can be drawn to separate the two.
 
 Again, if one can introduce other predictor variables and the classes
 might be separable linearly on a higher-dimensional space. But even with
@@ -4182,10 +4611,23 @@ the price dimension and the other on the maintenance cost. However, this
 is no longer one linear equation of the two variables that can fit in
 with a linear model. Alternatively, we can still draw a curve (a
 non-linear function) to separate them. For example, as shown as the
-dashed line in Figure~\hyperref[fig-bin-car]{{[}fig-bin-car{]}}, a
-circular function such as \((v_1-1)^2 + (v_2 -1)^2 = 3\) can set the
-boundary between the two classes. The question is: how can we identify
-such as a non-linear function from the training data?
+dashed line in Figure~\ref{fig-bin-car}, a circular function such as
+\((v_1-1)^2 + (v_2 -1)^2 = 3\) can set the boundary between the two
+classes. The question is: how can we identify such as a non-linear
+function from the training data?
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Car evaluation data. + is the positive (acceptable) class and is the negative (unacceptable).}]{chapters/../assets/figures/chapter07/fig-bin-car.pdf}
+
+}
+
+\caption{\label{fig-bin-car}Car evaluation data. \(+\) is the positive
+(acceptable) class and \(\circ\) is the negative (unacceptable).}
+
+\end{figure}%
 
 \subsection{Kernel SVM}\label{kernel-svm}
 
@@ -4222,10 +4664,23 @@ three, which can be visualized.
 
 With the \(v_1^2\) and \(v_2^2\) transformation, data in the two classes
 already appear to be linearly separable. As shown in
-Figure~\hyperref[fig-bin-car_q2]{{[}fig-bin-car\_q2{]}}, the solid line
-at \(v_1+v_2-9=0\) can separate the data we have so far. However, this
-does not necessarily represent the general idea of car evaluation and
-new data may violate the rule (cross the decision boundary).
+Figure~\ref{fig-bin-car_q2}, the solid line at \(v_1+v_2-9=0\) can
+separate the data we have so far. However, this does not necessarily
+represent the general idea of car evaluation and new data may violate
+the rule (cross the decision boundary).
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Car evaluation data, with transformed v\_1\^{}2 and v\_2\^{}2.}]{chapters/../assets/figures/chapter07/fig-bin-car-q2.pdf}
+
+}
+
+\caption{\label{fig-bin-car_q2}Car evaluation data, with transformed
+\(v_1^2\) and \(v_2^2\).}
+
+\end{figure}%
 
 Whether a car is acceptable or not may depend on some form of
 interaction between the buying price and maintenance cost. With the
@@ -4233,44 +4688,38 @@ quadratic expansion, the additional dimension of \(\sqrt{2} v_1 v_2\)
 can be seen as an interaction variable in the form of multiplication.
 
 When all three expanded features are considered, the data are mapped to
-a three-dimensional space shown in
-Figure~\hyperref[fig-bin-car_q3]{1.1}, where they may be separated
-linearly. Of all linear equations (planes) formed by any three points in
-each class, we have identified two planes closest to their opposite
-classes.
+a three-dimensional space shown in Figure~\ref{fig-bin-car_q3}, where
+they may be separated linearly. Of all linear equations (planes) formed
+by any three points in each class, we have identified two planes closest
+to their opposite classes.
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  All data points
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    Zoom in on support vectors
+\centering{
 
-    Car evaluation data, mapped to higher dimensions with {v12}, {v22},
-    and {\(\sqrt{2} v_1 v_2\)}. The two planes are closest to the
-    opposite class. The projected shadows are for reference only. (a)
-    shows all data points in the three dimensional space, and (b) is a
-    closer view of the two planes with support vectors. Dashed line is
-    the gap (margin) between the two classes. Circled data points are
-    support vectors.
-  \end{enumerate}
-\end{enumerate}
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Car evaluation data, mapped to higher dimensions with v\_1\^{}2, v\_2\^{}2, and 2 v\_1 v\_2. The two planes are closest to the opposite class. The projected shadows are for reference only. (a) shows all data points in the three dimensional space, and (b) is a closer view of the two planes with support vectors. Dashed line is the gap (margin) between the two classes. Circled data points are support vectors.}]{chapters/../assets/figures/chapter07/fig-bin-car-q3.pdf}
 
-Figure~\hyperref[fig-bin-car_q3]{1.1} (a) shows all data points in the
-expanded dimensional space with quadratic mapping. The two planes formed
-by data points are the closest to the opposite class, which are
-candidate support vectors. Shadows of the planes are projected to the
-"ground" (i.e.~\(v_2^2\) vs.~\(v_1^2\) dimensions) for easier reading of
-related data points.
+}
 
-Figure~\hyperref[fig-bin-car_q3]{1.1} (b) zooms in on the planes formed
-by candidate support vectors in the three-dimensional space, where a
+\caption{\label{fig-bin-car_q3}Car evaluation data, mapped to higher
+dimensions with \(v_1^2\), \(v_2^2\), and \(\sqrt{2} v_1 v_2\). The two
+planes are closest to the opposite class. The projected shadows are for
+reference only. (a) shows all data points in the three dimensional
+space, and (b) is a closer view of the two planes with support vectors.
+Dashed line is the gap (margin) between the two classes. Circled data
+points are support vectors.}
+
+\end{figure}%
+
+Figure~\ref{fig-bin-car_q3} (a) shows all data points in the expanded
+dimensional space with quadratic mapping. The two planes formed by data
+points are the closest to the opposite class, which are candidate
+support vectors. Shadows of the planes are projected to the "ground"
+(i.e.~\(v_2^2\) vs.~\(v_1^2\) dimensions) for easier reading of related
+data points.
+
+Figure~\ref{fig-bin-car_q3} (b) zooms in on the planes formed by
+candidate support vectors in the three-dimensional space, where a
 decision boundary can be identified to maximize the margin between the
 two classes (convex hulls). The dashed line connects the closest points
 of data in the two classes (convex hulls), by drawing a line from the
@@ -4289,12 +4738,11 @@ analysis.
 Networks}\label{multi-layer-neural-networks}
 
 We know the single perceptron can only be applied to linearly separable
-data. The car evaluation data, as shown in
-Figure~\hyperref[fig-bin-car]{{[}fig-bin-car{]}}, cannot be separated by
-one linear function. However, with a step function, one can transform
-the data into something linearly separable. Specifically, for a value
-\(s\) on the \(v_1\) or \(v_2\) dimension, we use the following step
-function:
+data. The car evaluation data, as shown in Figure~\ref{fig-bin-car},
+cannot be separated by one linear function. However, with a step
+function, one can transform the data into something linearly separable.
+Specifically, for a value \(s\) on the \(v_1\) or \(v_2\) dimension, we
+use the following step function:
 
 \[\begin{aligned}
   f(s) & = &
@@ -4307,24 +4755,50 @@ function:
 So it returns \(1\) for a value above \(2.5\), and \(0\) for a value
 below. Applying the step function to both \(v_1\) (buying price) and
 \(v_2\) (maintenance cost), we have transformed data in
-Figure~\hyperref[fig-bin-car_step]{{[}fig-bin-car\_step{]}}. All
-positive (acceptable) data have been mapped to the \((0,0)\) point
-whereas the negative (unacceptable) ones are at \((0,1)\), \((1,1)\),
-and \((1,0)\). As the solid line in
-Figure~\hyperref[fig-bin-car_step]{{[}fig-bin-car\_step{]}} shows, the
-transformed data are now linearly separable.
+Figure~\ref{fig-bin-car_step}. All positive (acceptable) data have been
+mapped to the \((0,0)\) point whereas the negative (unacceptable) ones
+are at \((0,1)\), \((1,1)\), and \((1,0)\). As the solid line in
+Figure~\ref{fig-bin-car_step} shows, the transformed data are now
+linearly separable.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Car evaluation data, transformed by a step function. A step function with a threshold 2.5 converts the original data (+ and in faded colors) to those with 0 and 1 values (+ and in bright colors). The solid line at v\_1+v\_2=0.5 separate the two classes.}]{chapters/../assets/figures/chapter07/fig-bin-car-step.pdf}
+
+}
+
+\caption{\label{fig-bin-car_step}Car evaluation data, transformed by a
+step function. A step function with a threshold \(2.5\) converts the
+original data (\(+\) and \(\circ\) in faded colors) to those with \(0\)
+and \(1\) values (\(+\) and \(\circ\) in bright colors). The solid line
+at \(v_1+v_2=0.5\) separate the two classes.}
+
+\end{figure}%
 
 This non-linear classification with step function transformation can be
 represented with a multi-layer neural network. As shown in
-Figure~\hyperref[fig-bin-nn]{1.2}, each of the input variables \(v_1\)
-and \(v_2\) is normalized by a step function and then multiplied by
-\(-1\) before feeding into the final output, which is combined with the
-bias weighted \(0.5\). This is equivalent to
+Figure~\ref{fig-bin-nn}, each of the input variables \(v_1\) and \(v_2\)
+is normalized by a step function and then multiplied by \(-1\) before
+feeding into the final output, which is combined with the bias weighted
+\(0.5\). This is equivalent to
 \(0.5 \times 1 -1\times f(v_1) - 1\times f(v_2)\), where \(f\) is the
 step function for \(v_1\) and \(v_2\) values.
 
-Multi-layer neural network with step functions. {∑} represents the
-weighted sum of input values leading to the present node.
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Multi-layer neural network with step functions. represents the weighted sum of input values leading to the present node.}]{chapters/../assets/figures/chapter07/fig-bin-nn.pdf}
+
+}
+
+\caption{\label{fig-bin-nn}Multi-layer neural network with step
+functions. \(\sum\) represents the weighted sum of input values leading
+to the present node.}
+
+\end{figure}%
 
 For example, with data point \((2,2)\), the step function will convert
 them into \((0,0)\). With the bias \(0.5\times1\), the weighted sum is
@@ -4337,7 +4811,7 @@ negative (unacceptable).
 Using the multi-layer neural network, based on the additional hidden
 layer with step functions between the input and final output, it is now
 possible to establish a non-linear model such as the one in
-Figure~\hyperref[fig-bin-nn]{1.2}.
+Figure~\ref{fig-bin-nn}.
 
 But the question remains -- how can the weights of the model, together
 with the step function, be identified properly? While it is tempting to
@@ -4352,9 +4826,8 @@ contributes to the final output via the hidden layer? The general
 optimization technique called \emph{gradient descent} makes it possible
 to find optimal values (weights) by searching in the derivatives of
 related functions. However, a step function, as illustrated in
-Figure~\hyperref[fig-bin-step]{{[}fig-bin-step{]}}, has a sudden jump
-(not smooth transition) between \(0\) and \(1\) and is not
-differentiable.
+Figure~\ref{fig-bin-step}, has a sudden jump (not smooth transition)
+between \(0\) and \(1\) and is not differentiable.
 
 If we are to retain the idea of a step function, can we develop one that
 functions in the like manner and yet smooth and differentiable? A
@@ -4364,36 +4837,55 @@ candidate is the \emph{sigmoid} function, which is defined by:
   f(v) & = & \frac{1}{1+e^{-v}}
 \end{aligned}\]
 
-for a value \(v\).
-Figure~\hyperref[fig-bin-sigmoid]{{[}fig-bin-sigmoid{]}} shows the
-functional curve of sigmoid, which transforms the weighted sum of a node
-to a value approaching \(0\) or \(1\). The threshold is \(0\) by default
-but we can use any threshold for the transformation. For example, with a
-threshold of \(5\), the sigmoid function becomes:
+for a value \(v\). Figure~\ref{fig-bin-sigmoid} shows the functional
+curve of sigmoid, which transforms the weighted sum of a node to a value
+approaching \(0\) or \(1\). The threshold is \(0\) by default but we can
+use any threshold for the transformation. For example, with a threshold
+of \(5\), the sigmoid function becomes:
 
 \[\begin{aligned}
   f(v) & = & \frac{1}{1+e^{-(v-5)}}
 \end{aligned}\]
 
 which shifts the functional curve on the \(x\) coordinates by \(+5\)
-(dashed line in
-Figure~\hyperref[fig-bin-sigmoid]{{[}fig-bin-sigmoid{]}}).
+(dashed line in Figure~\ref{fig-bin-sigmoid}).
 \(v-5 = 1\times v + (-5)\times 1\) is equivalent to the weighted sum of
 variable \(v\) (with weight \(w=1\)) and bias \(1\) (with weight
 \(w_0=-5\)). It can be generalized as a linear function of any number of
 input variables with bias in the form of
 \(\sum = w_0 + \sum_i w_i v_i\).
 
-Now if we replace the step function with the sigmoid function in
-Figure~\hyperref[fig-bin-nn]{1.2}, we have the multi-layer neural
-network in Figure~\hyperref[fig-bin-nn_sigmoid]{1.3}, in which each
-layer (node) is differentiable and the weight can be learned by gradient
-descent.
+\begin{figure}
 
-Multi-layer neural network with the sigmoid function. {s1} and {s2} are
-the weighted sum of input values leading to the respective hidden nodes
-whereas {s} is the weighted sum of input values leading to the output
-layer.
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Sigmoid function}]{chapters/../assets/figures/chapter07/fig-bin-sigmoid.pdf}
+
+}
+
+\caption{\label{fig-bin-sigmoid}Sigmoid function}
+
+\end{figure}%
+
+Now if we replace the step function with the sigmoid function in
+Figure~\ref{fig-bin-nn}, we have the multi-layer neural network in
+Figure~\ref{fig-bin-nn_sigmoid}, in which each layer (node) is
+differentiable and the weight can be learned by gradient descent.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Multi-layer neural network with the sigmoid function. s\_1 and s\_2 are the weighted sum of input values leading to the respective hidden nodes whereas s is the weighted sum of input values leading to the output layer.}]{chapters/../assets/figures/chapter07/fig-bin-nn-sigmoid.pdf}
+
+}
+
+\caption{\label{fig-bin-nn_sigmoid}Multi-layer neural network with the
+sigmoid function. \(s_1\) and \(s_2\) are the weighted sum of input
+values leading to the respective hidden nodes whereas \(s\) is the
+weighted sum of input values leading to the output layer.}
+
+\end{figure}%
 
 The weighted sum for each hidden node \(i\) can be computed by:
 
@@ -4411,7 +4903,7 @@ in the hidden layer is:
   & = & f(\sum_{j=0}^{m} w_{ij} v_j)
 \end{aligned}\]
 
-In Figure~\hyperref[fig-bin-nn_sigmoid]{1.3}, this can be written as:
+In Figure~\ref{fig-bin-nn_sigmoid}, this can be written as:
 
 \[\begin{aligned}
   h_1
@@ -4434,8 +4926,8 @@ weighted sum of values from the hidden layer:
   & = & f\Big(\sum_{i=0}^{m} w_i f\big(\sum_{j=0}^{m} w_{ij} v_j\big)\Big)
 \end{aligned}\]
 
-which, for the model in Figure~\hyperref[fig-bin-nn_sigmoid]{1.3}, can
-be computed by:
+which, for the model in Figure~\ref{fig-bin-nn_sigmoid}, can be computed
+by:
 
 \[\begin{aligned}
   \hat{y}
@@ -4467,8 +4959,7 @@ where \(s\) is the weighted sum at the output layer and \(f'(s)\) is the
 derivative of the sigmoid function \(f(s)\), which is as simple as
 \(f(s)(1-f(s))\). This gives the differentials needed to optimize
 \(w_i\) weights from the hidden layer to the output, i.e.~\(w_0\),
-\(w_1\), and \(w_2\) weights in
-Figure~\hyperref[fig-bin-nn_sigmoid]{1.3}.
+\(w_1\), and \(w_2\) weights in Figure~\ref{fig-bin-nn_sigmoid}.
 
 Now that values in the hidden layer \(h\) are based on weighted sums of
 the input layer, we also need to optimize \(w_{ij}\) weights connecting
@@ -4490,10 +4981,10 @@ differential \(\frac{dE(v)}{dw_{ij}}\) in
 Equation~\hyperref[eq-bin-dwij]{{[}eq-bin-dwij{]}} will be used to
 subtract from existing weights of \(w_{10}\) and \(w_{11}\) for \(h_1\);
 \(w_{20}\) and \(w_{22}\) for \(h_2\) in
-Figure~\hyperref[fig-bin-nn_sigmoid]{1.3}. This approach of revising
-weights to the two layers can thought of as propagating differentials of
-squared errors \emph{backward} in the feed-forward neural network, and
-is referred to as \emph{backpropagation}.
+Figure~\ref{fig-bin-nn_sigmoid}. This approach of revising weights to
+the two layers can thought of as propagating differentials of squared
+errors \emph{backward} in the feed-forward neural network, and is
+referred to as \emph{backpropagation}.
 
 To understand how backpropagation actually operates, let's walk through
 the training process with the first data instance in
@@ -4523,9 +5014,22 @@ all \(0\) values. Note that we use \(0\) initial weights for easy
 demonstration. This is not necessarily the best strategy for
 initialization.
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Backpropagation step 1 with 0 initial weights.}]{chapters/../assets/figures/chapter07/fig-bin-nn-sigmoid-0.pdf}
+
+}
+
+\caption{\label{fig-bin-nn_sigmoid_0}Backpropagation step 1 with \(0\)
+initial weights.}
+
+\end{figure}%
+
 Now with the model and initial weights in
-Figure~\hyperref[fig-bin-nn_sigmoid_0]{{[}fig-bin-nn\_sigmoid\_0{]}},
-given the first training instance of \((2,2)\), we can compute:
+Figure~\ref{fig-bin-nn_sigmoid_0}, given the first training instance of
+\((2,2)\), we can compute:
 
 \[\begin{aligned}
   h_0
@@ -4603,41 +5107,41 @@ of all \(w_{ij}\), namely \(w_{10}=0.0313\) and \(w_{11}=0.0625\) to
 hidden node \(h_1\), and \(w_{20}=0.0313\) and \(w_{22}=0.0625\) for
 hidden node \(h_2\).
 
-Figure~\hyperref[fig-bin-nn_sigmoid_1]{{[}fig-bin-nn\_sigmoid\_1{]}}
-shows the model with updated weights after training by the first
-instance \((2,2)\) with a known class label \(1\). We can continue to
-train the model with additional data instances in
-Table~\hyperref[tab-bin-car_nn]{1.3}. This can be repeated with the same
-data until weights are stabilized and the error is reduced to a certain
-level.
+\begin{figure}
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  Weight {\(\frac{w_{11}}{w_{10}}\)} to hidden layer
+\centering{
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    Weight {\(\frac{w_1}{w_0}\)} to output
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Backpropagation step 2 with updated weights}]{chapters/../assets/figures/chapter07/fig-bin-nn-sigmoid-1.pdf}
 
-    \begin{enumerate}
-    \def\labelenumiii{(\alph{enumiii})}
-    \setcounter{enumiii}{2}
-    \tightlist
-    \item
-      Error {\(\frac{(y - \hat{y})^2}{2}\)}
+}
 
-      Neural network training iterations and convergence
-    \end{enumerate}
-  \end{enumerate}
-\end{enumerate}
+\caption{\label{fig-bin-nn_sigmoid_1}Backpropagation step 2 with updated
+weights}
 
-Figure~\hyperref[fig-bin-car_nn_converge]{1.4} shows relative weights
-and error over time, via iterations of repeated training with data in
+\end{figure}%
+
+Figure~\ref{fig-bin-nn_sigmoid_1} shows the model with updated weights
+after training by the first instance \((2,2)\) with a known class label
+\(1\). We can continue to train the model with additional data instances
+in Table~\hyperref[tab-bin-car_nn]{1.3}. This can be repeated with the
+same data until weights are stabilized and the error is reduced to a
+certain level.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Neural network training iterations and convergence}]{chapters/../assets/figures/chapter07/fig-bin-car-nn-converge.pdf}
+
+}
+
+\caption{\label{fig-bin-car_nn_converge}Neural network training
+iterations and convergence}
+
+\end{figure}%
+
+Figure~\ref{fig-bin-car_nn_converge} shows relative weights and error
+over time, via iterations of repeated training with data in
 Table~\hyperref[tab-bin-car_nn]{1.3}. Note that in linear equations,
 absolute values of related weights (coefficients) are not important.
 Rather, it is their relative weight to one another that matters. Hence,
@@ -4646,14 +5150,14 @@ weight.
 
 Overall, the figures show the weights and error all appear to converge.
 However, they seem to differ in the number of iterations needed for
-their convergence. In Figure~\hyperref[fig-bin-car_nn_converge]{1.4}
-(a), the relative weight of \(w_{11}\) (the weight of \(v_1\) to the
-hidden node \(h_1\)) fluctuates a lot in the first \(10\) iterations but
-stabilizes quickly after a few dozen iterations. In
-Figure~\hyperref[fig-bin-car_nn_converge]{1.4} (b), \(w_1\) -- the
-weight from the hidden node \(h_1\) to the final output -- appears to
-take hundreds of iterations to converge. The squared error, as shown in
-Figure~\hyperref[fig-bin-car_nn_converge]{1.4} (c), takes even even more
+their convergence. In Figure~\ref{fig-bin-car_nn_converge} (a), the
+relative weight of \(w_{11}\) (the weight of \(v_1\) to the hidden node
+\(h_1\)) fluctuates a lot in the first \(10\) iterations but stabilizes
+quickly after a few dozen iterations. In
+Figure~\ref{fig-bin-car_nn_converge} (b), \(w_1\) -- the weight from the
+hidden node \(h_1\) to the final output -- appears to take hundreds of
+iterations to converge. The squared error, as shown in
+Figure~\ref{fig-bin-car_nn_converge} (c), takes even even more
 iterations to be minimized.
 
 In the end, we obtain the weights in
@@ -4678,39 +5182,66 @@ Relative & -1.92 & 1 & 1 & 2.5 & -1 & 2.5 & -1 & 0.0027 \\
 The result of
 Table~\hyperref[tab-bin-car_nn_result]{{[}tab-bin-car\_nn\_result{]}}
 can be represented as the final (converged) model in
-Figure~\hyperref[fig-bin-car_nn_result]{1.5}, which is highly similar to
-the one in Figure~\hyperref[fig-bin-nn_sigmoid]{1.3}. For example, the
-weighted sum for hidden node \(h_1\) is \(2.5 - v_1\) in the model here,
-which is simply the negative of what is in
-Figure~\hyperref[fig-bin-nn_sigmoid]{1.3}, where the sum is
-\(v_1 - 2.5\). We observe the same with the hidden node \(h_2\). This
-leads to the different signs of \(w_1, w_2\) vs.~\(w_0\) to the output
-layer.
+Figure~\ref{fig-bin-car_nn_result}, which is highly similar to the one
+in Figure~\ref{fig-bin-nn_sigmoid}. For example, the weighted sum for
+hidden node \(h_1\) is \(2.5 - v_1\) in the model here, which is simply
+the negative of what is in Figure~\ref{fig-bin-nn_sigmoid}, where the
+sum is \(v_1 - 2.5\). We observe the same with the hidden node \(h_2\).
+This leads to the different signs of \(w_1, w_2\) vs.~\(w_0\) to the
+output layer.
 
-Neural network final model. Compare to Figure~1.3. Note that we
-transform the bias node on the hidden layer with the sigmoid as well,
-i.e.~{\(h_0 = f(1) = \frac{1}{1+e^{-1}} = 0.73\)}. In the final model,
-{w0h0 = −1.92 × 0.73 = −1.4}.
+\begin{figure}
 
-Figure~\hyperref[fig-bin-car_nn_result_plot]{{[}fig-bin-car\_nn\_result\_plot{]}}
-visualizes how the model transforms the original data into something
-separable. A sigmoid function with a weighted sum of \(2.5 - v\) (for
-both \(v_1\) and \(v_2\)) converts the original data (\(+\) and
-\(\circ\) in faded colors) to values close to \(0\) (if \(v>2.5\)) and
-\(1\) values (if \(v<2.5\)).
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Neural network final model. Compare to the referenced figure. Note that we transform the bias node on the hidden layer with the sigmoid as well, i.e. h\_0 = f(1) = 11+e\^{}-1 = 0.73. In the final model, w\_0 h\_0 = -1.920.73=-1.4.}]{chapters/../assets/figures/chapter07/fig-bin-car-nn-result.pdf}
+
+}
+
+\caption{\label{fig-bin-car_nn_result}Neural network final model.
+Compare to the referenced figure. Note that we transform the bias node
+on the hidden layer with the sigmoid as well,
+i.e.~\(h_0 = f(1) = \frac{1}{1+e^{-1}} = 0.73\). In the final model,
+\(w_0 h_0 = -1.92\times0.73=-1.4\).}
+
+\end{figure}%
+
+Figure~\ref{fig-bin-car_nn_result_plot} visualizes how the model
+transforms the original data into something separable. A sigmoid
+function with a weighted sum of \(2.5 - v\) (for both \(v_1\) and
+\(v_2\)) converts the original data (\(+\) and \(\circ\) in faded
+colors) to values close to \(0\) (if \(v>2.5\)) and \(1\) values (if
+\(v<2.5\)).
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Visualization of the final model on car evaluation. Data transformed by the sigmoid function h\_i = f(s\_i) = 11+e\^{}-s\_i, where s\_i is the weighted sum of each hidden node: s\_1=2.5 - v\_1 and s\_2 = 2.5 - v\_2. The solid line at h\_1+h\_2 - 1.92 f(1)=0 is where the sigmoid of the output layer makes the cut.}]{chapters/../assets/figures/chapter07/fig-bin-car-nn-result-plot.pdf}
+
+}
+
+\caption{\label{fig-bin-car_nn_result_plot}Visualization of the final
+model on car evaluation. Data transformed by the sigmoid function
+\(h_i = f(s_i) = \frac{1}{1+e^{-s_i}}\), where \(s_i\) is the weighted
+sum of each hidden node: \(s_1=2.5 - v_1\) and \(s_2 = 2.5 - v_2\). The
+solid line at \(h_1+h_2 - 1.92 f(1)=0\) is where the sigmoid of the
+output layer makes the cut.}
+
+\end{figure}%
 
 Given the limited training data we have, there are many non-linear
 solutions to the classification problem. In the end, we obtain the model
-in Figure~\hyperref[fig-bin-car_nn_result]{1.5} which is different from
-what we proposed in Figure~\hyperref[fig-bin-nn_sigmoid]{1.3}. Both
-models will make perfect classifications on the training data presented
-in Table~\hyperref[tab-bin-car_nn]{1.3}. However, a model thus obtained
-has not necessarily found the global optimal. In fact, the
-back-propagation mechanism via gradient descent can converge to a local
-optimum, which depends on many factors such as the starting point
-(initial values) and the sequence of training data. The learning rate
-also impacts the convergence of weights and, occasionally, may also
-influence where they converge.
+in Figure~\ref{fig-bin-car_nn_result} which is different from what we
+proposed in Figure~\ref{fig-bin-nn_sigmoid}. Both models will make
+perfect classifications on the training data presented in
+Table~\hyperref[tab-bin-car_nn]{1.3}. However, a model thus obtained has
+not necessarily found the global optimal. In fact, the back-propagation
+mechanism via gradient descent can converge to a local optimum, which
+depends on many factors such as the starting point (initial values) and
+the sequence of training data. The learning rate also impacts the
+convergence of weights and, occasionally, may also influence where they
+converge.
 
 \chapter{Multiclass and Structured Decisions}\label{ch-multiclass}
 
@@ -4764,6 +5295,18 @@ Clustering is often referred to as unsupervised learning because its
 outcome is not predetermined (unsupervised) but whatever the data shall
 reveal.
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Hard, flat partitioning}]{chapters/../assets/figures/chapter10/fig-org-partitions.pdf}
+
+}
+
+\caption{\label{fig-org-partitions}Hard, flat partitioning}
+
+\end{figure}%
+
 Clustering helps in the organization (grouping) of information and makes
 it easier to access and navigate. For example, when a student organizes
 course materials in folders of subject areas, it becomes more efficient
@@ -4779,11 +5322,23 @@ representation and navigation of the data space.
 We often think of clustering as \emph{hard} and \emph{flat partitioning}
 -- \emph{hard} because cluster membership is concrete and every data
 instance belongs to only one group and \emph{flat} because there is only
-one level of clusters.
-Figure~\hyperref[fig-org-partitions]{{[}fig-org-partitions{]}} shows an
-example of two flat partitions, where data belong to either one of them.
+one level of clusters. Figure~\ref{fig-org-partitions} shows an example
+of two flat partitions, where data belong to either one of them.
 However, the result of clustering can be a more complex structure than
 that.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Illustration of soft partitioning, where data may belong to multiple clusters}]{chapters/../assets/figures/chapter10/fig-org-fuzzy.pdf}
+
+}
+
+\caption{\label{fig-org-fuzzy}Illustration of soft partitioning, where
+data may belong to multiple clusters}
+
+\end{figure}%
 
 There are such methods for \emph{soft} or \emph{fuzzy} clustering, where
 each data instance can belong to multiple clusters. For example, a book
@@ -4796,8 +5351,7 @@ to speak, to data of interest.
 
 In addition, there are clustering algorithms that produce a hierarchical
 structure with levels of nested partitions, i.e.~a tree with branches
-and branches of branches.
-Figure~\hyperref[fig-org-hierarchy]{{[}fig-org-hierarchy{]}} illustrates
+and branches of branches. Figure~\ref{fig-org-hierarchy} illustrates
 hierarchical clustering, where a circle represents a cluster and a
 nested circle is a child (branch) of the one containing it. This can be
 achieved by either recursively merging data instances until the whole
@@ -4805,13 +5359,38 @@ structure has emerged (the bottom-up approach) or recursively dividing
 the entire data into subsets until they can no longer be broken down
 (the top-down approach).
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Hierarchical clustering. A nested circle represents child (branch) of the enclosing cluster.}]{chapters/../assets/figures/chapter10/fig-org-hierarchy-circles.pdf}
+
+}
+
+\caption{\label{fig-org-hierarchy_circles}Hierarchical clustering. A
+nested circle represents child (branch) of the enclosing cluster.}
+
+\end{figure}%
+
 The result of hierarchical clustering in
-Figure~\hyperref[fig-org-hierarchy_circles]{{[}fig-org-hierarchy\_circles{]}}
-can also be represented as a tree structure in
-Figure~\hyperref[fig-org-hierarchy]{{[}fig-org-hierarchy{]}}. A
-hierarchy or dendrogram thus constructed may reveal the underlying
-taxonomy of themes in the data. It is a great tool for information
-organization and data exploration.
+Figure~\ref{fig-org-hierarchy_circles} can also be represented as a tree
+structure in Figure~\ref{fig-org-hierarchy}. A hierarchy or dendrogram
+thus constructed may reveal the underlying taxonomy of themes in the
+data. It is a great tool for information organization and data
+exploration.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Tree representation of the hierarchical structure in the referenced figure}]{chapters/../assets/figures/chapter10/fig-org-hierarchy.pdf}
+
+}
+
+\caption{\label{fig-org-hierarchy}Tree representation of the
+hierarchical structure in the referenced figure}
+
+\end{figure}%
 
 \section{Example Data}\label{example-data}
 
@@ -4846,16 +5425,28 @@ as well as classification of three Iris species (setosa, versicolor, or
 virginica). For demonstration, we use only \(5\) data instances from
 each species (\(15\) total) and focus on two variables in the analysis,
 namely \emph{petal length} vs.~\emph{petal width}. In
-Figure~\hyperref[fig-org-iris]{{[}fig-org-iris{]}}, we plot \emph{petal
-length} vs.~\emph{petal width} and color code data in each class
-(species).
+Figure~\ref{fig-org-iris}, we plot \emph{petal length} vs.~\emph{petal
+width} and color code data in each class (species).
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={IRIS flowers data: Petal Length vs. Petal Width}]{chapters/../assets/figures/chapter10/fig-org-iris.pdf}
+
+}
+
+\caption{\label{fig-org-iris}IRIS flowers data: Petal Length vs.~Petal
+Width}
+
+\end{figure}%
 
 There appear to be three clusters, as shown in
-Figure~\hyperref[fig-org-iris]{{[}fig-org-iris{]}}, consistent with the
-three species. But how can we design algorithms to identify these
-clusters? Bear in mind that any clustering method, as unsupervised
-learning, should be data driven and should aim to discover inherent
-patterns from rather than imposing a structure on the data.
+Figure~\ref{fig-org-iris}, consistent with the three species. But how
+can we design algorithms to identify these clusters? Bear in mind that
+any clustering method, as unsupervised learning, should be data driven
+and should aim to discover inherent patterns from rather than imposing a
+structure on the data.
 
 Although clustering does not predict on the class label, we will use the
 classes of the IRIS data to help evaluate (at least visually) how well a
@@ -4898,85 +5489,71 @@ cluster using vector values of member data instances. And this is the
 strategy that we will use in the following demonstration as it is easy
 to visualize. We will discuss several other strategies after that.
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  all data instances
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    zoomed in on the closest pair
+\centering{
 
-    Step {1} of HAC clustering on IRIS data. The circle indicates a new
-    cluster formed by the closest pair of instances. The centroid of the
-    cluster is marked {×} in (b).
-  \end{enumerate}
-\end{enumerate}
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Step 1 of HAC clustering on IRIS data. The circle indicates a new cluster formed by the closest pair of instances. The centroid of the cluster is marked in (b).}]{chapters/../assets/figures/chapter10/fig-org-hac1.pdf}
 
-Figure~\hyperref[fig-org-hac1]{1.1} (a) plots the IRIS data and
-visualizes the \(1^{st}\) step of HAC clustering. Using Euclidean
-distance, the closest pair of instances can be identified, as circled on
-the plot, and joined as a new cluster.
+}
 
-Figure~\hyperref[fig-org-hac1]{1.1} (b) offers a closer look at the new
-cluster. Once the new cluster is formed, it is represented by the
-average values of its members, i.e.~the geometric center of the two data
-instances on the plot (see \(\times\) in the circled cluster). Now this
-new cluster with a centroid at \(\times\) is simply treated as another
-data instance that can be compared to and merged with others.
+\caption{\label{fig-org-hac1}Step \(1\) of HAC clustering on IRIS data.
+The circle indicates a new cluster formed by the closest pair of
+instances. The centroid of the cluster is marked \(\times\) in (b).}
+
+\end{figure}%
+
+Figure~\ref{fig-org-hac1} (a) plots the IRIS data and visualizes the
+\(1^{st}\) step of HAC clustering. Using Euclidean distance, the closest
+pair of instances can be identified, as circled on the plot, and joined
+as a new cluster.
+
+Figure~\ref{fig-org-hac1} (b) offers a closer look at the new cluster.
+Once the new cluster is formed, it is represented by the average values
+of its members, i.e.~the geometric center of the two data instances on
+the plot (see \(\times\) in the circled cluster). Now this new cluster
+with a centroid at \(\times\) is simply treated as another data instance
+that can be compared to and merged with others.
 
 Now we can continue to find the next closest pairs. In
-Figure~\hyperref[fig-org-hac2]{1.2} (a), the \(1^{st}\) merged cluster
-is found to be closest to yet another data instance, and they are joined
-to form a new cluster again. This continues to merge with another
-instance, as shown in Figure~\hyperref[fig-org-hac2]{1.2} (b).
+Figure~\ref{fig-org-hac2} (a), the \(1^{st}\) merged cluster is found to
+be closest to yet another data instance, and they are joined to form a
+new cluster again. This continues to merge with another instance, as
+shown in Figure~\ref{fig-org-hac2} (b).
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  step 2
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    step 3
+\centering{
 
-    Further iterations of HAC clustering on IRIS data
-  \end{enumerate}
-\end{enumerate}
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Further iterations of HAC clustering on IRIS data}]{chapters/../assets/figures/chapter10/fig-org-hac2.pdf}
+
+}
+
+\caption{\label{fig-org-hac2}Further iterations of HAC clustering on
+IRIS data}
+
+\end{figure}%
 
 Repeat the merging process, we can get results in
-Figure~\hyperref[fig-org-hac3]{1.3}. If the desired number of clusters
-\(k\) is predefined, one can stop the iterative process once \(k\)
-clusters have been obtained. In Figure~\hyperref[fig-org-hac3]{1.3} (a),
-for example, the clustering process stops at \(3\) clusters (\(k=3\)).
-If one desires to build the entire hierarchy of the data, as
-Figure~\hyperref[fig-org-hac3]{1.3} (b) shows, the process can continue
-until all clusters have been merged into the root (\(k=1\)).
+Figure~\ref{fig-org-hac3}. If the desired number of clusters \(k\) is
+predefined, one can stop the iterative process once \(k\) clusters have
+been obtained. In Figure~\ref{fig-org-hac3} (a), for example, the
+clustering process stops at \(3\) clusters (\(k=3\)). If one desires to
+build the entire hierarchy of the data, as Figure~\ref{fig-org-hac3} (b)
+shows, the process can continue until all clusters have been merged into
+the root (\(k=1\)).
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  merged to {3} clusters
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    merged to {1} cluster
+\centering{
 
-    Result of HAC clustering on IRIS data
-  \end{enumerate}
-\end{enumerate}
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Result of HAC clustering on IRIS data}]{chapters/../assets/figures/chapter10/fig-org-hac3.pdf}
+
+}
+
+\caption{\label{fig-org-hac3}Result of HAC clustering on IRIS data}
+
+\end{figure}%
 
 \subsection{Issues of HAC}\label{issues-of-hac}
 
@@ -5038,99 +5615,83 @@ Now let's look at how k-means may identify clusters from the IRIS data.
 Again, we set the number of desired clusters \(k=3\) to see whether it
 may produce clusters consistent with the three Iris species.
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  initial (random) centroids
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    membership assignment
+\centering{
 
-    K-means initial steps. A {×} represents an initial centroid.
-    Undirected lines represent cluster membership. Directed lines {↗}
-    indicates how the centroid will move (change) after re-computation
-    based on assigned members.
-  \end{enumerate}
-\end{enumerate}
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={K-means initial steps. A represents an initial centroid. Undirected lines represent cluster membership. Directed lines indicates how the centroid will move (change) after re-computation based on assigned members.}]{chapters/../assets/figures/chapter10/fig-org-kmeans1.pdf}
 
-With data plotted in Figure~\hyperref[fig-org-kmeans1]{1.4} (a), we
-start with \(3\) random cluster centroids, shown as \(\times\) in the
-plot. For each data instance, we compute its distance to each of the
-three initial centroids and identify the closest centroid, to which it
-will be assigned as a member. Figure~\hyperref[fig-org-kmeans1]{1.4} (b)
-shows lines connecting data instances to their corresponding closest
-centroids.
+}
+
+\caption{\label{fig-org-kmeans1}K-means initial steps. A \(\times\)
+represents an initial centroid. Undirected lines represent cluster
+membership. Directed lines \(\nearrow\) indicates how the centroid will
+move (change) after re-computation based on assigned members.}
+
+\end{figure}%
+
+With data plotted in Figure~\ref{fig-org-kmeans1} (a), we start with
+\(3\) random cluster centroids, shown as \(\times\) in the plot. For
+each data instance, we compute its distance to each of the three initial
+centroids and identify the closest centroid, to which it will be
+assigned as a member. Figure~\ref{fig-org-kmeans1} (b) shows lines
+connecting data instances to their corresponding closest centroids.
 
 Once membership of each cluster is assigned, the center of cluster can
 be re-computed based on averaging member instances. After this
 computation, the centroids will likely change (move). Directed lines
-(arrows) in Figure~\hyperref[fig-org-kmeans1]{1.4} (b) represent the
-changes of cluster centroids.
+(arrows) in Figure~\ref{fig-org-kmeans1} (b) represent the changes of
+cluster centroids.
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  {2nd} iteration
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    {3nd} iteration
+\centering{
 
-    K-means further steps. A {×} represents an centroid before it is
-    updated. Undirected lines represent cluster membership. Directed
-    lines {↗} indicates how the centroid will move (change) after
-    re-computation based on assigned members.
-  \end{enumerate}
-\end{enumerate}
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={K-means further steps. A represents an centroid before it is updated. Undirected lines represent cluster membership. Directed lines indicates how the centroid will move (change) after re-computation based on assigned members.}]{chapters/../assets/figures/chapter10/fig-org-kmeans2.pdf}
+
+}
+
+\caption{\label{fig-org-kmeans2}K-means further steps. A \(\times\)
+represents an centroid before it is updated. Undirected lines represent
+cluster membership. Directed lines \(\nearrow\) indicates how the
+centroid will move (change) after re-computation based on assigned
+members.}
+
+\end{figure}%
 
 With the new cluster centroids, the distance of each data instance has
 also changed and should be measured again to find out which cluster one
 belongs to now. By doing so, some data instances may move from one
 cluster to another, as shown in the \(2^{nd}\) iteration in
-Figure~\hyperref[fig-org-kmeans2]{1.5} (a), which, in turn, leads to
-further changes of cluster centroids. See the \(3^{rd}\) iteration in
-Figure~\hyperref[fig-org-kmeans2]{1.5} (b). By repeating the iterations
-of cluster member assignment and centroid re-computation, the cluster
-centroids will continue to move and gradually converge. One may stop the
-k-means optimization process when cluster centroid does not move or
-moves very little, or after a certain number of iterations.
+Figure~\ref{fig-org-kmeans2} (a), which, in turn, leads to further
+changes of cluster centroids. See the \(3^{rd}\) iteration in
+Figure~\ref{fig-org-kmeans2} (b). By repeating the iterations of cluster
+member assignment and centroid re-computation, the cluster centroids
+will continue to move and gradually converge. One may stop the k-means
+optimization process when cluster centroid does not move or moves very
+little, or after a certain number of iterations.
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  Final result
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    Overview of centroid movement
+\centering{
 
-    K-means final clusters and steps
-  \end{enumerate}
-\end{enumerate}
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={K-means final clusters and steps}]{chapters/../assets/figures/chapter10/fig-org-kmeans3.pdf}
+
+}
+
+\caption{\label{fig-org-kmeans3}K-means final clusters and steps}
+
+\end{figure}%
 
 For the small IRIS data set here, it only takes less than \(5\)
 iterations for the cluster centroids to converge (with little further
-movement). Figure~\hyperref[fig-org-kmeans3]{1.6} (a) shows the final
-\(3\) clusters thus identified and they are consistent with the three
-species of Iris flowers in the data.
-Figure~\hyperref[fig-org-kmeans3]{1.6} (b) gives an overview of the
-movement of cluster centroids through the iterations. Even though we
-started with random centroids, k-means gradually moves the centroids
-toward more representative segments of the data and, in the end, reaches
-an optimal outcome.
+movement). Figure~\ref{fig-org-kmeans3} (a) shows the final \(3\)
+clusters thus identified and they are consistent with the three species
+of Iris flowers in the data. Figure~\ref{fig-org-kmeans3} (b) gives an
+overview of the movement of cluster centroids through the iterations.
+Even though we started with random centroids, k-means gradually moves
+the centroids toward more representative segments of the data and, in
+the end, reaches an optimal outcome.
 
 \subsection{Issues of K-means}\label{issues-of-k-means}
 
@@ -5167,10 +5728,9 @@ domain theory and/or statistics.
 While k-means discovers cluster centroids, the Euclidean distance, for
 example, essentially defines a cluster boundary as a sphere of a certain
 radius in a dimensional space, e.g.~circles on two dimensions in
-Figure~\hyperref[fig-org-kmeans3]{1.6} (a). This implies two basic
-assumptions: 1) the distribution of member instances in a cluster is
-spherical, and 2) each data instance only belongs to one and only one
-cluster.
+Figure~\ref{fig-org-kmeans3} (a). This implies two basic assumptions: 1)
+the distribution of member instances in a cluster is spherical, and 2)
+each data instance only belongs to one and only one cluster.
 
 Is it possible to assume a different data distribution for clustering?
 In the same time, can there be soft (fuzzy) associations between data
@@ -5232,16 +5792,26 @@ With the IRIS data on only one dimension, i.e.~petal width, we randomize
 \(\mu_c\) and \(\delta_c\) for \(k=3\) clusters: \(\mu_1=1\) and
 \(\delta_1=0.25\) for cluster \(c_1\), \(\mu_2=1.6\) and
 \(\delta_2=0.25\) for cluster \(c_2\), and \(\mu_3=2.8\) and
-\(\delta_1=0.25\) for cluster \(c_3\).
-Figure~\hyperref[fig-org-em1]{1.7} shows the distribution of IRIS data
-instances on the petal width \(v\) dimension, with a normal (bell) curve
-based on each set of initial parameters.
+\(\delta_1=0.25\) for cluster \(c_3\). Figure~\ref{fig-org-em1} shows
+the distribution of IRIS data instances on the petal width \(v\)
+dimension, with a normal (bell) curve based on each set of initial
+parameters.
 
-Initial parameters of normal distributions. {∘} are IRIS data instances.
-{×} marks each an initial (random) mean {μ} (similar to a centroid),
-around which a normal distribution curve is plotted. The shaded area
-under curve shows the range of deviation from mean,
-i.e.~{{[}μ − δ, μ + δ{]}}.
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Initial parameters of normal distributions. are IRIS data instances. marks each an initial (random) mean (similar to a centroid), around which a normal distribution curve is plotted. The shaded area under curve shows the range of deviation from mean, i.e. {[}-, +{]}.}]{chapters/../assets/figures/chapter10/fig-org-em1.pdf}
+
+}
+
+\caption{\label{fig-org-em1}Initial parameters of normal distributions.
+\(\circ\) are IRIS data instances. \(\times\) marks each an initial
+(random) mean \(\mu\) (similar to a centroid), around which a normal
+distribution curve is plotted. The shaded area under curve shows the
+range of deviation from mean, i.e.~\([\mu-\delta, \mu+\delta]\).}
+
+\end{figure}%
 
 In addition, we don't know the prior probability \(P(c)\) of each
 cluster \(c\). If we assume equal chances, we have for the \(3\)
@@ -5277,9 +5847,8 @@ membership as \emph{Expectation}.
 
 Let's apply this to the IRIS data. We use the first data instance with
 petal width \(v=0.2\) (cm) (see the \(\circ\) closest to the zero in
-Figure~\hyperref[fig-org-em1]{1.7}). First, we compute \(P(v|c)\),
-probability that each cluster model will generate the instance
-\(v=0.2\):
+Figure~\ref{fig-org-em1}). First, we compute \(P(v|c)\), probability
+that each cluster model will generate the instance \(v=0.2\):
 
 \[\begin{aligned}
   P(v=0.2|c_1)
@@ -5291,13 +5860,12 @@ probability that each cluster model will generate the instance
   P(v=0.2|c_3) & \propto &  5.2 \times 10^{-24} \\
 \end{aligned}\]
 
-As you can see from the Figure~\hyperref[fig-org-em1]{1.7}, \(v=0.2\) is
-on the far left side of the first (red) bell curve centered on \(1\),
-and has a very small probability density
-\(P(v=0.2|c_1) \propto 0.00954\). This is further remove from the
-centers of the second (blue) and third (green) normal curves, and
-probability densities corresponding to \(c_2\) and \(c_3\) are much
-smaller.
+As you can see from the Figure~\ref{fig-org-em1}, \(v=0.2\) is on the
+far left side of the first (red) bell curve centered on \(1\), and has a
+very small probability density \(P(v=0.2|c_1) \propto 0.00954\). This is
+further remove from the centers of the second (blue) and third (green)
+normal curves, and probability densities corresponding to \(c_2\) and
+\(c_3\) are much smaller.
 
 With these values, we can now compute \(P(v)\), which is the weighted
 sum of probabilities that the \(3\) cluster models will generate data
@@ -5326,8 +5894,7 @@ each cluster for the \emph{Expectation} step:
 
 Apparently, data instance \(v=0.2\) is much more likely to belong to the
 cluster \(c_1\) (the red bell curve on the left) than to the other
-clusters, which are far away away as shown in
-Figure~\hyperref[fig-org-em1]{1.7}.
+clusters, which are far away away as shown in Figure~\ref{fig-org-em1}.
 
 Now that we have identified the membership probabilities for the first
 instance, we shall continue to do the same for all other data instances
@@ -5345,11 +5912,21 @@ related probabilities for two more data instances in IRIS: \(v=0.4\)
   P(c_3|v=1.3) & = & 0.872
 \end{aligned}\]
 
-First expectation result. Color of a data instance indicates the cluster
-membership with the highest probability.
+\begin{figure}
 
-Figure~\hyperref[fig-org-em2]{1.8} shows the color-coded result of the
-first \emph{Expectation} step on the IRIS data. A data instance's color
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={First expectation result. Color of a data instance indicates the cluster membership with the highest probability.}]{chapters/../assets/figures/chapter10/fig-org-em2.pdf}
+
+}
+
+\caption{\label{fig-org-em2}First expectation result. Color of a data
+instance indicates the cluster membership with the highest probability.}
+
+\end{figure}%
+
+Figure~\ref{fig-org-em2} shows the color-coded result of the first
+\emph{Expectation} step on the IRIS data. A data instance's color
 indicates the cluster with the highest probability -- that is, the bell
 curve that best "covers" the data instance.
 
@@ -5394,9 +5971,9 @@ cluster models, similar to how k-means iterates.
 
 Now that data instances have been assigned, probabilistically, to each
 cluster, the original model for each cluster is no longer representative
-of data associated with them. In Figure~\hyperref[fig-org-em2]{1.8}, for
-example, the first (red) bell curve is not centered on the data
-instances most highly associated with it.
+of data associated with them. In Figure~\ref{fig-org-em2}, for example,
+the first (red) bell curve is not centered on the data instances most
+highly associated with it.
 
 This is similar to k-means where the original centroid does no longer
 represent the center of member instances. And the models -- with
@@ -5425,18 +6002,28 @@ Likewise, we can update models for cluster \(c_2\) with
 \(\hat{\mu_2}=1.67\) and \(\hat{\delta_2}=0.332\), and cluster \(c_3\)
 with \(\hat{\mu_3}=2.34\) and \(\hat{\delta_3}=0.116\).
 
-First Maximization result. A bell curve with with a shaded area
-({±delta}) is the new model with updated parameters for the cluster.
+\begin{figure}
 
-Figure~\hyperref[fig-org-em3]{1.9} shows the result of this
-\emph{Maximization} step. The models (normal curves) have moved closer
-to their more highly associated data instances. This is very similar to
-re-computation of centroids -- thus causing them to move -- in k-means
-clustering. With Maximization, more than one parameters are needed to
-specify a model. For normal distribution models, both mean \(\mu\) and
-variance \(\delta^2\) are to be updated. If one assumes a different
-probability distribution, then a different set of parameters will be
-maximized.
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={First Maximization result. A bell curve with with a shaded area ( delta) is the new model with updated parameters for the cluster.}]{chapters/../assets/figures/chapter10/fig-org-em3.pdf}
+
+}
+
+\caption{\label{fig-org-em3}First Maximization result. A bell curve with
+with a shaded area (\(\pm delta\)) is the new model with updated
+parameters for the cluster.}
+
+\end{figure}%
+
+Figure~\ref{fig-org-em3} shows the result of this \emph{Maximization}
+step. The models (normal curves) have moved closer to their more highly
+associated data instances. This is very similar to re-computation of
+centroids -- thus causing them to move -- in k-means clustering. With
+Maximization, more than one parameters are needed to specify a model.
+For normal distribution models, both mean \(\mu\) and variance
+\(\delta^2\) are to be updated. If one assumes a different probability
+distribution, then a different set of parameters will be maximized.
 
 \subsection{Iterations of
 Expection-Maximization}\label{iterations-of-expection-maximization}
@@ -5449,21 +6036,26 @@ of Expectation-Maximization will repeat itself until the models no
 longer changed, where the overall probability of models generating
 observed data instances has been maximized.
 
-Figure~\hyperref[fig-org-em4]{1.10} shows further iterations of EM on
-the IRIS data. Visually, the cluster models (curves) move increasingly
-closer to the data instances they represent and, in the end, get well
-aligned with them.
+Figure~\ref{fig-org-em4} shows further iterations of EM on the IRIS
+data. Visually, the cluster models (curves) move increasingly closer to
+the data instances they represent and, in the end, get well aligned with
+them.
 
-{2nd} Iteration
+\begin{figure}
 
-{3rd} Iteration
+\centering{
 
-{4th} Iteration
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Iterations of Expectation and Maximization. Note that there are 5 data instances in each iris species. But because their petal width values overlap on the only dimension, there appear to be 3 or 4 instances in each cluster, which, in fact, has 5.}]{chapters/../assets/figures/chapter10/fig-org-em4.pdf}
 
-Iterations of Expectation and Maximization. Note that there are {5} data
-instances in each iris species. But because their petal width values
-overlap on the only dimension, there appear to be {3} or {4} instances
-in each cluster, which, in fact, has {5}.
+}
+
+\caption{\label{fig-org-em4}Iterations of Expectation and Maximization.
+Note that there are \(5\) data instances in each iris species. But
+because their petal width values overlap on the only dimension, there
+appear to be \(3\) or \(4\) instances in each cluster, which, in fact,
+has \(5\).}
+
+\end{figure}%
 
 \subsection{EM with Higher
 Dimensionality}\label{em-with-higher-dimensionality}
@@ -5577,7 +6169,7 @@ n-grams have shown its utility in applications such as spam detection,
 where junk emails may pad normal keywords with special characters to
 avoid being identified.
 
-\subsection{Term Weighting}\label{ch-text-weight}
+\subsection{Term Weighting}\label{fig-text-weight}
 
 Once tokens -- single words or phrases -- have been identified, they can
 be sorted and merged into a set of unique tokens, which we refer to as
@@ -5794,7 +6386,7 @@ alleviate potential favoritism toward longer documents. This is one of
 the most widely used term weighting methods in information retrieval and
 text mining.
 
-\section{Similarity Measures}\label{ch-text-sim}
+\section{Similarity Measures}\label{fig-text-sim}
 
 Once each document is represented as a vector of terms with weights, we
 can conduct various operations, such as clustering and ranking, on them.
@@ -5881,15 +6473,25 @@ DOC & Machine & Data \\
 
 These two documents can be plotted on the two-dimensional space, e.g.
 \emph{machine} for the \(x\) dimension and \emph{data} for the \(y\)
-dimension, shown in Figure~\hyperref[ch-text-2d]{1.1}:
+dimension, shown in Figure~\ref{fig-text-2d}:
 
-Documents in a two-dimensional space
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Documents in a two-dimensional space}]{chapters/../assets/figures/chapter11/ch-text-2d.pdf}
+
+}
+
+\caption{\label{fig-text-2d}Documents in a two-dimensional space}
+
+\end{figure}%
 
 With this dimensional representation, pair-wise similarity or difference
 can be measured by the geometric distance between two document data
 points. A classic metric of such is the \emph{Euclidean Distance}, which
 measures the length of the straight line connecting the two data points
-in question, as shown in Figure~\hyperref[ch-text-2d]{1.1}. In an
+in question, as shown in Figure~\ref{fig-text-2d}. In an
 \(m\)-dimensional space, the general \emph{Euclidean Distance} function
 is:
 
@@ -5899,7 +6501,7 @@ is:
 
 where \(u_i\) and \(v_i\) are the \(i^{th}\) dimensional value of data
 points \(u\) and \(v\) respectively. Given documents \(d_1\) and \(d_2\)
-in Figure~\hyperref[ch-text-2d]{1.1}, their euclidean distance is:
+in Figure~\ref{fig-text-2d}, their euclidean distance is:
 
 \[\begin{aligned}
   ED(d_1,d_2)
@@ -5914,26 +6516,45 @@ illustrate the problem.
 
 Imagine we have two documents \(d_1 = (4,5)\) and \(d_2=(5,4)\) (with TF
 weights) that are highly similar and have a very small Euclidean
-distance between them, as show in
-Figure~\hyperref[ch-text-thought]{1.2}:
+distance between them, as show in Figure~\ref{fig-text-thought}:
 
-Thought experiment with two documents
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Thought experiment with two documents}]{chapters/../assets/figures/chapter11/ch-text-thought.pdf}
+
+}
+
+\caption{\label{fig-text-thought}Thought experiment with two documents}
+
+\end{figure}%
 
 For now, one may think the line distance in
-Figure~\hyperref[ch-text-thought]{1.2} is a reasonable estimate of their
+Figure~\ref{fig-text-thought} is a reasonable estimate of their
 difference. But imagine make a double-copy of \(d_2\) and treat the new
-copy as \(d_3\), resulting in Figure~\hyperref[ch-text-thought]{1.2}:
+copy as \(d_3\), resulting in Figure~\ref{fig-text-thought}:
 
-Thought experiment a third document, where {d3} doubles the content of
-{d2}
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Thought experiment a third document, where d\_3 doubles the content of d\_2}]{chapters/../assets/figures/chapter11/ch-text-thought2.pdf}
+
+}
+
+\caption{\label{fig-text-thought2}Thought experiment a third document,
+where \(d_3\) doubles the content of \(d_2\)}
+
+\end{figure}%
 
 Because \(d_3\) is copy of \(d_2\) -- the only difference is that it
 doubles everything in \(d_2\) -- its semantics should remain the same as
 \(d_2\). A fair distance measure should give a relatively small value,
 indicating \(d_3\) is \emph{close} to \(d_1\) and especially \(d_2\).
-However, as shown in Figure~\hyperref[ch-text-thought]{1.2}, \(d_3\) is
-much farther away from \(d_1\) and consequently the euclidean distance
-is much greater.
+However, as shown in Figure~\ref{fig-text-thought}, \(d_3\) is much
+farther away from \(d_1\) and consequently the euclidean distance is
+much greater.
 
 In short, Euclidean Distance treats documents differently simply because
 they are of different sizes (magnitude). In this light, we should
@@ -5943,16 +6564,15 @@ Another perspective on similarity vs.~distance in the dimensional space
 is by measuring the \emph{direction} of a vector. In physics, the notion
 of vector has been used extensively for quantities such as velocity,
 which has both a \emph{magnitude} (speed) and direction. Likewise, as
-shown as dashed lines in Figure~\hyperref[ch-text-thought2]{1.3},
-documents such as \(d_1\) and \(d_2\) can be treated as vectors from the
-origin, with a magnitude (line length) and direction (arrow). The
-difference between the two documents can be measured by their angle
-distance.
+shown as dashed lines in Figure~\ref{fig-text-thought2}, documents such
+as \(d_1\) and \(d_2\) can be treated as vectors from the origin, with a
+magnitude (line length) and direction (arrow). The difference between
+the two documents can be measured by their angle distance.
 
-Also in Figure~\hyperref[ch-text-thought2]{1.3}, \(d_3\) as copy of
-\(d_2\) is pointing in the exact same direction of \(d_2\) and their
-angle distance is \(0\). Consequently, the angle distance between
-\(d_1\) and \(d_3\) is the same as that of \(d_1\) and \(d_2\).
+Also in Figure~\ref{fig-text-thought2}, \(d_3\) as copy of \(d_2\) is
+pointing in the exact same direction of \(d_2\) and their angle distance
+is \(0\). Consequently, the angle distance between \(d_1\) and \(d_3\)
+is the same as that of \(d_1\) and \(d_2\).
 
 All this makes sense with angle distance as \(d_2\) and \(d_3\)
 essentially have the same content and should be treated equivalent. In
@@ -5960,19 +6580,28 @@ this \emph{vector space} representation, a vector's direction is
 dependent on the \emph{distribution of term weights} in the
 corresponding text document. While the magnitude is about the absolute
 values of term weights, the direction is a rather relative measure --
-that means, in the case of Figure~\hyperref[ch-text-thought2]{1.3}, to
-what degree a document vector is more or less about \emph{machine} (to
-the east) vs.~\emph{data} (to the north).
+that means, in the case of Figure~\ref{fig-text-thought2}, to what
+degree a document vector is more or less about \emph{machine} (to the
+east) vs.~\emph{data} (to the north).
 
 To measure an \emph{angle distance}, one can calculate the degree of the
 angle between two vectors. Nonetheless, a classic approach is to measure
 the \emph{cosine} of the angle as their \emph{similarity}.
 
-\protect\phantomsection\label{ch-text-cosine}{}
+\begin{figure}
 
-As shown in Figure~\hyperref[ch-text-cosine]{{[}ch-text-cosine{]}}, with
-the help line perpendicular to vector \(d_1\), the cosine of \(d_1\) and
-\(d_2\) is:
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Cosine of an angle}]{chapters/../assets/figures/chapter11/ch-text-cosine.pdf}
+
+}
+
+\caption{\label{fig-text-cosine}Cosine of an angle}
+
+\end{figure}%
+
+As shown in Figure~\ref{fig-text-cosine}, with the help line
+perpendicular to vector \(d_1\), the cosine of \(d_1\) and \(d_2\) is:
 
 \[\begin{aligned}
   Cosine(d_1, d_2)
@@ -6010,24 +6639,45 @@ whereas \(d_2\) and \(d_3\) have the same similarity compared to
 
 Cosine is inversely related to the angle \(\theta\) (distance) and is a
 similarity measure. When two vectors are close in their direction, with
-a small angle shown in
-Figure~\hyperref[ch-text-cosine2]{{[}ch-text-cosine2{]}}, \(a\) is
-almost the same as \(c\) and cosine similarity is nearly \(1\). The two
-vectors are highly similar in their directions, with \(1\) indicating
-the same direction and perfect match.
+a small angle shown in Figure~\ref{fig-text-cosine2}, \(a\) is almost
+the same as \(c\) and cosine similarity is nearly \(1\). The two vectors
+are highly similar in their directions, with \(1\) indicating the same
+direction and perfect match.
 
-\protect\phantomsection\label{ch-text-cosine2}{}
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Cosine of a small angle, i.e. vectors of close directions}]{chapters/../assets/figures/chapter11/ch-text-cosine2.pdf}
+
+}
+
+\caption{\label{fig-text-cosine2}Cosine of a small angle, i.e.~vectors
+of close directions}
+
+\end{figure}%
 
 On the other hand, when two vectors point to directions nearly
 perpendicular to one another, with a large angle shown in
-Figure~\hyperref[ch-text-cosine3]{{[}ch-text-cosine3{]}}, \(a\) becomes
-extremely small and cosine similarity is close to \(0\). For vectors
-based on text documents, their vector values are normally positive (in
-the first quadrant in the two-dimensional space). Therefore, the
-smallest cosine similarity value one can obtain is \(0\) when two
-vectors are exactly perpendicular (orthogonal directions).
+Figure~\ref{fig-text-cosine3}, \(a\) becomes extremely small and cosine
+similarity is close to \(0\). For vectors based on text documents, their
+vector values are normally positive (in the first quadrant in the
+two-dimensional space). Therefore, the smallest cosine similarity value
+one can obtain is \(0\) when two vectors are exactly perpendicular
+(orthogonal directions).
 
-\protect\phantomsection\label{ch-text-cosine3}{}
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Cosine of a large angle, i.e. vectors with nearly perpendicular directions}]{chapters/../assets/figures/chapter11/ch-text-cosine3.pdf}
+
+}
+
+\caption{\label{fig-text-cosine3}Cosine of a large angle, i.e.~vectors
+with nearly perpendicular directions}
+
+\end{figure}%
 
 In short, cosine is a similarity measure in the vector space model,
 which ranges from \(0\) and \(1\). A greater cosine value indicates a
@@ -6065,37 +6715,33 @@ probabilities rather than raw frequencies, the above can be written as:
 
 where \(c\) is a constant. In the English language, empirical data have
 shown \(p(t) \approx 0.1 / k_t\) within the top \(1,000\) rank. This
-relation can be visualized in Figure~\hyperref[fig-text-zipf]{1.4} (a).
+relation can be visualized in Figure~\ref{fig-text-zipf} (a).
 
-\begin{enumerate}
-\def\labelenumi{(\alph{enumi})}
-\tightlist
-\item
-  normal coordinates
+\begin{figure}
 
-  \begin{enumerate}
-  \def\labelenumii{(\alph{enumii})}
-  \setcounter{enumii}{1}
-  \tightlist
-  \item
-    log-log coordinates
+\centering{
 
-    Zipf law function, roughly for the top {1, 000} in English
-  \end{enumerate}
-\end{enumerate}
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Zipf law function, roughly for the top 1,000 in English}]{chapters/../assets/figures/chapter11/fig-text-zipf.pdf}
 
-With a long tail, Figure~\hyperref[fig-text-zipf]{1.4} (a) on normal
-coordinates is difficult to examine and it is often useful to apply the
-logarithmic transformation. By taking the log of both \(x\) (rank) and
-\(y\) (frequency) values, this can be transformed into
-Figure~\hyperref[fig-text-zipf]{1.4} (b). As shown, Zipf law is a linear
-function on log-log coordinates and is a special case of
-\emph{power-law} distributions, which, as we discussed in Chapter~, are
-results of the \emph{Matthew effect} (the rich get richer). In fact,
-there is an intrinsic connection between the \emph{Principle of Least
-Effort} and the \emph{Matthew effect} -- as we tend to a minimum set of
-vocabulary, what we have frequently used (old "rich" words) will be used
-even more frequently (richer).
+}
+
+\caption{\label{fig-text-zipf}Zipf law function, roughly for the top
+\(1,000\) in English}
+
+\end{figure}%
+
+With a long tail, Figure~\ref{fig-text-zipf} (a) on normal coordinates
+is difficult to examine and it is often useful to apply the logarithmic
+transformation. By taking the log of both \(x\) (rank) and \(y\)
+(frequency) values, this can be transformed into
+Figure~\ref{fig-text-zipf} (b). As shown, Zipf law is a linear function
+on log-log coordinates and is a special case of \emph{power-law}
+distributions, which, as we discussed in Chapter~, are results of the
+\emph{Matthew effect} (the rich get richer). In fact, there is an
+intrinsic connection between the \emph{Principle of Least Effort} and
+the \emph{Matthew effect} -- as we tend to a minimum set of vocabulary,
+what we have frequently used (old "rich" words) will be used even more
+frequently (richer).
 
 \subsection{Feature Selection}\label{feature-selection}
 
@@ -6709,13 +7355,24 @@ information need. Documents need to be stored in proper representation
 so that related matches can be computed (numerically). An index is also
 necessary to conduct the matching process timely.
 
-As shown in Figure~\hyperref[fig-ir]{1.1}, the user with an information
-need issues a query to the retrieval system, which in turn match it
-against the document representation in the store to identify relevant
-documents in the search result. The result can also be ranked (sorted)
-in terms of predicted relevance of each document.
+As shown in Figure~\ref{fig-ir}, the user with an information need
+issues a query to the retrieval system, which in turn match it against
+the document representation in the store to identify relevant documents
+in the search result. The result can also be ranked (sorted) in terms of
+predicted relevance of each document.
 
-Basic paradigm of an {Information Retrieval} system
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=3.5in,height=\textheight,keepaspectratio,alt={Basic paradigm of an Information Retrieval system}]{chapters/../assets/figures/ir2.png}
+
+}
+
+\caption{\label{fig-ir}Basic paradigm of an \emph{Information Retrieval}
+system}
+
+\end{figure}%
 
 The notion of \emph{relevance} is key in information retrieval research.
 Yet it remains one of the least understood concepts in the field.
@@ -6738,16 +7395,15 @@ in order to understand more precisely what she is looking for.
 
 \section{Indexing}\label{indexing}
 
-For now, let's assume the basic model presented in
-Figure~\hyperref[fig-ir]{1.1} and walk through some of the major ideas
-for finding matched (and potentially relevant) documents.
+For now, let's assume the basic model presented in Figure~\ref{fig-ir}
+and walk through some of the major ideas for finding matched (and
+potentially relevant) documents.
 
-In Figure~\hyperref[fig-ir]{1.1}, the data collection can be very large
-with a great number of documents, e.g. a library of a million books. In
-order to conduct searches with matching and ranking responsively, some
-amount of data pre-processing is necessary. This is also practically
-sensible if the collection is relatively static (no dramatic changes
-frequently).
+In Figure~\ref{fig-ir}, the data collection can be very large with a
+great number of documents, e.g. a library of a million books. In order
+to conduct searches with matching and ranking responsively, some amount
+of data pre-processing is necessary. This is also practically sensible
+if the collection is relatively static (no dramatic changes frequently).
 
 In chapter~, we discuss basic processes for text vectorization. The
 result of vectorizing a text collection can be represented by a matrix
@@ -6840,15 +7496,25 @@ entry. That is, given \(M\) terms in the index, the system makes
 complexity is rather efficient and scalable. An example of the two term
 entries found in the inverted index may look like this:
 
-Two postings from the inverted index. Highlighted document IDs with
-double border indicate matched documents that satisfy {Declaration} AND
-{Independence}.
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Two postings from the inverted index. Highlighted document IDs with double border indicate matched documents that satisfy Declaration AND Independence.}]{chapters/../assets/figures/chapter12/fig-ir-postings.pdf}
+
+}
+
+\caption{\label{fig-ir-postings}Two postings from the inverted index.
+Highlighted document IDs with double border indicate matched documents
+that satisfy \emph{Declaration} AND \emph{Independence}.}
+
+\end{figure}%
 
 We now refer to each term's list of documents -- in fact only their IDs
 -- as the \emph{posting} of the term. An inverted index is thus a
 collection of \emph{postings}. After examining the two postings, we can
-conclude that documents \(\#2\), \(\#103\), and \(\#456\) in Figure
-~\hyperref[fig-ir-postings]{1.2} contain both terms. But how can an
+conclude that documents \(\#2\), \(\#103\), and \(\#456\) in
+Figure~\ref{fig-ir-postings} contain both terms. But how can an
 algorithm merge the two postings to identify these matched documents?
 
 A very simple approach is to go through the documents IDs in the posting
@@ -6881,28 +7547,33 @@ been found a value greater or equal to the current value of the other
 posting. In that case, we switch to the other posting to go next.
 
 For the above example, we start at first document ID in each posting
-shown in Figure~\hyperref[fig-ir-matching]{1.3}, where the
-\emph{Declaration} posting has a value \(2\) and the \emph{Independence}
-posting has \(1\) (see step 1 in the figure). As the one with a smaller
-document ID, the \emph{Independence} posting will move to the next
-document ID, which is \(2\) and matches the the current value in
-\emph{Declaration} (see step 2).
+shown in Figure~\ref{fig-ir-matching}, where the \emph{Declaration}
+posting has a value \(2\) and the \emph{Independence} posting has \(1\)
+(see step 1 in the figure). As the one with a smaller document ID, the
+\emph{Independence} posting will move to the next document ID, which is
+\(2\) and matches the the current value in \emph{Declaration} (see step
+2).
 
-{Step 1}
+\begin{figure}
 
-{Step 2}
+\centering{
 
-{Step 3}
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Simultaneous walking to merge postings, starting at the first document ID. The posting with the smaller value will move to the next ID.}]{chapters/../assets/figures/chapter12/fig-ir-matching.pdf}
 
-Simultaneous walking to merge postings, starting at the first document
-ID. The posting with the smaller value will move to the next ID.
+}
+
+\caption{\label{fig-ir-matching}Simultaneous walking to merge postings,
+starting at the first document ID. The posting with the smaller value
+will move to the next ID.}
+
+\end{figure}%
 
 Now that the second posting (\emph{Independence}) is already with an
 equal or greater document ID, the process will shift to the first
 posting (\emph{Declaration}) to catch up, which, as shown in
-Figure~\hyperref[fig-ir-matching]{1.3} step 3, then goes to document
-\(\#3\) and switches the turn back as it surpasses \(2\). This process
-will continue until no more matches can possibly be found.
+Figure~\ref{fig-ir-matching} step 3, then goes to document \(\#3\) and
+switches the turn back as it surpasses \(2\). This process will continue
+until no more matches can possibly be found.
 
 In the worse case scenario, it iterates through the two postings from
 start to end, which is \(O(n_1 + n_2)\) time complexity. Practically,
@@ -7146,18 +7817,20 @@ this rather decentralized, autonomous environment.
 Without a central authority that we can trust on individual pages, we
 may perhaps consider input from their \emph{peers} -- those who know
 these pages and what they have to say about them. On the web, pages
-reference one another via \emph{hyperlinks}.
-Figure~\hyperref[fig-hlinks]{{[}fig-hlinks{]}} shows an example of a web
-page, from which the user can click on a label (text), a button, or an
-image to visit another page.
+reference one another via \emph{hyperlinks}. Figure~\ref{fig-hlinks}
+shows an example of a web page, from which the user can click on a label
+(text), a button, or an image to visit another page.
 
-\begin{figure}[H]
+\begin{figure}
 
-{\centering \includegraphics[width=2in,height=\textheight,keepaspectratio]{chapters/../assets/figures/pageflow2.png}
+\centering{
+
+\includegraphics[width=2in,height=\textheight,keepaspectratio,alt={Page references via hyperlinks from page A to pages B and C}]{chapters/../assets/figures/pageflow2.png}
 
 }
 
-\caption{image}
+\caption{\label{fig-hlinks}Page references via hyperlinks. Page A links
+to several other pages, including B and C.}
 
 \end{figure}%
 
@@ -7166,20 +7839,19 @@ analysis can be performed. And when a text label (i.e.~anchor text) is
 provided as part of the hyperlink, it provides useful data about what
 the target page is about.
 
-In Figure~\hyperref[fig-hlinks]{{[}fig-hlinks{]}}, when page A links to
-page B, descriptions or keywords page A uses on the hyperlink can be
-considered for the representation of page B. Assuming the pages are on
-different web sites with separate ownership, then this piece of anchor
-text represents an independent evaluation of page B's contents. By
-aggregating anchor text data from all other pages linking to page B, its
-inverted index can be adjusted with the crowd-sourced data, which are
-potentially more reliable than self-claimed page contents.\footnote{Anchor
-  text can also be hacked and abused to boost one's search engine
-  ranking. There has been known practice of self- or mutual-linking from
-  sites set up by the same group of people. On the other hand, websites
-  can team up to \emph{bomb} a target with off-topic anchor text in
-  order to "promote" its ranking for those keywords, e.g.~for political
-  activism.}
+In Figure~\ref{fig-hlinks}, when page A links to page B, descriptions or
+keywords page A uses on the hyperlink can be considered for the
+representation of page B. Assuming the pages are on different web sites
+with separate ownership, then this piece of anchor text represents an
+independent evaluation of page B's contents. By aggregating anchor text
+data from all other pages linking to page B, its inverted index can be
+adjusted with the crowd-sourced data, which are potentially more
+reliable than self-claimed page contents.\footnote{Anchor text can also
+  be hacked and abused to boost one's search engine ranking. There has
+  been known practice of self- or mutual-linking from sites set up by
+  the same group of people. On the other hand, websites can team up to
+  \emph{bomb} a target with off-topic anchor text in order to "promote"
+  its ranking for those keywords, e.g.~for political activism.}
 
 Based on the classic BM25, BM25F is an example of related methods that
 go beyond the body text of a web page to include other structural
@@ -7212,28 +7884,31 @@ r_d & = & \sum_{p \in P_d} 1
 
 where \(P_d\) is the collection of pages linking to \(d\). For each
 linking page \(p\), the contribution is considered equal with \(1\). In
-Figure~\hyperref[fig-ir-2links]{{[}fig-ir-2links{]}}, for example, page
-\(t\) has two in-links from pages \(p_1\) and \(p_2\) and its impact
-score is therefore \(2\).
+Figure~\ref{fig-ir-2links}, for example, page \(t\) has two in-links
+from pages \(p_1\) and \(p_2\) and its impact score is therefore \(2\).
 
-\begin{figure}[H]
+\begin{figure}
 
-{\centering \includegraphics[width=1.5in,height=\textheight,keepaspectratio]{chapters/../assets/figures/ir/ir_2links.png}
+\centering{
+
+\includegraphics[width=1.5in,height=\textheight,keepaspectratio,alt={Two pages linking to the same target page with equal contributions}]{chapters/../assets/figures/ir/ir_2links.png}
 
 }
 
-\caption{image}
+\caption{\label{fig-ir-2links}Two links being equal. Without more data,
+the two links are assumed to contribute equally to the target page's
+impact.}
 
 \end{figure}%
 
 But are all hyperlinks created equal? Let's consider an extreme case
 where we have more data for the two linking pages in
-Figure~\hyperref[fig-ir-2links]{{[}fig-ir-2links{]}}. Suppose \(p_1\) is
-an ordinary page that is linked to by another page but links to many
-others (including page \(d\)). On the other hand, \(p_2\) is a very
-popular page that is referenced by many pages but has chosen to link to
-only one page (i.e.~page \(d\)).
-Figure~\hyperref[fig-ir-2links_more]{1.4} illustrates this scenario.
+Figure~\ref{fig-ir-2links}. Suppose \(p_1\) is an ordinary page that is
+linked to by another page but links to many others (including page
+\(d\)). On the other hand, \(p_2\) is a very popular page that is
+referenced by many pages but has chosen to link to only one page
+(i.e.~page \(d\)). Figure~\ref{fig-ir-2links_more} illustrates this
+scenario.
 
 \begin{figure}
 
@@ -7274,12 +7949,12 @@ the number of out-links. Mathematically, the second aspect can be easily
 quantified by counting the out-links for each page in \(P\).
 
 On the first point, however, the solution does not appear
-straightforward. Again in Figure~\hyperref[fig-ir-2links_more]{1.4}, the
-impact of document \(d\) depends on the impact of linking pages \(p_1\)
-and \(p_2\), which in turn depend on the ones that link to them. And
-this will go on. How can we proceed to solve this problem of
-\emph{chicken and egg} without going into a loop? But the solution is
-indeed a loop, or a recursive process.
+straightforward. Again in Figure~\ref{fig-ir-2links_more}, the impact of
+document \(d\) depends on the impact of linking pages \(p_1\) and
+\(p_2\), which in turn depend on the ones that link to them. And this
+will go on. How can we proceed to solve this problem of \emph{chicken
+and egg} without going into a loop? But the solution is indeed a loop,
+or a recursive process.
 
 \subsection{PageRank}\label{pagerank}
 
@@ -7739,10 +8414,21 @@ completely dominates and the average suffers.
 In applications where a model can be adjusted or tuned, we can evaluate
 the model based on more than one pairs of precision and recall scores. A
 common practice is to plot the precision-recall curve.
-Figure~\hyperref[fig-eval-pr_curve]{{[}fig-eval-pr\_curve{]}} shows
-precision-recall curves of two methods, where method 1 appears to
-perform better as its curve is closer to the top-right (higher precision
-and recall).
+Figure~\ref{fig-eval-pr_curve} shows precision-recall curves of two
+methods, where method 1 appears to perform better as its curve is closer
+to the top-right (higher precision and recall).
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Precision-recall curve}]{chapters/../assets/figures/chapter14/fig-eval-pr-curve.pdf}
+
+}
+
+\caption{\label{fig-eval-pr_curve}Precision-recall curve}
+
+\end{figure}%
 
 \section{Sensitivity and Specificity}\label{sensitivity-and-specificity}
 
@@ -7779,14 +8465,26 @@ enables the evaluation of model effectiveness in terms of true positive
 and true negative rates, but can also help identify best practice with
 cost constraints.
 
-Figure~\hyperref[fig-eval-roc]{{[}fig-eval-roc{]}} illustrates a plot of
-an ROC curve, where the diagonal line (dashed) defines the acceptable
-performance. To understand what the diagonal line means, imagine we
-create a random model that takes a 50-50 guess during classification. As
-a result of this random guessing, there will be an equal split between
-the predicted positives \(\hat{\oplus}\) and predicted negatives
-\(\hat{\ominus}\). Hence, column values of the same row in
-Table~\hyperref[tab-eval-cmatrix]{1.1} will be identical:
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={ROC curve and area under curve (AUC)}]{chapters/../assets/figures/chapter14/fig-eval-roc.pdf}
+
+}
+
+\caption{\label{fig-eval-roc}ROC curve and area under curve (AUC)}
+
+\end{figure}%
+
+Figure~\ref{fig-eval-roc} illustrates a plot of an ROC curve, where the
+diagonal line (dashed) defines the acceptable performance. To understand
+what the diagonal line means, imagine we create a random model that
+takes a 50-50 guess during classification. As a result of this random
+guessing, there will be an equal split between the predicted positives
+\(\hat{\oplus}\) and predicted negatives \(\hat{\ominus}\). Hence,
+column values of the same row in Table~\hyperref[tab-eval-cmatrix]{1.1}
+will be identical:
 
 \[\begin{aligned}
   N_{\hat{\oplus}} & = & N_{\hat{\ominus}} \\
@@ -7798,8 +8496,7 @@ where \(N_{\hat{\oplus}}\) and \(N_{\hat{\ominus}}\) are the numbers of
 predicted positives and negatives respectively. It follows that
 \(TPR = FNR\), i.e.~\(Sensitivity = 1 - Specificity\) or
 \(Sensitivity + Specificity=1\). This equation defines the diagonal line
-in Figure~\hyperref[fig-eval-roc]{{[}fig-eval-roc{]}} and is the result
-of random guessing.
+in Figure~\ref{fig-eval-roc} and is the result of random guessing.
 
 Below the diagonal line \(Sensitivity+Specificity=1\), the model
 performs worse than random and is undesirable. The farther the ROC curve
@@ -8120,17 +8817,28 @@ between the predicted and actual values:
 
 Pearson correlation measures the similarity in their variances from
 means and is equivalent to cosine of \(v\) and \(\hat{v}\) as vectors
-from their means. Figure~\hyperref[fig-eval-cor]{{[}fig-eval-cor{]}}
-illustrates the connection using a 2-dimensional space. To simplify the
-discussion, suppose there are only \(N=2\) instances on which the actual
-outcomes are \((v_1, v_2)\) and predicted values are
-\((\hat{v_1},\hat{v_2})\), with means \(\mu\) and \(\hat{\mu}\)
-respectively.
+from their means. Figure~\ref{fig-eval-cor} illustrates the connection
+using a 2-dimensional space. To simplify the discussion, suppose there
+are only \(N=2\) instances on which the actual outcomes are
+\((v_1, v_2)\) and predicted values are \((\hat{v_1},\hat{v_2})\), with
+means \(\mu\) and \(\hat{\mu}\) respectively.
 
-As shown in Figure~\hyperref[fig-eval-cor]{{[}fig-eval-cor{]}}, the
-actual values can be regarded as a vector pointing in the
-\(\vec{v} = (v_1-\mu, v_2-\mu)\) direction, whereas the predicted is
-represented by the vector
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio,alt={Pearson correlation as cosine of vectors originated from means, with N=2 for a 2-dimensional visualization}]{chapters/../assets/figures/chapter14/fig-eval-cor.pdf}
+
+}
+
+\caption{\label{fig-eval-cor}Pearson correlation as cosine of vectors
+originated from means, with \(N=2\) for a 2-dimensional visualization}
+
+\end{figure}%
+
+As shown in Figure~\ref{fig-eval-cor}, the actual values can be regarded
+as a vector pointing in the \(\vec{v} = (v_1-\mu, v_2-\mu)\) direction,
+whereas the predicted is represented by the vector
 \(\vec{\hat{v}}=(\hat{v_1}-\hat{\mu}, \hat{v_2}-\hat{\mu})\). In this
 representation, Pearson correlation is identical to the cosine of the
 two vectors, i.e.~\(cov(\hat{v}, v) = cosine(\vec{\hat{v}},\vec{v})\).

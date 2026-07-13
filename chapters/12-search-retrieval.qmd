@@ -60,18 +60,13 @@ information need. Documents need to be stored in proper representation
 so that related matches can be computed (numerically). An index is also
 necessary to conduct the matching process timely.
 
-As shown in Figure [1.1](#fig-ir){reference-type="ref"
-reference="fig-ir"}, the user with an information need issues a query to
+As shown in @fig-ir, the user with an information need issues a query to
 the retrieval system, which in turn match it against the document
 representation in the store to identify relevant documents in the search
 result. The result can also be ranked (sorted) in terms of predicted
 relevance of each document.
 
-<figure id="fig-ir" data-latex-placement="!htb">
-<embed src="../assets/figures/ir2.png" style="width:3.5in" />
-<figcaption>Basic paradigm of an <span><em>Information
-Retrieval</em></span> system</figcaption>
-</figure>
+![Basic paradigm of an *Information Retrieval* system](../assets/figures/ir2.png){#fig-ir fig-alt="Basic paradigm of an Information Retrieval system" width="3.5in"}
 
 The notion of *relevance* is key in information retrieval research. Yet
 it remains one of the least understood concepts in the field. Whether a
@@ -95,11 +90,11 @@ in order to understand more precisely what she is looking for.
 ## Indexing
 
 For now, let's assume the basic model presented in
-Figure [1.1](#fig-ir){reference-type="ref" reference="fig-ir"} and walk
+@fig-ir and walk
 through some of the major ideas for finding matched (and potentially
 relevant) documents.
 
-In Figure [1.1](#fig-ir){reference-type="ref" reference="fig-ir"}, the
+In @fig-ir, the
 data collection can be very large with a great number of documents, e.g.
 a library of a million books. In order to conduct searches with matching
 and ranking responsively, some amount of data pre-processing is
@@ -190,20 +185,12 @@ worse case. This is logarithmic time complexity is rather efficient and
 scalable. An example of the two term entries found in the inverted index
 may look like this:
 
-<figure id="fig-ir-postings">
-
-<figcaption>Two postings from the inverted index. Highlighted document
-IDs with double border indicate matched documents that satisfy
-<span><em>Declaration</em></span> AND
-<span><em>Independence</em></span>. </figcaption>
-</figure>
+![Two postings from the inverted index. Highlighted document IDs with double border indicate matched documents that satisfy *Declaration* AND *Independence*.](../assets/figures/chapter12/fig-ir-postings){#fig-ir-postings fig-alt="Two postings from the inverted index. Highlighted document IDs with double border indicate matched documents that satisfy Declaration AND Independence." width="70%"}
 
 We now refer to each term's list of documents -- in fact only their IDs
 -- as the *posting* of the term. An inverted index is thus a collection
 of *postings*. After examining the two postings, we can conclude that
-documents $\#2$, $\#103$, and $\#456$ in Figure
- [1.2](#fig-ir-postings){reference-type="ref"
-reference="fig-ir-postings"} contain both terms. But how can an
+documents $\#2$, $\#103$, and $\#456$ in @fig-ir-postings contain both terms. But how can an
 algorithm merge the two postings to identify these matched documents?
 
 A very simple approach is to go through the documents IDs in the posting
@@ -235,38 +222,18 @@ been found a value greater or equal to the current value of the other
 posting. In that case, we switch to the other posting to go next.
 
 For the above example, we start at first document ID in each posting
-shown in Figure [1.3](#fig-ir-matching){reference-type="ref"
-reference="fig-ir-matching"}, where the *Declaration* posting has a
+shown in @fig-ir-matching, where the *Declaration* posting has a
 value $2$ and the *Independence* posting has $1$ (see step 1 in the
 figure). As the one with a smaller document ID, the *Independence*
 posting will move to the next document ID, which is $2$ and matches the
 the current value in *Declaration* (see step 2).
 
-<figure id="fig-ir-matching">
-<table>
-<tbody>
-<tr>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><span>Step 1</span></td>
-<td style="text-align: left;"><span>Step 2</span></td>
-<td style="text-align: left;"><span>Step 3</span></td>
-</tr>
-</tbody>
-</table>
-<figcaption>Simultaneous walking to merge postings, starting at the
-first document ID. The posting with the smaller value will move to the
-next ID. </figcaption>
-</figure>
+![Simultaneous walking to merge postings, starting at the first document ID. The posting with the smaller value will move to the next ID.](../assets/figures/chapter12/fig-ir-matching){#fig-ir-matching fig-alt="Simultaneous walking to merge postings, starting at the first document ID. The posting with the smaller value will move to the next ID." width="70%"}
 
 Now that the second posting (*Independence*) is already with an equal or
 greater document ID, the process will shift to the first posting
 (*Declaration*) to catch up, which, as shown in
-Figure [1.3](#fig-ir-matching){reference-type="ref"
-reference="fig-ir-matching"} step 3, then goes to document $\#3$ and
+@fig-ir-matching step 3, then goes to document $\#3$ and
 switches the turn back as it surpasses $2$. This process will continue
 until no more matches can possibly be found.
 
@@ -500,13 +467,12 @@ Without a central authority that we can trust on individual pages, we
 may perhaps consider input from their *peers* -- those who know these
 pages and what they have to say about them. On the web, pages reference
 one another via *hyperlinks*.
-Figure [\[fig-hlinks\]](#fig-hlinks){reference-type="ref"
-reference="fig-hlinks"} shows an example of a web page, from which the
+@fig-hlinks shows an example of a web page, from which the
 user can click on a label (text), a button, or an image to visit another
 page.
 
 ::: marginfigure
-![image](../assets/figures/pageflow2.png){width="2in"}
+![Page references via hyperlinks. Page A links to several other pages, including B and C.](../assets/figures/pageflow2.png){#fig-hlinks fig-alt="Page references via hyperlinks from page A to pages B and C" width="2in"}
 :::
 
 With hyperlinks, we pages form a directed network on which structural
@@ -514,8 +480,7 @@ analysis can be performed. And when a text label (i.e. anchor text) is
 provided as part of the hyperlink, it provides useful data about what
 the target page is about.
 
-In Figure [\[fig-hlinks\]](#fig-hlinks){reference-type="ref"
-reference="fig-hlinks"}, when page A links to page B, descriptions or
+In @fig-hlinks, when page A links to page B, descriptions or
 keywords page A uses on the hyperlink can be considered for the
 representation of page B. Assuming the pages are on different web sites
 with separate ownership, then this piece of anchor text represents an
@@ -554,23 +519,20 @@ r_d & = & \sum_{p \in P_d} 1
 
 where $P_d$ is the collection of pages linking to $d$. For each linking
 page $p$, the contribution is considered equal with $1$. In
-Figure [\[fig-ir-2links\]](#fig-ir-2links){reference-type="ref"
-reference="fig-ir-2links"}, for example, page $t$ has two in-links from
+@fig-ir-2links, for example, page $t$ has two in-links from
 pages $p_1$ and $p_2$ and its impact score is therefore $2$.
 
 ::: marginfigure
-![image](../assets/figures/ir/ir_2links.png){width="1.5in"}
+![Two links being equal. Without more data, the two links are assumed to contribute equally to the target page's impact.](../assets/figures/ir/ir_2links.png){#fig-ir-2links fig-alt="Two pages linking to the same target page with equal contributions" width="1.5in"}
 :::
 
 But are all hyperlinks created equal? Let's consider an extreme case
 where we have more data for the two linking pages in
-Figure [\[fig-ir-2links\]](#fig-ir-2links){reference-type="ref"
-reference="fig-ir-2links"}. Suppose $p_1$ is an ordinary page that is
+@fig-ir-2links. Suppose $p_1$ is an ordinary page that is
 linked to by another page but links to many others (including page $d$).
 On the other hand, $p_2$ is a very popular page that is referenced by
 many pages but has chosen to link to only one page (i.e. page $d$).
-Figure [1.4](#fig-ir-2links_more){reference-type="ref"
-reference="fig-ir-2links_more"} illustrates this scenario.
+@fig-ir-2links_more illustrates this scenario.
 
 ![Two links being different. When we know more about the pages linking
 to the target page, we can no longer assume their contributions are
@@ -602,8 +564,7 @@ quantified by counting the out-links for each page in $P$.
 
 On the first point, however, the solution does not appear
 straightforward. Again in
-Figure [1.4](#fig-ir-2links_more){reference-type="ref"
-reference="fig-ir-2links_more"}, the impact of document $d$ depends on
+@fig-ir-2links_more, the impact of document $d$ depends on
 the impact of linking pages $p_1$ and $p_2$, which in turn depend on the
 ones that link to them. And this will go on. How can we proceed to solve
 this problem of *chicken and egg* without going into a loop? But the

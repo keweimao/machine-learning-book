@@ -43,6 +43,7 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
+    default-image-extension: svg
     code-fold: show
     code-copy: true
     toc-depth: 3
@@ -53,7 +54,9 @@ format:
     toc: true
     lof: true
     lot: true
-  epub: default
+    default-image-extension: pdf
+  epub:
+    default-image-extension: svg
 
 execute:
   freeze: auto

@@ -98,42 +98,9 @@ have something to do with the $4^{th}$.
 
 When examining their relations, it is often helpful to use
 visualizations. We may start with a scatter plot for the $4^{th}$ column
-vs. each of the first $3$ columns, as shown in
-Figure [1.1](#fig-data-plot1){reference-type="ref"
-reference="fig-data-plot1"}.
+vs. each of the first $3$ columns, as shown in @fig-data-plot1.
 
-<figure id="fig-data-plot1" data-latex-placement="h">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">(a) <span
-class="math inline"><em>V</em><sub>4</sub></span> vs. <span
-class="math inline"><em>V</em><sub>1</sub></span></td>
-<td style="text-align: center;">(b) <span
-class="math inline"><em>V</em><sub>4</sub></span> vs. <span
-class="math inline"><em>V</em><sub>2</sub></span></td>
-<td style="text-align: center;">(a) <span
-class="math inline"><em>V</em><sub>4</sub></span> vs. <span
-class="math inline"><em>V</em><sub>3</sub></span></td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<figcaption>Scatter plots: <span
-class="math inline"><em>V</em><sub>4</sub></span> vs. <span
-class="math inline"><em>V</em><sub>1</sub></span>, <span
-class="math inline"><em>V</em><sub>2</sub></span>, <span
-class="math inline"><em>V</em><sub>3</sub></span></figcaption>
-</figure>
+![Scatter plots: $V_4$ vs. $V_1$, $V_2$, and $V_3$.](../assets/figures/chapter01/scatter-individual){#fig-data-plot1 fig-alt="Three scatter plots comparing the binary fourth variable with each of the first three variables." width="100%"}
 
 Now that the scatter plots hardly reveal any obvious relation, we may
 start to look at the interplay of multiple variables. We may ask, for
@@ -142,45 +109,12 @@ associated with the relation between the first two columns?\" To answer
 this question, we may create a scatter plot of the $1^{st}$ and $2^{nd}$
 columns while color-coding the $4^{th}$. When we do the same for
 $2^{nd}$ vs. $3^{rd}$ and $1^{st}$ vs. $3^{rd}$ as well, we get
-Figure [1.2](#fig-data-plot2){reference-type="ref"
-reference="fig-data-plot2"}.
+@fig-data-plot2.
 
-<figure id="fig-data-plot2">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">(a) <span
-class="math inline"><em>V</em><sub>2</sub></span> vs. <span
-class="math inline"><em>V</em><sub>1</sub></span></td>
-<td style="text-align: center;">(b) <span
-class="math inline"><em>V</em><sub>3</sub></span> vs. <span
-class="math inline"><em>V</em><sub>2</sub></span></td>
-<td style="text-align: center;">(a) <span
-class="math inline"><em>V</em><sub>1</sub></span> vs. <span
-class="math inline"><em>V</em><sub>3</sub></span></td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<figcaption>Scatter plots with color-coded <span
-class="math inline"><em>V</em><sub>4</sub></span>. Mark <span
-class="math inline">∘</span> for <span class="math inline">0</span> and
-<span class="math inline">+</span> for <span
-class="math inline">1</span> values. </figcaption>
-</figure>
+![Pairwise scatter plots with the value of $V_4$ encoded by symbol and color. Red circles represent $0$; blue plus signs represent $1$.](../assets/figures/chapter01/scatter-pairs){#fig-data-plot2 fig-alt="Three pairwise scatter plots. The middle panel clearly separates red circles below the diagonal from blue plus signs above it." width="100%"}
 
 It appears the data are nicely separated in terms of $4^{th}$ column
-values in Figure [1.2](#fig-data-plot2){reference-type="ref"
-reference="fig-data-plot2"} (b), showing the scatter plot of the
+values in @fig-data-plot2 (b), showing the scatter plot of the
 $3^{rd}$ vs. $2^{nd}$ column. When the value of the $3^{rd}$ column is
 greater than the value of the $2^{nd}$, it is $1$ in the $4^{th}$
 column; otherwise, it gives $0$. This can be written as:
@@ -192,7 +126,7 @@ V_4 = \left\{
   0     & otherwise
 \end{array}
 \right.
-$$
+$$ {#eq-data-ne}
 
 This appears to be the pattern so far and can be further verified when
 we receive more data. Ultimately, if this is consistent with the
@@ -202,24 +136,17 @@ data we can receive -- we can claim to have discovered a pattern or new
 of analyzing the data.
 
 In the machine learning context, we refer to the result of learning,
-i.e. the new \"knowledge\", as the *concept*.
-Equation [\[eq-data-ne\]](#eq-data-ne){reference-type="ref"
-reference="eq-data-ne"} is a rule-based approach to concept
+i.e. the new \"knowledge\", as the *concept*. @eq-data-ne is a
+rule-based approach to concept
 representation (descriptor). Sometimes, a (linear) equation may also be
 used to represent the result of learning. In this example, equation
 $V_3 - V_2 = 0$ is the straight line that separates the $0$ and $1$
-values of column $4$, as shown in
-Figure [\[fig-data-plot3\]](#fig-data-plot3){reference-type="ref"
-reference="fig-data-plot3"}.
+values of column $4$, as shown in @fig-data-plot3.
 
-::: marginfigure
-:::
+![Separating $0$ vs. $1$ in $V_4$ with the linear equation $V_3 - V_2 = 0$.](../assets/figures/chapter01/linear-separator){#fig-data-plot3 fig-alt="Scatter plot of V3 against V2 with red circles below a diagonal separator and blue plus signs above it." width="70%"}
 
 Whether the concept representation is based on the rules in
-Equation [\[eq-data-ne\]](#eq-data-ne){reference-type="ref"
-reference="eq-data-ne"} or the linear equation in
-Figure [\[fig-data-plot3\]](#fig-data-plot3){reference-type="ref"
-reference="fig-data-plot3"}, it can be identified by computing and
+@eq-data-ne or the linear equation in @fig-data-plot3, it can be identified by computing and
 comparing values in the data. Normally such concept representation is
 discovered through *training data* and to be applied on testing data,
 where decisions or predictions will be made.
@@ -256,14 +183,12 @@ height, and a code indicating whether the shape is *standing* or
 
 Data in Table [1.3](#tab-data-shapes){reference-type="ref"
 reference="tab-data-shapes"} represent the shapes shown in
-Figure [\[fig-data-shapes\]](#fig-data-shapes){reference-type="ref"
-reference="fig-data-shapes"}. Intuitively, the *concept* of standing can
+@fig-data-shapes. Intuitively, the *concept* of standing can
 be understood as describing a human-like object -- when a person stands,
 her height is greater than the width; when one lies down, the horizontal
 measurement (width) becomes relatively greater.
 
-::: marginfigure
-:::
+![Shapes of different numbers of sides, widths, and heights, based on the shapes data. Gray shapes are classified as *standing*.](../assets/figures/chapter01/shape-examples){#fig-data-shapes fig-alt="Six triangles and rectangles on a grid. Tall gray shapes are standing; wide white shapes are lying." width="75%"}
 
 It is in this context of human-like shapes that the concept of standing
 is injected into the data and can be discovered by mining. It is also in
@@ -273,14 +198,12 @@ for predictions, decision making, etc.
 
 With related assumptions attached, the concept does not represent
 universal truth. The same notion of *standing* might be very different
-with a more complex shape or structure. In
-Figure [\[fig-data-building\]](#fig-data-building){reference-type="ref"
-reference="fig-data-building"}, for example, the shape of a building may
+with a more complex shape or structure. In @fig-data-building, for
+example, the shape of a building may
 be flat in terms of its height-width ratio but we see it *standing as an
 architecture*.
 
-::: marginfigure
-:::
+![A *standing* architecture.](../assets/figures/chapter01/standing-building){#fig-data-building fig-alt="A wide, low building with a roof, doors, and windows on a measurement grid." width="75%"}
 
 It takes an in-depth analysis with proper evaluation and interpretation
 to assess the learned concept, its generalizability, and applicability.

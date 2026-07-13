@@ -109,8 +109,7 @@ B & = & \{InfoVis, Math, R, SQL, Stats\}
 It is easy to count the number of skills in each team and identify their
 cardinalities: $|A|=4$ and $|B|=5$.
 
-::: marginfigure
-:::
+![Intersection $A \cap B$.](../assets/figures/chapter02/fig-num-overlap){#fig-num-overlap fig-alt="Two overlapping circles labeled A and B, with their intersection shaded." width="45%"}
 
 The common skill set of the two teams is their *intersection*:
 
@@ -119,9 +118,7 @@ A \cap B & = & \{Math, SQL\} \\
 |A \cap B| & = & 2
 \end{aligned}$$
 
-which is illustrated by the shaded area in
-Figure [\[fig-num-overlap\]](#fig-num-overlap){reference-type="ref"
-reference="fig-num-overlap"}. The interaction operation is
+which is illustrated by the shaded area in @fig-num-overlap. The intersection operation is
 communicative, i.e. $A \cap B=B \cap A$, because the order does not
 matter.
 
@@ -133,8 +130,7 @@ A \cup B
 & = & \{AI, InfoVis, Math, Python, R, SQL, Stats\}
 \end{aligned}$$
 
-::: marginfigure
-:::
+![Union $A \cup B$.](../assets/figures/chapter02/fig-num-union){#fig-num-union fig-alt="Two overlapping circles labeled A and B, with both circles shaded." width="45%"}
 
 In this case, the cardinality of the union is:
 
@@ -159,19 +155,13 @@ $$\begin{aligned}
 (A \cap B) \cap C & = & A \cap (B \cap C)
 \end{aligned}$$
 
-for any sets A, B, and C. As illustrated in Figure
-[\[fig-num-union3\]](#fig-num-union3){reference-type="ref"
-reference="fig-num-union3"}, we will obtain the same union set (the
+for any sets A, B, and C. As illustrated in @fig-num-union3, we will obtain the same union set (the
 shaded circles) regardless of which two are combined first. The same is
-true with intersection, as illustrated in
-Figure [\[fig-num-overlap3\]](#fig-num-overlap3){reference-type="ref"
-reference="fig-num-overlap3"}.
+true with intersection, as illustrated in @fig-num-overlap3.
 
-::: marginfigure
-:::
+![Union of three sets.](../assets/figures/chapter02/fig-num-union3){#fig-num-union3 fig-alt="Three overlapping circles labeled A, B, and C, all shaded." width="45%"}
 
-::: marginfigure
-:::
+![Intersection of three sets.](../assets/figures/chapter02/fig-num-overlap3){#fig-num-overlap3 fig-alt="Three overlapping circles labeled A, B, and C, with the common intersection shaded." width="45%"}
 
 The union ($\cup$) operation is similar to *addition* ($+$), whereas the
 intersection $\cap$ operation can be likened to *multiplication*
@@ -208,15 +198,13 @@ A \cap 1  & = & A \times 1 \\
           & = & A
 \end{aligned}$$
 
-::: marginfigure
-:::
+![Subset $A \subseteq B$.](../assets/figures/chapter02/fig-num-sub){#fig-num-sub fig-alt="A small shaded circle A entirely contained in a larger circle B." width="45%"}
 
 The intersection between any set (A or 1) and an empty set 0 is always
 an empty set: $A \cap 0 = 0$ and $1 \cap 0=0$. The intersection between
 a set A and the universal set $1$ is A, because the universal includes A
 as a subset. In fact, for any set A that is a subset of B (see
-Figure [\[fig-num-sub\]](#fig-num-sub){reference-type="ref"
-reference="fig-num-sub"}), their intersection is A and their union is B:
+@fig-num-sub), their intersection is A and their union is B:
 
 $$\begin{aligned}
 A \cap B & \stackrel{\forall A \in B}{=} & A \\
@@ -227,12 +215,9 @@ Besides union and intersection operators that can be likened to addition
 and multiplication, there is also the subtraction operator on sets. For
 two sets $A$ and $B$, $A-B$ computes the difference between A and B, or
 the elements of A that do not appear in B. This is essentially the
-removal of their intersection from set A, as shown in
-Figure [\[fig-num-minus\]](#fig-num-minus){reference-type="ref"
-reference="fig-num-minus"}.
+removal of their intersection from set A, as shown in @fig-num-minus.
 
-::: marginfigure
-:::
+![Set subtraction $A-B$.](../assets/figures/chapter02/fig-num-minus){#fig-num-minus fig-alt="Two overlapping circles labeled A and B, with only the portion of A outside B shaded." width="45%"}
 
 The cardinality of the subtracted set can be computed by:
 
@@ -249,15 +234,12 @@ communicative, as $A-B \ne B-A$.
 In geometrical terms, a *vector* is an entity having both magnitude
 (length) and direction, in a vector space with multiple dimensions.
 
-::: marginfigure
-:::
+![Two-dimensional vector space.](../assets/figures/chapter02/fig-num-vectors){#fig-num-vectors fig-alt="Coordinate plane with vectors from the origin to two points, v1 and v2." width="65%"}
 
-Figure [\[fig-num-vectors\]](#fig-num-vectors){reference-type="ref"
-reference="fig-num-vectors"} shows data $v_1$ and $v_2$ in a space with
+@fig-num-vectors shows data $v_1$ and $v_2$ in a space with
 $X$ and $Y$ dimensions. In the vector space, each data point is a vector
 from the origin $(0,0)$, as shown as directed lines in
-Figure [\[fig-num-vectors\]](#fig-num-vectors){reference-type="ref"
-reference="fig-num-vectors"}, and can be represented by its dimensional
+@fig-num-vectors, and can be represented by its dimensional
 values:
 
 $$\begin{aligned}

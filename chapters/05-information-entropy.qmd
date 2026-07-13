@@ -104,11 +104,9 @@ measure before he concluded that this is the only function that meets
 the expected properties. We shall discuss some of the important
 properties.
 
-::: marginfigure
-:::
+![Shannon entropy of two mutually exclusive events.](../assets/figures/chapter05/fig-info-h){#fig-info-h fig-alt="Entropy curve peaking when two outcomes each have probability one half." width="55%"}
 
-Figure [\[fig-info-h\]](#fig-info-h){reference-type="ref"
-reference="fig-info-h"} shows that the entropy function is smooth with
+@fig-info-h shows that the entropy function is smooth with
 regard to changes in the probability $p_1$. When the two mutually
 exclusive events are equally likely $p_1=p_2=0.5$, the entropy of the
 system is at its maximum (the peak in the middle).
@@ -119,11 +117,9 @@ Imagine a number of applicants compete for the same position. When
 everyone has an equal chance and there is no leading candidate, it is
 the most uncertain situation with the greatest entropy.
 
-::: marginfigure
-:::
+![Shannon entropy of $m$ equally likely events.](../assets/figures/chapter05/fig-info-h-m){#fig-info-h-m fig-alt="Increasing logarithmic curve showing entropy as the number of equally likely outcomes grows." width="55%"}
 
-Figure [\[fig-info-h_m\]](#fig-info-h_m){reference-type="ref"
-reference="fig-info-h_m"} plots entropy $H$ vs. the number of equally
+@fig-info-h-m plots entropy $H$ vs. the number of equally
 likely events $m$. When the number of events (choices) increases, so
 does the entropy. With an increasingly larger pool of applicants for a
 position -- supposedly with equal chances -- the harder it is to predict
@@ -520,13 +516,10 @@ inequality.
 For any distance function $d$, the triangle inequality requires that,
 given three points (sets of values or probability distributions) $A$,
 $B$, and $C$, the sum of two distances (sides) is no less than the
-third. This can be illustrated in
-Figure [\[fig-info-triangle\]](#fig-info-triangle){reference-type="ref"
-reference="fig-info-triangle"}, where any two distances (sides)
+third. This can be illustrated in @fig-info-triangle, where any two distances (sides)
 $d(A,B) + d(B,C) \ge d(A,C)$.
 
-::: marginfigure
-:::
+![Triangle inequality: the sum of two distances is never less than the third, $d(A,B) + d(B,C) \ge d(A,C)$.](../assets/figures/chapter05/fig-info-triangle){#fig-info-triangle fig-alt="Triangle with vertices A, B, and C and labeled distances between them." width="50%"}
 
 KL divergence does not satisfy the triangle inequality. That is, it does
 allow $KL(A||B) + KL(B||C) < KL(A||C)$ to happen under certain
@@ -770,8 +763,7 @@ in any direction. In addition, it does not consider the removal of
 information, which can be regarded as new information that refutes prior
 knowledge.
 
-Figure [1.1](#fig-info-lit){reference-type="ref"
-reference="fig-info-lit"} compares least information (LIT) with Shannon
+@fig-info-lit compares least information (LIT) with Shannon
 entropy and KL divergence, using a binary example (of two mutually
 exclusive inferences). The figure assumes the $1^{st}$ inference to be
 the ultimate outcome -- that is, it starts with a probability
@@ -826,9 +818,7 @@ possesses several important properties:
     possible inferences, the amount of *least information* needed to
     explain/interpret an outcome (certainty) is one:
     $I(p_1=p_2=\frac{1}{2} \to q_1 =1,q_2=0) = 1$ (see data point
-    $(\frac{1}{2},1)$ in
-    Figure [1.1](#fig-info-lit){reference-type="ref"
-    reference="fig-info-lit"}).
+    $(\frac{1}{2},1)$ in @fig-info-lit).
 
 7.  In the special case of reducing uncertain inferences to certainty
     (the ultimate case):
@@ -843,13 +833,10 @@ The first four properties listed above mean that the Least Information
 (LIT) function is a distance metric. The $5^{th}$ property can be
 likened to a function such as euclidean distance, where small distances
 in the same direction can add up to the overall distance. This is
-illustrated in
-Figure [\[fig-info-dist_add\]](#fig-info-dist_add){reference-type="ref"
-reference="fig-info-dist_add"}, where $a+b=c$. This is the only
+illustrated in @fig-info-dist-add, where $a+b=c$. This is the only
 situation in which they are equal with the triangle inequality.
 
-::: marginfigure
-:::
+![Sum of distances in the same direction, $a+b=c$.](../assets/figures/chapter05/fig-info-dist-add){#fig-info-dist-add fig-alt="Three collinear points with adjacent distances a and b summing to total distance c." width="55%"}
 
 We can test the Least Information Theory (LIT) on the example of 2016
 election. Given the probability change from election day estimates of

@@ -89,7 +89,7 @@ n-grams have shown its utility in applications such as spam detection,
 where junk emails may pad normal keywords with special characters to
 avoid being identified.
 
-### Term Weighting {#ch-text-weight}
+### Term Weighting {#fig-text-weight}
 
 Once tokens -- single words or phrases -- have been identified, they can
 be sorted and merged into a set of unique tokens, which we refer to as
@@ -277,7 +277,7 @@ alleviate potential favoritism toward longer documents. This is one of
 the most widely used term weighting methods in information retrieval and
 text mining.
 
-## Similarity Measures {#ch-text-sim}
+## Similarity Measures {#fig-text-sim}
 
 Once each document is represented as a vector of terms with weights, we
 can conduct various operations, such as clustering and ranking, on them.
@@ -355,20 +355,15 @@ appear:
 
 These two documents can be plotted on the two-dimensional space, e.g.
 *machine* for the $x$ dimension and *data* for the $y$ dimension, shown
-in Figure [1.1](#ch-text-2d){reference-type="ref"
-reference="ch-text-2d"}:
+in @fig-text-2d:
 
-<figure id="ch-text-2d">
-
-<figcaption>Documents in a two-dimensional space</figcaption>
-</figure>
+![Documents in a two-dimensional space](../assets/figures/chapter11/ch-text-2d){#fig-text-2d fig-alt="Documents in a two-dimensional space" width="70%"}
 
 With this dimensional representation, pair-wise similarity or difference
 can be measured by the geometric distance between two document data
 points. A classic metric of such is the *Euclidean Distance*, which
 measures the length of the straight line connecting the two data points
-in question, as shown in Figure [1.1](#ch-text-2d){reference-type="ref"
-reference="ch-text-2d"}. In an $m$-dimensional space, the general
+in question, as shown in @fig-text-2d. In an $m$-dimensional space, the general
 *Euclidean Distance* function is:
 
 $$\begin{aligned}
@@ -377,7 +372,7 @@ $$\begin{aligned}
 
 where $u_i$ and $v_i$ are the $i^{th}$ dimensional value of data points
 $u$ and $v$ respectively. Given documents $d_1$ and $d_2$ in
-Figure [1.1](#ch-text-2d){reference-type="ref" reference="ch-text-2d"},
+@fig-text-2d,
 their euclidean distance is:
 
 $$\begin{aligned}
@@ -394,35 +389,23 @@ illustrate the problem.
 Imagine we have two documents $d_1 = (4,5)$ and $d_2=(5,4)$ (with TF
 weights) that are highly similar and have a very small Euclidean
 distance between them, as show in
-Figure [1.2](#ch-text-thought){reference-type="ref"
-reference="ch-text-thought"}:
+@fig-text-thought:
 
-<figure id="ch-text-thought">
-
-<figcaption>Thought experiment with two documents</figcaption>
-</figure>
+![Thought experiment with two documents](../assets/figures/chapter11/ch-text-thought){#fig-text-thought fig-alt="Thought experiment with two documents" width="70%"}
 
 For now, one may think the line distance in
-Figure [1.2](#ch-text-thought){reference-type="ref"
-reference="ch-text-thought"} is a reasonable estimate of their
+@fig-text-thought is a reasonable estimate of their
 difference. But imagine make a double-copy of $d_2$ and treat the new
 copy as $d_3$, resulting in
-Figure [1.2](#ch-text-thought){reference-type="ref"
-reference="ch-text-thought"}:
+@fig-text-thought:
 
-<figure id="ch-text-thought2">
-
-<figcaption>Thought experiment a third document, where <span
-class="math inline"><em>d</em><sub>3</sub></span> doubles the content of
-<span class="math inline"><em>d</em><sub>2</sub></span></figcaption>
-</figure>
+![Thought experiment a third document, where $d_3$ doubles the content of $d_2$](../assets/figures/chapter11/ch-text-thought2){#fig-text-thought2 fig-alt="Thought experiment a third document, where d_3 doubles the content of d_2" width="70%"}
 
 Because $d_3$ is copy of $d_2$ -- the only difference is that it doubles
 everything in $d_2$ -- its semantics should remain the same as $d_2$. A
 fair distance measure should give a relatively small value, indicating
 $d_3$ is *close* to $d_1$ and especially $d_2$. However, as shown in
-Figure [1.2](#ch-text-thought){reference-type="ref"
-reference="ch-text-thought"}, $d_3$ is much farther away from $d_1$ and
+@fig-text-thought, $d_3$ is much farther away from $d_1$ and
 consequently the euclidean distance is much greater.
 
 In short, Euclidean Distance treats documents differently simply because
@@ -433,14 +416,12 @@ Another perspective on similarity vs. distance in the dimensional space
 is by measuring the *direction* of a vector. In physics, the notion of
 vector has been used extensively for quantities such as velocity, which
 has both a *magnitude* (speed) and direction. Likewise, as shown as
-dashed lines in Figure [1.3](#ch-text-thought2){reference-type="ref"
-reference="ch-text-thought2"}, documents such as $d_1$ and $d_2$ can be
+dashed lines in @fig-text-thought2, documents such as $d_1$ and $d_2$ can be
 treated as vectors from the origin, with a magnitude (line length) and
 direction (arrow). The difference between the two documents can be
 measured by their angle distance.
 
-Also in Figure [1.3](#ch-text-thought2){reference-type="ref"
-reference="ch-text-thought2"}, $d_3$ as copy of $d_2$ is pointing in the
+Also in @fig-text-thought2, $d_3$ as copy of $d_2$ is pointing in the
 exact same direction of $d_2$ and their angle distance is $0$.
 Consequently, the angle distance between $d_1$ and $d_3$ is the same as
 that of $d_1$ and $d_2$.
@@ -451,21 +432,17 @@ space* representation, a vector's direction is dependent on the
 *distribution of term weights* in the corresponding text document. While
 the magnitude is about the absolute values of term weights, the
 direction is a rather relative measure -- that means, in the case of
-Figure [1.3](#ch-text-thought2){reference-type="ref"
-reference="ch-text-thought2"}, to what degree a document vector is more
+@fig-text-thought2, to what degree a document vector is more
 or less about *machine* (to the east) vs. *data* (to the north).
 
 To measure an *angle distance*, one can calculate the degree of the
 angle between two vectors. Nonetheless, a classic approach is to measure
 the *cosine* of the angle as their *similarity*.
 
-::: marginfigure
-[]{#ch-text-cosine label="ch-text-cosine"}
-:::
+![Cosine of an angle](../assets/figures/chapter11/ch-text-cosine){#fig-text-cosine fig-alt="Cosine of an angle" width="70%"}
 
 As shown in
-Figure [\[ch-text-cosine\]](#ch-text-cosine){reference-type="ref"
-reference="ch-text-cosine"}, with the help line perpendicular to vector
+@fig-text-cosine, with the help line perpendicular to vector
 $d_1$, the cosine of $d_1$ and $d_2$ is:
 
 $$\begin{aligned}
@@ -504,28 +481,22 @@ $d_2$ and $d_3$ have the same similarity compared to $d_1$.
 Cosine is inversely related to the angle $\theta$ (distance) and is a
 similarity measure. When two vectors are close in their direction, with
 a small angle shown in
-Figure [\[ch-text-cosine2\]](#ch-text-cosine2){reference-type="ref"
-reference="ch-text-cosine2"}, $a$ is almost the same as $c$ and cosine
+@fig-text-cosine2, $a$ is almost the same as $c$ and cosine
 similarity is nearly $1$. The two vectors are highly similar in their
 directions, with $1$ indicating the same direction and perfect match.
 
-::: marginfigure
-[]{#ch-text-cosine2 label="ch-text-cosine2"}
-:::
+![Cosine of a small angle, i.e. vectors of close directions](../assets/figures/chapter11/ch-text-cosine2){#fig-text-cosine2 fig-alt="Cosine of a small angle, i.e. vectors of close directions" width="70%"}
 
 On the other hand, when two vectors point to directions nearly
 perpendicular to one another, with a large angle shown in
-Figure [\[ch-text-cosine3\]](#ch-text-cosine3){reference-type="ref"
-reference="ch-text-cosine3"}, $a$ becomes extremely small and cosine
+@fig-text-cosine3, $a$ becomes extremely small and cosine
 similarity is close to $0$. For vectors based on text documents, their
 vector values are normally positive (in the first quadrant in the
 two-dimensional space). Therefore, the smallest cosine similarity value
 one can obtain is $0$ when two vectors are exactly perpendicular
 (orthogonal directions).
 
-::: marginfigure
-[]{#ch-text-cosine3 label="ch-text-cosine3"}
-:::
+![Cosine of a large angle, i.e. vectors with nearly perpendicular directions](../assets/figures/chapter11/ch-text-cosine3){#fig-text-cosine3 fig-alt="Cosine of a large angle, i.e. vectors with nearly perpendicular directions" width="70%"}
 
 In short, cosine is a similarity measure in the vector space model,
 which ranges from $0$ and $1$. A greater cosine value indicates a higher
@@ -562,33 +533,15 @@ $$\begin{aligned}
 where $c$ is a constant. In the English language, empirical data have
 shown $p(t) \approx 0.1 / k_t$ within the top $1,000$ rank. This
 relation can be visualized in
-Figure [1.4](#fig-text-zipf){reference-type="ref"
-reference="fig-text-zipf"} (a).
+@fig-text-zipf (a).
 
-<figure id="fig-text-zipf">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">(a) normal coordinates</td>
-<td style="text-align: center;">(b) log-log coordinates</td>
-</tr>
-</tbody>
-</table>
-<figcaption>Zipf law function, roughly for the top <span
-class="math inline">1, 000</span> in English</figcaption>
-</figure>
+![Zipf law function, roughly for the top $1,000$ in English](../assets/figures/chapter11/fig-text-zipf){#fig-text-zipf fig-alt="Zipf law function, roughly for the top 1,000 in English" width="70%"}
 
-With a long tail, Figure [1.4](#fig-text-zipf){reference-type="ref"
-reference="fig-text-zipf"} (a) on normal coordinates is difficult to
+With a long tail, @fig-text-zipf (a) on normal coordinates is difficult to
 examine and it is often useful to apply the logarithmic transformation.
 By taking the log of both $x$ (rank) and $y$ (frequency) values, this
 can be transformed into
-Figure [1.4](#fig-text-zipf){reference-type="ref"
-reference="fig-text-zipf"} (b). As shown, Zipf law is a linear function
+@fig-text-zipf (b). As shown, Zipf law is a linear function
 on log-log coordinates and is a special case of *power-law*
 distributions, which, as we discussed in Chapter , are results of the
 *Matthew effect* (the rich get richer). In fact, there is an intrinsic
