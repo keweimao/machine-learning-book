@@ -1,0 +1,28 @@
+# Data Preparation and Feature Engineering {#ch-preparation}
+
+::: epigraph
+Trust, but verify.
+
+*Ronald Reagan*
+:::
+
+<!-- DEVELOPMENT OUTLINE: preserve this marker until the prose is drafted. -->
+
+## Data Quality and Provenance
+
+## Missing, Noisy, and Inconsistent Data
+
+## Scaling, Normalization, and Transformation
+
+## Encoding Categorical and Structured Variables
+
+## Feature Selection and Dimensionality Reduction
+
+## Leakage and Reproducible Pipelines
+
+## Summary and Exercises
+
+There is no perfect data. In fact, a Kaggle 2017 survey showed that
+*dirty data* \"is the most common problem for workers in the data
+science realm.\"[@Kaggle:2017] About 50% of survey responses cited it as
+a barrier at work.

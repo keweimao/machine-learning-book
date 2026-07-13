@@ -1,0 +1,17 @@
+# Multiclass and Structured Decisions {#ch-multiclass}
+
+<!-- DEVELOPMENT OUTLINE: original chapter contained only its title. -->
+
+## From Binary to Multiple Classes
+
+## One-vs-Rest and One-vs-One Strategies
+
+## Scores, Probabilities, and Softmax
+
+## Decision Trees and Rule-Based Decisions
+
+## Multilabel and Ordinal Outcomes
+
+## Error Analysis and Calibration
+
+## Summary, Exercises, and Lab

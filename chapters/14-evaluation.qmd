@@ -1,0 +1,650 @@
+# Evaluation and Experimentation {#ch-evaluation}
+
+Imagine you are asked to design an algorithm to help detect credit card
+fraud. Suppose you are told that your algorithm will be tested for its
+accuracy and, as a way to motivate you, your boss promises a bonus based
+on its accuracy. Accuracy, as it turns out, can be roughly defined as
+the fraction of answers that are correct. In the context of credit card
+fraud detection, one can produce a confusion matrix by cross-examining
+predictions (model) vs. real outcomes (ground truth):
+
+::: {#tab-eval-cmatrix}
+                               Predicted Positive $\hat{\oplus}$   Predicted Negative $\hat{\ominus}$
+  --------------------------- ----------------------------------- ------------------------------------
+  Actual Positive $\oplus$            True Positive (TP)                  False Negative (FN)
+  Actual Negative $\ominus$           False Positive (FP)                  True Negative (TN)
+
+  : A confusion matrix
+:::
+
+Based on the counts in
+Table [1.1](#tab-eval-cmatrix){reference-type="ref"
+reference="tab-eval-cmatrix"}, accuracy can be computed by:
+
+$$\begin{aligned}
+  Accuracy & = & \frac{TP + TN}{TP + TN + FP + FN}
+\end{aligned}$$
+
+which is again the total number of correct answers (true positive and
+true negative) divided by the total number of answers.
+
+Given the evaluation based on accuracy, how would you do to maximize
+your reward? Surely you can develop a very sophisticated algorithm with
+massive data and effort. There is, nonetheless, a simple response to
+this challenge. If you look at statistics on credit cards, fraud
+transactions represent only a very small fraction. Suppose the
+likelihood of a fraud is $10$ out of every $1000$. One may simply
+classify all $1000$ transactions as non-fraud and the confusion matrix
+will become:
+
+::: {#tab-eval-cmatrix0}
+                      Predicted Fraud   Predicted Non-Fraud
+  ------------------ ----------------- ---------------------
+  Actual Fraud               0                  10
+  Actual Non-Fraud           0                  990
+
+  : Confusion matrix based on the zero-effort solution, by classifying
+  all transactions to non-fraud.
+:::
+
+And the accuracy is:
+
+$$\begin{aligned}
+  Accuracy
+  & = & \frac{0 + 990}{1000} \\
+  & = & 0.99
+\end{aligned}$$
+
+This solution requires virtually zero effort but its accuracy appears to
+be pretty good: $99\%$. There are several reasons why an overall
+accuracy can be rather misleading, if not completely useless here. For
+one, the evaluation metric ignores the data distribution among class
+labels (e.g. fraud vs. non-fraud) and does not account for potential
+*chance* accuracy. In the above example, it is very easy to cheat and
+get rewarded just *by chance*. Here you simply favor the dominant class
+(non-fraud) to boost accuracy.
+
+Second, an evaluation metric should align properly with the purpose of
+the assigned task. For credit card fraud detection, one can argue that
+missing a *fraud* transaction is much more costly and undesirable than
+misclassifying a normal transaction as fraud. In other words, one should
+be motivated to identify most if not *all* fraud transactions; and the
+result should be heavily penalized if real frauds are identified as
+non-fraud (false negative). We shall look into these issues to see what
+alternatives may offer.
+
+## Precision
+
+Given a skewed distribution of data in the classes, it may be useful to
+evaluate accuracy within each predicted class. This is equivalent to a
+metric commonly known as *precision*, which is the fraction of those
+predicted positive to a class that actually belong to that class. In
+terms of the confusion matrix
+Table [1.1](#tab-eval-cmatrix){reference-type="ref"
+reference="tab-eval-cmatrix"}, precision is computed by:
+
+$$\begin{aligned}
+  Precision
+  & = & \frac{TP}{TP + FP}
+\end{aligned}$$
+
+When both $TP$ and $FP$ are zero, precision is $1$ ($100\%$) by
+definition. Based on the numbers in
+Table [1.2](#tab-eval-cmatrix0){reference-type="ref"
+reference="tab-eval-cmatrix0"}, we can compute precision for those
+predicted to be fraud (in the first column of numbers):
+
+$$\begin{aligned}
+  Precision(fraud)
+  & = & \frac{0}{0 + 0} \\
+  & = & 1
+\end{aligned}$$
+
+This does not seem to resolve the issue with accuracy, to which
+precision is very similar. This is due to the second reason we
+discussed, that there should be a greater emphasis and penalty on the
+*false negative*. Now instead of looking at the columns to compute
+precision, we can examine the rows and evaluate the same result from a
+very different perspective.
+
+## Recall
+
+*Recall*, a classic evaluation metric, refers to the fraction of actual
+positive that have been classified positive. In the example here, it is
+the fraction of real fraud transactions that have been identified as
+such. Recall can be computed in terms of the confusion matrix
+Table [1.1](#tab-eval-cmatrix){reference-type="ref"
+reference="tab-eval-cmatrix"}:
+
+$$\begin{aligned}
+  Recall
+  & = & \frac{TP}{TP + FN}
+\end{aligned}$$
+
+where false negative (FN) is part of the denominator. Applying this to
+data in Table [1.2](#tab-eval-cmatrix0){reference-type="ref"
+reference="tab-eval-cmatrix0"}, we get a recall of:
+
+$$\begin{aligned}
+  Recall(fraud)
+  & = & \frac{0}{0 + 10} \\
+  & = & 0
+\end{aligned}$$
+
+By focusing on true positive vs. false negative, recall gives a better
+indication than precision on the poor performance in fraud detection.
+Precision and recall are often used together in evaluation. It is
+attempting to compute an average score of the two so there is only one
+score to represent the overall performance. The arithmetic mean of
+precision and recall here is $(1+0)/2 = 0.5$, which still appears too
+good for a zero-effort solution.
+
+Arithmetic mean gives equal weights to both metrics and is not very
+indicative of the overall performance. We suggest that such an
+\"averaging\" measure show an alarming score if one of the scores is
+extremely low -- that is, we will regard a method as bad if it performs
+miserably in one metric. One function that leans more heavily on the
+lower score is the $F$ measure of precision and recall:
+
+$$\begin{aligned}
+  F_\beta
+  & = & (1+\beta^2) \frac{Precision \cdot Recall}{\beta^2 \cdot Precision + Recall}
+\end{aligned}$$
+
+where $\beta$ value can be adjusted in favor of precision or recall.
+When $\beta=1$, this becomes the $F_1$ measure, i.e. the *harmonic
+mean*:
+
+$$\begin{aligned}
+  F_1
+  & = & \frac{2 \cdot Precision \cdot Recall}{Precision + Recall}
+\end{aligned}$$
+
+With $Precision=1$ and $Recall=0$ in the above example, the harmonic
+mean is $F_1=0$ -- here, the one zero score (recall in this case)
+completely dominates and the average suffers.
+
+In applications where a model can be adjusted or tuned, we can evaluate
+the model based on more than one pairs of precision and recall scores. A
+common practice is to plot the precision-recall curve.
+Figure [\[fig-eval-pr_curve\]](#fig-eval-pr_curve){reference-type="ref"
+reference="fig-eval-pr_curve"} shows precision-recall curves of two
+methods, where method 1 appears to perform better as its curve is closer
+to the top-right (higher precision and recall).
+
+::: marginfigure
+:::
+
+## Sensitivity and Specificity
+
+Precision and recall are both focused on the fraction of true positive.
+Recall is also referred to as the *true positive rate* (TPR),
+sensitivity, or the probability of detection. It measures how
+*sensitive* a method is in identifying the actual positives.
+
+Conversely, one can also measure the *true negative rate* (TNR) or the
+fraction of actual negatives that have been correctly identified as
+such. This is often referred to as *specificity*, which is computed by:
+
+$$\begin{aligned}
+  Specificity
+  & = & \frac{TN}{TN + FP}
+\end{aligned}$$
+
+Sensitivity and specificity are concepts relative to the class in
+question. Sensitivity for the *fraud* class is specificity for the
+*non-fraud* class; and vise versa.
+
+The false negative rate (FNR) is complementary to specificity or the
+true negative rate (TNR), i.e. $FNR=1 - TNR$, and is often referred to
+as fall-out or *probability of false alarm*. Similar to precision vs.
+recall, sensitivity and fall-out (i.e. 1 - specificity) are often
+plotted to produce an *ROC*[^ch14-1] curve.
+
+ROC analysis has been widely used and well studied for model performance
+assessment in many fields including defense and medicine. It not only
+enables the evaluation of model effectiveness in terms of true positive
+and true negative rates, but can also help identify best practice with
+cost constraints.
+
+::: marginfigure
+:::
+
+Figure [\[fig-eval-roc\]](#fig-eval-roc){reference-type="ref"
+reference="fig-eval-roc"} illustrates a plot of an ROC curve, where the
+diagonal line (dashed) defines the acceptable performance. To understand
+what the diagonal line means, imagine we create a random model that
+takes a 50-50 guess during classification. As a result of this random
+guessing, there will be an equal split between the predicted positives
+$\hat{\oplus}$ and predicted negatives $\hat{\ominus}$. Hence, column
+values of the same row in
+Table [1.1](#tab-eval-cmatrix){reference-type="ref"
+reference="tab-eval-cmatrix"} will be identical:
+
+$$\begin{aligned}
+  N_{\hat{\oplus}} & = & N_{\hat{\ominus}} \\
+  TP & = & FN \\
+  FP & = & TN
+\end{aligned}$$
+
+where $N_{\hat{\oplus}}$ and $N_{\hat{\ominus}}$ are the numbers of
+predicted positives and negatives respectively. It follows that
+$TPR = FNR$, i.e. $Sensitivity = 1 - Specificity$ or
+$Sensitivity + Specificity=1$. This equation defines the diagonal line
+in Figure [\[fig-eval-roc\]](#fig-eval-roc){reference-type="ref"
+reference="fig-eval-roc"} and is the result of random guessing.
+
+Below the diagonal line $Sensitivity+Specificity=1$, the model performs
+worse than random and is undesirable. The farther the ROC curve is above
+the diagonal line, the better the performance with a greater area under
+curve. Therefore, the *area under curve* (AUC), i.e. the shaded area in
+the plot, is a single score that can be computed to measure the overall
+performance in terms of ROC.
+
+## Kappa and Chance Agreement
+
+So far the metrics are focused on different aspects of the confusion
+matrix in evaluation. However, we are yet to address one important
+problem in assessing the agreement between the predicted and the ground
+truth -- chance agreement. A method may hit the correct answer simply by
+chance. The evaluation cannot be fairly conducted unless we find a way
+to discount the chance agreement.
+
+Let's first look at some of the chances or probabilities. In binary
+classification, for example, the outcome is either positive (e.g. fraud)
+or negative (e.g. non-fraud). Based on the confusion matrix
+Table [1.1](#tab-eval-cmatrix){reference-type="ref"
+reference="tab-eval-cmatrix"}, the likelihood of a positive prediction
+vs. a negative prediction can be estimated:
+
+$$\begin{aligned}
+  P(\hat{\oplus})
+  & = & \frac{N_{\hat{ \oplus}}}{N} \\
+  & = & \frac{TP + FP}{TP + FN + FP + TN} \\
+  P(\hat{\ominus})
+  & = & \frac{N_{\hat{\ominus}}}{N} \\
+  & = & \frac{TN + FN}{TP + FN + FP + TN}
+\end{aligned}$$
+
+where $N_{\hat{\oplus}}$ and $N_{\hat{\ominus}}$ are the number of
+predicted positive and negative answers respectively. $N$ is the total
+number of instances. $TP+FP$ is the sum of the *Predicted Positive
+$\hat{\oplus}$* column where as $TN+FN$ is the sum of the *Predicted
+Negative $\hat{\ominus}$* column in
+Table [1.1](#tab-eval-cmatrix){reference-type="ref"
+reference="tab-eval-cmatrix"}. These are probabilities of model
+predictions.
+
+Likewise, we can estimate probabilities of having a positive vs.
+negative outcome in the ground truth:
+
+$$\begin{aligned}
+  P(\oplus)
+  & = & \frac{N_{\oplus}}{N} \\
+  & = & \frac{TP + FN}{TP + FN + FP + TN} \\
+  P(\ominus)
+  & = & \frac{N_{\ominus}}{N}  \\
+  & = & \frac{TN + FP}{TP + FN + FP + TN}
+\end{aligned}$$
+
+where $N_{\oplus}$ and $N_{\ominus}$ are the numbers of actual positive
+and negative results respectively. $TP+FN$ is the sum of the *Actual
+Positive* row and $TN+FP$ is the sum of the *Actual Negative* row in
+Table [1.1](#tab-eval-cmatrix){reference-type="ref"
+reference="tab-eval-cmatrix"}. These are probabilities based on the
+ground truth.
+
+With these probability, it is now possible to estimate chance agreement.
+If we assume the model and ground truth are independent, then the
+(hypothetical) probabilities that they will reach the same conclusion,
+namely the joint probability of both saying \"yes\" (positive) and the
+joint probability of both saying \"no\" (negative) can be computed by:
+
+$$\begin{aligned}
+  P_e(\oplus \cap \hat{\oplus}) & = & P(\oplus) P(\hat{\oplus}) \\
+  P_e(\ominus \cap \hat{\ominus}) & = & P(\ominus) P(\hat{\ominus})
+\end{aligned}$$
+
+The overall chance agreement, the probability of either both \"yes\" or
+both \"no\" is:
+
+$$\begin{aligned}
+   P_e
+   & = & P_e[ (\oplus \cap \hat{\oplus}) \cup  (\ominus \cap \hat{\ominus})]  \\
+   & = & P_e(\oplus \cap \hat{\oplus}) + P_e(\oplus \cap \hat{\oplus})  \\
+   & = & P(\oplus) P(\hat{\oplus}) + P(\ominus) P(\hat{\ominus})
+\end{aligned}$$
+
+Note that we add the two probabilities to compute the OR ($\cup$)
+probability because *positive* and *negative* are mutually exclusive.
+
+Now that we know the chance agreement $P_e$, we can use it to discount
+the overall agreement $P_o$:
+
+$$\begin{aligned}
+   \kappa & = & \frac{P_o - P_e}{1 - P_e}
+\end{aligned}$$
+
+where $P_o$ is the relative agreement of two, e.g. two raters such as a
+model and an expert (the ground truth), and is identical to the accuracy
+metric in our discussion $P_o = Accuracy$. This is commonly known as the
+*Kappa* coefficient, a statistic that measures the agreement of two sets
+of results.
+
+As Equation [\[eq-eval-kappa\]](#eq-eval-kappa){reference-type="ref"
+reference="eq-eval-kappa"} shows, Kappa takes into account potential
+agreement by chance and discounts the overall coefficient by the chance
+agreement. This makes it harder for a model to \"cheat\" on the result
+by simply favoring the dominant classes (e.g. classifying all
+transactions into non-fraud).
+
+With the result in Table [1.2](#tab-eval-cmatrix0){reference-type="ref"
+reference="tab-eval-cmatrix0"}, the chance agreement $P_e$ is:
+
+$$\begin{aligned}
+  P_e
+  & = & P(\oplus) P(\hat{\oplus}) + P(\ominus) P(\hat{\ominus}) \\
+  & = & \frac{10}{1000} \times 0 + \frac{990}{1000} \times \frac{1000}{1000} \\
+  & = & 0.99
+\end{aligned}$$
+
+By discounting this chance agreement, we get a *Kappa* coefficient of
+zero:
+
+$$\begin{aligned}
+  \kappa
+  & = & \frac{P_o - P_e}{1 - P_e} \\
+  & = & \frac{0.99 - 0.99}{1 - 0.99} \\
+  & = & 0
+\end{aligned}$$
+
+A kappa score of $0$ does not mean there is no agreement. There is in
+fact an agreement between the model prediction and the ground truth.
+However, this agreement is purely due to chance and is reduced to $0$
+after discounted for the chance agreement.
+
+Indeed, $\kappa=0$ means completely chance agreement. Its minimum value,
+$\kappa=-1$, indicates total disagreement whereas a maximum value
+$\kappa=1$ shows the two are in full agreement even after accounting for
+chances.
+
+## Averaging
+
+When evaluating model performance on multiple classes -- even binary
+classification entails two classes -- there are two major strategies to
+compute an overall score (average).
+
+Suppose precision is the evaluation metric, one can construct a
+confusion matrix for each class $c$ and compute its precision by:
+
+$$\begin{aligned}
+  P_c & = & \frac{TP_c}{TP_c + FP_c}
+\end{aligned}$$
+
+And the overall (average) precision can be computed by:
+
+$$\begin{aligned}
+  \bar{P}_{macro} & = & \frac{\sum_{c \in C} P_c}{|C|}
+\end{aligned}$$
+
+where $C$ is the set of unique classes and $|C|$ is the size of the set
+or the number of classes, e.g. $2$ for binary classification. This is
+*macro averaging*, which computes the average based on class-level
+scores. It gives equal treatment to each class and disregard their
+relative sizes (significance).
+
+The alternative is micro averaging which takes into account the
+composition of each classes and produces a final average weighted by
+class sizes. With micro averaging, all related counts are summed up
+before a ratio is taken. For example, average precision can be computed
+by:
+
+$$\begin{aligned}
+  \bar{P}_{micro} & = & \frac{\sum_{c \in C} TP_c}{\sum_{c \in C} TP_c + FP_c}
+\end{aligned}$$
+
+This turns out to be the overall fraction of predictions that are
+correct -- in fact, a micro averaged precision is identical to
+*accuracy* in binary classification.
+
+Whether one should use macro or micro averaging depends on the relative
+importance of classes in the final assessment. If all classes are
+equally important regardless of their sizes, macro-averaging should be
+preferred. If one aims to emphasize the absolute number of correct
+predictions, then micro-averaging is appropriate.
+
+## Rank Evaluation
+
+There are applications where the focus is not about definitive correct
+vs. incorrect answer. In information retrieval, for example, a model may
+return a sorted list of search results. Such a rank list requires a
+different approach to evaluation.
+
+Surely one can regard a rank list as the set of correct answers and use
+the discussed metrics such as precision and recall. More precisely, we
+can create a cut-off at a certain position $k$ in the rank and use the
+top $k$ as the set to be evaluated. For example, precision at $k=10$ is
+useful to evaluate early results in web searches, where the emphasis is
+often on the first result page (top $10$).
+
+If one knows the total number of relevant document $r$ (recall) for a
+query, the cut-off can be set at position $r$ to measure it precision.
+This is referred to as *R-Precision* because at this particular position
+precision is equal to recall. It is also possible to measure average
+precision by starting with the top position $k=1$ and increasing it
+until recall reaches $100\%$.
+
+Several other metrics can be derived from variations of these
+strategies. However, they only attack the problem of rank list
+evaluation by indirectly addressing positions in the list.
+
+A direct attack on this issue is to assign a *different score* (amount
+of reward) for a correct (relevant) answer in a *different position*. A
+relevant answer at the top should be highly rewarded, which should be
+discounted down the rank.
+
+This is the idea behind the *Normalized Discounted Cumulative Gain*, or
+nDCG, which has been widely used in the information retrieval community
+since its proposal.[@Jarvelin:2002] Given the relevance $rel_i$[^ch14-2] of
+an answer at position $i$, the Discounted Cumulative Gain at position
+$k$ can be computed by:
+
+$$\begin{aligned}
+  DCG_k
+  & = & \sum_{i=1}^{k} \frac{rel_i}{\log_2(i+1)} \\
+  & = & rel_i + \sum_{i=2}^{k} \frac{rel_i}{\log_2(i+1)}
+\end{aligned}$$
+
+where a relevant (correct) answer at position $1$ will receive its full
+credit and others will be discounted by their positions down the rank,
+with $\log_2(i+1)$.
+
+Among all possible arrangements of the rank list for a query, there
+exists at least one ideal (perfect) list in which answers are sorted by
+their relative relevance scores in the descending order. This produces
+the best possible DCG score, which we call the ideal DCG or IDCG.
+Comparing a DCG score against its corresponding ideal score, we can
+obtain the *normalized* DCG or nDCG:
+
+$$\begin{aligned}
+  nDCG_p & = & \frac{DCG_p}{IDCG_p}
+\end{aligned}$$
+
+Normalized by the ideal score, an nDCG score is always between $[0, 1]$,
+with $1$ indicating a perfect ranking and $0$ no relevant answer at all
+in the list[^ch14-3]. nDCG is a popular metric for web search evaluation and
+one can adjust the position $k$ to emphasize relevant results at the
+very top, e.g. with $nDCG_3$.
+
+## Evaluation of Numeric Predictions
+
+When the outcome of a model is a on a continuous scale rather than
+discrete values, the evaluation is no longer about *correct* answers
+because it is rarely possible to make predictions that are *exactly* the
+actual outcome. Instead, the focus should be on how closely predictions
+are to the actual values or how much apart they are (errors).
+
+### Error Metrics
+
+Many evaluation metrics for numeric predictions are indeed based on the
+error terms. The mean absolute error (MAE), mean squared error (MSE),
+and root mean-squared error (RMSE), for example, compute mean errors in
+their absolute, squared, and root squared forms:
+
+$$\begin{aligned}
+  MAE & = & \frac{\sum_{i=1}^{N} |\hat{v}_i - v_i|}{N} \\
+  MSE & = & \frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{N} \\
+  RMSE & = & \sqrt{\frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{N}}
+\end{aligned}$$
+
+where $N$ is the total number of instances to test the numeric
+predictions, $\hat{v}_i$ is the predicted value on the $i^{th}$
+instance, and $v_i$ is the actual value of the $i^{th}$ instance.
+Relatively speaking, metrics based on squared errors such as MSE and
+RMSE are amplify the impact of large errors and are more sensitive to
+outliers.
+
+Each of these error metrics can be normalized by the corresponding error
+of a pseudo-model predicting the mean value of training data, to obtain
+its *relative* error. For example, relative squared error (RSE) can be
+computed by:
+
+$$\begin{aligned}
+RSE & = & \frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{\sum_{i=1}^{N} (\bar{\mu} - v_i)^2}
+\end{aligned}$$
+
+where $\bar{\mu}$ is the estimated mean based on training data. Root
+relative squared error (RRSE) and relative absolute error (RAE) can be
+established in the like manner.
+
+### Correlation
+
+While RSE measures the deviation of predicted values $\hat{v_i}$ from
+actual values $v_i$, standard deviations of predicted and actual values
+can be computed by:
+
+$$\begin{aligned}
+  \sigma & = & \sqrt{\frac{\sum_{i=1}^{N} (v_i - \mu)^2}{N-1}} \\
+  \hat{\sigma} & = & \sqrt{\frac{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})^2}{N-1}}
+\end{aligned}$$
+
+where $\mu$ is the mean of actual values and $\hat{\mu}$ the mean of
+predicted values. The covariance between the predicted and actual is:
+
+$$\begin{aligned}
+  cov(\hat{v},v) & = & \frac{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})(v_i - \mu)}{N-1}
+\end{aligned}$$
+
+By normalizing the covariance by the product of both standard deviations
+(also a value of variance), we can obtain the Pearson correlation
+between the predicted and actual values:
+
+$$\begin{aligned}
+  cor(\hat{v},v)
+  & = & \frac{cov(\hat{v},v)}{\hat{\sigma}\sigma} \\
+  & = & \frac{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})(v_i - \mu)}{\sqrt{\sum_{i=1}^{N} (v_i - \mu)^2} \sqrt{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})^2}}
+\end{aligned}$$
+
+Pearson correlation measures the similarity in their variances from
+means and is equivalent to cosine of $v$ and $\hat{v}$ as vectors from
+their means.
+Figure [\[fig-eval-cor\]](#fig-eval-cor){reference-type="ref"
+reference="fig-eval-cor"} illustrates the connection using a
+2-dimensional space. To simplify the discussion, suppose there are only
+$N=2$ instances on which the actual outcomes are $(v_1, v_2)$ and
+predicted values are $(\hat{v_1},\hat{v_2})$, with means $\mu$ and
+$\hat{\mu}$ respectively.
+
+::: marginfigure
+:::
+
+As shown in
+Figure [\[fig-eval-cor\]](#fig-eval-cor){reference-type="ref"
+reference="fig-eval-cor"}, the actual values can be regarded as a vector
+pointing in the $\vec{v} = (v_1-\mu, v_2-\mu)$ direction, whereas the
+predicted is represented by the vector
+$\vec{\hat{v}}=(\hat{v_1}-\hat{\mu}, \hat{v_2}-\hat{\mu})$. In this
+representation, Pearson correlation is identical to the cosine of the
+two vectors, i.e. $cov(\hat{v}, v) = cosine(\vec{\hat{v}},\vec{v})$.
+Chapter  has more on the cosine similarity.
+
+Because of this connection, Pearson correlation shares important
+characteristics with cosine. It reaches its maximum value of $1$ when
+errors from their mean, i.e. $\hat{v_i} - \hat{\mu}$ vs. $v_i - \mu$ for
+all instances, are distributed identically (in the same vector
+direction) -- they are perfectly correlated in this case. When the
+errors are distributed in absolutely *orthogonal* directions, the two
+are perfectly independent and has no correlation. When their errors
+distribute in the opposite direction, they are negatively correlated,
+with the minimum value of $-1$ indicating perfectly opposite.
+
+## Experimentation
+
+Now that we know some of the metrics for model evaluation, how do we
+actually conduct the assessment with data? In the ideal world, one
+builds a model using training data with known outcomes and rolls out the
+model to be tested in the operating environment. In the real world,
+however, we have to make sure a model works reliably well for its
+purpose before it is used in production for important predictions and
+decision making.
+
+We often have to use existing data to test models with experiments. It
+is a common practice to split the data into training and testing subsets
+-- one to build and train the model, and the other to evaluate its
+performance.
+
+Random sampling can be used to create the training and testing subsets.
+Once a model is trained, it can be experimented with the test data and
+evaluated using metrics suitable for related objectives. This process
+can be repeated to test different models or the same model with
+different parameters or configurations. It can be done with different
+random samples.
+
+Along the process, one may be able to find out what leads to best
+performances in terms of certain metrics. Given various model
+configurations, it is also possible to create plots such as
+precision-recall or ROC curves, where one can examine related parameters
+and tradeoffs.
+
+The ratio to split training vs. testing depends the amount of available
+data and the amount required to sufficiently train the specific model.
+One may be tempted to conduct a 50-50 split. In this case, you use half
+of the data (sample) for training and the other half for testing.
+Afterwards, it also makes sense to switch the two subsets, testing data
+now for training and training for testing.
+
+This is cross validation. And you can do it on 50-50, a 2-fold
+validation, you can certainly do it on more folds. Practically, it is
+popular to conduct a 10-fold cross validation, where the data is split
+into 10 random subsets. Each time, $1$ subset is held out for testing
+and the other $9$ are used for training. This is repeated $10$ times so
+the model is tested on every fold of the data.
+
+## On Efficiency
+
+In this chapter, we have focused on the evaluation of model
+*effectiveness* or, loosely speaking, how satisfactory predictions are
+compared to the ground truth. This is about the *quality* of a model.
+
+The other side of evaluation is on the *efficiency* of operations. This
+is about the time and cost necessary to train a model and to perform
+assigned tasks. It depends on the space and time complexity of the
+model, and the structure and magnitude of data the model has to work on
+in the production settings.
+
+A thorough evaluation should include an assessment of both effectiveness
+and efficiency. We will elaborate on important aspects of efficiency as
+well as *scalability* in Chapter .
+
+[^ch14-1]: ROC stands for *receiver operating characteristic* and was
+    initially used in the military to evaluate the performance of a
+    radar detector.
+
+[^ch14-2]: Relevance scores can be on any scale dictated by the evaluation
+    protocol. For example, they can be as simple as $1$ for a relevant
+    (correct) answer and $0$ if otherwise.
+
+[^ch14-3]: Here assume relevance scores are non-negative, e.g. $0$ no reward
+    for non-relevance. In certain applications, it might be reasonable
+    to assign negative scores for non-relevant answers to penalize a
+    ranking with any non-relevant results.

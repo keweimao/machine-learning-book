@@ -1,0 +1,800 @@
+# Clustering and Organization {#ch-clustering}
+
+We as human organize things. An important aspect of human development is
+to recognize the commonality of objects and group them together, for
+example, in terms of shapes and colors.
+
+A related category of machine learning algorithms is called
+*clustering*, which aims to bring like entities together and, by doing
+so, discovers major groups, patterns, and themes in the data. Clustering
+is often referred to as unsupervised learning because its outcome is not
+predetermined (unsupervised) but whatever the data shall reveal.
+
+::: marginfigure
+:::
+
+Clustering helps in the organization (grouping) of information and makes
+it easier to access and navigate. For example, when a student organizes
+course materials in folders of subject areas, it becomes more efficient
+for her to locate related materials when she needs to review them.
+
+Clustering is also an important step toward information aggregation and
+pattern recognition of data at hand. By discovering major groups and
+themes, a high-level summarization and overview can be identified with
+data instances representative of these groups. This can often be
+integrated with interactive information visualization for graphical
+representation and navigation of the data space.
+
+We often think of clustering as *hard* and *flat partitioning* -- *hard*
+because cluster membership is concrete and every data instance belongs
+to only one group and *flat* because there is only one level of
+clusters.
+Figure [\[fig-org-partitions\]](#fig-org-partitions){reference-type="ref"
+reference="fig-org-partitions"} shows an example of two flat partitions,
+where data belong to either one of them. However, the result of
+clustering can be a more complex structure than that.
+
+::: marginfigure
+:::
+
+There are such methods for *soft* or *fuzzy* clustering, where each data
+instance can belong to multiple clusters. For example, a book on quantum
+computing can group with other books on quantum physics as well as those
+in computer science/engineering. The membership is not a concrete
+assignment but a degree of association. One can certainly view such
+cluster associations as probabilities. Soft clustering can be very
+helpful in applications where one may need different *routes*, so to
+speak, to data of interest.
+
+In addition, there are clustering algorithms that produce a hierarchical
+structure with levels of nested partitions, i.e. a tree with branches
+and branches of branches.
+Figure [\[fig-org-hierarchy\]](#fig-org-hierarchy){reference-type="ref"
+reference="fig-org-hierarchy"} illustrates hierarchical clustering,
+where a circle represents a cluster and a nested circle is a child
+(branch) of the one containing it. This can be achieved by either
+recursively merging data instances until the whole structure has emerged
+(the bottom-up approach) or recursively dividing the entire data into
+subsets until they can no longer be broken down (the top-down approach).
+
+::: marginfigure
+:::
+
+The result of hierarchical clustering in
+Figure [\[fig-org-hierarchy_circles\]](#fig-org-hierarchy_circles){reference-type="ref"
+reference="fig-org-hierarchy_circles"} can also be represented as a tree
+structure in
+Figure [\[fig-org-hierarchy\]](#fig-org-hierarchy){reference-type="ref"
+reference="fig-org-hierarchy"}. A hierarchy or dendrogram thus
+constructed may reveal the underlying taxonomy of themes in the data. It
+is a great tool for information organization and data exploration.
+
+::: marginfigure
+:::
+
+## Example Data
+
+Now that we have had an overview of what clustering does and what it can
+produce, we shall examine how related algorithms perform clustering on
+data. We will look at a few classic methods and illustrate the
+clustering process with a well-known dataset, namely the IRIS flower
+data created by British statistician and geneticist Ronald Fisher. Table
+shows a small sample of the data set:
+
+::: {#tab-org-iris}
+  -------- ------- -------- ------- ------------
+   Sepal    Sepal   Petal    Petal  
+   Length   Width   Length   Width     Class
+    5.1      3.5     1.4      0.2      Setosa
+    7.0      3.2     4.7      1.4    Versicolor
+    6.3      3.3     6.0      2.5    Virginica
+     ..      ..       ..      ..         ..
+  -------- ------- -------- ------- ------------
+
+  : IRIS flowers sample data
+:::
+
+[]{#tab-org-iris label="tab-org-iris"}
+
+Each instance is an Iris flower observation, with measurements of its
+sepal length, sepal width, petal length, and petal width in centimeters,
+as well as classification of three Iris species (setosa, versicolor, or
+virginica). For demonstration, we use only $5$ data instances from each
+species ($15$ total) and focus on two variables in the analysis, namely
+*petal length* vs. *petal width*. In
+Figure [\[fig-org-iris\]](#fig-org-iris){reference-type="ref"
+reference="fig-org-iris"}, we plot *petal length* vs. *petal width* and
+color code data in each class (species).
+
+::: marginfigure
+:::
+
+There appear to be three clusters, as shown in
+Figure [\[fig-org-iris\]](#fig-org-iris){reference-type="ref"
+reference="fig-org-iris"}, consistent with the three species. But how
+can we design algorithms to identify these clusters? Bear in mind that
+any clustering method, as unsupervised learning, should be data driven
+and should aim to discover inherent patterns from rather than imposing a
+structure on the data.
+
+Although clustering does not predict on the class label, we will use the
+classes of the IRIS data to help evaluate (at least visually) how well a
+clustering method has performed. In the end, if each identified cluster
+can be related to one of the species, then the clustering process must
+have done something right with regard to the data.
+
+## Hierarchical Clustering
+
+Hierarchical clustering is primarily used to create a tree structure of
+the data. Nonetheless, one can cut the tree at a specific level to
+obtain a desired number of clusters. As we discussed, there are two ways
+to construct a hierarchical structure: 1) the top-down divisive approach
+and 2) the bottom-up approach. We will first discuss a classic bottom-up
+method, namely Hierarchical Agglomerative Clustering (HAC), and come
+back to the top-down approach in the next section on .
+
+In the bottom up approach, we start with each data instance as a
+separate cluster and repeatedly merge the closest pair of clusters.
+Given $N$ instances, the initial number of clusters will be $N$ and this
+number will be reduced by $1$ whenever two clusters are joined together
+as one. The process will continue until the number of clusters have been
+reduced to a (predefined) desired number $k$ , or, if the objective is
+to build the entire hierarchical structure, until all clusters have been
+merged into one (the root).
+
+This process is simple but we should clarify on two aspects before a
+demonstration with the IRIS data. First, how do we measure distances in
+order to determine which two are the *closest*? There are many distance
+and similarity functions one can use. Among others, we discuss the
+Euclidean distance as a commonly used measure in Chapter  and cosine
+similarity for text analysis in
+Chapter [\[ch-text\]](#ch-text){reference-type="ref"
+reference="ch-text"}. One should carefully evaluate how suitable a
+measure is with the data before adopting it.
+
+Second, when two clusters are merged to become one, how do we represent
+the new cluster so that we can measure its distance (or similarity) to
+other clusters? A basic strategy is to compute the centroid of the new
+cluster using vector values of member data instances. And this is the
+strategy that we will use in the following demonstration as it is easy
+to visualize. We will discuss several other strategies after that.
+
+<figure id="fig-org-hac1">
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">(a) all data instances</td>
+<td style="text-align: center;">(b) zoomed in on the closest pair</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Step <span class="math inline">1</span> of HAC clustering on
+IRIS data. The circle indicates a new cluster formed by the closest pair
+of instances. The centroid of the cluster is marked <span
+class="math inline">×</span> in (b).</figcaption>
+</figure>
+
+Figure [1.1](#fig-org-hac1){reference-type="ref"
+reference="fig-org-hac1"} (a) plots the IRIS data and visualizes the
+$1^{st}$ step of HAC clustering. Using Euclidean distance, the closest
+pair of instances can be identified, as circled on the plot, and joined
+as a new cluster.
+
+Figure [1.1](#fig-org-hac1){reference-type="ref"
+reference="fig-org-hac1"} (b) offers a closer look at the new cluster.
+Once the new cluster is formed, it is represented by the average values
+of its members, i.e. the geometric center of the two data instances on
+the plot (see $\times$ in the circled cluster). Now this new cluster
+with a centroid at $\times$ is simply treated as another data instance
+that can be compared to and merged with others.
+
+Now we can continue to find the next closest pairs. In
+Figure [1.2](#fig-org-hac2){reference-type="ref"
+reference="fig-org-hac2"} (a), the $1^{st}$ merged cluster is found to
+be closest to yet another data instance, and they are joined to form a
+new cluster again. This continues to merge with another instance, as
+shown in Figure [1.2](#fig-org-hac2){reference-type="ref"
+reference="fig-org-hac2"} (b).
+
+<figure id="fig-org-hac2">
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">(a) step 2</td>
+<td style="text-align: center;">(b) step 3</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Further iterations of HAC clustering on IRIS
+data</figcaption>
+</figure>
+
+Repeat the merging process, we can get results in
+Figure [1.3](#fig-org-hac3){reference-type="ref"
+reference="fig-org-hac3"}. If the desired number of clusters $k$ is
+predefined, one can stop the iterative process once $k$ clusters have
+been obtained. In Figure [1.3](#fig-org-hac3){reference-type="ref"
+reference="fig-org-hac3"} (a), for example, the clustering process stops
+at $3$ clusters ($k=3$). If one desires to build the entire hierarchy of
+the data, as Figure [1.3](#fig-org-hac3){reference-type="ref"
+reference="fig-org-hac3"} (b) shows, the process can continue until all
+clusters have been merged into the root ($k=1$).
+
+<figure id="fig-org-hac3">
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">(a) merged to <span
+class="math inline">3</span> clusters</td>
+<td style="text-align: center;">(b) merged to <span
+class="math inline">1</span> cluster</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Result of HAC clustering on IRIS data</figcaption>
+</figure>
+
+### Issues of HAC
+
+In the above demonstration, we have relied on the notion of *centroid*
+(with average values of cluster members) when we compute the distance
+between clusters. Regardless of the distance or similarity function
+being used, there are several alternative strategies for measuring
+intra-cluster distances or similarities.
+
+*Average link*, for example, compare each data instance in one cluster
+to another instance in the other cluster, and computes the average
+distance (or similarity) of all pair-wise distances.
+
+*Single link* does the same pair-wise comparisons between members of two
+clusters, but singles out the closest or most similar pair. The shortest
+distance (or the greatest similarity) is then used as the distance (or
+similarity) of the two clusters. *Complete link*, on the other hand,
+identifies the farthest pair and uses the greatest distance (or the
+least similarity) as the distance (or similarity) of the two clusters.
+
+Hierarchical Agglomerative Clustering (HAC) is not an efficient method
+and does not scale well with large data sets. Consider the amount of
+computation during each iteration of HAC. Given $N$ data instances --
+which will later include merged clusters as pseudo-instances -- it
+requires $N\times(N-1)/2$ pair-wise comparison to identify the closest
+pair, which is $O(N^2)$ complexity. When we factor in the number of
+iterations, which is proportional to $\log_2{N}$ as each iteration
+reduces two clusters into one, the time complexity of the entire process
+is of $O(N^2 \log{N})$.
+
+Suppose we can manage to perform HAC on $N=1000$ data instances, say in
+$1$ minute. For $N=10^6$ data instances, it will take
+$(\frac{10^6}{10^3})^2 \log \frac{10^6}{10^3} \approx 10,000,000$
+minutes (about $19$ years). On large volumes of data, HAC can be costly
+to perform and one has to find an alternative to hierarchical clustering
+in a cost-effective way.
+
+## K-means Partitioning {#sect:org:kmeans}
+
+We shall now look at *k-means*, a more efficient method for flat
+partitioning but, as we will discuss later, can also be used for
+hierarchical clustering as well. In the nutshell, k-means is a cluster
+optimization technique that improves on initial (random) clusters
+through iterations of cluster membership assignment and adjustment.
+
+In the beginning when clusters are unknown, it picks a number of random
+cluster centroids and assigns every data instance to a centroid
+depending on its proximity (similarity). Once all cluster membership has
+been determined, the centroid (center) of each cluster can be
+re-computed based on its assigned member instances. With the re-computed
+centroids, data instances will be reassigned, which will lead to further
+change of cluster centroids. So the process will continue on with
+centroid adjustment and cluster membership re-assignment, until the
+centroids no longer move (or move very little) or it has gone through a
+sufficient number of iterations.
+
+Now let's look at how k-means may identify clusters from the IRIS data.
+Again, we set the number of desired clusters $k=3$ to see whether it may
+produce clusters consistent with the three Iris species.
+
+<figure id="fig-org-kmeans1">
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">(a) initial (random) centroids</td>
+<td style="text-align: center;">(b) membership assignment</td>
+</tr>
+</tbody>
+</table>
+<figcaption>K-means initial steps. A <span class="math inline">×</span>
+represents an initial centroid. Undirected lines represent cluster
+membership. Directed lines <span class="math inline">↗</span> indicates
+how the centroid will move (change) after re-computation based on
+assigned members.</figcaption>
+</figure>
+
+With data plotted in Figure [1.4](#fig-org-kmeans1){reference-type="ref"
+reference="fig-org-kmeans1"} (a), we start with $3$ random cluster
+centroids, shown as $\times$ in the plot. For each data instance, we
+compute its distance to each of the three initial centroids and identify
+the closest centroid, to which it will be assigned as a member.
+Figure [1.4](#fig-org-kmeans1){reference-type="ref"
+reference="fig-org-kmeans1"} (b) shows lines connecting data instances
+to their corresponding closest centroids.
+
+Once membership of each cluster is assigned, the center of cluster can
+be re-computed based on averaging member instances. After this
+computation, the centroids will likely change (move). Directed lines
+(arrows) in Figure [1.4](#fig-org-kmeans1){reference-type="ref"
+reference="fig-org-kmeans1"} (b) represent the changes of cluster
+centroids.
+
+<figure id="fig-org-kmeans2">
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">(a) <span
+class="math inline">2<sup><em>n</em><em>d</em></sup></span>
+iteration</td>
+<td style="text-align: center;">(b) <span
+class="math inline">3<sup><em>n</em><em>d</em></sup></span>
+iteration</td>
+</tr>
+</tbody>
+</table>
+<figcaption>K-means further steps. A <span class="math inline">×</span>
+represents an centroid before it is updated. Undirected lines represent
+cluster membership. Directed lines <span class="math inline">↗</span>
+indicates how the centroid will move (change) after re-computation based
+on assigned members.</figcaption>
+</figure>
+
+With the new cluster centroids, the distance of each data instance has
+also changed and should be measured again to find out which cluster one
+belongs to now. By doing so, some data instances may move from one
+cluster to another, as shown in the $2^{nd}$ iteration in
+Figure [1.5](#fig-org-kmeans2){reference-type="ref"
+reference="fig-org-kmeans2"} (a), which, in turn, leads to further
+changes of cluster centroids. See the $3^{rd}$ iteration in
+Figure [1.5](#fig-org-kmeans2){reference-type="ref"
+reference="fig-org-kmeans2"} (b). By repeating the iterations of cluster
+member assignment and centroid re-computation, the cluster centroids
+will continue to move and gradually converge. One may stop the k-means
+optimization process when cluster centroid does not move or moves very
+little, or after a certain number of iterations.
+
+<figure id="fig-org-kmeans3">
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">(a) Final result</td>
+<td style="text-align: center;">(b) Overview of centroid movement</td>
+</tr>
+</tbody>
+</table>
+<figcaption>K-means final clusters and steps</figcaption>
+</figure>
+
+For the small IRIS data set here, it only takes less than $5$ iterations
+for the cluster centroids to converge (with little further movement).
+Figure [1.6](#fig-org-kmeans3){reference-type="ref"
+reference="fig-org-kmeans3"} (a) shows the final $3$ clusters thus
+identified and they are consistent with the three species of Iris
+flowers in the data. Figure [1.6](#fig-org-kmeans3){reference-type="ref"
+reference="fig-org-kmeans3"} (b) gives an overview of the movement of
+cluster centroids through the iterations. Even though we started with
+random centroids, k-means gradually moves the centroids toward more
+representative segments of the data and, in the end, reaches an optimal
+outcome.
+
+### Issues of K-means
+
+K-means can be interpreted as to minimize member instances' mean squared
+distance from their centroid. The iterative process can always converge
+to an optimum, but there is no guarantee that it will be globally
+optimal. In each iteration, it compares $k$ clusters to $N$ data
+instances, which is $O(kN)$. Because $k$ is usually much smaller than
+$N$, k-means is much more efficient and scalable than HAC.
+
+Clustering is understood as unsupervised learning. Theoretically, it is
+data driven without human input. In practice, however, it is not a clear
+cut. There are many ways in which one can influence the outcome of
+clustering, making it somewhat supervised. With the k-means method, for
+example, one has to predefine the number of clusters to be generated,
+which makes the outcome rather arbitrary. The data at hand does not
+necessarily have that supposed $k$ number of clusters. One may have to
+test and evaluate clustering with different numbers of clusters to find
+out what an ideal $k$ may be.
+
+The distance function also plays an important role in clustering. For
+text clustering, feature (term) distributions matter more than the
+absolute weights of terms. In that domain of applications, cosine
+(angle) similarity works better than Euclidean distance and like
+measures. Furthermore, even with the same distance function, the weights
+and scales of variables (features) make a major difference. If all
+variables are to be treated equally, then they should be normalized to
+the same scale, e.g. within $[0,1]$ for positive values. Otherwise, they
+should be properly weighted by their discriminative power based on
+domain theory and/or statistics.
+
+## Probabilistic Clustering
+
+While k-means discovers cluster centroids, the Euclidean distance, for
+example, essentially defines a cluster boundary as a sphere of a certain
+radius in a dimensional space, e.g. circles on two dimensions in
+Figure [1.6](#fig-org-kmeans3){reference-type="ref"
+reference="fig-org-kmeans3"} (a). This implies two basic assumptions: 1)
+the distribution of member instances in a cluster is spherical, and 2)
+each data instance only belongs to one and only one cluster.
+
+Is it possible to assume a different data distribution for clustering?
+In the same time, can there be soft (fuzzy) associations between data
+instances and clusters? The soft cluster membership can perhaps be
+thought of as probabilities.
+
+Indeed, there is a general probabilistic approach to clustering, namely
+a model-based clustering. The term *model* means that data are assumed
+to follow a distribution function with certain parameters (model) to be
+discovered. So based on the model, one can estimate the probabilities of
+cluster membership and try to maximize the probabilities in the process
+of identifying the clusters.
+
+For simpler illustration and explanation, let's first consider only one
+variable, *petal width*, in the IRIS data. Suppose data instances with
+petal width values $v$ follows the normal distribution, based on which,
+as we discussed in Chapter , the probability density of value $v$ is
+computed by:
+
+$$\begin{aligned}
+  f(v)
+  & = & f(v|\mu,\delta^2) \\
+  & = & \frac{1}{\sqrt{2\pi\delta^2}} e^{-\frac{(v-\mu)^2}{2\delta^2}}
+\end{aligned}$$
+
+In the context of clustering, however, we assume the same normal
+distribution *within* each cluster $c$. The above density function can
+be extended to include terms related to the cluster $c$ and the
+probability of a value $v$ in cluster $c$ can bey computed by:
+
+$$\begin{aligned}
+  P(v|c)
+  & \propto & f_{c}(v) \\
+  & = & f(v|\mu_c,\delta_c^2) \\
+  & = & \frac{1}{\sqrt{2\pi\delta_c^2}} e^{-\frac{(v-\mu_c)^2}{2\delta_c^2}}
+\end{aligned}$$
+
+where $\mu_c$ and $\delta_c^2$ are the mean and variance of values
+associated with cluster $c$, the only two parameters of the model for
+each cluster.
+
+The above formula shows that, in order to compute related probabilities,
+we need to know parameter values, namely mean $\mu_c$ and variance
+$\delta_c^2$, for each cluster $c$. The problem is, we are yet to
+identify these values, which, in fact, are based on related
+probabilities.
+
+With the chicken or the egg dilemma, we shall start with some initial
+values for the $\mu_c$ and $\delta_c^2$ so that we can feed them into
+the calculation of probabilities, which then help in the identification
+of better $\mu_c$ and $\delta_c^2$ values. This is similar to k-means
+where we start with initial centroids, which, through membership
+assignment and reassignment, change and improve.
+
+### Initialization
+
+With the IRIS data on only one dimension, i.e. petal width, we randomize
+$\mu_c$ and $\delta_c$ for $k=3$ clusters: $\mu_1=1$ and $\delta_1=0.25$
+for cluster $c_1$, $\mu_2=1.6$ and $\delta_2=0.25$ for cluster $c_2$,
+and $\mu_3=2.8$ and $\delta_1=0.25$ for cluster $c_3$.
+Figure [1.7](#fig-org-em1){reference-type="ref" reference="fig-org-em1"}
+shows the distribution of IRIS data instances on the petal width $v$
+dimension, with a normal (bell) curve based on each set of initial
+parameters.
+
+<figure id="fig-org-em1">
+
+<figcaption>Initial parameters of normal distributions. <span
+class="math inline">∘</span> are IRIS data instances. <span
+class="math inline">×</span> marks each an initial (random) mean <span
+class="math inline"><em>μ</em></span> (similar to a centroid), around
+which a normal distribution curve is plotted. The shaded area under
+curve shows the range of deviation from mean, i.e. <span
+class="math inline">[<em>μ</em> − <em>δ</em>, <em>μ</em> + <em>δ</em>]</span>.
+</figcaption>
+</figure>
+
+In addition, we don't know the prior probability $P(c)$ of each cluster
+$c$. If we assume equal chances, we have for the $3$ clusters in the
+IRIS data: $P(c_1)=P(c_2)=P(c_3)=1/3$.
+
+### Expectation
+
+Given each cluster model with the initial parameter, we can estimate
+$P(v|c)$, how likely an instance $v$ can be observed -- generated from
+the model -- in that cluster $c$.
+
+For now, however, we are more interested in finding the probability of
+an instance's membership association with a cluster. That is, given an
+instance $v$, how likely it is associated with each cluster $c$,
+$P(c|v)$. Following the Bayes Theorem, $P(c|v)$ can be estimated using
+$P(v|c)$:
+
+$$\begin{aligned}
+  P(c|v)
+  & = & \frac{P(v|c) P(c)}{P(v)}  \\
+  & = & \frac{f(v|\mu_c,\delta_c^2) P(c)}{\sum_{i=1}^{k} P(c_i) f(v|\mu_{c_i},\delta_{c_i}^2)}
+\end{aligned}$$
+
+where $k$ is the number of clusters and the denominator is the sum of
+probabilities for the data instance $v$ to be generated by distribution
+models of all $k$ clusters.
+
+Computing $P(c|v)$ is similar to the membership assignment of data
+instances to clusters in k-means. But instead of a *hard* membership, we
+have a probabilistic (soft) assignment here. We refer to the process of
+estimating the posterior probabilities of cluster membership as
+*Expectation*.
+
+Let's apply this to the IRIS data. We use the first data instance with
+petal width $v=0.2$ (cm) (see the $\circ$ closest to the zero in
+Figure [1.7](#fig-org-em1){reference-type="ref"
+reference="fig-org-em1"}). First, we compute $P(v|c)$, probability that
+each cluster model will generate the instance $v=0.2$:
+
+$$\begin{aligned}
+  P(v=0.2|c_1)
+  & \propto & f_{c_1}(v=0.2) \\
+  & = & f(v=0.2|\mu_1=1,\delta_1=0.25) \\
+  & = & \frac{1}{\sqrt{2\times0.25^2 \pi}} e^{-\frac{(0.2-1)^2}{2\times0.25^2}} \\
+  & = & 0.00954 \\
+  P(v=0.2|c_2) & \propto &  2.5 \times 10^{-7} \\
+  P(v=0.2|c_3) & \propto &  5.2 \times 10^{-24} \\
+\end{aligned}$$
+
+As you can see from the Figure [1.7](#fig-org-em1){reference-type="ref"
+reference="fig-org-em1"}, $v=0.2$ is on the far left side of the first
+(red) bell curve centered on $1$, and has a very small probability
+density $P(v=0.2|c_1) \propto 0.00954$. This is further remove from the
+centers of the second (blue) and third (green) normal curves, and
+probability densities corresponding to $c_2$ and $c_3$ are much smaller.
+
+With these values, we can now compute $P(v)$, which is the weighted sum
+of probabilities that the $3$ cluster models will generate data $v=0.2$:
+
+$$\begin{aligned}
+  P(v=0.2)
+  & = & \sum_{i=1}^{3} P(c_i) f(v=0.2|\mu_{c_i},\delta_{c_i}^2) \\
+  & = & 1/3 \times 0.00954 + 1/3 \times 2.5 \times 10^{-7} + 1/3 \times 5.2 \times 10^{-24} \\
+  & = & 0.00318
+\end{aligned}$$
+
+Plug these values into
+Equation [\[eq-org-pcv\]](#eq-org-pcv){reference-type="ref"
+reference="eq-org-pcv"}, we can compute the probability of data instance
+$v=0.2$ belonging to each cluster for the *Expectation* step:
+
+$$\begin{aligned}
+  P(c_1|v=0.2)
+  & = & \frac{P(v=0.2|c_1) P(c_1)}{P(v=0.2)} \\
+  % & = & \frac{f(v|\mu_{c_1},\delta_{c_1}^2) P(c_1)}{\sum_{i=1}^{3} P(c_i) f(v|\mu_{c_i},\delta_{c_i}^2)} \\
+  & = & \frac{0.00954 \times 1/3}{0.00318} \\
+  & \approx & 1 \\
+  P(c_2|v=0.2) & = & 2.59 \times 10^{-5} \\
+  P(c_3|v=0.2) & = & 5.46 \times 10^{-22}
+\end{aligned}$$
+
+Apparently, data instance $v=0.2$ is much more likely to belong to the
+cluster $c_1$ (the red bell curve on the left) than to the other
+clusters, which are far away away as shown in
+Figure [1.7](#fig-org-em1){reference-type="ref"
+reference="fig-org-em1"}.
+
+Now that we have identified the membership probabilities for the first
+instance, we shall continue to do the same for all other data instances
+($N=15$ for the IRIS data) and conclude the *Expectation* step with all
+probabilistic membership \"assignment.\" For example, here are related
+probabilities for two more data instances in IRIS: $v=0.4$ ($2^{nd}$
+instance) and $v=2.3$ ($15^{th}$ instance).
+
+$$\begin{aligned}
+  P(c_1|v=0.4) & \approx & 1 \\
+  P(c_2|v=0.4) & = & 0.000177 \\
+  P(c_3|v=0.4) & = & 1.7 \times 10^{-19} \\
+  P(c_1|v=1.3) & = & 8.66 \times 10^{-6} \\
+  P(c_2|v=1.3) & = & 0.128 \\
+  P(c_3|v=1.3) & = & 0.872
+\end{aligned}$$
+
+<figure id="fig-org-em2">
+
+<figcaption>First expectation result. Color of a data instance indicates
+the cluster membership with the highest probability.</figcaption>
+</figure>
+
+Figure [1.8](#fig-org-em2){reference-type="ref" reference="fig-org-em2"}
+shows the color-coded result of the first *Expectation* step on the IRIS
+data. A data instance's color indicates the cluster with the highest
+probability -- that is, the bell curve that best \"covers\" the data
+instance.
+
+### Maximization
+
+The objective of clustering is to find clusters such that the overall
+probability of observed data instances is maximized. That is to maximize
+the joint probability for all data instances, which is the product of
+all $P(v|c)$ if we assume statistical independence:
+
+$$\begin{aligned}
+  \mathop{\mathrm{arg\,max}}_{\theta_c} \prod_v P(v|c)
+\end{aligned}$$
+
+where $\theta$ are parameters of the distribution models and, with the
+normal distribution assumption, are $\mu$ and $\delta^2$ of each cluster
+distribution. This is equivalent to maximizing the log-likelihood:
+
+$$\begin{aligned}
+    \log \prod_v P(v|c)
+    & = & \log \prod_v f(v|\mu_c,\delta_c^2) \\
+    & = & \sum_v \log f(v|\mu_c,\delta_c^2)
+\end{aligned}$$
+
+The parameters can be estimated by:
+
+$$\begin{aligned}
+  \hat{\mu_c} & = & \frac{\sum_v v P(c|v)}{\sum_v P(c|v)} \\
+  \hat{\delta_c^2} & = & \frac{\sum_v (v - \hat{\mu_c})^2 P(c|v)}{\sum_v P(c|v)}
+\end{aligned}$$
+
+where $v$ is each one of $N$ data instances ($N=15$ in the small IRIS
+data subset here) and $P(c|v)$ is the probability that $v$ is associated
+with cluster $c$.
+
+It turns out that there is not a simple direct solution to maximizing
+the log-likelihood. However, if we look at the result from the
+*Expectation* step, there is a way in which we can maximize this by
+following the data and improving the *representative* of the cluster
+models, similar to how k-means iterates.
+
+Now that data instances have been assigned, probabilistically, to each
+cluster, the original model for each cluster is no longer representative
+of data associated with them. In
+Figure [1.8](#fig-org-em2){reference-type="ref"
+reference="fig-org-em2"}, for example, the first (red) bell curve is not
+centered on the data instances most highly associated with it.
+
+This is similar to k-means where the original centroid does no longer
+represent the center of member instances. And the models -- with
+parameters mean $\mu_c$ and variance $\delta_c^2$ for each cluster $c$
+-- will have to be recomputed. This re-computation of parameters, in the
+context of model-based clustering, is the *Maximization* step.
+
+Now back to the IRIS data. With the assigned posterior probabilities
+$P(c|v)$, we can now update the mean and variance for each cluster
+model. For cluster $c_1$ and $N=15$ data instances, we have:
+
+$$\begin{aligned}
+  \hat{\mu_1}
+  & = & \frac{\sum_v v P(c_1|v)}{\sum_v P(c_1|v)} \\
+  % & = & \frac{v_1\times P(c_1|v_1) + v_2\times P(c_1|v_2) + .. + v_{15}\times P(c_1|v_{15})}{P(c_1|v_1) + P(c_1|v_2) + .. + P(c_1|v_{15})} \\
+  & = & \frac{0.2\times1 + 0.4\times1 + .. + 1.3\times8.66 \times 10^{-5}}{1+1+..+8.66 \times 10^{-5}} \\
+  & = & 0.522 \\
+  \hat{\delta_1}
+  & = & \sqrt{ \frac{\sum_v (v - \hat{\mu_1})^2 P(c_1|v)}{\sum_v P(c_1|v)} }\\
+  & = & \sqrt{ \frac{(0.2-0.522)^2\times1 + (0.4-0.522)^2\times1 + .. + (1.3-0.522)^2\times8.66 \times 10^{-5}}{1+1+..+8.66 \times 10^{-5}} }\\
+  & = & 0.433
+\end{aligned}$$
+
+Likewise, we can update models for cluster $c_2$ with $\hat{\mu_2}=1.67$
+and $\hat{\delta_2}=0.332$, and cluster $c_3$ with $\hat{\mu_3}=2.34$
+and $\hat{\delta_3}=0.116$.
+
+<figure id="fig-org-em3">
+
+<figcaption>First Maximization result. A bell curve with with a shaded
+area (<span
+class="math inline">±<em>d</em><em>e</em><em>l</em><em>t</em><em>a</em></span>)
+is the new model with updated parameters for the cluster.</figcaption>
+</figure>
+
+Figure [1.9](#fig-org-em3){reference-type="ref" reference="fig-org-em3"}
+shows the result of this *Maximization* step. The models (normal curves)
+have moved closer to their more highly associated data instances. This
+is very similar to re-computation of centroids -- thus causing them to
+move -- in k-means clustering. With Maximization, more than one
+parameters are needed to specify a model. For normal distribution
+models, both mean $\mu$ and variance $\delta^2$ are to be updated. If
+one assumes a different probability distribution, then a different set
+of parameters will be maximized.
+
+### Iterations of Expection-Maximization
+
+Now that the cluster models have changed, we need to go back to the
+*Expectation* step and re-compute the posterior probabilities $P(c|v)$.
+Once the probabilities are changed, the model parameters will be updated
+again in the next *Maximization* step. The process of
+Expectation-Maximization will repeat itself until the models no longer
+changed, where the overall probability of models generating observed
+data instances has been maximized.
+
+Figure [1.10](#fig-org-em4){reference-type="ref"
+reference="fig-org-em4"} shows further iterations of EM on the IRIS
+data. Visually, the cluster models (curves) move increasingly closer to
+the data instances they represent and, in the end, get well aligned with
+them.
+
+<figure id="fig-org-em4">
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;"><span
+class="math inline">2<sup><em>n</em><em>d</em></sup></span>
+Iteration</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span
+class="math inline">3<sup><em>r</em><em>d</em></sup></span>
+Iteration</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span
+class="math inline">4<sup><em>t</em><em>h</em></sup></span>
+Iteration</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<figcaption>Iterations of Expectation and Maximization. Note that there
+are <span class="math inline">5</span> data instances in each iris
+species. But because their petal width values overlap on the only
+dimension, there appear to be <span class="math inline">3</span> or
+<span class="math inline">4</span> instances in each cluster, which, in
+fact, has <span class="math inline">5</span>. </figcaption>
+</figure>
+
+### EM with Higher Dimensionality
+
+Our discussion has been focused on the it Expectation-Maximization
+method on one dimension with the univariate normal distribution. In
+real-world applications, however, there is hardly any clustering problem
+that can be resolved with this simplified version.
+
+Normally EM has to take into account multiple, if not thousdands or even
+millions of, variables. Instead of univariate distributions, one will
+have to rely on multivariate distributions. For example, rather than
+using univariate normal distributions with means and variances, one will
+instead rely on co-variances in a mixture Gaussian model.
+
+In addition, the normal (Gaussian) distribution is only one of many
+distribution functions that can be used with EM clustering. In text
+clustering application, for example, it is very common to use poisson
+distributions. Regardless of the assumed distribution, the idea and
+process of expectation and maximization for the optimization of
+log-likelihood of observed data remain the same.

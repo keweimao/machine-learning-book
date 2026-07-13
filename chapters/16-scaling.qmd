@@ -1,0 +1,19 @@
+# Scaling, Deployment, and Responsible Use {#ch-scaling}
+
+<!-- DEVELOPMENT OUTLINE: original chapter contained only its title. -->
+
+## Time, Space, Data, and Compute
+
+## Batch, Streaming, and Distributed Workflows
+
+## From Experiment to Reproducible Pipeline
+
+## Deployment, Monitoring, and Drift
+
+## Privacy, Security, and Misuse
+
+## Energy, Sustainability, and Proportionality
+
+## Responsible Decisions and Human Oversight
+
+## Summary and Exercises

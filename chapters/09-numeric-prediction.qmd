@@ -1,0 +1,17 @@
+# Numeric Prediction and Regression {#ch-regression}
+
+<!-- DEVELOPMENT OUTLINE: original chapter contained only its title. -->
+
+## Prediction with Continuous Outcomes
+
+## Linear Regression
+
+## Loss Functions and Fitting
+
+## Regularization
+
+## Nonlinear Regression
+
+## Uncertainty and Diagnostics
+
+## Summary, Exercises, and Lab

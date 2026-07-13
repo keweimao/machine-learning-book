@@ -1,0 +1,17 @@
+# Graphs and Structural Analysis {#ch-graphs}
+
+<!-- DEVELOPMENT OUTLINE: original chapter contained only its title. -->
+
+## Graphs as Data
+
+## Paths, Connectivity, and Traversal
+
+## Centrality and Influence
+
+## Communities and Structural Roles
+
+## Link Prediction
+
+## From Graph Features to Graph Learning
+
+## Summary, Exercises, and Lab

@@ -1,0 +1,29 @@
+# Generalization, Model Selection, and Fit {#ch-generalization}
+
+::: epigraph
+Torture the data, and it will confess to anything.
+
+*Ronald Coase*
+:::
+
+<!-- DEVELOPMENT OUTLINE: original chapter contained only its title and epigraph. -->
+
+## Training Performance and Generalization
+
+## Bias, Variance, and Model Capacity
+
+## Validation and Cross-Validation
+
+## Regularization
+
+## Learning Curves and Diagnostics
+
+## Hyperparameter Selection Without Leakage
+
+## Summary, Exercises, and Lab
+
+Under- and over-fitting\...
+
+Bias, variance, and error\...
+
+Combined, ensemble learning\...

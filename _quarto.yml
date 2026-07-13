@@ -1,0 +1,60 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Machine Learning: The Quest for Information and Meaning"
+  author: "Weimao Ke"
+  description: "An introductory journey from data and information to machine learning, language, search, and evaluation."
+  repo-url: https://github.com/keweimao/machine-learning-book
+  repo-actions: [edit, issue]
+  downloads: [pdf, epub]
+  search: true
+  chapters:
+    - index.qmd
+    - part: "Data, Information, and Mathematical Foundations"
+      chapters:
+        - chapters/01-data-to-meaning.qmd
+        - chapters/02-data-representations.qmd
+        - chapters/03-vectors-matrices-geometry.qmd
+        - chapters/04-probability-statistics.qmd
+        - chapters/05-information-entropy.qmd
+        - chapters/06-data-preparation.qmd
+    - part: "Learning from Data"
+      chapters:
+        - chapters/07-classification.qmd
+        - chapters/08-multiclass.qmd
+        - chapters/09-numeric-prediction.qmd
+        - chapters/10-clustering.qmd
+    - part: "Language, Retrieval, and Structure"
+      chapters:
+        - chapters/11-text-language.qmd
+        - chapters/12-search-retrieval.qmd
+        - chapters/13-structural-analysis.qmd
+    - part: "Trustworthy and Practical Machine Learning"
+      chapters:
+        - chapters/14-evaluation.qmd
+        - chapters/15-generalization.qmd
+        - chapters/16-scaling.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    code-fold: show
+    code-copy: true
+    toc-depth: 3
+  pdf:
+    documentclass: scrbook
+    papersize: letter
+    keep-tex: true
+    toc: true
+    lof: true
+    lot: true
+  epub: default
+
+execute:
+  freeze: auto
+  warning: false

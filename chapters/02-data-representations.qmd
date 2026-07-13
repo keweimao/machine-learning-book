@@ -1,0 +1,319 @@
+# Data Types and Representations
+
+As we employ computers to crunch the data to find meaning and insight,
+we need to understand the basic form of data, their basic types and
+implications.
+
+## Datum
+
+### Numerical
+
+To compute is to reckon with numbers. Ultimately, all data should be
+provided as or transformed into numbers: real numbers, integers or
+decimal values.
+
+Consider the mileage of a car $A$, such as $96$ thousand miles or, if
+one demands to be more precise, $96,123.5$ miles. Compared to another
+car $B$ at $64$ thousand miles, one can reasonably make the following
+statements:
+
+1.  Car $A$ has a greater mileage than $B$ has;
+
+2.  Car $A$ has $32$ thousand more miles than $B$ has;
+
+3.  The mileage of car $B$ is $\frac{2}{3}$ of that of $A$.
+
+The $1^{st}$ statement can be made because all numbers can be compared,
+e.g. $96>64$. However, the $2^{nd}$ and $3^{rd}$ statements make sense
+because of special characteristics of the *mileage* variable here.
+
+In fact, we can make the $3^{rd}$ statement because mileage is a
+*ratio-scaled* variable, for which the zero point is well defined. In
+this example, a $0$ mileage corresponds to the fact that the car has not
+been driven at all since its production, and is therefore measured
+absolutely zero. On such a ratio-scaled variable, many mathematical
+operations such as subtraction, addition, and division can be performed.
+
+Conversely, a temperature variable in Fahrenheit or Celsius is not
+ratio-scaled, because a $0$ value in either $^{\circ}F$ or $^{\circ}C$
+is no indication of \"zero temperature\" or no heat at all. In this
+case, we cannot perform addition on its values to get a \"total
+temperature\" or division to obtain a ratio. Nonetheless, related
+temperature values are *interval-scaled* because they are measured in
+equal units and a distance (difference) between two values is
+meaningful.
+
+It is reasonable to say that $100^{\circ}F$ is $40$ degrees higher than
+$60^{\circ}F$. As an interval-scaled variable, one can perform
+subtraction to compute the distance (interval). The sum (addition),
+however, does not have a clear meaning (except as an intermediary step
+to calculate the average).
+
+There are also variables for which the unit of measurement is not
+necessarily equal or consistent. On a likert scale, for example, rating
+numbers from 1 to 5 may be associated with levels of customer
+satisfaction, e.g. extremely unsatisfied to extremely satisfied.
+Arguably, the difference between 1 (extremely unsatisfied) and 2
+(unsatisfied) may not be the same as that between 3 (moderately
+satisfied) and 4 (satisfied). In this case, one can compare the
+satisfaction values and rank them. But it is not as meaningful -- at
+least not consistent -- to compute and compare their intervals
+(differences).
+
+Such a variable is considered *ordinal* as it can be arranged in a
+meaningful order but lacks an equal unit of measurement to be
+interval-scaled. While we can compare its values, one should refrain
+from performing subtraction on them. Neither is addition meaningful with
+an ordinal variable.
+
+### Categorical
+
+Ordinal variables are in fact categorical. The values are discrete
+numbers to be compared and ranked; but other than that, no mathematical
+operations can be performed on them. In fact, they do not have to be
+numbers. For example, an *Education* variable with values such as *high
+school*, *college*, and *graduate* can be compared and ranked. These are
+named values with an order.
+
+A categorical variable can have named values (labels or categories)
+without an order. We refer to such variables as *nominal*, of which
+values are from a set of *names* or *labels*. The very basic form of a
+nominal variable is a binary one, where there are two possible named
+values: true or false, yes or no, 0 or 1, etc.
+
+For many variables, these labels are discrete, mutually exclusive
+choices without an explicit relation. For example, a *State* variable
+can have values such as *PA* and *NY*, and there is no relation between
+*PA* and *NY*. One cannot establish such relation as $PA>NY$ or $NY>PA$
+unless another variable such as state population is considered. This
+type of variable is purely categorical, not ordinal. With a categorical
+variable, we can only use the equality operator to determine whether two
+values are equal or not, e.g. is *PA* the same or different from *NY*.
+
+## Data
+
+### Sets
+
+We have discussed categorical variables with values from a set of
+labels. A set is a collection of member objects or elements. The
+elements can be any unique entities, symbols, names, and/or numbers. The
+number of elements in a set is referred to as its *cardinality*.
+
+Consider the skill sets of two data science teams A and B:
+
+$$\begin{aligned}
+A & = & \{AI, Math, Python, SQL\} \\
+B & = & \{InfoVis, Math, R, SQL, Stats\}
+\end{aligned}$$
+
+It is easy to count the number of skills in each team and identify their
+cardinalities: $|A|=4$ and $|B|=5$.
+
+::: marginfigure
+:::
+
+The common skill set of the two teams is their *intersection*:
+
+$$\begin{aligned}
+A \cap B & = & \{Math, SQL\} \\
+|A \cap B| & = & 2
+\end{aligned}$$
+
+which is illustrated by the shaded area in
+Figure [\[fig-num-overlap\]](#fig-num-overlap){reference-type="ref"
+reference="fig-num-overlap"}. The interaction operation is
+communicative, i.e. $A \cap B=B \cap A$, because the order does not
+matter.
+
+Now, if we are to put the two team together on one project, the overall
+skill set of the merged project team will be the *union* of the two:
+
+$$\begin{aligned}
+A \cup B
+& = & \{AI, InfoVis, Math, Python, R, SQL, Stats\}
+\end{aligned}$$
+
+::: marginfigure
+:::
+
+In this case, the cardinality of the union is:
+
+$$\begin{aligned}
+|A \cup B|
+& = & |A| + |B| - |A \cap B| \\
+& = & 4 + 5 - 2 \\
+& = & 7
+\end{aligned}$$
+
+Because a set contains only *unique* elements, those in the intersection
+$A \cap B$ will have duplicates when two sets are combined and should be
+removed with $- |A \cap B|$.
+
+The union operation is also communicative, i.e. $A \cup B = B \cup A$,
+because it does not matter whether we add B to A or A to B. In addition,
+both the union and intersection operations have the associative
+property, that is:
+
+$$\begin{aligned}
+(A \cup B) \cup C & = & A \cup (B \cup C) \\
+(A \cap B) \cap C & = & A \cap (B \cap C)
+\end{aligned}$$
+
+for any sets A, B, and C. As illustrated in Figure
+[\[fig-num-union3\]](#fig-num-union3){reference-type="ref"
+reference="fig-num-union3"}, we will obtain the same union set (the
+shaded circles) regardless of which two are combined first. The same is
+true with intersection, as illustrated in
+Figure [\[fig-num-overlap3\]](#fig-num-overlap3){reference-type="ref"
+reference="fig-num-overlap3"}.
+
+::: marginfigure
+:::
+
+::: marginfigure
+:::
+
+The union ($\cup$) operation is similar to *addition* ($+$), whereas the
+intersection $\cap$ operation can be likened to *multiplication*
+($\times$). For demonstration, let's look at a couple of special cases.
+Let $0$ denote an empty set, with no elements at all; $1$ be the the
+universal set, containing all elements in the universe.
+
+For a regular set $A$, we can show the similarity between union ($\cup$)
+and addition ($+$):
+
+$$\begin{aligned}
+A \cup 0  & = & A + 0 \\
+          & = & A \\
+1 \cup 0  & = & 1 + 0 \\
+          & = & 1 \\
+1 \cup A  & = & 1 + A \\
+          & \approx & 1
+\end{aligned}$$
+
+The union of a set A and an empty set $0$ is the A itself: $A \cup 0=A$.
+The same is true about adding an empty set $0$ to the universal set $1$.
+$1 \cup A$ is not exactly $1 + A$, but they are roughly the same as long
+as the universal set $1$ is far greater than A.
+
+Likewise, intersection ($\cap$) and multiplication ($\times$) operations
+are similar in that:
+
+$$\begin{aligned}
+A \cap 0  & = & A \times 0 \\
+          & = & 0 \\
+1 \cap 0  & = & 1 \times 0 \\
+          & = & 0 \\
+A \cap 1  & = & A \times 1 \\
+          & = & A
+\end{aligned}$$
+
+::: marginfigure
+:::
+
+The intersection between any set (A or 1) and an empty set 0 is always
+an empty set: $A \cap 0 = 0$ and $1 \cap 0=0$. The intersection between
+a set A and the universal set $1$ is A, because the universal includes A
+as a subset. In fact, for any set A that is a subset of B (see
+Figure [\[fig-num-sub\]](#fig-num-sub){reference-type="ref"
+reference="fig-num-sub"}), their intersection is A and their union is B:
+
+$$\begin{aligned}
+A \cap B & \stackrel{\forall A \in B}{=} & A \\
+A \cup B & \stackrel{\forall A \in B}{=} & B
+\end{aligned}$$
+
+Besides union and intersection operators that can be likened to addition
+and multiplication, there is also the subtraction operator on sets. For
+two sets $A$ and $B$, $A-B$ computes the difference between A and B, or
+the elements of A that do not appear in B. This is essentially the
+removal of their intersection from set A, as shown in
+Figure [\[fig-num-minus\]](#fig-num-minus){reference-type="ref"
+reference="fig-num-minus"}.
+
+::: marginfigure
+:::
+
+The cardinality of the subtracted set can be computed by:
+
+$$\begin{aligned}
+  |A-B| & = & |A| - |A \cap B|
+\end{aligned}$$
+
+If A and B have no intersection, $A-B$ is the same as A. If A is a
+subset of B, then the result is an empty set. Subtraction is not
+communicative, as $A-B \ne B-A$.
+
+### Vectors
+
+In geometrical terms, a *vector* is an entity having both magnitude
+(length) and direction, in a vector space with multiple dimensions.
+
+::: marginfigure
+:::
+
+Figure [\[fig-num-vectors\]](#fig-num-vectors){reference-type="ref"
+reference="fig-num-vectors"} shows data $v_1$ and $v_2$ in a space with
+$X$ and $Y$ dimensions. In the vector space, each data point is a vector
+from the origin $(0,0)$, as shown as directed lines in
+Figure [\[fig-num-vectors\]](#fig-num-vectors){reference-type="ref"
+reference="fig-num-vectors"}, and can be represented by its dimensional
+values:
+
+$$\begin{aligned}
+v_1 & = & (2,3) \\
+v_2 & = & (3,1)
+\end{aligned}$$
+
+So in this representation, a vector is simply a list of its coordinate
+values, each of which represents a feature dimension (variable). The
+greater the number of dimensions, the longer the list of the values.
+
+A *set* can be represented by a vector. For example, suppose $\{$AI,
+InfoVis, Math, Python, R, SQL, Stats$\}$ is a comprehensive set of
+skills for data science teams. Given the A and B teams and their skills
+we discussed earlier, we can have the following tabulated binary
+representation:
+
+::: table*
+  Team    AI   InfoVis   Math   Python   R   SQL   Stats
+  ------ ---- --------- ------ -------- --- ----- -------
+  A       1       0       1       1      0    1      0
+  B       0       1       1       0      1    1      1
+:::
+
+where $0$ represents absence of a skill and $1$ denotes presence of the
+skill. By populating the 0 and 1 values in a fixed order of the skills,
+we obtain the vector representations for teams A and B identical to
+Table [\[tab-num-teams\]](#tab-num-teams){reference-type="ref"
+reference="tab-num-teams"}:
+
+$$\begin{aligned}
+  A^T     & = & \begin{pmatrix} 1 & 0 & 1 & 1 & 0 & 1 & 0 \end{pmatrix} \\
+  B^T     & = & \begin{pmatrix} 0 & 1 & 1 & 0 & 1 & 1 & 1 \end{pmatrix}
+\end{aligned}$$
+
+where the vector space has $7$ dimensions, which correspond to seven
+skills in the comprehensive set, to represent instances of data science
+teams. These vectors are *row vectors* as they represent data rows.
+
+Note we use superscripted $A^T$ and $B^T$, where $T$ is the *transpose*
+operator, because of the convention of using column vectors by default.
+By transposing the column vectors A and B -- with a $90^\circ$
+counterclockwise rotation -- we obtain the row vectors $A^T$ and $B^T$:
+
+$$\begin{aligned}
+\begin{matrix}
+  A^T     & = & \begin{pmatrix} 1 \\ 0 \\ 1 \\ 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}^T
+          & = & \begin{pmatrix} 1 & 0 & 1 & 1 & 0 & 1 & 0 \end{pmatrix}
+  \\
+  \\
+  B^T     & = & \begin{pmatrix} 0 \\ 1 \\ 1 \\ 0 \\ 1 \\ 1 \\ 1 \end{pmatrix}^T
+          & = & \begin{pmatrix} 0 & 1 & 1 & 0 & 1 & 1 & 1 \end{pmatrix}
+\end{matrix}
+\end{aligned}$$
+
+Here, each column vector is a column with $7$ rows of *real* numbers.
+Hence, $A \in \mathbb{R}^m$ and $B \in \mathbb{R}^m$, where $m=7$. By transposing the
+column vectors, we obtain row vectors, each of which has $m$ columns of
+*real* numbers.

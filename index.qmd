@@ -1,0 +1,59 @@
+# Preface {.unnumbered}
+
+Numerous valuable reference materials exist on the topics of data mining
+and machine learning, making it relatively easy for researchers in the
+field to locate relevant articles, online tutorials, and specialized
+reference books on particular algorithms and methods.
+
+Despite this, as an educator, I have faced challenges in finding
+appropriate textbooks for my students enrolled in information retrieval,
+data mining, and machine learning courses. A significant number of these
+textbooks are excessively technical or rapidly delve into mathematical
+equations, making them unsuitable as introductory texts. Consequently,
+students---both undergraduate and graduate---often become overwhelmed by
+the intricacies of technicality and mathematics, causing them to lose
+sight of the overarching concepts and ideas.
+
+I have long desired to create a straightforward book for my students,
+one that maintains a balance between overarching concepts and essential
+technical specifics; a book that is both technically nuanced and easily
+accessible.
+
+This book is not intended to serve as a reference guide, as there are
+already numerous resources available. Instead, it aims to rigorously
+introduce related subjects with the necessary details, sparking
+students' interest and encouraging them to delve deeper. The
+presentation will guide them through the field's landscape, helping them
+understand particular aspects within context.
+
+My aspiration is for this book to foster imagination and critical
+thinking while showcasing the state of the art. As educators, our role
+goes beyond transmitting knowledge; we must also prepare future
+researchers and practitioners for innovation. I endeavor to discuss
+academic topics within the context of real-world applications while
+valuing thought experiments involving questions and contemplation. This
+approach has been appreciated by my students, and I frequently employ it
+in the book to convey crucial ideas or thought processes.
+
+The book's organization will be driven by significant challenges in the
+search for pertinent information and methods of addressing data using
+computational techniques. Beginning with fundamental questions and their
+(competing) solutions, the book will progressively delve into related
+issues, removing certain assumptions and considering additional factors
+to prompt the reader to seek alternatives and innovative approaches.
+
+Ultimately, each chapter will explore the necessary technical details of
+the state-of-the-art, linking them back to the initially raised issues
+and discussing what has been addressed or not. Readers will be left with
+critical questions and directions for further study and research.
+
+I hope that reading this book will help the audience gain insights into
+developing big data solutions for today and the future. On a personal
+level, I anticipate that it will aid my students in understanding,
+questioning, thinking, and innovating within the dynamic field of data
+science and engineering.
+
+::: flushright
+Weimao Ke\
+Philadelphia, 2023
+:::

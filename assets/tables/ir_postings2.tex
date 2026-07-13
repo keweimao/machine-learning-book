@@ -1,0 +1,21 @@
+% !TEX root = ../main.tex
+\begin{tikzpicture}
+    \matrix (m) [
+        matrix of nodes,
+        nodes={align=left, draw, minimum height=2em, anchor=center},
+        row sep=2ex
+    ] {
+        \\
+         \node [minimum width=7em] {\small Declaration};
+         & \node [draw=none] {$\longrightarrow$};
+         & \node [double,blue] {2};
+         & \node [draw=none] {$\rightarrow$};
+         & {?}
+         \\
+         \node [minimum width=7em] {\small Independence};
+         & \node [draw=none] {$\longrightarrow$};
+         & {1}
+         & \node [double,blue] {2};
+         \\ 
+    };
+\end{tikzpicture}
