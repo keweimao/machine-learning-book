@@ -64,7 +64,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -482,9 +482,16 @@ window.Quarto = {
   &amp; = &amp; \frac{2 \cdot Precision \cdot Recall}{Precision + Recall}
 \end{aligned}\]</span></p>
 <p>With <span class="math inline">\(Precision=1\)</span> and <span class="math inline">\(Recall=0\)</span> in the above example, the harmonic mean is <span class="math inline">\(F_1=0\)</span> – here, the one zero score (recall in this case) completely dominates and the average suffers.</p>
-<p>In applications where a model can be adjusted or tuned, we can evaluate the model based on more than one pairs of precision and recall scores. A common practice is to plot the precision-recall curve. Figure&nbsp;<a href="#fig-eval-pr_curve" data-reference-type="ref" data-reference="fig-eval-pr_curve">[fig-eval-pr_curve]</a> shows precision-recall curves of two methods, where method 1 appears to perform better as its curve is closer to the top-right (higher precision and recall).</p>
-<div class="marginfigure">
-
+<p>In applications where a model can be adjusted or tuned, we can evaluate the model based on more than one pairs of precision and recall scores. A common practice is to plot the precision-recall curve. <a href="#fig-eval-pr_curve" class="quarto-xref">Figure&nbsp;<span>14.1</span></a> shows precision-recall curves of two methods, where method 1 appears to perform better as its curve is closer to the top-right (higher precision and recall).</p>
+<div id="fig-eval-pr_curve" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Precision-recall curve">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eval-pr_curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter14/fig-eval-pr-curve.svg" class="img-fluid figure-img" style="width:70.0%" alt="Precision-recall curve">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eval-pr_curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.1: Precision-recall curve
+</figcaption>
+</figure>
 </div>
 </section>
 <section id="sensitivity-and-specificity" class="level2" data-number="14.3">
@@ -498,16 +505,23 @@ window.Quarto = {
 <p>Sensitivity and specificity are concepts relative to the class in question. Sensitivity for the <em>fraud</em> class is specificity for the <em>non-fraud</em> class; and vise versa.</p>
 <p>The false negative rate (FNR) is complementary to specificity or the true negative rate (TNR), i.e.&nbsp;<span class="math inline">\(FNR=1 - TNR\)</span>, and is often referred to as fall-out or <em>probability of false alarm</em>. Similar to precision vs. recall, sensitivity and fall-out (i.e.&nbsp;1 - specificity) are often plotted to produce an <em>ROC</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> curve.</p>
 <p>ROC analysis has been widely used and well studied for model performance assessment in many fields including defense and medicine. It not only enables the evaluation of model effectiveness in terms of true positive and true negative rates, but can also help identify best practice with cost constraints.</p>
-<div class="marginfigure">
-
+<div id="fig-eval-roc" class="quarto-float quarto-figure quarto-figure-center anchored" alt="ROC curve and area under curve (AUC)">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eval-roc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter14/fig-eval-roc.svg" class="img-fluid figure-img" style="width:70.0%" alt="ROC curve and area under curve (AUC)">
 </div>
-<p>Figure&nbsp;<a href="#fig-eval-roc" data-reference-type="ref" data-reference="fig-eval-roc">[fig-eval-roc]</a> illustrates a plot of an ROC curve, where the diagonal line (dashed) defines the acceptable performance. To understand what the diagonal line means, imagine we create a random model that takes a 50-50 guess during classification. As a result of this random guessing, there will be an equal split between the predicted positives <span class="math inline">\(\hat{\oplus}\)</span> and predicted negatives <span class="math inline">\(\hat{\ominus}\)</span>. Hence, column values of the same row in Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a> will be identical:</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eval-roc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.2: ROC curve and area under curve (AUC)
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-eval-roc" class="quarto-xref">Figure&nbsp;<span>14.2</span></a> illustrates a plot of an ROC curve, where the diagonal line (dashed) defines the acceptable performance. To understand what the diagonal line means, imagine we create a random model that takes a 50-50 guess during classification. As a result of this random guessing, there will be an equal split between the predicted positives <span class="math inline">\(\hat{\oplus}\)</span> and predicted negatives <span class="math inline">\(\hat{\ominus}\)</span>. Hence, column values of the same row in Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a> will be identical:</p>
 <p><span class="math display">\[\begin{aligned}
   N_{\hat{\oplus}} &amp; = &amp; N_{\hat{\ominus}} \\
   TP &amp; = &amp; FN \\
   FP &amp; = &amp; TN
 \end{aligned}\]</span></p>
-<p>where <span class="math inline">\(N_{\hat{\oplus}}\)</span> and <span class="math inline">\(N_{\hat{\ominus}}\)</span> are the numbers of predicted positives and negatives respectively. It follows that <span class="math inline">\(TPR = FNR\)</span>, i.e.&nbsp;<span class="math inline">\(Sensitivity = 1 - Specificity\)</span> or <span class="math inline">\(Sensitivity + Specificity=1\)</span>. This equation defines the diagonal line in Figure&nbsp;<a href="#fig-eval-roc" data-reference-type="ref" data-reference="fig-eval-roc">[fig-eval-roc]</a> and is the result of random guessing.</p>
+<p>where <span class="math inline">\(N_{\hat{\oplus}}\)</span> and <span class="math inline">\(N_{\hat{\ominus}}\)</span> are the numbers of predicted positives and negatives respectively. It follows that <span class="math inline">\(TPR = FNR\)</span>, i.e.&nbsp;<span class="math inline">\(Sensitivity = 1 - Specificity\)</span> or <span class="math inline">\(Sensitivity + Specificity=1\)</span>. This equation defines the diagonal line in <a href="#fig-eval-roc" class="quarto-xref">Figure&nbsp;<span>14.2</span></a> and is the result of random guessing.</p>
 <p>Below the diagonal line <span class="math inline">\(Sensitivity+Specificity=1\)</span>, the model performs worse than random and is undesirable. The farther the ROC curve is above the diagonal line, the better the performance with a greater area under curve. Therefore, the <em>area under curve</em> (AUC), i.e.&nbsp;the shaded area in the plot, is a single score that can be computed to measure the overall performance in terms of ROC.</p>
 </section>
 <section id="kappa-and-chance-agreement" class="level2" data-number="14.4">
@@ -643,11 +657,18 @@ RSE &amp; = &amp; \frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{\sum_{i=1}^{N} (\bar
   &amp; = &amp; \frac{cov(\hat{v},v)}{\hat{\sigma}\sigma} \\
   &amp; = &amp; \frac{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})(v_i - \mu)}{\sqrt{\sum_{i=1}^{N} (v_i - \mu)^2} \sqrt{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})^2}}
 \end{aligned}\]</span></p>
-<p>Pearson correlation measures the similarity in their variances from means and is equivalent to cosine of <span class="math inline">\(v\)</span> and <span class="math inline">\(\hat{v}\)</span> as vectors from their means. Figure&nbsp;<a href="#fig-eval-cor" data-reference-type="ref" data-reference="fig-eval-cor">[fig-eval-cor]</a> illustrates the connection using a 2-dimensional space. To simplify the discussion, suppose there are only <span class="math inline">\(N=2\)</span> instances on which the actual outcomes are <span class="math inline">\((v_1, v_2)\)</span> and predicted values are <span class="math inline">\((\hat{v_1},\hat{v_2})\)</span>, with means <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\hat{\mu}\)</span> respectively.</p>
-<div class="marginfigure">
-
+<p>Pearson correlation measures the similarity in their variances from means and is equivalent to cosine of <span class="math inline">\(v\)</span> and <span class="math inline">\(\hat{v}\)</span> as vectors from their means. <a href="#fig-eval-cor" class="quarto-xref">Figure&nbsp;<span>14.3</span></a> illustrates the connection using a 2-dimensional space. To simplify the discussion, suppose there are only <span class="math inline">\(N=2\)</span> instances on which the actual outcomes are <span class="math inline">\((v_1, v_2)\)</span> and predicted values are <span class="math inline">\((\hat{v_1},\hat{v_2})\)</span>, with means <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\hat{\mu}\)</span> respectively.</p>
+<div id="fig-eval-cor" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Pearson correlation as cosine of vectors originated from means, with N=2 for a 2-dimensional visualization">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eval-cor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter14/fig-eval-cor.svg" class="img-fluid figure-img" style="width:70.0%" alt="Pearson correlation as cosine of vectors originated from means, with N=2 for a 2-dimensional visualization">
 </div>
-<p>As shown in Figure&nbsp;<a href="#fig-eval-cor" data-reference-type="ref" data-reference="fig-eval-cor">[fig-eval-cor]</a>, the actual values can be regarded as a vector pointing in the <span class="math inline">\(\vec{v} = (v_1-\mu, v_2-\mu)\)</span> direction, whereas the predicted is represented by the vector <span class="math inline">\(\vec{\hat{v}}=(\hat{v_1}-\hat{\mu}, \hat{v_2}-\hat{\mu})\)</span>. In this representation, Pearson correlation is identical to the cosine of the two vectors, i.e.&nbsp;<span class="math inline">\(cov(\hat{v}, v) = cosine(\vec{\hat{v}},\vec{v})\)</span>. Chapter&nbsp; has more on the cosine similarity.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eval-cor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.3: Pearson correlation as cosine of vectors originated from means, with <span class="math inline">\(N=2\)</span> for a 2-dimensional visualization
+</figcaption>
+</figure>
+</div>
+<p>As shown in <a href="#fig-eval-cor" class="quarto-xref">Figure&nbsp;<span>14.3</span></a>, the actual values can be regarded as a vector pointing in the <span class="math inline">\(\vec{v} = (v_1-\mu, v_2-\mu)\)</span> direction, whereas the predicted is represented by the vector <span class="math inline">\(\vec{\hat{v}}=(\hat{v_1}-\hat{\mu}, \hat{v_2}-\hat{\mu})\)</span>. In this representation, Pearson correlation is identical to the cosine of the two vectors, i.e.&nbsp;<span class="math inline">\(cov(\hat{v}, v) = cosine(\vec{\hat{v}},\vec{v})\)</span>. Chapter&nbsp; has more on the cosine similarity.</p>
 <p>Because of this connection, Pearson correlation shares important characteristics with cosine. It reaches its maximum value of <span class="math inline">\(1\)</span> when errors from their mean, i.e.&nbsp;<span class="math inline">\(\hat{v_i} - \hat{\mu}\)</span> vs.&nbsp;<span class="math inline">\(v_i - \mu\)</span> for all instances, are distributed identically (in the same vector direction) – they are perfectly correlated in this case. When the errors are distributed in absolutely <em>orthogonal</em> directions, the two are perfectly independent and has no correlation. When their errors distribute in the opposite direction, they are negatively correlated, with the minimum value of <span class="math inline">\(-1\)</span> indicating perfectly opposite.</p>
 </section>
 </section>

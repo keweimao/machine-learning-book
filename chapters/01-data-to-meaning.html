@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -434,107 +434,50 @@ window.Quarto = {
 </div>
 <p><span id="tab-data-raw2" data-label="tab-data-raw2"></span></p>
 <p>Now in Table&nbsp;<a href="#tab-data-raw2" data-reference-type="ref" data-reference="tab-data-raw2">1.2</a>, we are yet to find out what the data mean. There appear to be <span class="math inline">\(4\)</span> columns for each row we received. The <span class="math inline">\(4^{th}\)</span> column is binary, with <span class="math inline">\(0\)</span> vs.&nbsp;<span class="math inline">\(1\)</span> indicating a boolean answer for one way or the other. We suspect that values of the first <span class="math inline">\(3\)</span> columns might have something to do with the <span class="math inline">\(4^{th}\)</span>.</p>
-<p>When examining their relations, it is often helpful to use visualizations. We may start with a scatter plot for the <span class="math inline">\(4^{th}\)</span> column vs.&nbsp;each of the first <span class="math inline">\(3\)</span> columns, as shown in Figure&nbsp;<a href="#fig-data-plot1" data-reference-type="ref" data-reference="fig-data-plot1">1.1</a>.</p>
-<figure id="fig-data-plot1" data-latex-placement="h" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li><span class="math inline"><em>V</em><sub>4</sub></span> vs.&nbsp;<span class="math inline"><em>V</em><sub>1</sub></span>
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li><span class="math inline"><em>V</em><sub>4</sub></span> vs.&nbsp;<span class="math inline"><em>V</em><sub>2</sub></span>
-</li></ol></td>
-<td style="text-align: center;">
-<ol type="a">
-<li><span class="math inline"><em>V</em><sub>4</sub></span> vs.&nbsp;<span class="math inline"><em>V</em><sub>3</sub></span>
-</li></ol></td>
-</tr>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Scatter plots: <span class="math inline"><em>V</em><sub>4</sub></span> vs.&nbsp;<span class="math inline"><em>V</em><sub>1</sub></span>, <span class="math inline"><em>V</em><sub>2</sub></span>, <span class="math inline"><em>V</em><sub>3</sub></span>
+<p>When examining their relations, it is often helpful to use visualizations. We may start with a scatter plot for the <span class="math inline">\(4^{th}\)</span> column vs.&nbsp;each of the first <span class="math inline">\(3\)</span> columns, as shown in <a href="#fig-data-plot1" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>.</p>
+<div id="fig-data-plot1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three scatter plots comparing the binary fourth variable with each of the first three variables.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-plot1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter01/scatter-individual.svg" class="img-fluid figure-img" style="width:100.0%" alt="Three scatter plots comparing the binary fourth variable with each of the first three variables.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-plot1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Scatter plots: <span class="math inline">\(V_4\)</span> vs.&nbsp;<span class="math inline">\(V_1\)</span>, <span class="math inline">\(V_2\)</span>, and <span class="math inline">\(V_3\)</span>.
 </figcaption>
 </figure>
-
-
-
-<p>Now that the scatter plots hardly reveal any obvious relation, we may start to look at the interplay of multiple variables. We may ask, for example, "is the boolean value of the <span class="math inline">\(4^{th}\)</span> column in any way associated with the relation between the first two columns?" To answer this question, we may create a scatter plot of the <span class="math inline">\(1^{st}\)</span> and <span class="math inline">\(2^{nd}\)</span> columns while color-coding the <span class="math inline">\(4^{th}\)</span>. When we do the same for <span class="math inline">\(2^{nd}\)</span> vs.&nbsp;<span class="math inline">\(3^{rd}\)</span> and <span class="math inline">\(1^{st}\)</span> vs.&nbsp;<span class="math inline">\(3^{rd}\)</span> as well, we get Figure&nbsp;<a href="#fig-data-plot2" data-reference-type="ref" data-reference="fig-data-plot2">1.2</a>.</p>
-<figure id="fig-data-plot2" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li><span class="math inline"><em>V</em><sub>2</sub></span> vs.&nbsp;<span class="math inline"><em>V</em><sub>1</sub></span>
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li><span class="math inline"><em>V</em><sub>3</sub></span> vs.&nbsp;<span class="math inline"><em>V</em><sub>2</sub></span>
-</li></ol></td>
-<td style="text-align: center;">
-<ol type="a">
-<li><span class="math inline"><em>V</em><sub>1</sub></span> vs.&nbsp;<span class="math inline"><em>V</em><sub>3</sub></span>
-</li></ol></td>
-</tr>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Scatter plots with color-coded <span class="math inline"><em>V</em><sub>4</sub></span>. Mark <span class="math inline">∘</span> for <span class="math inline">0</span> and <span class="math inline">+</span> for <span class="math inline">1</span> values.
+</div>
+<p>Now that the scatter plots hardly reveal any obvious relation, we may start to look at the interplay of multiple variables. We may ask, for example, "is the boolean value of the <span class="math inline">\(4^{th}\)</span> column in any way associated with the relation between the first two columns?" To answer this question, we may create a scatter plot of the <span class="math inline">\(1^{st}\)</span> and <span class="math inline">\(2^{nd}\)</span> columns while color-coding the <span class="math inline">\(4^{th}\)</span>. When we do the same for <span class="math inline">\(2^{nd}\)</span> vs.&nbsp;<span class="math inline">\(3^{rd}\)</span> and <span class="math inline">\(1^{st}\)</span> vs.&nbsp;<span class="math inline">\(3^{rd}\)</span> as well, we get <a href="#fig-data-plot2" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>.</p>
+<div id="fig-data-plot2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three pairwise scatter plots. The middle panel clearly separates red circles below the diagonal from blue plus signs above it.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-plot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter01/scatter-pairs.svg" class="img-fluid figure-img" style="width:100.0%" alt="Three pairwise scatter plots. The middle panel clearly separates red circles below the diagonal from blue plus signs above it.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-plot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Pairwise scatter plots with the value of <span class="math inline">\(V_4\)</span> encoded by symbol and color. Red circles represent <span class="math inline">\(0\)</span>; blue plus signs represent <span class="math inline">\(1\)</span>.
 </figcaption>
 </figure>
-
-
-
-<p>It appears the data are nicely separated in terms of <span class="math inline">\(4^{th}\)</span> column values in Figure&nbsp;<a href="#fig-data-plot2" data-reference-type="ref" data-reference="fig-data-plot2">1.2</a> (b), showing the scatter plot of the <span class="math inline">\(3^{rd}\)</span> vs.&nbsp;<span class="math inline">\(2^{nd}\)</span> column. When the value of the <span class="math inline">\(3^{rd}\)</span> column is greater than the value of the <span class="math inline">\(2^{nd}\)</span>, it is <span class="math inline">\(1\)</span> in the <span class="math inline">\(4^{th}\)</span> column; otherwise, it gives <span class="math inline">\(0\)</span>. This can be written as:</p>
-<p><span class="math display">\[
+</div>
+<p>It appears the data are nicely separated in terms of <span class="math inline">\(4^{th}\)</span> column values in <a href="#fig-data-plot2" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> (b), showing the scatter plot of the <span class="math inline">\(3^{rd}\)</span> vs.&nbsp;<span class="math inline">\(2^{nd}\)</span> column. When the value of the <span class="math inline">\(3^{rd}\)</span> column is greater than the value of the <span class="math inline">\(2^{nd}\)</span>, it is <span class="math inline">\(1\)</span> in the <span class="math inline">\(4^{th}\)</span> column; otherwise, it gives <span class="math inline">\(0\)</span>. This can be written as:</p>
+<p><span id="eq-data-ne"><span class="math display">\[
 V_4 = \left\{
 \begin{array}{l l}
   1     &amp; if\ V_3 &gt; V_2 \\
   0     &amp; otherwise
 \end{array}
 \right.
-\]</span></p>
+\tag{1.1}\]</span></span></p>
 <p>This appears to be the pattern so far and can be further verified when we receive more data. Ultimately, if this is consistent with the underlying relation in the data – as far as we can tell from sufficient data we can receive – we can claim to have discovered a pattern or new "knowledge", which is essentially what we have learned in the process of analyzing the data.</p>
-<p>In the machine learning context, we refer to the result of learning, i.e.&nbsp;the new "knowledge", as the <em>concept</em>. Equation&nbsp;<a href="#eq-data-ne" data-reference-type="ref" data-reference="eq-data-ne">[eq-data-ne]</a> is a rule-based approach to concept representation (descriptor). Sometimes, a (linear) equation may also be used to represent the result of learning. In this example, equation <span class="math inline">\(V_3 - V_2 = 0\)</span> is the straight line that separates the <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> values of column <span class="math inline">\(4\)</span>, as shown in Figure&nbsp;<a href="#fig-data-plot3" data-reference-type="ref" data-reference="fig-data-plot3">[fig-data-plot3]</a>.</p>
-<div class="marginfigure">
-
+<p>In the machine learning context, we refer to the result of learning, i.e.&nbsp;the new "knowledge", as the <em>concept</em>. <a href="#eq-data-ne" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> is a rule-based approach to concept representation (descriptor). Sometimes, a (linear) equation may also be used to represent the result of learning. In this example, equation <span class="math inline">\(V_3 - V_2 = 0\)</span> is the straight line that separates the <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> values of column <span class="math inline">\(4\)</span>, as shown in <a href="#fig-data-plot3" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>.</p>
+<div id="fig-data-plot3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatter plot of V3 against V2 with red circles below a diagonal separator and blue plus signs above it.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-plot3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter01/linear-separator.svg" class="img-fluid figure-img" style="width:70.0%" alt="Scatter plot of V3 against V2 with red circles below a diagonal separator and blue plus signs above it.">
 </div>
-<p>Whether the concept representation is based on the rules in Equation&nbsp;<a href="#eq-data-ne" data-reference-type="ref" data-reference="eq-data-ne">[eq-data-ne]</a> or the linear equation in Figure&nbsp;<a href="#fig-data-plot3" data-reference-type="ref" data-reference="fig-data-plot3">[fig-data-plot3]</a>, it can be identified by computing and comparing values in the data. Normally such concept representation is discovered through <em>training data</em> and to be applied on testing data, where decisions or predictions will be made.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-plot3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Separating <span class="math inline">\(0\)</span> vs.&nbsp;<span class="math inline">\(1\)</span> in <span class="math inline">\(V_4\)</span> with the linear equation <span class="math inline">\(V_3 - V_2 = 0\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>Whether the concept representation is based on the rules in <a href="#eq-data-ne" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> or the linear equation in <a href="#fig-data-plot3" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>, it can be identified by computing and comparing values in the data. Normally such concept representation is discovered through <em>training data</em> and to be applied on testing data, where decisions or predictions will be made.</p>
 </section>
 <section id="concept-generalizability" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="concept-generalizability"><span class="header-section-number">1.2</span> Concept Generalizability</h2>
@@ -598,14 +541,28 @@ V_4 = \left\{
 </table>
 </div>
 <p><span id="tab-data-shapes" data-label="tab-data-shapes"></span></p>
-<p>Data in Table&nbsp;<a href="#tab-data-shapes" data-reference-type="ref" data-reference="tab-data-shapes">1.3</a> represent the shapes shown in Figure&nbsp;<a href="#fig-data-shapes" data-reference-type="ref" data-reference="fig-data-shapes">[fig-data-shapes]</a>. Intuitively, the <em>concept</em> of standing can be understood as describing a human-like object – when a person stands, her height is greater than the width; when one lies down, the horizontal measurement (width) becomes relatively greater.</p>
-<div class="marginfigure">
-
+<p>Data in Table&nbsp;<a href="#tab-data-shapes" data-reference-type="ref" data-reference="tab-data-shapes">1.3</a> represent the shapes shown in <a href="#fig-data-shapes" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>. Intuitively, the <em>concept</em> of standing can be understood as describing a human-like object – when a person stands, her height is greater than the width; when one lies down, the horizontal measurement (width) becomes relatively greater.</p>
+<div id="fig-data-shapes" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Six triangles and rectangles on a grid. Tall gray shapes are standing; wide white shapes are lying.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-shapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter01/shape-examples.svg" class="img-fluid figure-img" style="width:75.0%" alt="Six triangles and rectangles on a grid. Tall gray shapes are standing; wide white shapes are lying.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-shapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: Shapes of different numbers of sides, widths, and heights, based on the shapes data. Gray shapes are classified as <em>standing</em>.
+</figcaption>
+</figure>
 </div>
 <p>It is in this context of human-like shapes that the concept of standing is injected into the data and can be discovered by mining. It is also in this context – again the assumption of human-like shapes – that the identified relation of width vs.&nbsp;height can be applied to related data for predictions, decision making, etc.</p>
-<p>With related assumptions attached, the concept does not represent universal truth. The same notion of <em>standing</em> might be very different with a more complex shape or structure. In Figure&nbsp;<a href="#fig-data-building" data-reference-type="ref" data-reference="fig-data-building">[fig-data-building]</a>, for example, the shape of a building may be flat in terms of its height-width ratio but we see it <em>standing as an architecture</em>.</p>
-<div class="marginfigure">
-
+<p>With related assumptions attached, the concept does not represent universal truth. The same notion of <em>standing</em> might be very different with a more complex shape or structure. In <a href="#fig-data-building" class="quarto-xref">Figure&nbsp;<span>1.5</span></a>, for example, the shape of a building may be flat in terms of its height-width ratio but we see it <em>standing as an architecture</em>.</p>
+<div id="fig-data-building" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A wide, low building with a roof, doors, and windows on a measurement grid.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-building-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter01/standing-building.svg" class="img-fluid figure-img" style="width:75.0%" alt="A wide, low building with a roof, doors, and windows on a measurement grid.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-building-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.5: A <em>standing</em> architecture.
+</figcaption>
+</figure>
 </div>
 <p>It takes an in-depth analysis with proper evaluation and interpretation to assess the learned concept, its generalizability, and applicability. This cannot be accomplished by crunching the numbers alone. It requires human intelligence along with machine learning.</p>
 </section>

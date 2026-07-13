@@ -64,7 +64,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -393,21 +393,25 @@ window.Quarto = {
 <section id="basic-paradigm" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="basic-paradigm"><span class="header-section-number">12.1</span> Basic Paradigm</h2>
 <p>In information retrieval, the basic problem is to search and find matched documents against a query representation based on a user’s information need. Documents need to be stored in proper representation so that related matches can be computed (numerically). An index is also necessary to conduct the matching process timely.</p>
-<p>As shown in Figure&nbsp;<a href="#fig-ir" data-reference-type="ref" data-reference="fig-ir">1.1</a>, the user with an information need issues a query to the retrieval system, which in turn match it against the document representation in the store to identify relevant documents in the search result. The result can also be ranked (sorted) in terms of predicted relevance of each document.</p>
-<figure id="fig-ir" data-latex-placement="!htb" class="figure">
-<embed src="../assets/figures/ir2.png" style="width:3.5in">
-<figcaption>
-Basic paradigm of an <span><em>Information Retrieval</em></span> system
+<p>As shown in <a href="#fig-ir" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>, the user with an information need issues a query to the retrieval system, which in turn match it against the document representation in the store to identify relevant documents in the search result. The result can also be ranked (sorted) in terms of predicted relevance of each document.</p>
+<div id="fig-ir" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Basic paradigm of an Information Retrieval system">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/ir2.png" class="img-fluid figure-img" style="width:3.5in" alt="Basic paradigm of an Information Retrieval system">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: Basic paradigm of an <em>Information Retrieval</em> system
 </figcaption>
 </figure>
+</div>
 <p>The notion of <em>relevance</em> is key in information retrieval research. Yet it remains one of the least understood concepts in the field. Whether a piece of information is relevant depends on many factors such as the user’s objectives and the context of the current task. Sometimes, these may be difficult for the user to articulate; and even if she does, the query expression thus constructed may hardly be precise.</p>
 <p>Retrieval systems have to attack the issue of uncertainty often associated with understanding the user’s need and what is truly relevant in context. We can factor this in when building a retrieval model. With probabilistic models, for example, the degree of uncertainty can be quantified for proper probabilistic ranking in light of probability and information theories.</p>
 <p>However, uncertainty is often due to lack of information (data) and requires further data collection. Techniques that support relevance feedback and interactive, exploratory searching may help engage the user in order to understand more precisely what she is looking for.</p>
 </section>
 <section id="indexing" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="indexing"><span class="header-section-number">12.2</span> Indexing</h2>
-<p>For now, let’s assume the basic model presented in Figure&nbsp;<a href="#fig-ir" data-reference-type="ref" data-reference="fig-ir">1.1</a> and walk through some of the major ideas for finding matched (and potentially relevant) documents.</p>
-<p>In Figure&nbsp;<a href="#fig-ir" data-reference-type="ref" data-reference="fig-ir">1.1</a>, the data collection can be very large with a great number of documents, e.g. a library of a million books. In order to conduct searches with matching and ranking responsively, some amount of data pre-processing is necessary. This is also practically sensible if the collection is relatively static (no dramatic changes frequently).</p>
+<p>For now, let’s assume the basic model presented in <a href="#fig-ir" class="quarto-xref">Figure&nbsp;<span>12.1</span></a> and walk through some of the major ideas for finding matched (and potentially relevant) documents.</p>
+<p>In <a href="#fig-ir" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>, the data collection can be very large with a great number of documents, e.g. a library of a million books. In order to conduct searches with matching and ranking responsively, some amount of data pre-processing is necessary. This is also practically sensible if the collection is relatively static (no dramatic changes frequently).</p>
 <p>In chapter&nbsp;, we discuss basic processes for text vectorization. The result of vectorizing a text collection can be represented by a matrix with documents as rows and terms as columns. Each document here is a vector of values corresponding to terms in the dictionary. These values can be obtained using methods such as binary, term frequency (TF), or TF*IDF term weighting scheme.</p>
 <p>Assume we start with the binary representation, which is very simple with <span class="math inline">\(0\)</span>s and <span class="math inline">\(1\)</span>s, for a collection of <span class="math inline">\(1,000\)</span> documents each containing a dozen words. In terms of the Heaps’ law, we probably obtain somewhere close to <span class="math inline">\(1,000\)</span> unique terms, leading to a large matrix in the order of million values. With an even larger collection, the entire matrix representation can become too expensive to be stored and computed.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>Now if we examine actual values of each document (row) in the matrix, we will quickly realize that most values are <span class="math inline">\(0\)</span> (zero). This is due to the fact that even though we have a larger number of unique terms in the entire collection – thus many columns in the matrix – each document (row) only contains a small number of these terms. So instead of storing the entire matrix with all values, we can use a <em>Sparse Matrix</em> representation where only non-zero values are stored.</p>
@@ -422,46 +426,33 @@ Basic paradigm of an <span><em>Information Retrieval</em></span> system
 <h2 data-number="12.3" class="anchored" data-anchor-id="ch-ir-match"><span class="header-section-number">12.3</span> Matching</h2>
 <p>One who is interested in reading about the U.S. revolution may issue a query "<em>The Declaration of Independence</em>" on a collection of historical artifacts to find that particular document. If we assume the system treats words <em>the</em> and <em>of</em> as stop-words, they will be disregarded in the query processing. In this case, the query has two terms, namely <em>Declaration</em> and <em>Independence</em>, which can be further interpreted as <em>Declaration</em> AND <em>Independence</em> assuming the user is looking for both terms.</p>
 <p>Given an inverted index with a sorted list of all unique terms in the collection, it takes binary search logarithmic time to find each term’s entry. That is, given <span class="math inline">\(M\)</span> terms in the index, the system makes <span class="math inline">\(O(\log{M})\)</span> comparisons to find <em>Declaration</em> and <em>Independence</em> in the worse case. This is logarithmic time complexity is rather efficient and scalable. An example of the two term entries found in the inverted index may look like this:</p>
-<figure id="fig-ir-postings" class="figure">
-<figcaption>
-Two postings from the inverted index. Highlighted document IDs with double border indicate matched documents that satisfy <span><em>Declaration</em></span> AND <span><em>Independence</em></span>.
+<div id="fig-ir-postings" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two postings from the inverted index. Highlighted document IDs with double border indicate matched documents that satisfy Declaration AND Independence.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ir-postings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter12/fig-ir-postings.svg" class="img-fluid figure-img" style="width:70.0%" alt="Two postings from the inverted index. Highlighted document IDs with double border indicate matched documents that satisfy Declaration AND Independence.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ir-postings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.2: Two postings from the inverted index. Highlighted document IDs with double border indicate matched documents that satisfy <em>Declaration</em> AND <em>Independence</em>.
 </figcaption>
 </figure>
-<p>We now refer to each term’s list of documents – in fact only their IDs – as the <em>posting</em> of the term. An inverted index is thus a collection of <em>postings</em>. After examining the two postings, we can conclude that documents <span class="math inline">\(\#2\)</span>, <span class="math inline">\(\#103\)</span>, and <span class="math inline">\(\#456\)</span> in Figure &nbsp;<a href="#fig-ir-postings" data-reference-type="ref" data-reference="fig-ir-postings">1.2</a> contain both terms. But how can an algorithm merge the two postings to identify these matched documents?</p>
+</div>
+<p>We now refer to each term’s list of documents – in fact only their IDs – as the <em>posting</em> of the term. An inverted index is thus a collection of <em>postings</em>. After examining the two postings, we can conclude that documents <span class="math inline">\(\#2\)</span>, <span class="math inline">\(\#103\)</span>, and <span class="math inline">\(\#456\)</span> in <a href="#fig-ir-postings" class="quarto-xref">Figure&nbsp;<span>12.2</span></a> contain both terms. But how can an algorithm merge the two postings to identify these matched documents?</p>
 <p>A very simple approach is to go through the documents IDs in the posting for term <em>Declaration</em> and, for each of them, we compare it with every document ID in the second posting for term <em>Independence</em>. Suppose the first posting has <span class="math inline">\(n_1\)</span> documents and the second has <span class="math inline">\(n_2\)</span>, this will conduct <span class="math inline">\(n_1 \cdot n_2\)</span> comparisons. This approach is going to be very slow with large postings and it has yet to take advantage of the sorting (pre-computation) that has been performed on the document IDs.</p>
 <p>Apparently, we can improve on the above brute force method is by conducting a binary search on the second posting for each document on the first posting. In this case, the time complexity of the matching process will become <span class="math inline">\(O(n_1 \log n_2)\)</span> as the binary search is of <span class="math inline">\(O(\log n_2)\)</span> complexity. Assume <span class="math inline">\(n_2 &gt; n_1\)</span> is a large number, this will significantly reduce query processing time.</p>
 <p>So far we have used one posting as the primary to iterate through and, in the process, compare each value there to those in the second posting. In this approach, the two postings play unequal roles in the matching process.</p>
 <p>A different approach is to take the postings equally and iterate through them simultaneously. Assuming document IDs are sorted in the ascending order, we start at the beginning of each posting. In each step, we compare the current values of the two postings and the one with a small value will move to the next (greater) value. This continues until it has been found a value greater or equal to the current value of the other posting. In that case, we switch to the other posting to go next.</p>
-<p>For the above example, we start at first document ID in each posting shown in Figure&nbsp;<a href="#fig-ir-matching" data-reference-type="ref" data-reference="fig-ir-matching">1.3</a>, where the <em>Declaration</em> posting has a value <span class="math inline">\(2\)</span> and the <em>Independence</em> posting has <span class="math inline">\(1\)</span> (see step 1 in the figure). As the one with a smaller document ID, the <em>Independence</em> posting will move to the next document ID, which is <span class="math inline">\(2\)</span> and matches the the current value in <em>Declaration</em> (see step 2).</p>
-<figure id="fig-ir-matching" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: left;">
-</td>
-<td style="text-align: left;">
-</td>
-<td style="text-align: left;">
-</td>
-</tr>
-<tr>
-<td style="text-align: left;">
-<span>Step 1</span>
-</td>
-<td style="text-align: left;">
-<span>Step 2</span>
-</td>
-<td style="text-align: left;">
-<span>Step 3</span>
-</td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Simultaneous walking to merge postings, starting at the first document ID. The posting with the smaller value will move to the next ID.
+<p>For the above example, we start at first document ID in each posting shown in <a href="#fig-ir-matching" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>, where the <em>Declaration</em> posting has a value <span class="math inline">\(2\)</span> and the <em>Independence</em> posting has <span class="math inline">\(1\)</span> (see step 1 in the figure). As the one with a smaller document ID, the <em>Independence</em> posting will move to the next document ID, which is <span class="math inline">\(2\)</span> and matches the the current value in <em>Declaration</em> (see step 2).</p>
+<div id="fig-ir-matching" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Simultaneous walking to merge postings, starting at the first document ID. The posting with the smaller value will move to the next ID.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ir-matching-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter12/fig-ir-matching.svg" class="img-fluid figure-img" style="width:70.0%" alt="Simultaneous walking to merge postings, starting at the first document ID. The posting with the smaller value will move to the next ID.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ir-matching-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.3: Simultaneous walking to merge postings, starting at the first document ID. The posting with the smaller value will move to the next ID.
 </figcaption>
 </figure>
-<p>Now that the second posting (<em>Independence</em>) is already with an equal or greater document ID, the process will shift to the first posting (<em>Declaration</em>) to catch up, which, as shown in Figure&nbsp;<a href="#fig-ir-matching" data-reference-type="ref" data-reference="fig-ir-matching">1.3</a> step 3, then goes to document <span class="math inline">\(\#3\)</span> and switches the turn back as it surpasses <span class="math inline">\(2\)</span>. This process will continue until no more matches can possibly be found.</p>
+</div>
+<p>Now that the second posting (<em>Independence</em>) is already with an equal or greater document ID, the process will shift to the first posting (<em>Declaration</em>) to catch up, which, as shown in <a href="#fig-ir-matching" class="quarto-xref">Figure&nbsp;<span>12.3</span></a> step 3, then goes to document <span class="math inline">\(\#3\)</span> and switches the turn back as it surpasses <span class="math inline">\(2\)</span>. This process will continue until no more matches can possibly be found.</p>
 <p>In the worse case scenario, it iterates through the two postings from start to end, which is <span class="math inline">\(O(n_1 + n_2)\)</span> time complexity. Practically, this is better than the previous method with <span class="math inline">\(O(n_1 \log n_2)\)</span> complexity where <span class="math inline">\(\log n_2\)</span> may remain a large number (<span class="math inline">\(\gg 2\)</span>).</p>
 <p>These techniques are particularly useful to merge postings for logical AND, i.e.&nbsp;for document containing both or all query terms. They also work well with the OR query expressions, where documents containing any of the terms should be brought together after the removal of duplicate IDs.</p>
 <p>The simultaneous iterative process can be further improved with skip pointers that the iterations faster by skipping a significant amount of document IDs in each posting. However, the skip pointers technique is of little use for OR queries as it skips documents that should be included with a logical OR.</p>
@@ -527,17 +518,21 @@ score(q,d) &amp; = &amp; \sum_{t \in q \cap d} w^{BM25}_{t,d}
 <p>When the World Wide Web started to grow in the 1990s, the first generation of web search engines adopted the same technologies developed in the libraries and continued to rely on text contents in their ranking. It soon became clear that this is easily susceptible to spamming.</p>
 <p>The Web is a decentralized space for publication without a central editorial process. Everyone is a publisher who writes anything he wants, in his own way of expression. A ranking method based on TF*IDF, for example, is impacted by TF and IDF. You probably can exert very little influence on the IDF part as it is a <em>global</em> statistic of the entire web collection. However, if you want to be ranked number one for queries like "The Declaration of Independence," you simply repeat those keywords in your page contents.</p>
 <p>By simple repetition in the text, you increase the terms’ frequencies (TFs) and therefore the ranking of your page to related queries. The point here is that page contents on the web are not necessarily trustworthy and we cannot simply rely on the <em>claims</em> of authors in this rather decentralized, autonomous environment.</p>
-<p>Without a central authority that we can trust on individual pages, we may perhaps consider input from their <em>peers</em> – those who know these pages and what they have to say about them. On the web, pages reference one another via <em>hyperlinks</em>. Figure&nbsp;<a href="#fig-hlinks" data-reference-type="ref" data-reference="fig-hlinks">[fig-hlinks]</a> shows an example of a web page, from which the user can click on a label (text), a button, or an image to visit another page.</p>
+<p>Without a central authority that we can trust on individual pages, we may perhaps consider input from their <em>peers</em> – those who know these pages and what they have to say about them. On the web, pages reference one another via <em>hyperlinks</em>. <a href="#fig-hlinks" class="quarto-xref">Figure&nbsp;<span>12.4</span></a> shows an example of a web page, from which the user can click on a label (text), a button, or an image to visit another page.</p>
 <div class="marginfigure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/figures/pageflow2.png" class="img-fluid figure-img" style="width:2in"></p>
-<figcaption>image</figcaption>
+<div id="fig-hlinks" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Page references via hyperlinks from page A to pages B and C">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hlinks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/pageflow2.png" class="img-fluid figure-img" style="width:2in" alt="Page references via hyperlinks from page A to pages B and C">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hlinks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.4: Page references via hyperlinks. Page A links to several other pages, including B and C.
+</figcaption>
 </figure>
 </div>
 </div>
 <p>With hyperlinks, we pages form a directed network on which structural analysis can be performed. And when a text label (i.e.&nbsp;anchor text) is provided as part of the hyperlink, it provides useful data about what the target page is about.</p>
-<p>In Figure&nbsp;<a href="#fig-hlinks" data-reference-type="ref" data-reference="fig-hlinks">[fig-hlinks]</a>, when page A links to page B, descriptions or keywords page A uses on the hyperlink can be considered for the representation of page B. Assuming the pages are on different web sites with separate ownership, then this piece of anchor text represents an independent evaluation of page B’s contents. By aggregating anchor text data from all other pages linking to page B, its inverted index can be adjusted with the crowd-sourced data, which are potentially more reliable than self-claimed page contents.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>In <a href="#fig-hlinks" class="quarto-xref">Figure&nbsp;<span>12.4</span></a>, when page A links to page B, descriptions or keywords page A uses on the hyperlink can be considered for the representation of page B. Assuming the pages are on different web sites with separate ownership, then this piece of anchor text represents an independent evaluation of page B’s contents. By aggregating anchor text data from all other pages linking to page B, its inverted index can be adjusted with the crowd-sourced data, which are potentially more reliable than self-claimed page contents.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 <p>Based on the classic BM25, BM25F is an example of related methods that go beyond the body text of a web page to include other structural elements (fields) and relevant data streams (particularly anchor text data).<span class="citation" data-cites="Zaragoza2004BM25F">(<a href="../references.html#ref-Zaragoza2004BM25F" role="doc-biblioref">Zaragoza et al. 2004</a>)</span> Among others, the use of anchor text data for indexing and matching is a common practice of web search engines.</p>
 <p>When the user issues a search query, the question remains what is more <em>relevant</em> and should be ranked higher in the result. For web searches, <em>relevance</em> does not merely mean <em>on-topic</em> because a very large number of pages will be considered on topic in terms of their contents (anchor text included). The notion of <em>relevance</em> also entails certain degree of <em>importance</em> while on topic.</p>
 <p>Importance, however, can be subjective and hard to quantify. To borrow an idea from <em>scientometrics</em>, we can instead substitute <em>importance</em> with <em>impact</em> or <em>popularity</em>. While in scholarly communication scientific research is evaluated based on the amount of citations, web pages can be treated likewise in terms of hyperlinks.</p>
@@ -545,30 +540,34 @@ score(q,d) &amp; = &amp; \sum_{t \in q \cap d} w^{BM25}_{t,d}
 <p><span class="math display">\[\begin{aligned}
 r_d &amp; = &amp; \sum_{p \in P_d} 1
 \end{aligned}\]</span></p>
-<p>where <span class="math inline">\(P_d\)</span> is the collection of pages linking to <span class="math inline">\(d\)</span>. For each linking page <span class="math inline">\(p\)</span>, the contribution is considered equal with <span class="math inline">\(1\)</span>. In Figure&nbsp;<a href="#fig-ir-2links" data-reference-type="ref" data-reference="fig-ir-2links">[fig-ir-2links]</a>, for example, page <span class="math inline">\(t\)</span> has two in-links from pages <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> and its impact score is therefore <span class="math inline">\(2\)</span>.</p>
+<p>where <span class="math inline">\(P_d\)</span> is the collection of pages linking to <span class="math inline">\(d\)</span>. For each linking page <span class="math inline">\(p\)</span>, the contribution is considered equal with <span class="math inline">\(1\)</span>. In <a href="#fig-ir-2links" class="quarto-xref">Figure&nbsp;<span>12.5</span></a>, for example, page <span class="math inline">\(t\)</span> has two in-links from pages <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> and its impact score is therefore <span class="math inline">\(2\)</span>.</p>
 <div class="marginfigure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/figures/ir/ir_2links.png" class="img-fluid figure-img" style="width:1.5in"></p>
-<figcaption>image</figcaption>
+<div id="fig-ir-2links" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two pages linking to the same target page with equal contributions">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ir-2links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/ir/ir_2links.png" class="img-fluid figure-img" style="width:1.5in" alt="Two pages linking to the same target page with equal contributions">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ir-2links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.5: Two links being equal. Without more data, the two links are assumed to contribute equally to the target page’s impact.
+</figcaption>
 </figure>
 </div>
 </div>
-<p>But are all hyperlinks created equal? Let’s consider an extreme case where we have more data for the two linking pages in Figure&nbsp;<a href="#fig-ir-2links" data-reference-type="ref" data-reference="fig-ir-2links">[fig-ir-2links]</a>. Suppose <span class="math inline">\(p_1\)</span> is an ordinary page that is linked to by another page but links to many others (including page <span class="math inline">\(d\)</span>). On the other hand, <span class="math inline">\(p_2\)</span> is a very popular page that is referenced by many pages but has chosen to link to only one page (i.e.&nbsp;page <span class="math inline">\(d\)</span>). Figure&nbsp;<a href="#fig-ir-2links_more" data-reference-type="ref" data-reference="fig-ir-2links_more">1.4</a> illustrates this scenario.</p>
+<p>But are all hyperlinks created equal? Let’s consider an extreme case where we have more data for the two linking pages in <a href="#fig-ir-2links" class="quarto-xref">Figure&nbsp;<span>12.5</span></a>. Suppose <span class="math inline">\(p_1\)</span> is an ordinary page that is linked to by another page but links to many others (including page <span class="math inline">\(d\)</span>). On the other hand, <span class="math inline">\(p_2\)</span> is a very popular page that is referenced by many pages but has chosen to link to only one page (i.e.&nbsp;page <span class="math inline">\(d\)</span>). <a href="#fig-ir-2links_more" class="quarto-xref">Figure&nbsp;<span>12.6</span></a> illustrates this scenario.</p>
 <div id="fig-ir-2links_more" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ir-2links_more-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/ir/ir_2links_more.png" class="img-fluid figure-img" style="width:3in">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ir-2links_more-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.1: Two links being different. When we know more about the pages linking to the target page, we can no longer assume their contributions are equal.
+Figure&nbsp;12.6: Two links being different. When we know more about the pages linking to the target page, we can no longer assume their contributions are equal.
 </figcaption>
 </figure>
 </div>
 <p>Based on the above hypothetical scenario, it is apparent that the links from <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> to the page <span class="math inline">\(t\)</span> are not equal. For one, <span class="math inline">\(p_2\)</span> is much more popular and has more impact than <span class="math inline">\(p_1\)</span> given the number of in-links it receives. Moreover, it gives out the only one link to page <span class="math inline">\(d\)</span>, making its contribution (endorsement) even stronger. On the contrary, <span class="math inline">\(p_1\)</span> receives very little (from only one page) and gives out a lot, further diluting its already small share.</p>
 <p>In reality, <span class="math inline">\(p_2\)</span> can be the page of an influential figure like the Pope who receives lots of media attention. If he chooses to post only one link and that goes to your page, you must be thrilled. We can also think of <span class="math inline">\(p_1\)</span> as the total opposite, a page of yours or mine with a long list of notes and references. The longer the list goes, the less significant each reference may become.</p>
 <p>This discussion sheds lights on two important aspects for scoring a page’s impact or popularity. First, it matters who gives the link and how impactful the <em>link giver</em> is. A link from an important figure should carry more weight in itself. Second, it also matters how many links the giver <em>gives out</em>. When one gives out to more recipients, the share of each link is diluted and the weight should be divided by the number of out-links. Mathematically, the second aspect can be easily quantified by counting the out-links for each page in <span class="math inline">\(P\)</span>.</p>
-<p>On the first point, however, the solution does not appear straightforward. Again in Figure&nbsp;<a href="#fig-ir-2links_more" data-reference-type="ref" data-reference="fig-ir-2links_more">1.4</a>, the impact of document <span class="math inline">\(d\)</span> depends on the impact of linking pages <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span>, which in turn depend on the ones that link to them. And this will go on. How can we proceed to solve this problem of <em>chicken and egg</em> without going into a loop? But the solution is indeed a loop, or a recursive process.</p>
+<p>On the first point, however, the solution does not appear straightforward. Again in <a href="#fig-ir-2links_more" class="quarto-xref">Figure&nbsp;<span>12.6</span></a>, the impact of document <span class="math inline">\(d\)</span> depends on the impact of linking pages <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span>, which in turn depend on the ones that link to them. And this will go on. How can we proceed to solve this problem of <em>chicken and egg</em> without going into a loop? But the solution is indeed a loop, or a recursive process.</p>
 </section>
 <section id="pagerank" class="level3" data-number="12.4.3">
 <h3 data-number="12.4.3" class="anchored" data-anchor-id="pagerank"><span class="header-section-number">12.4.3</span> PageRank</h3>

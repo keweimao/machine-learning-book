@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -394,22 +394,36 @@ A &amp; = &amp; \{AI, Math, Python, SQL\} \\
 B &amp; = &amp; \{InfoVis, Math, R, SQL, Stats\}
 \end{aligned}\]</span></p>
 <p>It is easy to count the number of skills in each team and identify their cardinalities: <span class="math inline">\(|A|=4\)</span> and <span class="math inline">\(|B|=5\)</span>.</p>
-<div class="marginfigure">
-
+<div id="fig-num-overlap" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two overlapping circles labeled A and B, with their intersection shaded.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-num-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter02/fig-num-overlap.svg" class="img-fluid figure-img" style="width:45.0%" alt="Two overlapping circles labeled A and B, with their intersection shaded.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-num-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Intersection <span class="math inline">\(A \cap B\)</span>.
+</figcaption>
+</figure>
 </div>
 <p>The common skill set of the two teams is their <em>intersection</em>:</p>
 <p><span class="math display">\[\begin{aligned}
 A \cap B &amp; = &amp; \{Math, SQL\} \\
 |A \cap B| &amp; = &amp; 2
 \end{aligned}\]</span></p>
-<p>which is illustrated by the shaded area in Figure&nbsp;<a href="#fig-num-overlap" data-reference-type="ref" data-reference="fig-num-overlap">[fig-num-overlap]</a>. The interaction operation is communicative, i.e.&nbsp;<span class="math inline">\(A \cap B=B \cap A\)</span>, because the order does not matter.</p>
+<p>which is illustrated by the shaded area in <a href="#fig-num-overlap" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>. The intersection operation is communicative, i.e.&nbsp;<span class="math inline">\(A \cap B=B \cap A\)</span>, because the order does not matter.</p>
 <p>Now, if we are to put the two team together on one project, the overall skill set of the merged project team will be the <em>union</em> of the two:</p>
 <p><span class="math display">\[\begin{aligned}
 A \cup B
 &amp; = &amp; \{AI, InfoVis, Math, Python, R, SQL, Stats\}
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-
+<div id="fig-num-union" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two overlapping circles labeled A and B, with both circles shaded.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-num-union-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter02/fig-num-union.svg" class="img-fluid figure-img" style="width:45.0%" alt="Two overlapping circles labeled A and B, with both circles shaded.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-num-union-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Union <span class="math inline">\(A \cup B\)</span>.
+</figcaption>
+</figure>
 </div>
 <p>In this case, the cardinality of the union is:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -424,12 +438,26 @@ A \cup B
 (A \cup B) \cup C &amp; = &amp; A \cup (B \cup C) \\
 (A \cap B) \cap C &amp; = &amp; A \cap (B \cap C)
 \end{aligned}\]</span></p>
-<p>for any sets A, B, and C. As illustrated in Figure <a href="#fig-num-union3" data-reference-type="ref" data-reference="fig-num-union3">[fig-num-union3]</a>, we will obtain the same union set (the shaded circles) regardless of which two are combined first. The same is true with intersection, as illustrated in Figure&nbsp;<a href="#fig-num-overlap3" data-reference-type="ref" data-reference="fig-num-overlap3">[fig-num-overlap3]</a>.</p>
-<div class="marginfigure">
-
+<p>for any sets A, B, and C. As illustrated in <a href="#fig-num-union3" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>, we will obtain the same union set (the shaded circles) regardless of which two are combined first. The same is true with intersection, as illustrated in <a href="#fig-num-overlap3" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>.</p>
+<div id="fig-num-union3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three overlapping circles labeled A, B, and C, all shaded.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-num-union3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter02/fig-num-union3.svg" class="img-fluid figure-img" style="width:45.0%" alt="Three overlapping circles labeled A, B, and C, all shaded.">
 </div>
-<div class="marginfigure">
-
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-num-union3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Union of three sets.
+</figcaption>
+</figure>
+</div>
+<div id="fig-num-overlap3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three overlapping circles labeled A, B, and C, with the common intersection shaded.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-num-overlap3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter02/fig-num-overlap3.svg" class="img-fluid figure-img" style="width:45.0%" alt="Three overlapping circles labeled A, B, and C, with the common intersection shaded.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-num-overlap3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Intersection of three sets.
+</figcaption>
+</figure>
 </div>
 <p>The union (<span class="math inline">\(\cup\)</span>) operation is similar to <em>addition</em> (<span class="math inline">\(+\)</span>), whereas the intersection <span class="math inline">\(\cap\)</span> operation can be likened to <em>multiplication</em> (<span class="math inline">\(\times\)</span>). For demonstration, let’s look at a couple of special cases. Let <span class="math inline">\(0\)</span> denote an empty set, with no elements at all; <span class="math inline">\(1\)</span> be the the universal set, containing all elements in the universe.</p>
 <p>For a regular set <span class="math inline">\(A\)</span>, we can show the similarity between union (<span class="math inline">\(\cup\)</span>) and addition (<span class="math inline">\(+\)</span>):</p>
@@ -451,17 +479,31 @@ A \cap 0  &amp; = &amp; A \times 0 \\
 A \cap 1  &amp; = &amp; A \times 1 \\
           &amp; = &amp; A
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-
+<div id="fig-num-sub" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A small shaded circle A entirely contained in a larger circle B.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-num-sub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter02/fig-num-sub.svg" class="img-fluid figure-img" style="width:45.0%" alt="A small shaded circle A entirely contained in a larger circle B.">
 </div>
-<p>The intersection between any set (A or 1) and an empty set 0 is always an empty set: <span class="math inline">\(A \cap 0 = 0\)</span> and <span class="math inline">\(1 \cap 0=0\)</span>. The intersection between a set A and the universal set <span class="math inline">\(1\)</span> is A, because the universal includes A as a subset. In fact, for any set A that is a subset of B (see Figure&nbsp;<a href="#fig-num-sub" data-reference-type="ref" data-reference="fig-num-sub">[fig-num-sub]</a>), their intersection is A and their union is B:</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-num-sub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: Subset <span class="math inline">\(A \subseteq B\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>The intersection between any set (A or 1) and an empty set 0 is always an empty set: <span class="math inline">\(A \cap 0 = 0\)</span> and <span class="math inline">\(1 \cap 0=0\)</span>. The intersection between a set A and the universal set <span class="math inline">\(1\)</span> is A, because the universal includes A as a subset. In fact, for any set A that is a subset of B (see <a href="#fig-num-sub" class="quarto-xref">Figure&nbsp;<span>2.5</span></a>), their intersection is A and their union is B:</p>
 <p><span class="math display">\[\begin{aligned}
 A \cap B &amp; \stackrel{\forall A \in B}{=} &amp; A \\
 A \cup B &amp; \stackrel{\forall A \in B}{=} &amp; B
 \end{aligned}\]</span></p>
-<p>Besides union and intersection operators that can be likened to addition and multiplication, there is also the subtraction operator on sets. For two sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(A-B\)</span> computes the difference between A and B, or the elements of A that do not appear in B. This is essentially the removal of their intersection from set A, as shown in Figure&nbsp;<a href="#fig-num-minus" data-reference-type="ref" data-reference="fig-num-minus">[fig-num-minus]</a>.</p>
-<div class="marginfigure">
-
+<p>Besides union and intersection operators that can be likened to addition and multiplication, there is also the subtraction operator on sets. For two sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(A-B\)</span> computes the difference between A and B, or the elements of A that do not appear in B. This is essentially the removal of their intersection from set A, as shown in <a href="#fig-num-minus" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>.</p>
+<div id="fig-num-minus" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two overlapping circles labeled A and B, with only the portion of A outside B shaded.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-num-minus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter02/fig-num-minus.svg" class="img-fluid figure-img" style="width:45.0%" alt="Two overlapping circles labeled A and B, with only the portion of A outside B shaded.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-num-minus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6: Set subtraction <span class="math inline">\(A-B\)</span>.
+</figcaption>
+</figure>
 </div>
 <p>The cardinality of the subtracted set can be computed by:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -472,10 +514,17 @@ A \cup B &amp; \stackrel{\forall A \in B}{=} &amp; B
 <section id="vectors" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="vectors"><span class="header-section-number">2.2.2</span> Vectors</h3>
 <p>In geometrical terms, a <em>vector</em> is an entity having both magnitude (length) and direction, in a vector space with multiple dimensions.</p>
-<div class="marginfigure">
-
+<div id="fig-num-vectors" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Coordinate plane with vectors from the origin to two points, v1 and v2.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-num-vectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter02/fig-num-vectors.svg" class="img-fluid figure-img" style="width:65.0%" alt="Coordinate plane with vectors from the origin to two points, v1 and v2.">
 </div>
-<p>Figure&nbsp;<a href="#fig-num-vectors" data-reference-type="ref" data-reference="fig-num-vectors">[fig-num-vectors]</a> shows data <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> in a space with <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> dimensions. In the vector space, each data point is a vector from the origin <span class="math inline">\((0,0)\)</span>, as shown as directed lines in Figure&nbsp;<a href="#fig-num-vectors" data-reference-type="ref" data-reference="fig-num-vectors">[fig-num-vectors]</a>, and can be represented by its dimensional values:</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-num-vectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.7: Two-dimensional vector space.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-num-vectors" class="quarto-xref">Figure&nbsp;<span>2.7</span></a> shows data <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> in a space with <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> dimensions. In the vector space, each data point is a vector from the origin <span class="math inline">\((0,0)\)</span>, as shown as directed lines in <a href="#fig-num-vectors" class="quarto-xref">Figure&nbsp;<span>2.7</span></a>, and can be represented by its dimensional values:</p>
 <p><span class="math display">\[\begin{aligned}
 v_1 &amp; = &amp; (2,3) \\
 v_2 &amp; = &amp; (3,1)

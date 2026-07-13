@@ -64,7 +64,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -466,15 +466,29 @@ H_i
 <section id="properties-of-shannon-entropy" class="level3" data-number="5.1.1">
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="properties-of-shannon-entropy"><span class="header-section-number">5.1.1</span> Properties of Shannon Entropy</h3>
 <p>One may question why this has to be <em>the</em> equation for entropy. In fact, Shannon started with several desired properties about such an <em>entropy</em> measure before he concluded that this is the only function that meets the expected properties. We shall discuss some of the important properties.</p>
-<div class="marginfigure">
-
+<div id="fig-info-h" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Entropy curve peaking when two outcomes each have probability one half.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-info-h-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter05/fig-info-h.svg" class="img-fluid figure-img" style="width:55.0%" alt="Entropy curve peaking when two outcomes each have probability one half.">
 </div>
-<p>Figure&nbsp;<a href="#fig-info-h" data-reference-type="ref" data-reference="fig-info-h">[fig-info-h]</a> shows that the entropy function is smooth with regard to changes in the probability <span class="math inline">\(p_1\)</span>. When the two mutually exclusive events are equally likely <span class="math inline">\(p_1=p_2=0.5\)</span>, the entropy of the system is at its maximum (the peak in the middle).</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-info-h-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Shannon entropy of two mutually exclusive events.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-info-h" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> shows that the entropy function is smooth with regard to changes in the probability <span class="math inline">\(p_1\)</span>. When the two mutually exclusive events are equally likely <span class="math inline">\(p_1=p_2=0.5\)</span>, the entropy of the system is at its maximum (the peak in the middle).</p>
 <p>It has been proved that, with any number of mutually exclusive events, the greatest entropy is achieved when all events are equally possible. Imagine a number of applicants compete for the same position. When everyone has an equal chance and there is no leading candidate, it is the most uncertain situation with the greatest entropy.</p>
-<div class="marginfigure">
-
+<div id="fig-info-h-m" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Increasing logarithmic curve showing entropy as the number of equally likely outcomes grows.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-info-h-m-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter05/fig-info-h-m.svg" class="img-fluid figure-img" style="width:55.0%" alt="Increasing logarithmic curve showing entropy as the number of equally likely outcomes grows.">
 </div>
-<p>Figure&nbsp;<a href="#fig-info-h_m" data-reference-type="ref" data-reference="fig-info-h_m">[fig-info-h_m]</a> plots entropy <span class="math inline">\(H\)</span> vs.&nbsp;the number of equally likely events <span class="math inline">\(m\)</span>. When the number of events (choices) increases, so does the entropy. With an increasingly larger pool of applicants for a position – supposedly with equal chances – the harder it is to predict who will be hired in the end.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-info-h-m-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: Shannon entropy of <span class="math inline">\(m\)</span> equally likely events.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-info-h-m" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> plots entropy <span class="math inline">\(H\)</span> vs.&nbsp;the number of equally likely events <span class="math inline">\(m\)</span>. When the number of events (choices) increases, so does the entropy. With an increasingly larger pool of applicants for a position – supposedly with equal chances – the harder it is to predict who will be hired in the end.</p>
 <p>A third property of the Shannon entropy is related to how the entropy of one system can be computed based on entropies of its sub-systems. Let us look at a simple example: Three candidates running for office, with candidate <span class="math inline">\(1\)</span> from party <span class="math inline">\(A\)</span> and candidates <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> from party <span class="math inline">\(B\)</span>. Suppose their probabilities of winning the election are estimated as follow:</p>
 <p><span class="math display">\[\begin{aligned}
   p_1 &amp; = &amp; 0.3 \\
@@ -694,9 +708,16 @@ H_i
 <p>KL divergence has a few useful properties. KL is non-negative for any distributions. It increases with increasing differences in the <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> values and can approach infinity with an infinite <span class="math inline">\(\frac{p_i}{q_i}\)</span> ratio, e.g.&nbsp;with a <span class="math inline">\(q_i \to 0\)</span> – that is, when something is mistakenly believed to be impossible when it is in fact possible.</p>
 <p>KL divergence cannot, however, be referred to as a distance measure or metric. To qualify as a metric distance, a function has to satisfy the following conditions: 1) it is non-negative, 2) it returns zero for two identical sets of values, 3) it is symmetric, and 4) it satisfies the triangular inequality.</p>
 <p>KL does meet the first two requirements on non-negativity and identify of indiscernibles – KL is zero, <span class="math inline">\(KL(P||Q)=KL(Q||P)=0\)</span>, only when the two distributions are identical – but does not satisfy the triangular inequality.</p>
-<p>For any distance function <span class="math inline">\(d\)</span>, the triangle inequality requires that, given three points (sets of values or probability distributions) <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span>, the sum of two distances (sides) is no less than the third. This can be illustrated in Figure&nbsp;<a href="#fig-info-triangle" data-reference-type="ref" data-reference="fig-info-triangle">[fig-info-triangle]</a>, where any two distances (sides) <span class="math inline">\(d(A,B) + d(B,C) \ge d(A,C)\)</span>.</p>
-<div class="marginfigure">
-
+<p>For any distance function <span class="math inline">\(d\)</span>, the triangle inequality requires that, given three points (sets of values or probability distributions) <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span>, the sum of two distances (sides) is no less than the third. This can be illustrated in <a href="#fig-info-triangle" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>, where any two distances (sides) <span class="math inline">\(d(A,B) + d(B,C) \ge d(A,C)\)</span>.</p>
+<div id="fig-info-triangle" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Triangle with vertices A, B, and C and labeled distances between them.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-info-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter05/fig-info-triangle.svg" class="img-fluid figure-img" style="width:50.0%" alt="Triangle with vertices A, B, and C and labeled distances between them.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-info-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: Triangle inequality: the sum of two distances is never less than the third, <span class="math inline">\(d(A,B) + d(B,C) \ge d(A,C)\)</span>.
+</figcaption>
+</figure>
 </div>
 <p>KL divergence does not satisfy the triangle inequality. That is, it does allow <span class="math inline">\(KL(A||B) + KL(B||C) &lt; KL(A||C)\)</span> to happen under certain conditions. In addition, KL is not symmetric and the divergence from <span class="math inline">\(Q\)</span> to <span class="math inline">\(P\)</span> is not the same as that from <span class="math inline">\(P\)</span> to <span class="math inline">\(Q\)</span>, i.e. <span class="math inline">\(KL(P||Q) \ne KL(Q||P)\)</span>, where <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> are not identical.</p>
 <p>KL divergence extends the classic Shannon entropy and offers an alternative to measuring information as a linear reduction of entropy. However, the fact that it is not symmetric and not a metric disqualifies it from certain applications where a geometric distance is fitting.</p>
@@ -802,14 +823,14 @@ H_i
 \end{aligned}\]</span></p>
 <p>where <span class="math inline">\(m\)</span> is the total number of mutually exclusive inferences, i.e.&nbsp;the number of discrete values of the probability distribution. Note that in the final formula, the logarithm is always with a natural base (<span class="math inline">\(\ln\)</span>). This is the result of the integral of any log function.</p>
 <p>The Least Information measure (LIT) in Equation&nbsp;<a href="#eq-info-lit" data-reference-type="ref" data-reference="eq-info-lit">[eq-info-lit]</a> can be interpreted as the minimum amount of information, in Shannon entropic terms, <em>necessary</em> for the probability distribution shift, or a change of belief. In this model, information does not always reduce entropy – in fact, it can lead to entropy change in any direction. In addition, it does not consider the removal of information, which can be regarded as new information that refutes prior knowledge.</p>
-<p>Figure&nbsp;<a href="#fig-info-lit" data-reference-type="ref" data-reference="fig-info-lit">1.1</a> compares least information (LIT) with Shannon entropy and KL divergence, using a binary example (of two mutually exclusive inferences). The figure assumes the <span class="math inline">\(1^{st}\)</span> inference to be the ultimate outcome – that is, it starts with a probability distribution <span class="math inline">\(P\)</span> (with some <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span>) and ends with changed distribution <span class="math inline">\(Q\)</span>, where <span class="math inline">\(q_1=1\)</span> and <span class="math inline">\(q_2=0\)</span>. For example, the reading of <span class="math inline">\((0.5, 1)\)</span> on the LIT curve indicates the amount of least information is <span class="math inline">\(1\)</span> that changes the probability distribution from <span class="math inline">\(P(0.5, 0.5)\)</span> to <span class="math inline">\(Q(1, 0)\)</span>.</p>
+<p><a href="#fig-info-lit" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> compares least information (LIT) with Shannon entropy and KL divergence, using a binary example (of two mutually exclusive inferences). The figure assumes the <span class="math inline">\(1^{st}\)</span> inference to be the ultimate outcome – that is, it starts with a probability distribution <span class="math inline">\(P\)</span> (with some <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span>) and ends with changed distribution <span class="math inline">\(Q\)</span>, where <span class="math inline">\(q_1=1\)</span> and <span class="math inline">\(q_2=0\)</span>. For example, the reading of <span class="math inline">\((0.5, 1)\)</span> on the LIT curve indicates the amount of least information is <span class="math inline">\(1\)</span> that changes the probability distribution from <span class="math inline">\(P(0.5, 0.5)\)</span> to <span class="math inline">\(Q(1, 0)\)</span>.</p>
 <div id="fig-info-lit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-info-lit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/info/lit.png" class="img-fluid figure-img" style="width:2.5in">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-info-lit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: Least Information vs.&nbsp;Shannon Entropy vs.&nbsp;KL Divergence. This shows the amount of information by reducing two mutually exclusive inferences to certainty. The X axis is <span class="math inline">\(p_1\)</span>, the probability of the <span class="math inline">\(1^{st}\)</span> inferences. The Y axis is the amount of information (I) in terms of each information measure. The <span class="math inline">\(1^{st}\)</span> inference is assumed to be the ultimate outcome (<span class="math inline">\(q_1=1\)</span>) in the figure.
+Figure&nbsp;5.4: Least Information vs.&nbsp;Shannon Entropy vs.&nbsp;KL Divergence. This shows the amount of information by reducing two mutually exclusive inferences to certainty. The X axis is <span class="math inline">\(p_1\)</span>, the probability of the <span class="math inline">\(1^{st}\)</span> inferences. The Y axis is the amount of information (I) in terms of each information measure. The <span class="math inline">\(1^{st}\)</span> inference is assumed to be the ultimate outcome (<span class="math inline">\(q_1=1\)</span>) in the figure.
 </figcaption>
 </figure>
 </div>
@@ -821,16 +842,23 @@ Figure&nbsp;5.1: Least Information vs.&nbsp;Shannon Entropy vs.&nbsp;KL Divergen
 <li><p>Symmetry: <span class="math inline">\(I(P,Q)=I(Q,P)\)</span>, the amount of <em>least information</em> required for a probability change from <span class="math inline">\(P\)</span> to <span class="math inline">\(Q\)</span> is the same as that from <span class="math inline">\(Q\)</span> to <span class="math inline">\(P\)</span>.</p></li>
 <li><p>Triangular inequality: <span class="math inline">\(I(P,Q) + I(Q,R) \ge I(P,R)\)</span>, among three probability distributions, the sum of two least information amount is no less than the third.</p></li>
 <li><p>Addition of continuous change: <span class="math inline">\(I(P,Q) + I(Q,R) = I(P,R)\)</span>, when <span class="math inline">\(P \to Q\)</span> and <span class="math inline">\(Q \to R\)</span> are in the same direction of probability changes (i.e.&nbsp;for each individual inference, they either both increase or both decrease its probability). In other words, amounts of <em>least information</em> for small, continuous probability changes in the same directions add linearly to the amount responsible for the overall change.</p></li>
-<li><p>Unit Information: In the special case when there are two equally possible inferences, the amount of <em>least information</em> needed to explain/interpret an outcome (certainty) is one: <span class="math inline">\(I(p_1=p_2=\frac{1}{2} \to q_1 =1,q_2=0) = 1\)</span> (see data point <span class="math inline">\((\frac{1}{2},1)\)</span> in Figure&nbsp;<a href="#fig-info-lit" data-reference-type="ref" data-reference="fig-info-lit">1.1</a>).</p></li>
+<li><p>Unit Information: In the special case when there are two equally possible inferences, the amount of <em>least information</em> needed to explain/interpret an outcome (certainty) is one: <span class="math inline">\(I(p_1=p_2=\frac{1}{2} \to q_1 =1,q_2=0) = 1\)</span> (see data point <span class="math inline">\((\frac{1}{2},1)\)</span> in <a href="#fig-info-lit" class="quarto-xref">Figure&nbsp;<span>5.4</span></a>).</p></li>
 <li><p>In the special case of reducing uncertain inferences to certainty (the ultimate case):</p>
 <ul>
 <li><p>With equally likely inferences, when there are more choices, the least information needed to explain an outcome is larger.</p></li>
 <li><p>The less likely the outcome, the larger the amount of <em>least information</em> needed to explain it.</p></li>
 </ul></li>
 </ol>
-<p>The first four properties listed above mean that the Least Information (LIT) function is a distance metric. The <span class="math inline">\(5^{th}\)</span> property can be likened to a function such as euclidean distance, where small distances in the same direction can add up to the overall distance. This is illustrated in Figure&nbsp;<a href="#fig-info-dist_add" data-reference-type="ref" data-reference="fig-info-dist_add">[fig-info-dist_add]</a>, where <span class="math inline">\(a+b=c\)</span>. This is the only situation in which they are equal with the triangle inequality.</p>
-<div class="marginfigure">
-
+<p>The first four properties listed above mean that the Least Information (LIT) function is a distance metric. The <span class="math inline">\(5^{th}\)</span> property can be likened to a function such as euclidean distance, where small distances in the same direction can add up to the overall distance. This is illustrated in <a href="#fig-info-dist-add" class="quarto-xref">Figure&nbsp;<span>5.5</span></a>, where <span class="math inline">\(a+b=c\)</span>. This is the only situation in which they are equal with the triangle inequality.</p>
+<div id="fig-info-dist-add" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three collinear points with adjacent distances a and b summing to total distance c.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-info-dist-add-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter05/fig-info-dist-add.svg" class="img-fluid figure-img" style="width:55.0%" alt="Three collinear points with adjacent distances a and b summing to total distance c.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-info-dist-add-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.5: Sum of distances in the same direction, <span class="math inline">\(a+b=c\)</span>.
+</figcaption>
+</figure>
 </div>
 <p>We can test the Least Information Theory (LIT) on the example of 2016 election. Given the probability change from election day estimates of <span class="math inline">\(Q_{trump}=0.1\)</span> and <span class="math inline">\(Q_{clinton}=0.9\)</span> to adjusted estimates of <span class="math inline">\(Q'_{trump}=0.9\)</span> and <span class="math inline">\(Q'_{clinton}=0.1\)</span> to the final election outcome of <span class="math inline">\(P_{trump}=1\)</span> and <span class="math inline">\(Q_{clinton}=0\)</span>, one can compute the the amounts of LIT on the two stages:</p>
 <p><span class="math display">\[\begin{aligned}

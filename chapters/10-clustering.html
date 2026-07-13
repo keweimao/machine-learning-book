@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -366,23 +366,51 @@ window.Quarto = {
 
 <p>We as human organize things. An important aspect of human development is to recognize the commonality of objects and group them together, for example, in terms of shapes and colors.</p>
 <p>A related category of machine learning algorithms is called <em>clustering</em>, which aims to bring like entities together and, by doing so, discovers major groups, patterns, and themes in the data. Clustering is often referred to as unsupervised learning because its outcome is not predetermined (unsupervised) but whatever the data shall reveal.</p>
-<div class="marginfigure">
-
+<div id="fig-org-partitions" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Hard, flat partitioning">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-partitions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-partitions.svg" class="img-fluid figure-img" style="width:70.0%" alt="Hard, flat partitioning">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-partitions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Hard, flat partitioning
+</figcaption>
+</figure>
 </div>
 <p>Clustering helps in the organization (grouping) of information and makes it easier to access and navigate. For example, when a student organizes course materials in folders of subject areas, it becomes more efficient for her to locate related materials when she needs to review them.</p>
 <p>Clustering is also an important step toward information aggregation and pattern recognition of data at hand. By discovering major groups and themes, a high-level summarization and overview can be identified with data instances representative of these groups. This can often be integrated with interactive information visualization for graphical representation and navigation of the data space.</p>
-<p>We often think of clustering as <em>hard</em> and <em>flat partitioning</em> – <em>hard</em> because cluster membership is concrete and every data instance belongs to only one group and <em>flat</em> because there is only one level of clusters. Figure&nbsp;<a href="#fig-org-partitions" data-reference-type="ref" data-reference="fig-org-partitions">[fig-org-partitions]</a> shows an example of two flat partitions, where data belong to either one of them. However, the result of clustering can be a more complex structure than that.</p>
-<div class="marginfigure">
-
+<p>We often think of clustering as <em>hard</em> and <em>flat partitioning</em> – <em>hard</em> because cluster membership is concrete and every data instance belongs to only one group and <em>flat</em> because there is only one level of clusters. <a href="#fig-org-partitions" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> shows an example of two flat partitions, where data belong to either one of them. However, the result of clustering can be a more complex structure than that.</p>
+<div id="fig-org-fuzzy" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Illustration of soft partitioning, where data may belong to multiple clusters">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-fuzzy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-fuzzy.svg" class="img-fluid figure-img" style="width:70.0%" alt="Illustration of soft partitioning, where data may belong to multiple clusters">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-fuzzy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: Illustration of soft partitioning, where data may belong to multiple clusters
+</figcaption>
+</figure>
 </div>
 <p>There are such methods for <em>soft</em> or <em>fuzzy</em> clustering, where each data instance can belong to multiple clusters. For example, a book on quantum computing can group with other books on quantum physics as well as those in computer science/engineering. The membership is not a concrete assignment but a degree of association. One can certainly view such cluster associations as probabilities. Soft clustering can be very helpful in applications where one may need different <em>routes</em>, so to speak, to data of interest.</p>
-<p>In addition, there are clustering algorithms that produce a hierarchical structure with levels of nested partitions, i.e.&nbsp;a tree with branches and branches of branches. Figure&nbsp;<a href="#fig-org-hierarchy" data-reference-type="ref" data-reference="fig-org-hierarchy">[fig-org-hierarchy]</a> illustrates hierarchical clustering, where a circle represents a cluster and a nested circle is a child (branch) of the one containing it. This can be achieved by either recursively merging data instances until the whole structure has emerged (the bottom-up approach) or recursively dividing the entire data into subsets until they can no longer be broken down (the top-down approach).</p>
-<div class="marginfigure">
-
+<p>In addition, there are clustering algorithms that produce a hierarchical structure with levels of nested partitions, i.e.&nbsp;a tree with branches and branches of branches. <a href="#fig-org-hierarchy" class="quarto-xref">Figure&nbsp;<span>10.4</span></a> illustrates hierarchical clustering, where a circle represents a cluster and a nested circle is a child (branch) of the one containing it. This can be achieved by either recursively merging data instances until the whole structure has emerged (the bottom-up approach) or recursively dividing the entire data into subsets until they can no longer be broken down (the top-down approach).</p>
+<div id="fig-org-hierarchy_circles" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Hierarchical clustering. A nested circle represents child (branch) of the enclosing cluster.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-hierarchy_circles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-hierarchy-circles.svg" class="img-fluid figure-img" style="width:70.0%" alt="Hierarchical clustering. A nested circle represents child (branch) of the enclosing cluster.">
 </div>
-<p>The result of hierarchical clustering in Figure&nbsp;<a href="#fig-org-hierarchy_circles" data-reference-type="ref" data-reference="fig-org-hierarchy_circles">[fig-org-hierarchy_circles]</a> can also be represented as a tree structure in Figure&nbsp;<a href="#fig-org-hierarchy" data-reference-type="ref" data-reference="fig-org-hierarchy">[fig-org-hierarchy]</a>. A hierarchy or dendrogram thus constructed may reveal the underlying taxonomy of themes in the data. It is a great tool for information organization and data exploration.</p>
-<div class="marginfigure">
-
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-hierarchy_circles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.3: Hierarchical clustering. A nested circle represents child (branch) of the enclosing cluster.
+</figcaption>
+</figure>
+</div>
+<p>The result of hierarchical clustering in <a href="#fig-org-hierarchy_circles" class="quarto-xref">Figure&nbsp;<span>10.3</span></a> can also be represented as a tree structure in <a href="#fig-org-hierarchy" class="quarto-xref">Figure&nbsp;<span>10.4</span></a>. A hierarchy or dendrogram thus constructed may reveal the underlying taxonomy of themes in the data. It is a great tool for information organization and data exploration.</p>
+<div id="fig-org-hierarchy" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tree representation of the hierarchical structure in the referenced figure">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-hierarchy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-hierarchy.svg" class="img-fluid figure-img" style="width:70.0%" alt="Tree representation of the hierarchical structure in the referenced figure">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-hierarchy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.4: Tree representation of the hierarchical structure in the referenced figure
+</figcaption>
+</figure>
 </div>
 <section id="example-data" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="example-data"><span class="header-section-number">10.1</span> Example Data</h2>
@@ -437,11 +465,18 @@ window.Quarto = {
 </table>
 </div>
 <p><span id="tab-org-iris" data-label="tab-org-iris"></span></p>
-<p>Each instance is an Iris flower observation, with measurements of its sepal length, sepal width, petal length, and petal width in centimeters, as well as classification of three Iris species (setosa, versicolor, or virginica). For demonstration, we use only <span class="math inline">\(5\)</span> data instances from each species (<span class="math inline">\(15\)</span> total) and focus on two variables in the analysis, namely <em>petal length</em> vs.&nbsp;<em>petal width</em>. In Figure&nbsp;<a href="#fig-org-iris" data-reference-type="ref" data-reference="fig-org-iris">[fig-org-iris]</a>, we plot <em>petal length</em> vs.&nbsp;<em>petal width</em> and color code data in each class (species).</p>
-<div class="marginfigure">
-
+<p>Each instance is an Iris flower observation, with measurements of its sepal length, sepal width, petal length, and petal width in centimeters, as well as classification of three Iris species (setosa, versicolor, or virginica). For demonstration, we use only <span class="math inline">\(5\)</span> data instances from each species (<span class="math inline">\(15\)</span> total) and focus on two variables in the analysis, namely <em>petal length</em> vs.&nbsp;<em>petal width</em>. In <a href="#fig-org-iris" class="quarto-xref">Figure&nbsp;<span>10.5</span></a>, we plot <em>petal length</em> vs.&nbsp;<em>petal width</em> and color code data in each class (species).</p>
+<div id="fig-org-iris" class="quarto-float quarto-figure quarto-figure-center anchored" alt="IRIS flowers data: Petal Length vs. Petal Width">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-iris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-iris.svg" class="img-fluid figure-img" style="width:70.0%" alt="IRIS flowers data: Petal Length vs. Petal Width">
 </div>
-<p>There appear to be three clusters, as shown in Figure&nbsp;<a href="#fig-org-iris" data-reference-type="ref" data-reference="fig-org-iris">[fig-org-iris]</a>, consistent with the three species. But how can we design algorithms to identify these clusters? Bear in mind that any clustering method, as unsupervised learning, should be data driven and should aim to discover inherent patterns from rather than imposing a structure on the data.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-iris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.5: IRIS flowers data: Petal Length vs.&nbsp;Petal Width
+</figcaption>
+</figure>
+</div>
+<p>There appear to be three clusters, as shown in <a href="#fig-org-iris" class="quarto-xref">Figure&nbsp;<span>10.5</span></a>, consistent with the three species. But how can we design algorithms to identify these clusters? Bear in mind that any clustering method, as unsupervised learning, should be data driven and should aim to discover inherent patterns from rather than imposing a structure on the data.</p>
 <p>Although clustering does not predict on the class label, we will use the classes of the IRIS data to help evaluate (at least visually) how well a clustering method has performed. In the end, if each identified cluster can be related to one of the species, then the clustering process must have done something right with regard to the data.</p>
 </section>
 <section id="hierarchical-clustering" class="level2" data-number="10.2">
@@ -450,91 +485,40 @@ window.Quarto = {
 <p>In the bottom up approach, we start with each data instance as a separate cluster and repeatedly merge the closest pair of clusters. Given <span class="math inline">\(N\)</span> instances, the initial number of clusters will be <span class="math inline">\(N\)</span> and this number will be reduced by <span class="math inline">\(1\)</span> whenever two clusters are joined together as one. The process will continue until the number of clusters have been reduced to a (predefined) desired number <span class="math inline">\(k\)</span> , or, if the objective is to build the entire hierarchical structure, until all clusters have been merged into one (the root).</p>
 <p>This process is simple but we should clarify on two aspects before a demonstration with the IRIS data. First, how do we measure distances in order to determine which two are the <em>closest</em>? There are many distance and similarity functions one can use. Among others, we discuss the Euclidean distance as a commonly used measure in Chapter&nbsp; and cosine similarity for text analysis in Chapter&nbsp;<a href="11-text-language.html" data-reference-type="ref" data-reference="ch-text">[ch-text]</a>. One should carefully evaluate how suitable a measure is with the data before adopting it.</p>
 <p>Second, when two clusters are merged to become one, how do we represent the new cluster so that we can measure its distance (or similarity) to other clusters? A basic strategy is to compute the centroid of the new cluster using vector values of member data instances. And this is the strategy that we will use in the following demonstration as it is easy to visualize. We will discuss several other strategies after that.</p>
-<figure id="fig-org-hac1" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li>all data instances
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li>zoomed in on the closest pair
-</li></ol></td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Step <span class="math inline">1</span> of HAC clustering on IRIS data. The circle indicates a new cluster formed by the closest pair of instances. The centroid of the cluster is marked <span class="math inline">×</span> in (b).
+<div id="fig-org-hac1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Step 1 of HAC clustering on IRIS data. The circle indicates a new cluster formed by the closest pair of instances. The centroid of the cluster is marked in (b).">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-hac1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-hac1.svg" class="img-fluid figure-img" style="width:70.0%" alt="Step 1 of HAC clustering on IRIS data. The circle indicates a new cluster formed by the closest pair of instances. The centroid of the cluster is marked in (b).">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-hac1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.6: Step <span class="math inline">\(1\)</span> of HAC clustering on IRIS data. The circle indicates a new cluster formed by the closest pair of instances. The centroid of the cluster is marked <span class="math inline">\(\times\)</span> in (b).
 </figcaption>
 </figure>
-
-
-<p>Figure&nbsp;<a href="#fig-org-hac1" data-reference-type="ref" data-reference="fig-org-hac1">1.1</a> (a) plots the IRIS data and visualizes the <span class="math inline">\(1^{st}\)</span> step of HAC clustering. Using Euclidean distance, the closest pair of instances can be identified, as circled on the plot, and joined as a new cluster.</p>
-<p>Figure&nbsp;<a href="#fig-org-hac1" data-reference-type="ref" data-reference="fig-org-hac1">1.1</a> (b) offers a closer look at the new cluster. Once the new cluster is formed, it is represented by the average values of its members, i.e.&nbsp;the geometric center of the two data instances on the plot (see <span class="math inline">\(\times\)</span> in the circled cluster). Now this new cluster with a centroid at <span class="math inline">\(\times\)</span> is simply treated as another data instance that can be compared to and merged with others.</p>
-<p>Now we can continue to find the next closest pairs. In Figure&nbsp;<a href="#fig-org-hac2" data-reference-type="ref" data-reference="fig-org-hac2">1.2</a> (a), the <span class="math inline">\(1^{st}\)</span> merged cluster is found to be closest to yet another data instance, and they are joined to form a new cluster again. This continues to merge with another instance, as shown in Figure&nbsp;<a href="#fig-org-hac2" data-reference-type="ref" data-reference="fig-org-hac2">1.2</a> (b).</p>
-<figure id="fig-org-hac2" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li>step 2
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li>step 3
-</li></ol></td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Further iterations of HAC clustering on IRIS data
+</div>
+<p><a href="#fig-org-hac1" class="quarto-xref">Figure&nbsp;<span>10.6</span></a> (a) plots the IRIS data and visualizes the <span class="math inline">\(1^{st}\)</span> step of HAC clustering. Using Euclidean distance, the closest pair of instances can be identified, as circled on the plot, and joined as a new cluster.</p>
+<p><a href="#fig-org-hac1" class="quarto-xref">Figure&nbsp;<span>10.6</span></a> (b) offers a closer look at the new cluster. Once the new cluster is formed, it is represented by the average values of its members, i.e.&nbsp;the geometric center of the two data instances on the plot (see <span class="math inline">\(\times\)</span> in the circled cluster). Now this new cluster with a centroid at <span class="math inline">\(\times\)</span> is simply treated as another data instance that can be compared to and merged with others.</p>
+<p>Now we can continue to find the next closest pairs. In <a href="#fig-org-hac2" class="quarto-xref">Figure&nbsp;<span>10.7</span></a> (a), the <span class="math inline">\(1^{st}\)</span> merged cluster is found to be closest to yet another data instance, and they are joined to form a new cluster again. This continues to merge with another instance, as shown in <a href="#fig-org-hac2" class="quarto-xref">Figure&nbsp;<span>10.7</span></a> (b).</p>
+<div id="fig-org-hac2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Further iterations of HAC clustering on IRIS data">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-hac2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-hac2.svg" class="img-fluid figure-img" style="width:70.0%" alt="Further iterations of HAC clustering on IRIS data">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-hac2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.7: Further iterations of HAC clustering on IRIS data
 </figcaption>
 </figure>
-
-
-<p>Repeat the merging process, we can get results in Figure&nbsp;<a href="#fig-org-hac3" data-reference-type="ref" data-reference="fig-org-hac3">1.3</a>. If the desired number of clusters <span class="math inline">\(k\)</span> is predefined, one can stop the iterative process once <span class="math inline">\(k\)</span> clusters have been obtained. In Figure&nbsp;<a href="#fig-org-hac3" data-reference-type="ref" data-reference="fig-org-hac3">1.3</a> (a), for example, the clustering process stops at <span class="math inline">\(3\)</span> clusters (<span class="math inline">\(k=3\)</span>). If one desires to build the entire hierarchy of the data, as Figure&nbsp;<a href="#fig-org-hac3" data-reference-type="ref" data-reference="fig-org-hac3">1.3</a> (b) shows, the process can continue until all clusters have been merged into the root (<span class="math inline">\(k=1\)</span>).</p>
-<figure id="fig-org-hac3" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li>merged to <span class="math inline">3</span> clusters
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li>merged to <span class="math inline">1</span> cluster
-</li></ol></td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Result of HAC clustering on IRIS data
+</div>
+<p>Repeat the merging process, we can get results in <a href="#fig-org-hac3" class="quarto-xref">Figure&nbsp;<span>10.8</span></a>. If the desired number of clusters <span class="math inline">\(k\)</span> is predefined, one can stop the iterative process once <span class="math inline">\(k\)</span> clusters have been obtained. In <a href="#fig-org-hac3" class="quarto-xref">Figure&nbsp;<span>10.8</span></a> (a), for example, the clustering process stops at <span class="math inline">\(3\)</span> clusters (<span class="math inline">\(k=3\)</span>). If one desires to build the entire hierarchy of the data, as <a href="#fig-org-hac3" class="quarto-xref">Figure&nbsp;<span>10.8</span></a> (b) shows, the process can continue until all clusters have been merged into the root (<span class="math inline">\(k=1\)</span>).</p>
+<div id="fig-org-hac3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Result of HAC clustering on IRIS data">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-hac3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-hac3.svg" class="img-fluid figure-img" style="width:70.0%" alt="Result of HAC clustering on IRIS data">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-hac3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.8: Result of HAC clustering on IRIS data
 </figcaption>
 </figure>
-
-
+</div>
 <section id="issues-of-hac" class="level3" data-number="10.2.1">
 <h3 data-number="10.2.1" class="anchored" data-anchor-id="issues-of-hac"><span class="header-section-number">10.2.1</span> Issues of HAC</h3>
 <p>In the above demonstration, we have relied on the notion of <em>centroid</em> (with average values of cluster members) when we compute the distance between clusters. Regardless of the distance or similarity function being used, there are several alternative strategies for measuring intra-cluster distances or similarities.</p>
@@ -549,91 +533,40 @@ Result of HAC clustering on IRIS data
 <p>We shall now look at <em>k-means</em>, a more efficient method for flat partitioning but, as we will discuss later, can also be used for hierarchical clustering as well. In the nutshell, k-means is a cluster optimization technique that improves on initial (random) clusters through iterations of cluster membership assignment and adjustment.</p>
 <p>In the beginning when clusters are unknown, it picks a number of random cluster centroids and assigns every data instance to a centroid depending on its proximity (similarity). Once all cluster membership has been determined, the centroid (center) of each cluster can be re-computed based on its assigned member instances. With the re-computed centroids, data instances will be reassigned, which will lead to further change of cluster centroids. So the process will continue on with centroid adjustment and cluster membership re-assignment, until the centroids no longer move (or move very little) or it has gone through a sufficient number of iterations.</p>
 <p>Now let’s look at how k-means may identify clusters from the IRIS data. Again, we set the number of desired clusters <span class="math inline">\(k=3\)</span> to see whether it may produce clusters consistent with the three Iris species.</p>
-<figure id="fig-org-kmeans1" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li>initial (random) centroids
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li>membership assignment
-</li></ol></td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-K-means initial steps. A <span class="math inline">×</span> represents an initial centroid. Undirected lines represent cluster membership. Directed lines <span class="math inline">↗</span> indicates how the centroid will move (change) after re-computation based on assigned members.
+<div id="fig-org-kmeans1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="K-means initial steps. A represents an initial centroid. Undirected lines represent cluster membership. Directed lines indicates how the centroid will move (change) after re-computation based on assigned members.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-kmeans1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-kmeans1.svg" class="img-fluid figure-img" style="width:70.0%" alt="K-means initial steps. A represents an initial centroid. Undirected lines represent cluster membership. Directed lines indicates how the centroid will move (change) after re-computation based on assigned members.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-kmeans1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.9: K-means initial steps. A <span class="math inline">\(\times\)</span> represents an initial centroid. Undirected lines represent cluster membership. Directed lines <span class="math inline">\(\nearrow\)</span> indicates how the centroid will move (change) after re-computation based on assigned members.
 </figcaption>
 </figure>
-
-
-<p>With data plotted in Figure&nbsp;<a href="#fig-org-kmeans1" data-reference-type="ref" data-reference="fig-org-kmeans1">1.4</a> (a), we start with <span class="math inline">\(3\)</span> random cluster centroids, shown as <span class="math inline">\(\times\)</span> in the plot. For each data instance, we compute its distance to each of the three initial centroids and identify the closest centroid, to which it will be assigned as a member. Figure&nbsp;<a href="#fig-org-kmeans1" data-reference-type="ref" data-reference="fig-org-kmeans1">1.4</a> (b) shows lines connecting data instances to their corresponding closest centroids.</p>
-<p>Once membership of each cluster is assigned, the center of cluster can be re-computed based on averaging member instances. After this computation, the centroids will likely change (move). Directed lines (arrows) in Figure&nbsp;<a href="#fig-org-kmeans1" data-reference-type="ref" data-reference="fig-org-kmeans1">1.4</a> (b) represent the changes of cluster centroids.</p>
-<figure id="fig-org-kmeans2" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li><span class="math inline">2<sup><em>n</em><em>d</em></sup></span> iteration
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li><span class="math inline">3<sup><em>n</em><em>d</em></sup></span> iteration
-</li></ol></td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-K-means further steps. A <span class="math inline">×</span> represents an centroid before it is updated. Undirected lines represent cluster membership. Directed lines <span class="math inline">↗</span> indicates how the centroid will move (change) after re-computation based on assigned members.
+</div>
+<p>With data plotted in <a href="#fig-org-kmeans1" class="quarto-xref">Figure&nbsp;<span>10.9</span></a> (a), we start with <span class="math inline">\(3\)</span> random cluster centroids, shown as <span class="math inline">\(\times\)</span> in the plot. For each data instance, we compute its distance to each of the three initial centroids and identify the closest centroid, to which it will be assigned as a member. <a href="#fig-org-kmeans1" class="quarto-xref">Figure&nbsp;<span>10.9</span></a> (b) shows lines connecting data instances to their corresponding closest centroids.</p>
+<p>Once membership of each cluster is assigned, the center of cluster can be re-computed based on averaging member instances. After this computation, the centroids will likely change (move). Directed lines (arrows) in <a href="#fig-org-kmeans1" class="quarto-xref">Figure&nbsp;<span>10.9</span></a> (b) represent the changes of cluster centroids.</p>
+<div id="fig-org-kmeans2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="K-means further steps. A represents an centroid before it is updated. Undirected lines represent cluster membership. Directed lines indicates how the centroid will move (change) after re-computation based on assigned members.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-kmeans2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-kmeans2.svg" class="img-fluid figure-img" style="width:70.0%" alt="K-means further steps. A represents an centroid before it is updated. Undirected lines represent cluster membership. Directed lines indicates how the centroid will move (change) after re-computation based on assigned members.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-kmeans2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.10: K-means further steps. A <span class="math inline">\(\times\)</span> represents an centroid before it is updated. Undirected lines represent cluster membership. Directed lines <span class="math inline">\(\nearrow\)</span> indicates how the centroid will move (change) after re-computation based on assigned members.
 </figcaption>
 </figure>
-
-
-<p>With the new cluster centroids, the distance of each data instance has also changed and should be measured again to find out which cluster one belongs to now. By doing so, some data instances may move from one cluster to another, as shown in the <span class="math inline">\(2^{nd}\)</span> iteration in Figure&nbsp;<a href="#fig-org-kmeans2" data-reference-type="ref" data-reference="fig-org-kmeans2">1.5</a> (a), which, in turn, leads to further changes of cluster centroids. See the <span class="math inline">\(3^{rd}\)</span> iteration in Figure&nbsp;<a href="#fig-org-kmeans2" data-reference-type="ref" data-reference="fig-org-kmeans2">1.5</a> (b). By repeating the iterations of cluster member assignment and centroid re-computation, the cluster centroids will continue to move and gradually converge. One may stop the k-means optimization process when cluster centroid does not move or moves very little, or after a certain number of iterations.</p>
-<figure id="fig-org-kmeans3" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li>Final result
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li>Overview of centroid movement
-</li></ol></td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-K-means final clusters and steps
+</div>
+<p>With the new cluster centroids, the distance of each data instance has also changed and should be measured again to find out which cluster one belongs to now. By doing so, some data instances may move from one cluster to another, as shown in the <span class="math inline">\(2^{nd}\)</span> iteration in <a href="#fig-org-kmeans2" class="quarto-xref">Figure&nbsp;<span>10.10</span></a> (a), which, in turn, leads to further changes of cluster centroids. See the <span class="math inline">\(3^{rd}\)</span> iteration in <a href="#fig-org-kmeans2" class="quarto-xref">Figure&nbsp;<span>10.10</span></a> (b). By repeating the iterations of cluster member assignment and centroid re-computation, the cluster centroids will continue to move and gradually converge. One may stop the k-means optimization process when cluster centroid does not move or moves very little, or after a certain number of iterations.</p>
+<div id="fig-org-kmeans3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="K-means final clusters and steps">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-kmeans3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-kmeans3.svg" class="img-fluid figure-img" style="width:70.0%" alt="K-means final clusters and steps">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-kmeans3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.11: K-means final clusters and steps
 </figcaption>
 </figure>
-
-
-<p>For the small IRIS data set here, it only takes less than <span class="math inline">\(5\)</span> iterations for the cluster centroids to converge (with little further movement). Figure&nbsp;<a href="#fig-org-kmeans3" data-reference-type="ref" data-reference="fig-org-kmeans3">1.6</a> (a) shows the final <span class="math inline">\(3\)</span> clusters thus identified and they are consistent with the three species of Iris flowers in the data. Figure&nbsp;<a href="#fig-org-kmeans3" data-reference-type="ref" data-reference="fig-org-kmeans3">1.6</a> (b) gives an overview of the movement of cluster centroids through the iterations. Even though we started with random centroids, k-means gradually moves the centroids toward more representative segments of the data and, in the end, reaches an optimal outcome.</p>
+</div>
+<p>For the small IRIS data set here, it only takes less than <span class="math inline">\(5\)</span> iterations for the cluster centroids to converge (with little further movement). <a href="#fig-org-kmeans3" class="quarto-xref">Figure&nbsp;<span>10.11</span></a> (a) shows the final <span class="math inline">\(3\)</span> clusters thus identified and they are consistent with the three species of Iris flowers in the data. <a href="#fig-org-kmeans3" class="quarto-xref">Figure&nbsp;<span>10.11</span></a> (b) gives an overview of the movement of cluster centroids through the iterations. Even though we started with random centroids, k-means gradually moves the centroids toward more representative segments of the data and, in the end, reaches an optimal outcome.</p>
 <section id="issues-of-k-means" class="level3" data-number="10.3.1">
 <h3 data-number="10.3.1" class="anchored" data-anchor-id="issues-of-k-means"><span class="header-section-number">10.3.1</span> Issues of K-means</h3>
 <p>K-means can be interpreted as to minimize member instances’ mean squared distance from their centroid. The iterative process can always converge to an optimum, but there is no guarantee that it will be globally optimal. In each iteration, it compares <span class="math inline">\(k\)</span> clusters to <span class="math inline">\(N\)</span> data instances, which is <span class="math inline">\(O(kN)\)</span>. Because <span class="math inline">\(k\)</span> is usually much smaller than <span class="math inline">\(N\)</span>, k-means is much more efficient and scalable than HAC.</p>
@@ -643,7 +576,7 @@ K-means final clusters and steps
 </section>
 <section id="probabilistic-clustering" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="probabilistic-clustering"><span class="header-section-number">10.4</span> Probabilistic Clustering</h2>
-<p>While k-means discovers cluster centroids, the Euclidean distance, for example, essentially defines a cluster boundary as a sphere of a certain radius in a dimensional space, e.g.&nbsp;circles on two dimensions in Figure&nbsp;<a href="#fig-org-kmeans3" data-reference-type="ref" data-reference="fig-org-kmeans3">1.6</a> (a). This implies two basic assumptions: 1) the distribution of member instances in a cluster is spherical, and 2) each data instance only belongs to one and only one cluster.</p>
+<p>While k-means discovers cluster centroids, the Euclidean distance, for example, essentially defines a cluster boundary as a sphere of a certain radius in a dimensional space, e.g.&nbsp;circles on two dimensions in <a href="#fig-org-kmeans3" class="quarto-xref">Figure&nbsp;<span>10.11</span></a> (a). This implies two basic assumptions: 1) the distribution of member instances in a cluster is spherical, and 2) each data instance only belongs to one and only one cluster.</p>
 <p>Is it possible to assume a different data distribution for clustering? In the same time, can there be soft (fuzzy) associations between data instances and clusters? The soft cluster membership can perhaps be thought of as probabilities.</p>
 <p>Indeed, there is a general probabilistic approach to clustering, namely a model-based clustering. The term <em>model</em> means that data are assumed to follow a distribution function with certain parameters (model) to be discovered. So based on the model, one can estimate the probabilities of cluster membership and try to maximize the probabilities in the process of identifying the clusters.</p>
 <p>For simpler illustration and explanation, let’s first consider only one variable, <em>petal width</em>, in the IRIS data. Suppose data instances with petal width values <span class="math inline">\(v\)</span> follows the normal distribution, based on which, as we discussed in Chapter&nbsp;, the probability density of value <span class="math inline">\(v\)</span> is computed by:</p>
@@ -664,12 +597,17 @@ K-means final clusters and steps
 <p>With the chicken or the egg dilemma, we shall start with some initial values for the <span class="math inline">\(\mu_c\)</span> and <span class="math inline">\(\delta_c^2\)</span> so that we can feed them into the calculation of probabilities, which then help in the identification of better <span class="math inline">\(\mu_c\)</span> and <span class="math inline">\(\delta_c^2\)</span> values. This is similar to k-means where we start with initial centroids, which, through membership assignment and reassignment, change and improve.</p>
 <section id="initialization" class="level3" data-number="10.4.1">
 <h3 data-number="10.4.1" class="anchored" data-anchor-id="initialization"><span class="header-section-number">10.4.1</span> Initialization</h3>
-<p>With the IRIS data on only one dimension, i.e.&nbsp;petal width, we randomize <span class="math inline">\(\mu_c\)</span> and <span class="math inline">\(\delta_c\)</span> for <span class="math inline">\(k=3\)</span> clusters: <span class="math inline">\(\mu_1=1\)</span> and <span class="math inline">\(\delta_1=0.25\)</span> for cluster <span class="math inline">\(c_1\)</span>, <span class="math inline">\(\mu_2=1.6\)</span> and <span class="math inline">\(\delta_2=0.25\)</span> for cluster <span class="math inline">\(c_2\)</span>, and <span class="math inline">\(\mu_3=2.8\)</span> and <span class="math inline">\(\delta_1=0.25\)</span> for cluster <span class="math inline">\(c_3\)</span>. Figure&nbsp;<a href="#fig-org-em1" data-reference-type="ref" data-reference="fig-org-em1">1.7</a> shows the distribution of IRIS data instances on the petal width <span class="math inline">\(v\)</span> dimension, with a normal (bell) curve based on each set of initial parameters.</p>
-<figure id="fig-org-em1" class="figure">
-<figcaption>
-Initial parameters of normal distributions. <span class="math inline">∘</span> are IRIS data instances. <span class="math inline">×</span> marks each an initial (random) mean <span class="math inline"><em>μ</em></span> (similar to a centroid), around which a normal distribution curve is plotted. The shaded area under curve shows the range of deviation from mean, i.e.&nbsp;<span class="math inline">[<em>μ</em> − <em>δ</em>, <em>μ</em> + <em>δ</em>]</span>.
+<p>With the IRIS data on only one dimension, i.e.&nbsp;petal width, we randomize <span class="math inline">\(\mu_c\)</span> and <span class="math inline">\(\delta_c\)</span> for <span class="math inline">\(k=3\)</span> clusters: <span class="math inline">\(\mu_1=1\)</span> and <span class="math inline">\(\delta_1=0.25\)</span> for cluster <span class="math inline">\(c_1\)</span>, <span class="math inline">\(\mu_2=1.6\)</span> and <span class="math inline">\(\delta_2=0.25\)</span> for cluster <span class="math inline">\(c_2\)</span>, and <span class="math inline">\(\mu_3=2.8\)</span> and <span class="math inline">\(\delta_1=0.25\)</span> for cluster <span class="math inline">\(c_3\)</span>. <a href="#fig-org-em1" class="quarto-xref">Figure&nbsp;<span>10.12</span></a> shows the distribution of IRIS data instances on the petal width <span class="math inline">\(v\)</span> dimension, with a normal (bell) curve based on each set of initial parameters.</p>
+<div id="fig-org-em1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Initial parameters of normal distributions. are IRIS data instances. marks each an initial (random) mean (similar to a centroid), around which a normal distribution curve is plotted. The shaded area under curve shows the range of deviation from mean, i.e. [-, +].">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-em1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-em1.svg" class="img-fluid figure-img" style="width:70.0%" alt="Initial parameters of normal distributions. are IRIS data instances. marks each an initial (random) mean (similar to a centroid), around which a normal distribution curve is plotted. The shaded area under curve shows the range of deviation from mean, i.e. [-, +].">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-em1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.12: Initial parameters of normal distributions. <span class="math inline">\(\circ\)</span> are IRIS data instances. <span class="math inline">\(\times\)</span> marks each an initial (random) mean <span class="math inline">\(\mu\)</span> (similar to a centroid), around which a normal distribution curve is plotted. The shaded area under curve shows the range of deviation from mean, i.e.&nbsp;<span class="math inline">\([\mu-\delta, \mu+\delta]\)</span>.
 </figcaption>
 </figure>
+</div>
 <p>In addition, we don’t know the prior probability <span class="math inline">\(P(c)\)</span> of each cluster <span class="math inline">\(c\)</span>. If we assume equal chances, we have for the <span class="math inline">\(3\)</span> clusters in the IRIS data: <span class="math inline">\(P(c_1)=P(c_2)=P(c_3)=1/3\)</span>.</p>
 </section>
 <section id="expectation" class="level3" data-number="10.4.2">
@@ -683,7 +621,7 @@ Initial parameters of normal distributions. <span class="math inline">∘</span>
 \end{aligned}\]</span></p>
 <p>where <span class="math inline">\(k\)</span> is the number of clusters and the denominator is the sum of probabilities for the data instance <span class="math inline">\(v\)</span> to be generated by distribution models of all <span class="math inline">\(k\)</span> clusters.</p>
 <p>Computing <span class="math inline">\(P(c|v)\)</span> is similar to the membership assignment of data instances to clusters in k-means. But instead of a <em>hard</em> membership, we have a probabilistic (soft) assignment here. We refer to the process of estimating the posterior probabilities of cluster membership as <em>Expectation</em>.</p>
-<p>Let’s apply this to the IRIS data. We use the first data instance with petal width <span class="math inline">\(v=0.2\)</span> (cm) (see the <span class="math inline">\(\circ\)</span> closest to the zero in Figure&nbsp;<a href="#fig-org-em1" data-reference-type="ref" data-reference="fig-org-em1">1.7</a>). First, we compute <span class="math inline">\(P(v|c)\)</span>, probability that each cluster model will generate the instance <span class="math inline">\(v=0.2\)</span>:</p>
+<p>Let’s apply this to the IRIS data. We use the first data instance with petal width <span class="math inline">\(v=0.2\)</span> (cm) (see the <span class="math inline">\(\circ\)</span> closest to the zero in <a href="#fig-org-em1" class="quarto-xref">Figure&nbsp;<span>10.12</span></a>). First, we compute <span class="math inline">\(P(v|c)\)</span>, probability that each cluster model will generate the instance <span class="math inline">\(v=0.2\)</span>:</p>
 <p><span class="math display">\[\begin{aligned}
   P(v=0.2|c_1)
   &amp; \propto &amp; f_{c_1}(v=0.2) \\
@@ -693,7 +631,7 @@ Initial parameters of normal distributions. <span class="math inline">∘</span>
   P(v=0.2|c_2) &amp; \propto &amp;  2.5 \times 10^{-7} \\
   P(v=0.2|c_3) &amp; \propto &amp;  5.2 \times 10^{-24} \\
 \end{aligned}\]</span></p>
-<p>As you can see from the Figure&nbsp;<a href="#fig-org-em1" data-reference-type="ref" data-reference="fig-org-em1">1.7</a>, <span class="math inline">\(v=0.2\)</span> is on the far left side of the first (red) bell curve centered on <span class="math inline">\(1\)</span>, and has a very small probability density <span class="math inline">\(P(v=0.2|c_1) \propto 0.00954\)</span>. This is further remove from the centers of the second (blue) and third (green) normal curves, and probability densities corresponding to <span class="math inline">\(c_2\)</span> and <span class="math inline">\(c_3\)</span> are much smaller.</p>
+<p>As you can see from the <a href="#fig-org-em1" class="quarto-xref">Figure&nbsp;<span>10.12</span></a>, <span class="math inline">\(v=0.2\)</span> is on the far left side of the first (red) bell curve centered on <span class="math inline">\(1\)</span>, and has a very small probability density <span class="math inline">\(P(v=0.2|c_1) \propto 0.00954\)</span>. This is further remove from the centers of the second (blue) and third (green) normal curves, and probability densities corresponding to <span class="math inline">\(c_2\)</span> and <span class="math inline">\(c_3\)</span> are much smaller.</p>
 <p>With these values, we can now compute <span class="math inline">\(P(v)\)</span>, which is the weighted sum of probabilities that the <span class="math inline">\(3\)</span> cluster models will generate data <span class="math inline">\(v=0.2\)</span>:</p>
 <p><span class="math display">\[\begin{aligned}
   P(v=0.2)
@@ -711,7 +649,7 @@ Initial parameters of normal distributions. <span class="math inline">∘</span>
   P(c_2|v=0.2) &amp; = &amp; 2.59 \times 10^{-5} \\
   P(c_3|v=0.2) &amp; = &amp; 5.46 \times 10^{-22}
 \end{aligned}\]</span></p>
-<p>Apparently, data instance <span class="math inline">\(v=0.2\)</span> is much more likely to belong to the cluster <span class="math inline">\(c_1\)</span> (the red bell curve on the left) than to the other clusters, which are far away away as shown in Figure&nbsp;<a href="#fig-org-em1" data-reference-type="ref" data-reference="fig-org-em1">1.7</a>.</p>
+<p>Apparently, data instance <span class="math inline">\(v=0.2\)</span> is much more likely to belong to the cluster <span class="math inline">\(c_1\)</span> (the red bell curve on the left) than to the other clusters, which are far away away as shown in <a href="#fig-org-em1" class="quarto-xref">Figure&nbsp;<span>10.12</span></a>.</p>
 <p>Now that we have identified the membership probabilities for the first instance, we shall continue to do the same for all other data instances (<span class="math inline">\(N=15\)</span> for the IRIS data) and conclude the <em>Expectation</em> step with all probabilistic membership "assignment." For example, here are related probabilities for two more data instances in IRIS: <span class="math inline">\(v=0.4\)</span> (<span class="math inline">\(2^{nd}\)</span> instance) and <span class="math inline">\(v=2.3\)</span> (<span class="math inline">\(15^{th}\)</span> instance).</p>
 <p><span class="math display">\[\begin{aligned}
   P(c_1|v=0.4) &amp; \approx &amp; 1 \\
@@ -721,12 +659,17 @@ Initial parameters of normal distributions. <span class="math inline">∘</span>
   P(c_2|v=1.3) &amp; = &amp; 0.128 \\
   P(c_3|v=1.3) &amp; = &amp; 0.872
 \end{aligned}\]</span></p>
-<figure id="fig-org-em2" class="figure">
-<figcaption>
-First expectation result. Color of a data instance indicates the cluster membership with the highest probability.
+<div id="fig-org-em2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="First expectation result. Color of a data instance indicates the cluster membership with the highest probability.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-em2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-em2.svg" class="img-fluid figure-img" style="width:70.0%" alt="First expectation result. Color of a data instance indicates the cluster membership with the highest probability.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-em2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.13: First expectation result. Color of a data instance indicates the cluster membership with the highest probability.
 </figcaption>
 </figure>
-<p>Figure&nbsp;<a href="#fig-org-em2" data-reference-type="ref" data-reference="fig-org-em2">1.8</a> shows the color-coded result of the first <em>Expectation</em> step on the IRIS data. A data instance’s color indicates the cluster with the highest probability – that is, the bell curve that best "covers" the data instance.</p>
+</div>
+<p><a href="#fig-org-em2" class="quarto-xref">Figure&nbsp;<span>10.13</span></a> shows the color-coded result of the first <em>Expectation</em> step on the IRIS data. A data instance’s color indicates the cluster with the highest probability – that is, the bell curve that best "covers" the data instance.</p>
 </section>
 <section id="maximization" class="level3" data-number="10.4.3">
 <h3 data-number="10.4.3" class="anchored" data-anchor-id="maximization"><span class="header-section-number">10.4.3</span> Maximization</h3>
@@ -747,7 +690,7 @@ First expectation result. Color of a data instance indicates the cluster members
 \end{aligned}\]</span></p>
 <p>where <span class="math inline">\(v\)</span> is each one of <span class="math inline">\(N\)</span> data instances (<span class="math inline">\(N=15\)</span> in the small IRIS data subset here) and <span class="math inline">\(P(c|v)\)</span> is the probability that <span class="math inline">\(v\)</span> is associated with cluster <span class="math inline">\(c\)</span>.</p>
 <p>It turns out that there is not a simple direct solution to maximizing the log-likelihood. However, if we look at the result from the <em>Expectation</em> step, there is a way in which we can maximize this by following the data and improving the <em>representative</em> of the cluster models, similar to how k-means iterates.</p>
-<p>Now that data instances have been assigned, probabilistically, to each cluster, the original model for each cluster is no longer representative of data associated with them. In Figure&nbsp;<a href="#fig-org-em2" data-reference-type="ref" data-reference="fig-org-em2">1.8</a>, for example, the first (red) bell curve is not centered on the data instances most highly associated with it.</p>
+<p>Now that data instances have been assigned, probabilistically, to each cluster, the original model for each cluster is no longer representative of data associated with them. In <a href="#fig-org-em2" class="quarto-xref">Figure&nbsp;<span>10.13</span></a>, for example, the first (red) bell curve is not centered on the data instances most highly associated with it.</p>
 <p>This is similar to k-means where the original centroid does no longer represent the center of member instances. And the models – with parameters mean <span class="math inline">\(\mu_c\)</span> and variance <span class="math inline">\(\delta_c^2\)</span> for each cluster <span class="math inline">\(c\)</span> – will have to be recomputed. This re-computation of parameters, in the context of model-based clustering, is the <em>Maximization</em> step.</p>
 <p>Now back to the IRIS data. With the assigned posterior probabilities <span class="math inline">\(P(c|v)\)</span>, we can now update the mean and variance for each cluster model. For cluster <span class="math inline">\(c_1\)</span> and <span class="math inline">\(N=15\)</span> data instances, we have:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -762,53 +705,32 @@ First expectation result. Color of a data instance indicates the cluster members
   &amp; = &amp; 0.433
 \end{aligned}\]</span></p>
 <p>Likewise, we can update models for cluster <span class="math inline">\(c_2\)</span> with <span class="math inline">\(\hat{\mu_2}=1.67\)</span> and <span class="math inline">\(\hat{\delta_2}=0.332\)</span>, and cluster <span class="math inline">\(c_3\)</span> with <span class="math inline">\(\hat{\mu_3}=2.34\)</span> and <span class="math inline">\(\hat{\delta_3}=0.116\)</span>.</p>
-<figure id="fig-org-em3" class="figure">
-<figcaption>
-First Maximization result. A bell curve with with a shaded area (<span class="math inline">±<em>d</em><em>e</em><em>l</em><em>t</em><em>a</em></span>) is the new model with updated parameters for the cluster.
+<div id="fig-org-em3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="First Maximization result. A bell curve with with a shaded area ( delta) is the new model with updated parameters for the cluster.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-em3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-em3.svg" class="img-fluid figure-img" style="width:70.0%" alt="First Maximization result. A bell curve with with a shaded area ( delta) is the new model with updated parameters for the cluster.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-em3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.14: First Maximization result. A bell curve with with a shaded area (<span class="math inline">\(\pm delta\)</span>) is the new model with updated parameters for the cluster.
 </figcaption>
 </figure>
-<p>Figure&nbsp;<a href="#fig-org-em3" data-reference-type="ref" data-reference="fig-org-em3">1.9</a> shows the result of this <em>Maximization</em> step. The models (normal curves) have moved closer to their more highly associated data instances. This is very similar to re-computation of centroids – thus causing them to move – in k-means clustering. With Maximization, more than one parameters are needed to specify a model. For normal distribution models, both mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\delta^2\)</span> are to be updated. If one assumes a different probability distribution, then a different set of parameters will be maximized.</p>
+</div>
+<p><a href="#fig-org-em3" class="quarto-xref">Figure&nbsp;<span>10.14</span></a> shows the result of this <em>Maximization</em> step. The models (normal curves) have moved closer to their more highly associated data instances. This is very similar to re-computation of centroids – thus causing them to move – in k-means clustering. With Maximization, more than one parameters are needed to specify a model. For normal distribution models, both mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\delta^2\)</span> are to be updated. If one assumes a different probability distribution, then a different set of parameters will be maximized.</p>
 </section>
 <section id="iterations-of-expection-maximization" class="level3" data-number="10.4.4">
 <h3 data-number="10.4.4" class="anchored" data-anchor-id="iterations-of-expection-maximization"><span class="header-section-number">10.4.4</span> Iterations of Expection-Maximization</h3>
 <p>Now that the cluster models have changed, we need to go back to the <em>Expectation</em> step and re-compute the posterior probabilities <span class="math inline">\(P(c|v)\)</span>. Once the probabilities are changed, the model parameters will be updated again in the next <em>Maximization</em> step. The process of Expectation-Maximization will repeat itself until the models no longer changed, where the overall probability of models generating observed data instances has been maximized.</p>
-<p>Figure&nbsp;<a href="#fig-org-em4" data-reference-type="ref" data-reference="fig-org-em4">1.10</a> shows further iterations of EM on the IRIS data. Visually, the cluster models (curves) move increasingly closer to the data instances they represent and, in the end, get well aligned with them.</p>
-<figure id="fig-org-em4" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">2<sup><em>n</em><em>d</em></sup></span> Iteration
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">3<sup><em>r</em><em>d</em></sup></span> Iteration
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">4<sup><em>t</em><em>h</em></sup></span> Iteration
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-</td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Iterations of Expectation and Maximization. Note that there are <span class="math inline">5</span> data instances in each iris species. But because their petal width values overlap on the only dimension, there appear to be <span class="math inline">3</span> or <span class="math inline">4</span> instances in each cluster, which, in fact, has <span class="math inline">5</span>.
+<p><a href="#fig-org-em4" class="quarto-xref">Figure&nbsp;<span>10.15</span></a> shows further iterations of EM on the IRIS data. Visually, the cluster models (curves) move increasingly closer to the data instances they represent and, in the end, get well aligned with them.</p>
+<div id="fig-org-em4" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Iterations of Expectation and Maximization. Note that there are 5 data instances in each iris species. But because their petal width values overlap on the only dimension, there appear to be 3 or 4 instances in each cluster, which, in fact, has 5.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-em4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter10/fig-org-em4.svg" class="img-fluid figure-img" style="width:70.0%" alt="Iterations of Expectation and Maximization. Note that there are 5 data instances in each iris species. But because their petal width values overlap on the only dimension, there appear to be 3 or 4 instances in each cluster, which, in fact, has 5.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-em4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.15: Iterations of Expectation and Maximization. Note that there are <span class="math inline">\(5\)</span> data instances in each iris species. But because their petal width values overlap on the only dimension, there appear to be <span class="math inline">\(3\)</span> or <span class="math inline">\(4\)</span> instances in each cluster, which, in fact, has <span class="math inline">\(5\)</span>.
 </figcaption>
 </figure>
+</div>
 </section>
 <section id="em-with-higher-dimensionality" class="level3" data-number="10.4.5">
 <h3 data-number="10.4.5" class="anchored" data-anchor-id="em-with-higher-dimensionality"><span class="header-section-number">10.4.5</span> EM with Higher Dimensionality</h3>

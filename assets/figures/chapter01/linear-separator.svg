@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+  <title id="title">Linear equation separating the two V4 classes</title>
+  <desc id="desc">Linear equation separating the two V4 classes</desc>
+  <rect width="100%" height="100%" fill="white"/>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #222; }
+    .axis { stroke: #333; stroke-width: 2; }
+    .grid { stroke: #d9d9d9; stroke-width: 1; }
+    .tick { font-size: 16px; }
+    .label { font-size: 20px; font-style: italic; }
+    .panel { font-size: 18px; }
+  </style>
+<line class="grid" x1="62" y1="18" x2="62" y2="462"/><line class="grid" x1="62" y1="18" x2="696" y2="18"/><line class="grid" x1="220.5" y1="18" x2="220.5" y2="462"/><line class="grid" x1="62" y1="129" x2="696" y2="129"/><line class="grid" x1="379" y1="18" x2="379" y2="462"/><line class="grid" x1="62" y1="240" x2="696" y2="240"/><line class="grid" x1="537.5" y1="18" x2="537.5" y2="462"/><line class="grid" x1="62" y1="351" x2="696" y2="351"/><line class="grid" x1="696" y1="18" x2="696" y2="462"/><line class="grid" x1="62" y1="462" x2="696" y2="462"/><line class="axis" x1="62" y1="462" x2="696" y2="462"/><line class="axis" x1="62" y1="18" x2="62" y2="462"/><text class="label" x="379" y="506" text-anchor="middle">V₂</text><text class="label" transform="translate(20 240) rotate(-90)" text-anchor="middle">V₃</text><text class="panel" x="360" y="538" text-anchor="middle"></text><circle cx="315.6" cy="373.2" r="7" fill="white" stroke="#c43c39" stroke-width="3"/><circle cx="632.6" cy="240" r="7" fill="white" stroke="#c43c39" stroke-width="3"/><circle cx="379" cy="328.8" r="7" fill="white" stroke="#c43c39" stroke-width="3"/><path d="M 371 62.39999999999998 H 387 M 379 54.39999999999998 V 70.39999999999998" stroke="#2866b1" stroke-width="3"/><path d="M 180.8 284.4 H 196.8 M 188.8 276.4 V 292.4" stroke="#2866b1" stroke-width="3"/><path d="M 117.4 106.79999999999995 H 133.4 M 125.4 98.79999999999995 V 114.79999999999995" stroke="#2866b1" stroke-width="3"/><line x1="62" y1="462" x2="696" y2="18" stroke="#111" stroke-width="3"/><text x="486.78000000000003" y="129" font-size="18" transform="rotate(-39 486.78000000000003 129)">V₃ − V₂ = 0</text>
+</svg>

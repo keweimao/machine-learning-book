@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -393,11 +393,18 @@ window.Quarto = {
         12 &amp; 1
     \end{pmatrix}
 \end{aligned}\]</span></p>
-<p>where each row is a 2-dimensional vector and can be visualized in Figure&nbsp;<a href="#fig-matrix-x" data-reference-type="ref" data-reference="fig-matrix-x">[fig-matrix-x]</a>.</p>
-<div class="marginfigure">
-
+<p>where each row is a 2-dimensional vector and can be visualized in <a href="#fig-matrix-x" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>.</p>
+<div id="fig-matrix-x" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three vectors representing company revenue and profit in a two-dimensional coordinate plane.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matrix-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter03/fig-matrix-x.svg" class="img-fluid figure-img" style="width:60.0%" alt="Three vectors representing company revenue and profit in a two-dimensional coordinate plane.">
 </div>
-<p>Let <span class="math inline">\(Y\)</span> be this year’s data as follow, which, likewise, can be visualized as <span class="math inline">\(3\)</span> row vectors in Figure&nbsp;<a href="#fig-matrix-y" data-reference-type="ref" data-reference="fig-matrix-y">[fig-matrix-y]</a>:</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matrix-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Row vectors of matrix <span class="math inline">\(X\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>Let <span class="math inline">\(Y\)</span> be this year’s data as follow, which, likewise, can be visualized as <span class="math inline">\(3\)</span> row vectors in <a href="#fig-matrix-y" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>:</p>
 <p><span class="math display">\[\begin{aligned}
     Y   &amp; = &amp;
     \begin{matrix}
@@ -411,8 +418,15 @@ window.Quarto = {
         16 &amp; 2
     \end{pmatrix}
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-
+<div id="fig-matrix-y" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three updated company vectors in a two-dimensional coordinate plane.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matrix-y-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter03/fig-matrix-y.svg" class="img-fluid figure-img" style="width:60.0%" alt="Three updated company vectors in a two-dimensional coordinate plane.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matrix-y-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Row vectors of matrix <span class="math inline">\(Y\)</span>.
+</figcaption>
+</figure>
 </div>
 <p>Apparently, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the same dimensionality – <span class="math inline">\(X \in \mathbb{R}^{3\times2}\)</span> and <span class="math inline">\(Y \in \mathbb{R}^{3\times2}\)</span> – as they are about the same three companies (rows) and two variables (columns). We can perform simple computation such as addition and subtraction on the matrices.</p>
 <p>For example, it is easy to compute the increase or decrease in revenue and profit with subtraction:</p>
@@ -449,9 +463,16 @@ window.Quarto = {
         4 &amp; 1
     \end{pmatrix}
 \end{aligned}\]</span></p>
-<p>Matrix <span class="math inline">\(G\)</span>, the result of the subtraction, contains data about growth (increases and decreases). The rows of matrix <span class="math inline">\(G\)</span> are vectors connecting respective <span class="math inline">\(X\)</span> vectors to <span class="math inline">\(Y\)</span> vectors. Let’s single out the <span class="math inline">\(3^{rd}\)</span> company from the data, i.e.&nbsp;<span class="math inline">\(x_3\)</span>, <span class="math inline">\(y_3\)</span>, and <span class="math inline">\(g_3\)</span>. As shown Figure&nbsp;<a href="#fig-matrix-xy" data-reference-type="ref" data-reference="fig-matrix-xy">[fig-matrix-xy]</a>, subtraction <span class="math inline">\(g_3=y_3-x_3\)</span> is the vector that starts at <span class="math inline">\(x_3\)</span> and ends at <span class="math inline">\(y_3\)</span>.</p>
-<div class="marginfigure">
-
+<p>Matrix <span class="math inline">\(G\)</span>, the result of the subtraction, contains data about growth (increases and decreases). The rows of matrix <span class="math inline">\(G\)</span> are vectors connecting respective <span class="math inline">\(X\)</span> vectors to <span class="math inline">\(Y\)</span> vectors. Let’s single out the <span class="math inline">\(3^{rd}\)</span> company from the data, i.e.&nbsp;<span class="math inline">\(x_3\)</span>, <span class="math inline">\(y_3\)</span>, and <span class="math inline">\(g_3\)</span>. As shown in <a href="#fig-matrix-xy" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>, subtraction <span class="math inline">\(g_3=y_3-x_3\)</span> is the vector that starts at <span class="math inline">\(x_3\)</span> and ends at <span class="math inline">\(y_3\)</span>.</p>
+<div id="fig-matrix-xy" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Vectors x3 and y3 connected by their difference vector g3.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matrix-xy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter03/fig-matrix-xy.svg" class="img-fluid figure-img" style="width:60.0%" alt="Vectors x3 and y3 connected by their difference vector g3.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matrix-xy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Subtraction geometry.
+</figcaption>
+</figure>
 </div>
 <p>Suppose the rate of growth in <span class="math inline">\(G\)</span> is projected to continue (the same) next year. This will double the growth, which can be computed by:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -475,10 +496,17 @@ window.Quarto = {
         8 &amp; 2
     \end{pmatrix}
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-
+<div id="fig-matrix-2g" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Growth vector g3 and a vector in the same direction with twice its length.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matrix-2g-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter03/fig-matrix-2g.svg" class="img-fluid figure-img" style="width:60.0%" alt="Growth vector g3 and a vector in the same direction with twice its length.">
 </div>
-<p>Here every value in matrix <span class="math inline">\(G\)</span> is doubled; so is every vector – row or column – in the matrix. For example, Figure&nbsp;<a href="#fig-matrix-2g" data-reference-type="ref" data-reference="fig-matrix-2g">[fig-matrix-2g]</a> shows when <span class="math inline">\(g_3\)</span>, the growth vector of the <span class="math inline">\(3^{rd}\)</span> company (row), multiplies <span class="math inline">\(2\)</span>, the vector doubles its length (magnitude) in the same direction. Multiplying a matrix with a scalar (single number) results in a matrix of the same dimensionality, in which every value is multiplied by the same scalar. Note the multiplication can be written as <span class="math inline">\(2 \cdot G\)</span>, <span class="math inline">\(2G\)</span> or, more generally, <span class="math inline">\(aG\)</span> given a scalar <span class="math inline">\(a\)</span> and a matrix <span class="math inline">\(G\)</span>.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matrix-2g-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: Geometry of <span class="math inline">\(g_3 \times 2\)</span>, as part of scalar multiplication <span class="math inline">\(G\times2\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>Here every value in matrix <span class="math inline">\(G\)</span> is doubled; so is every vector – row or column – in the matrix. For example, <a href="#fig-matrix-2g" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> shows when <span class="math inline">\(g_3\)</span>, the growth vector of the <span class="math inline">\(3^{rd}\)</span> company (row), multiplies <span class="math inline">\(2\)</span>, the vector doubles its length (magnitude) in the same direction. Multiplying a matrix with a scalar (single number) results in a matrix of the same dimensionality, in which every value is multiplied by the same scalar. Note the multiplication can be written as <span class="math inline">\(2 \cdot G\)</span>, <span class="math inline">\(2G\)</span> or, more generally, <span class="math inline">\(aG\)</span> given a scalar <span class="math inline">\(a\)</span> and a matrix <span class="math inline">\(G\)</span>.</p>
 <p>Now with the projected growth (or decrease) data in the <span class="math inline">\(2G\)</span> matrix, we can add them to the last year’s data matrix <span class="math inline">\(X\)</span> to compute the final projection for next year <span class="math inline">\(Z\)</span>:</p>
 <p><span class="math display">\[\begin{aligned}
 Z &amp; = &amp; Y + 2G \\
@@ -512,11 +540,18 @@ Z &amp; = &amp; Y + 2G \\
       20 &amp; 3
   \end{pmatrix}
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-
+<div id="fig-matrix-z" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Head-to-tail vector addition showing x3 plus twice g3 resulting in z3.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matrix-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter03/fig-matrix-z.svg" class="img-fluid figure-img" style="width:60.0%" alt="Head-to-tail vector addition showing x3 plus twice g3 resulting in z3.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matrix-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: Geometry of addition <span class="math inline">\(z_3=x_3 + g_3\times2\)</span>.
+</figcaption>
+</figure>
 </div>
 <p>Note that the data matrix <span class="math inline">\(Z\)</span> projected from last year’s numbers in <span class="math inline">\(X\)</span> should be the same as that projected based on this year’s data in <span class="math inline">\(Y\)</span>, i.e.&nbsp;<span class="math inline">\(Z=X+2G=Y+G\)</span> given that <span class="math inline">\(G=Y-X\)</span>.</p>
-<p>Geometrically, for corresponding vectors in the matrices, the addition operation is to connect them head to tail. For example, as shown by the solid lines in Figure&nbsp;<a href="#fig-matrix-z" data-reference-type="ref" data-reference="fig-matrix-z">[fig-matrix-z]</a>, for the <span class="math inline">\(3^{rd}\)</span> row vector, <span class="math inline">\(x_3+g_3\times2\)</span> is to connect vectors <span class="math inline">\(x_3\)</span> and <span class="math inline">\(2g_3\)</span> and the result is <span class="math inline">\(z_3\)</span>, which draws from the tail of <span class="math inline">\(x_3\)</span> to the head of <span class="math inline">\(2g_3\)</span>. Vector and matrix addition is communicative, the same result can be obtained by <span class="math inline">\(2g_3 + x_3\)</span>, as shown by dashed lines in Figure&nbsp;<a href="#fig-matrix-z" data-reference-type="ref" data-reference="fig-matrix-z">[fig-matrix-z]</a>.</p>
+<p>Geometrically, for corresponding vectors in the matrices, the addition operation is to connect them head to tail. For example, as shown by the solid lines in <a href="#fig-matrix-z" class="quarto-xref">Figure&nbsp;<span>3.5</span></a>, for the <span class="math inline">\(3^{rd}\)</span> row vector, <span class="math inline">\(x_3+g_3\times2\)</span> is to connect vectors <span class="math inline">\(x_3\)</span> and <span class="math inline">\(2g_3\)</span> and the result is <span class="math inline">\(z_3\)</span>, which draws from the tail of <span class="math inline">\(x_3\)</span> to the head of <span class="math inline">\(2g_3\)</span>. Vector and matrix addition is communicative, the same result can be obtained by <span class="math inline">\(2g_3 + x_3\)</span>, as shown by dashed lines in <a href="#fig-matrix-z" class="quarto-xref">Figure&nbsp;<span>3.5</span></a>.</p>
 </section>
 <section id="sum-of-squares" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="sum-of-squares"><span class="header-section-number">3.2</span> Sum of Squares</h2>
@@ -621,10 +656,17 @@ Z &amp; = &amp; Y + 2G \\
           &amp; = &amp; 5
     \end{matrix}
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-
+<div id="fig-matrix-magnitude" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A vector from the origin to the point 3,4, forming a right triangle with length 5.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matrix-magnitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter03/fig-matrix-magnitude.svg" class="img-fluid figure-img" style="width:55.0%" alt="A vector from the origin to the point 3,4, forming a right triangle with length 5.">
 </div>
-<p>which is the length shown in Figure&nbsp;<a href="#fig-matrix-magnitude" data-reference-type="ref" data-reference="fig-matrix-magnitude">[fig-matrix-magnitude]</a>.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matrix-magnitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Vector magnitude.
+</figcaption>
+</figure>
+</div>
+<p>which is the length shown in <a href="#fig-matrix-magnitude" class="quarto-xref">Figure&nbsp;<span>3.6</span></a>.</p>
 </section>
 <section id="vector-distance" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="vector-distance"><span class="header-section-number">3.4</span> Vector Distance</h2>
@@ -704,8 +746,15 @@ x - y &amp; = &amp;
         \end{pmatrix}
   \end{matrix}
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-
+<div id="fig-matrix-distance" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two vectors from the origin and the difference vector connecting their endpoints.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matrix-distance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter03/fig-matrix-distance.svg" class="img-fluid figure-img" style="width:55.0%" alt="Two vectors from the origin and the difference vector connecting their endpoints.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matrix-distance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.7: Vector distance.
+</figcaption>
+</figure>
 </div>
 <p>Their Euclidean distance can be computed by the magnitude of their difference:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -714,7 +763,7 @@ x - y &amp; = &amp;
           &amp; = &amp; \sqrt{10}
     \end{matrix}
 \end{aligned}\]</span></p>
-<p>Euclidean distance is symmetric as a metric, i.e. <span class="math inline">\(\left\lVert v-u \right\rVert = \left\lVert u-v \right\rVert\)</span>. The distance between the two vectors is illustrated in Figure&nbsp;<a href="#fig-matrix-distance" data-reference-type="ref" data-reference="fig-matrix-distance">[fig-matrix-distance]</a>.</p>
+<p>Euclidean distance is symmetric as a metric, i.e. <span class="math inline">\(\left\lVert v-u \right\rVert = \left\lVert u-v \right\rVert\)</span>. The distance between the two vectors is illustrated in <a href="#fig-matrix-distance" class="quarto-xref">Figure&nbsp;<span>3.7</span></a>.</p>
 </section>
 <section id="vector-angle" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="vector-angle"><span class="header-section-number">3.5</span> Vector Angle</h2>
@@ -821,10 +870,17 @@ x - y &amp; = &amp;
       \end{pmatrix}
   \end{matrix}
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-
+<div id="fig-matrix-unit" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two vectors and their normalized versions ending on a unit circle.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matrix-unit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter03/fig-matrix-unit.svg" class="img-fluid figure-img" style="width:60.0%" alt="Two vectors and their normalized versions ending on a unit circle.">
 </div>
-<p>As shown in Figure&nbsp;<a href="#fig-matrix-unit" data-reference-type="ref" data-reference="fig-matrix-unit">[fig-matrix-unit]</a>, the normalized unit vectors <span class="math inline">\(\hat{u}\)</span> and <span class="math inline">\(\hat{v}\)</span> point to the same directions of their original vectors <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> respectively. However, the normalization produce vectors of equal magnitudes. As the dotted circle shows, the unit vectors are part of a unit circle with radius <span class="math inline">\(1\)</span>.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matrix-unit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.8: Normalization to unit vectors.
+</figcaption>
+</figure>
+</div>
+<p>As shown in <a href="#fig-matrix-unit" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>, the normalized unit vectors <span class="math inline">\(\hat{u}\)</span> and <span class="math inline">\(\hat{v}\)</span> point to the same directions of their original vectors <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> respectively. However, the normalization produce vectors of equal magnitudes. As the dotted circle shows, the unit vectors are part of a unit circle with radius <span class="math inline">\(1\)</span>.</p>
 <p>Please note that we can use a circle to visualize the unit vectors on the 2-dimensional space (for the 2-dimensional vectors here). For <span class="math inline">\(3\)</span> dimensions, we can use a unit sphere for such visualization. For higher dimensionality, however, we can hardly visualize it but the same idea holds true mathematically with the notion of <em>hypersphere</em>.</p>
 <p>Now the dot product of the two unit vectors is:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -842,10 +898,17 @@ x - y &amp; = &amp;
       &amp; = &amp; 0.894
   \end{matrix}
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-<p><span id="fig-matrix-cosine" data-label="fig-matrix-cosine"></span></p>
+<div id="fig-matrix-cosine" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Unit circle diagram showing cosine values for parallel, perpendicular, and opposite vectors.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matrix-cosine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter03/fig-matrix-cosine.svg" class="img-fluid figure-img" style="width:60.0%" alt="Unit circle diagram showing cosine values for parallel, perpendicular, and opposite vectors.">
 </div>
-<p>which is the cosine of the angle between <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, shown in Figure&nbsp;<a href="#fig-matrix-unit" data-reference-type="ref" data-reference="fig-matrix-unit">[fig-matrix-unit]</a>. The arc cosine of <span class="math inline">\(0.894\)</span> corresponds to an angle of roughly <span class="math inline">\(27^\circ\)</span> out of a <span class="math inline">\(360^\circ\)</span> full circle, or <span class="math inline">\(0.465\)</span> on a <span class="math inline">\(2\pi\)</span> scale. Cosine values range between <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>: it is <span class="math inline">\(1\)</span> when two vector are in the exact same direction (parallel) and <span class="math inline">\(-1\)</span> when they are in the opposite direction (a <span class="math inline">\(180^\circ\)</span> or <span class="math inline">\(\pi\)</span> angle). Cosine is <span class="math inline">\(0\)</span> when two vectors are orthogonal (perpendicular) to each other (right angle). See Figure&nbsp;<a href="#fig-matrix-cosine" data-reference-type="ref" data-reference="fig-matrix-cosine">[fig-matrix-cosine]</a>.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matrix-cosine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.9: Cosine values for special angles.
+</figcaption>
+</figure>
+</div>
+<p>which is the cosine of the angle between <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, shown in <a href="#fig-matrix-unit" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>. The arc cosine of <span class="math inline">\(0.894\)</span> corresponds to an angle of roughly <span class="math inline">\(27^\circ\)</span> out of a <span class="math inline">\(360^\circ\)</span> full circle, or <span class="math inline">\(0.465\)</span> on a <span class="math inline">\(2\pi\)</span> scale. Cosine values range between <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>: it is <span class="math inline">\(1\)</span> when two vector are in the exact same direction (parallel) and <span class="math inline">\(-1\)</span> when they are in the opposite direction (a <span class="math inline">\(180^\circ\)</span> or <span class="math inline">\(\pi\)</span> angle). Cosine is <span class="math inline">\(0\)</span> when two vectors are orthogonal (perpendicular) to each other (right angle). See <a href="#fig-matrix-cosine" class="quarto-xref">Figure&nbsp;<span>3.9</span></a>.</p>
 </section>
 <section id="vector-cross-product" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="vector-cross-product"><span class="header-section-number">3.6</span> Vector Cross Product</h2>

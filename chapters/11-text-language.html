@@ -64,7 +64,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -344,9 +344,9 @@ window.Quarto = {
   <li><a href="#text-vectorization" id="toc-text-vectorization" class="nav-link active" data-scroll-target="#text-vectorization"><span class="header-section-number">11.1</span> Text Vectorization</a>
   <ul class="collapse">
   <li><a href="#tokenization" id="toc-tokenization" class="nav-link" data-scroll-target="#tokenization"><span class="header-section-number">11.1.1</span> Tokenization</a></li>
-  <li><a href="#ch-text-weight" id="toc-ch-text-weight" class="nav-link" data-scroll-target="#ch-text-weight"><span class="header-section-number">11.1.2</span> Term Weighting</a></li>
+  <li><a href="#fig-text-weight" id="toc-fig-text-weight" class="nav-link" data-scroll-target="#fig-text-weight"><span class="header-section-number">11.1.2</span> Term Weighting</a></li>
   </ul></li>
-  <li><a href="#ch-text-sim" id="toc-ch-text-sim" class="nav-link" data-scroll-target="#ch-text-sim"><span class="header-section-number">11.2</span> Similarity Measures</a></li>
+  <li><a href="#fig-text-sim" id="toc-fig-text-sim" class="nav-link" data-scroll-target="#fig-text-sim"><span class="header-section-number">11.2</span> Similarity Measures</a></li>
   <li><a href="#probabilities-and-implications" id="toc-probabilities-and-implications" class="nav-link" data-scroll-target="#probabilities-and-implications"><span class="header-section-number">11.3</span> Probabilities and Implications</a>
   <ul class="collapse">
   <li><a href="#zipfs-law" id="toc-zipfs-law" class="nav-link" data-scroll-target="#zipfs-law"><span class="header-section-number">11.3.1</span> Zipf’s Law</a></li>
@@ -413,8 +413,8 @@ window.Quarto = {
 <p>These techniques are language and domain-dependent. Aside from potential benefits of unifying tokens of the same type, token normalization may also lead to undesired consequences, e.g.&nbsp;to treat <em>CAT</em> (the company) and <em>cat</em> as the same. So careful examination of data and application is necessary to determine whether related normalization techniques may be instrumental or detrimental.</p>
 <p>Also, note that tokens are not limited to single words. One can use a moving window to take two, three, or more consecutive words at a time to identify all possible phrases or n-grams. Likewise, you can use a moving window to identify any <span class="math inline">\(n\)</span> consecutive characters as tokens. Character n-grams have shown its utility in applications such as spam detection, where junk emails may pad normal keywords with special characters to avoid being identified.</p>
 </section>
-<section id="ch-text-weight" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="ch-text-weight"><span class="header-section-number">11.1.2</span> Term Weighting</h3>
+<section id="fig-text-weight" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="fig-text-weight"><span class="header-section-number">11.1.2</span> Term Weighting</h3>
 <p>Once tokens – single words or phrases – have been identified, they can be sorted and merged into a set of unique tokens, which we refer to as the <em>dictionary</em>. Suppose we have a book collection of <em>The Chronicles of Narnia</em>, for which we only store their titles<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
 <ol type="1">
 <li><p>The Lion, the Witch and the Wardrobe</p></li>
@@ -629,8 +629,8 @@ w_{dt} &amp; = &amp;
 <p>In certain applications, TF may be normalized by document length to alleviate potential favoritism toward longer documents. This is one of the most widely used term weighting methods in information retrieval and text mining.</p>
 </section>
 </section>
-<section id="ch-text-sim" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="ch-text-sim"><span class="header-section-number">11.2</span> Similarity Measures</h2>
+<section id="fig-text-sim" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="fig-text-sim"><span class="header-section-number">11.2</span> Similarity Measures</h2>
 <p>Once each document is represented as a vector of terms with weights, we can conduct various operations, such as clustering and ranking, on them. The basic unit of these computational tasks is to measure how similar or dissimilar one document is to another.</p>
 <p>A simple method to compute the similarity of any two documents <span class="math inline">\(d_u\)</span> and <span class="math inline">\(d_v\)</span> is by the dot product of their vector values:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -684,45 +684,67 @@ Jaccard(d_u, d_v) &amp; = &amp; \frac{|d_u \cap d_v|}{|d_u \cup d_v|}
 </table>
 <p><span id="tab-text-tf" data-label="tab-text-tf"></span></p>
 </div>
-<p>These two documents can be plotted on the two-dimensional space, e.g. <em>machine</em> for the <span class="math inline">\(x\)</span> dimension and <em>data</em> for the <span class="math inline">\(y\)</span> dimension, shown in Figure&nbsp;<a href="#ch-text-2d" data-reference-type="ref" data-reference="ch-text-2d">1.1</a>:</p>
-<figure id="ch-text-2d" class="figure">
-<figcaption>
-Documents in a two-dimensional space
+<p>These two documents can be plotted on the two-dimensional space, e.g. <em>machine</em> for the <span class="math inline">\(x\)</span> dimension and <em>data</em> for the <span class="math inline">\(y\)</span> dimension, shown in <a href="#fig-text-2d" class="quarto-xref">Figure&nbsp;<span>11.1</span></a>:</p>
+<div id="fig-text-2d" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Documents in a two-dimensional space">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-text-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter11/ch-text-2d.svg" class="img-fluid figure-img" style="width:70.0%" alt="Documents in a two-dimensional space">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: Documents in a two-dimensional space
 </figcaption>
 </figure>
-<p>With this dimensional representation, pair-wise similarity or difference can be measured by the geometric distance between two document data points. A classic metric of such is the <em>Euclidean Distance</em>, which measures the length of the straight line connecting the two data points in question, as shown in Figure&nbsp;<a href="#ch-text-2d" data-reference-type="ref" data-reference="ch-text-2d">1.1</a>. In an <span class="math inline">\(m\)</span>-dimensional space, the general <em>Euclidean Distance</em> function is:</p>
+</div>
+<p>With this dimensional representation, pair-wise similarity or difference can be measured by the geometric distance between two document data points. A classic metric of such is the <em>Euclidean Distance</em>, which measures the length of the straight line connecting the two data points in question, as shown in <a href="#fig-text-2d" class="quarto-xref">Figure&nbsp;<span>11.1</span></a>. In an <span class="math inline">\(m\)</span>-dimensional space, the general <em>Euclidean Distance</em> function is:</p>
 <p><span class="math display">\[\begin{aligned}
   ED(u,v) &amp; = &amp; \sqrt{\sum_{i=1}^{m} (u_i - v_i)^2}
 \end{aligned}\]</span></p>
-<p>where <span class="math inline">\(u_i\)</span> and <span class="math inline">\(v_i\)</span> are the <span class="math inline">\(i^{th}\)</span> dimensional value of data points <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> respectively. Given documents <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> in Figure&nbsp;<a href="#ch-text-2d" data-reference-type="ref" data-reference="ch-text-2d">1.1</a>, their euclidean distance is:</p>
+<p>where <span class="math inline">\(u_i\)</span> and <span class="math inline">\(v_i\)</span> are the <span class="math inline">\(i^{th}\)</span> dimensional value of data points <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> respectively. Given documents <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> in <a href="#fig-text-2d" class="quarto-xref">Figure&nbsp;<span>11.1</span></a>, their euclidean distance is:</p>
 <p><span class="math display">\[\begin{aligned}
   ED(d_1,d_2)
   &amp; = &amp; \sqrt{(5-1)^2 + (1-4)^2}   \\
   &amp; = &amp; 5
 \end{aligned}\]</span></p>
 <p>While <em>Euclidean Distance</em> is widely used in text mining, its performance may suffer in applications where there is a wide distribution of document sizes. A thought experiment will help illustrate the problem.</p>
-<p>Imagine we have two documents <span class="math inline">\(d_1 = (4,5)\)</span> and <span class="math inline">\(d_2=(5,4)\)</span> (with TF weights) that are highly similar and have a very small Euclidean distance between them, as show in Figure&nbsp;<a href="#ch-text-thought" data-reference-type="ref" data-reference="ch-text-thought">1.2</a>:</p>
-<figure id="ch-text-thought" class="figure">
-<figcaption>
-Thought experiment with two documents
-</figcaption>
-</figure>
-<p>For now, one may think the line distance in Figure&nbsp;<a href="#ch-text-thought" data-reference-type="ref" data-reference="ch-text-thought">1.2</a> is a reasonable estimate of their difference. But imagine make a double-copy of <span class="math inline">\(d_2\)</span> and treat the new copy as <span class="math inline">\(d_3\)</span>, resulting in Figure&nbsp;<a href="#ch-text-thought" data-reference-type="ref" data-reference="ch-text-thought">1.2</a>:</p>
-<figure id="ch-text-thought2" class="figure">
-<figcaption>
-Thought experiment a third document, where <span class="math inline"><em>d</em><sub>3</sub></span> doubles the content of <span class="math inline"><em>d</em><sub>2</sub></span>
-</figcaption>
-</figure>
-<p>Because <span class="math inline">\(d_3\)</span> is copy of <span class="math inline">\(d_2\)</span> – the only difference is that it doubles everything in <span class="math inline">\(d_2\)</span> – its semantics should remain the same as <span class="math inline">\(d_2\)</span>. A fair distance measure should give a relatively small value, indicating <span class="math inline">\(d_3\)</span> is <em>close</em> to <span class="math inline">\(d_1\)</span> and especially <span class="math inline">\(d_2\)</span>. However, as shown in Figure&nbsp;<a href="#ch-text-thought" data-reference-type="ref" data-reference="ch-text-thought">1.2</a>, <span class="math inline">\(d_3\)</span> is much farther away from <span class="math inline">\(d_1\)</span> and consequently the euclidean distance is much greater.</p>
-<p>In short, Euclidean Distance treats documents differently simply because they are of different sizes (magnitude). In this light, we should somehow disregard the sizes when measuring their similarities.</p>
-<p>Another perspective on similarity vs.&nbsp;distance in the dimensional space is by measuring the <em>direction</em> of a vector. In physics, the notion of vector has been used extensively for quantities such as velocity, which has both a <em>magnitude</em> (speed) and direction. Likewise, as shown as dashed lines in Figure&nbsp;<a href="#ch-text-thought2" data-reference-type="ref" data-reference="ch-text-thought2">1.3</a>, documents such as <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> can be treated as vectors from the origin, with a magnitude (line length) and direction (arrow). The difference between the two documents can be measured by their angle distance.</p>
-<p>Also in Figure&nbsp;<a href="#ch-text-thought2" data-reference-type="ref" data-reference="ch-text-thought2">1.3</a>, <span class="math inline">\(d_3\)</span> as copy of <span class="math inline">\(d_2\)</span> is pointing in the exact same direction of <span class="math inline">\(d_2\)</span> and their angle distance is <span class="math inline">\(0\)</span>. Consequently, the angle distance between <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_3\)</span> is the same as that of <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span>.</p>
-<p>All this makes sense with angle distance as <span class="math inline">\(d_2\)</span> and <span class="math inline">\(d_3\)</span> essentially have the same content and should be treated equivalent. In this <em>vector space</em> representation, a vector’s direction is dependent on the <em>distribution of term weights</em> in the corresponding text document. While the magnitude is about the absolute values of term weights, the direction is a rather relative measure – that means, in the case of Figure&nbsp;<a href="#ch-text-thought2" data-reference-type="ref" data-reference="ch-text-thought2">1.3</a>, to what degree a document vector is more or less about <em>machine</em> (to the east) vs.&nbsp;<em>data</em> (to the north).</p>
-<p>To measure an <em>angle distance</em>, one can calculate the degree of the angle between two vectors. Nonetheless, a classic approach is to measure the <em>cosine</em> of the angle as their <em>similarity</em>.</p>
-<div class="marginfigure">
-<p><span id="ch-text-cosine" data-label="ch-text-cosine"></span></p>
+<p>Imagine we have two documents <span class="math inline">\(d_1 = (4,5)\)</span> and <span class="math inline">\(d_2=(5,4)\)</span> (with TF weights) that are highly similar and have a very small Euclidean distance between them, as show in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>11.2</span></a>:</p>
+<div id="fig-text-thought" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Thought experiment with two documents">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-text-thought-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter11/ch-text-thought.svg" class="img-fluid figure-img" style="width:70.0%" alt="Thought experiment with two documents">
 </div>
-<p>As shown in Figure&nbsp;<a href="#ch-text-cosine" data-reference-type="ref" data-reference="ch-text-cosine">[ch-text-cosine]</a>, with the help line perpendicular to vector <span class="math inline">\(d_1\)</span>, the cosine of <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> is:</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-thought-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2: Thought experiment with two documents
+</figcaption>
+</figure>
+</div>
+<p>For now, one may think the line distance in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>11.2</span></a> is a reasonable estimate of their difference. But imagine make a double-copy of <span class="math inline">\(d_2\)</span> and treat the new copy as <span class="math inline">\(d_3\)</span>, resulting in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>11.2</span></a>:</p>
+<div id="fig-text-thought2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Thought experiment a third document, where d_3 doubles the content of d_2">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-text-thought2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter11/ch-text-thought2.svg" class="img-fluid figure-img" style="width:70.0%" alt="Thought experiment a third document, where d_3 doubles the content of d_2">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-thought2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.3: Thought experiment a third document, where <span class="math inline">\(d_3\)</span> doubles the content of <span class="math inline">\(d_2\)</span>
+</figcaption>
+</figure>
+</div>
+<p>Because <span class="math inline">\(d_3\)</span> is copy of <span class="math inline">\(d_2\)</span> – the only difference is that it doubles everything in <span class="math inline">\(d_2\)</span> – its semantics should remain the same as <span class="math inline">\(d_2\)</span>. A fair distance measure should give a relatively small value, indicating <span class="math inline">\(d_3\)</span> is <em>close</em> to <span class="math inline">\(d_1\)</span> and especially <span class="math inline">\(d_2\)</span>. However, as shown in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>11.2</span></a>, <span class="math inline">\(d_3\)</span> is much farther away from <span class="math inline">\(d_1\)</span> and consequently the euclidean distance is much greater.</p>
+<p>In short, Euclidean Distance treats documents differently simply because they are of different sizes (magnitude). In this light, we should somehow disregard the sizes when measuring their similarities.</p>
+<p>Another perspective on similarity vs.&nbsp;distance in the dimensional space is by measuring the <em>direction</em> of a vector. In physics, the notion of vector has been used extensively for quantities such as velocity, which has both a <em>magnitude</em> (speed) and direction. Likewise, as shown as dashed lines in <a href="#fig-text-thought2" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>, documents such as <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> can be treated as vectors from the origin, with a magnitude (line length) and direction (arrow). The difference between the two documents can be measured by their angle distance.</p>
+<p>Also in <a href="#fig-text-thought2" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>, <span class="math inline">\(d_3\)</span> as copy of <span class="math inline">\(d_2\)</span> is pointing in the exact same direction of <span class="math inline">\(d_2\)</span> and their angle distance is <span class="math inline">\(0\)</span>. Consequently, the angle distance between <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_3\)</span> is the same as that of <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span>.</p>
+<p>All this makes sense with angle distance as <span class="math inline">\(d_2\)</span> and <span class="math inline">\(d_3\)</span> essentially have the same content and should be treated equivalent. In this <em>vector space</em> representation, a vector’s direction is dependent on the <em>distribution of term weights</em> in the corresponding text document. While the magnitude is about the absolute values of term weights, the direction is a rather relative measure – that means, in the case of <a href="#fig-text-thought2" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>, to what degree a document vector is more or less about <em>machine</em> (to the east) vs.&nbsp;<em>data</em> (to the north).</p>
+<p>To measure an <em>angle distance</em>, one can calculate the degree of the angle between two vectors. Nonetheless, a classic approach is to measure the <em>cosine</em> of the angle as their <em>similarity</em>.</p>
+<div id="fig-text-cosine" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Cosine of an angle">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-text-cosine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter11/ch-text-cosine.svg" class="img-fluid figure-img" style="width:70.0%" alt="Cosine of an angle">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-cosine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.4: Cosine of an angle
+</figcaption>
+</figure>
+</div>
+<p>As shown in <a href="#fig-text-cosine" class="quarto-xref">Figure&nbsp;<span>11.4</span></a>, with the help line perpendicular to vector <span class="math inline">\(d_1\)</span>, the cosine of <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> is:</p>
 <p><span class="math display">\[\begin{aligned}
   Cosine(d_1, d_2)
   &amp; = &amp; \frac{a}{c}
@@ -745,13 +767,27 @@ Cosine(d_1, d_2)
 &amp; = &amp; 1  \\
 \end{aligned}\]</span></p>
 <p>In this case, <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are identical with cosine <span class="math inline">\(1\)</span> whereas <span class="math inline">\(d_2\)</span> and <span class="math inline">\(d_3\)</span> have the same similarity compared to <span class="math inline">\(d_1\)</span>.</p>
-<p>Cosine is inversely related to the angle <span class="math inline">\(\theta\)</span> (distance) and is a similarity measure. When two vectors are close in their direction, with a small angle shown in Figure&nbsp;<a href="#ch-text-cosine2" data-reference-type="ref" data-reference="ch-text-cosine2">[ch-text-cosine2]</a>, <span class="math inline">\(a\)</span> is almost the same as <span class="math inline">\(c\)</span> and cosine similarity is nearly <span class="math inline">\(1\)</span>. The two vectors are highly similar in their directions, with <span class="math inline">\(1\)</span> indicating the same direction and perfect match.</p>
-<div class="marginfigure">
-<p><span id="ch-text-cosine2" data-label="ch-text-cosine2"></span></p>
+<p>Cosine is inversely related to the angle <span class="math inline">\(\theta\)</span> (distance) and is a similarity measure. When two vectors are close in their direction, with a small angle shown in <a href="#fig-text-cosine2" class="quarto-xref">Figure&nbsp;<span>11.5</span></a>, <span class="math inline">\(a\)</span> is almost the same as <span class="math inline">\(c\)</span> and cosine similarity is nearly <span class="math inline">\(1\)</span>. The two vectors are highly similar in their directions, with <span class="math inline">\(1\)</span> indicating the same direction and perfect match.</p>
+<div id="fig-text-cosine2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Cosine of a small angle, i.e. vectors of close directions">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-text-cosine2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter11/ch-text-cosine2.svg" class="img-fluid figure-img" style="width:70.0%" alt="Cosine of a small angle, i.e. vectors of close directions">
 </div>
-<p>On the other hand, when two vectors point to directions nearly perpendicular to one another, with a large angle shown in Figure&nbsp;<a href="#ch-text-cosine3" data-reference-type="ref" data-reference="ch-text-cosine3">[ch-text-cosine3]</a>, <span class="math inline">\(a\)</span> becomes extremely small and cosine similarity is close to <span class="math inline">\(0\)</span>. For vectors based on text documents, their vector values are normally positive (in the first quadrant in the two-dimensional space). Therefore, the smallest cosine similarity value one can obtain is <span class="math inline">\(0\)</span> when two vectors are exactly perpendicular (orthogonal directions).</p>
-<div class="marginfigure">
-<p><span id="ch-text-cosine3" data-label="ch-text-cosine3"></span></p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-cosine2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.5: Cosine of a small angle, i.e.&nbsp;vectors of close directions
+</figcaption>
+</figure>
+</div>
+<p>On the other hand, when two vectors point to directions nearly perpendicular to one another, with a large angle shown in <a href="#fig-text-cosine3" class="quarto-xref">Figure&nbsp;<span>11.6</span></a>, <span class="math inline">\(a\)</span> becomes extremely small and cosine similarity is close to <span class="math inline">\(0\)</span>. For vectors based on text documents, their vector values are normally positive (in the first quadrant in the two-dimensional space). Therefore, the smallest cosine similarity value one can obtain is <span class="math inline">\(0\)</span> when two vectors are exactly perpendicular (orthogonal directions).</p>
+<div id="fig-text-cosine3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Cosine of a large angle, i.e. vectors with nearly perpendicular directions">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-text-cosine3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter11/ch-text-cosine3.svg" class="img-fluid figure-img" style="width:70.0%" alt="Cosine of a large angle, i.e. vectors with nearly perpendicular directions">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-cosine3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.6: Cosine of a large angle, i.e.&nbsp;vectors with nearly perpendicular directions
+</figcaption>
+</figure>
 </div>
 <p>In short, cosine is a similarity measure in the vector space model, which ranges from <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. A greater cosine value indicates a higher similarity of two vectors.</p>
 </section>
@@ -768,35 +804,18 @@ Cosine(d_1, d_2)
 <p><span class="math display">\[\begin{aligned}
   p(t) &amp; = &amp; \frac{c}{k_t}
 \end{aligned}\]</span></p>
-<p>where <span class="math inline">\(c\)</span> is a constant. In the English language, empirical data have shown <span class="math inline">\(p(t) \approx 0.1 / k_t\)</span> within the top <span class="math inline">\(1,000\)</span> rank. This relation can be visualized in Figure&nbsp;<a href="#fig-text-zipf" data-reference-type="ref" data-reference="fig-text-zipf">1.4</a> (a).</p>
-<figure id="fig-text-zipf" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li>normal coordinates
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li>log-log coordinates
-</li></ol></td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Zipf law function, roughly for the top <span class="math inline">1, 000</span> in English
+<p>where <span class="math inline">\(c\)</span> is a constant. In the English language, empirical data have shown <span class="math inline">\(p(t) \approx 0.1 / k_t\)</span> within the top <span class="math inline">\(1,000\)</span> rank. This relation can be visualized in <a href="#fig-text-zipf" class="quarto-xref">Figure&nbsp;<span>11.7</span></a> (a).</p>
+<div id="fig-text-zipf" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Zipf law function, roughly for the top 1,000 in English">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-text-zipf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter11/fig-text-zipf.svg" class="img-fluid figure-img" style="width:70.0%" alt="Zipf law function, roughly for the top 1,000 in English">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-zipf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.7: Zipf law function, roughly for the top <span class="math inline">\(1,000\)</span> in English
 </figcaption>
 </figure>
-
-
-<p>With a long tail, Figure&nbsp;<a href="#fig-text-zipf" data-reference-type="ref" data-reference="fig-text-zipf">1.4</a> (a) on normal coordinates is difficult to examine and it is often useful to apply the logarithmic transformation. By taking the log of both <span class="math inline">\(x\)</span> (rank) and <span class="math inline">\(y\)</span> (frequency) values, this can be transformed into Figure&nbsp;<a href="#fig-text-zipf" data-reference-type="ref" data-reference="fig-text-zipf">1.4</a> (b). As shown, Zipf law is a linear function on log-log coordinates and is a special case of <em>power-law</em> distributions, which, as we discussed in Chapter&nbsp;, are results of the <em>Matthew effect</em> (the rich get richer). In fact, there is an intrinsic connection between the <em>Principle of Least Effort</em> and the <em>Matthew effect</em> – as we tend to a minimum set of vocabulary, what we have frequently used (old "rich" words) will be used even more frequently (richer).</p>
+</div>
+<p>With a long tail, <a href="#fig-text-zipf" class="quarto-xref">Figure&nbsp;<span>11.7</span></a> (a) on normal coordinates is difficult to examine and it is often useful to apply the logarithmic transformation. By taking the log of both <span class="math inline">\(x\)</span> (rank) and <span class="math inline">\(y\)</span> (frequency) values, this can be transformed into <a href="#fig-text-zipf" class="quarto-xref">Figure&nbsp;<span>11.7</span></a> (b). As shown, Zipf law is a linear function on log-log coordinates and is a special case of <em>power-law</em> distributions, which, as we discussed in Chapter&nbsp;, are results of the <em>Matthew effect</em> (the rich get richer). In fact, there is an intrinsic connection between the <em>Principle of Least Effort</em> and the <em>Matthew effect</em> – as we tend to a minimum set of vocabulary, what we have frequently used (old "rich" words) will be used even more frequently (richer).</p>
 </section>
 <section id="feature-selection" class="level3" data-number="11.3.2">
 <h3 data-number="11.3.2" class="anchored" data-anchor-id="feature-selection"><span class="header-section-number">11.3.2</span> Feature Selection</h3>

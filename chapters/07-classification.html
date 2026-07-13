@@ -64,7 +64,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -456,9 +456,16 @@ that is the question...</p>
 <p><span class="math display">\[\begin{aligned}
   D(u,v) &amp; = &amp; \sqrt{\sum_{i=1}^{m} (u_i - v_i)^2}
 \end{aligned}\]</span></p>
-<p>where <span class="math inline">\(m\)</span> is the number of dimensions (features) to represent each data instance. Figure&nbsp;<a href="#fig-bin-ed" data-reference-type="ref" data-reference="fig-bin-ed">[fig-bin-ed]</a> shows the shapes data on two dimensions, i.e. <em>width</em> and <em>height</em>. Suppose a new instance at <span class="math inline">\((4,7)\)</span>, i.e.&nbsp;<span class="math inline">\(width=4\)</span> and <span class="math inline">\(height=7\)</span>, is to be tested. The dashed lines are the euclidean distances from the test instance to the training instances.</p>
-<div class="marginfigure">
-
+<p>where <span class="math inline">\(m\)</span> is the number of dimensions (features) to represent each data instance. <a href="#fig-bin-ed" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> shows the shapes data on two dimensions, i.e. <em>width</em> and <em>height</em>. Suppose a new instance at <span class="math inline">\((4,7)\)</span>, i.e.&nbsp;<span class="math inline">\(width=4\)</span> and <span class="math inline">\(height=7\)</span>, is to be tested. The dashed lines are the euclidean distances from the test instance to the training instances.</p>
+<div id="fig-bin-ed" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Nearest neighbors k=1, + denotes standing (positive) and denotes lying (negative). is the test instance.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-ed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-ed.svg" class="img-fluid figure-img" style="width:70.0%" alt="Nearest neighbors k=1, + denotes standing (positive) and denotes lying (negative). is the test instance.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-ed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Nearest neighbors <span class="math inline">\(k=1\)</span>, <span class="math inline">\(+\)</span> denotes <em>standing</em> (positive) and <span class="math inline">\(\circ\)</span> denotes <em>lying</em> (negative). <span class="math inline">\(\otimes\)</span> is the test instance.
+</figcaption>
+</figure>
 </div>
 <p>If we set <span class="math inline">\(k=1\)</span> for the kNN algorithm, we will use only <span class="math inline">\(1\)</span> nearest neighbor in prediction. The instance at <span class="math inline">\((5,9)\)</span>, which belongs to the <em>standing</em> class, has a distance from the test instance:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -469,11 +476,18 @@ that is the question...</p>
 <p>This turns out to be the nearest in terms of Euclidean distance and the test instance will be predicted <em>standing</em> (positive) as well.</p>
 <p>If we change <span class="math inline">\(k=3\)</span>, the <span class="math inline">\(3\)</span> nearest neighbors will all be positive (<span class="math inline">\(+\)</span>) instances and the prediction for the above test instance will remain positive.</p>
 <p>For a different test instance, the <span class="math inline">\(k\)</span> nearest neighbors might have conflicting answers. For binary classification, one strategy is to pick an odd number for <span class="math inline">\(k\)</span> and let the nearest neighbors vote for the final prediction.</p>
-<div class="marginfigure">
-
+<div id="fig-bin-ed2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Nearest neighbors k=3, + denotes standing (positive) and denotes lying (negative). is the test instance.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-ed2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-ed2.svg" class="img-fluid figure-img" style="width:70.0%" alt="Nearest neighbors k=3, + denotes standing (positive) and denotes lying (negative). is the test instance.">
 </div>
-<p>Figure&nbsp;<a href="#fig-bin-ed2" data-reference-type="ref" data-reference="fig-bin-ed2">[fig-bin-ed2]</a> shows another test instance at <span class="math inline">\((3,4)\)</span>. With <span class="math inline">\(k=3\)</span>, it turns out that the three nearest neighbors include <span class="math inline">\(1\)</span> positive and <span class="math inline">\(2\)</span> negatives. Using a majority vote strategy, the test instance will be mistakenly classified into the negative (lying) class.</p>
-<p>Two observations on the misclassification. First, the selection of <span class="math inline">\(k\)</span> does have an impact on the classification result. This is especially true when training instances are sparse. With <span class="math inline">\(k=1\)</span>, the method relies on one single instance for each test and is hardly robust. A larger <span class="math inline">\(k\)</span> can reduce the likelihood of predicting with atypical neighbors but it introduces noise, e.g.&nbsp;instances from across the class boundary as illustrated in Figure&nbsp;<a href="#fig-bin-ed2" data-reference-type="ref" data-reference="fig-bin-ed2">[fig-bin-ed2]</a>. Finding the optimal <span class="math inline">\(k\)</span> may require experimentation with data.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-ed2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: Nearest neighbors <span class="math inline">\(k=3\)</span>, <span class="math inline">\(+\)</span> denotes <em>standing</em> (positive) and <span class="math inline">\(\circ\)</span> denotes <em>lying</em> (negative). <span class="math inline">\(\otimes\)</span> is the test instance.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-bin-ed2" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> shows another test instance at <span class="math inline">\((3,4)\)</span>. With <span class="math inline">\(k=3\)</span>, it turns out that the three nearest neighbors include <span class="math inline">\(1\)</span> positive and <span class="math inline">\(2\)</span> negatives. Using a majority vote strategy, the test instance will be mistakenly classified into the negative (lying) class.</p>
+<p>Two observations on the misclassification. First, the selection of <span class="math inline">\(k\)</span> does have an impact on the classification result. This is especially true when training instances are sparse. With <span class="math inline">\(k=1\)</span>, the method relies on one single instance for each test and is hardly robust. A larger <span class="math inline">\(k\)</span> can reduce the likelihood of predicting with atypical neighbors but it introduces noise, e.g.&nbsp;instances from across the class boundary as illustrated in <a href="#fig-bin-ed2" class="quarto-xref">Figure&nbsp;<span>7.2</span></a>. Finding the optimal <span class="math inline">\(k\)</span> may require experimentation with data.</p>
 <p>Second, more important, a lazy learner such as kNN does not have a general function (model) to represent a concept of learning. It purely relies on individual training instances for predictions and has <em>no generalizability</em>. Its success or failure depends on where the test instance hit and how training data distribute around it. This is analogous to a <em>lazy</em> student who memorizes everything without understanding – she will not be able to answer a question for which no similar examples have been provided in the materials.</p>
 </section>
 <section id="other-distance-metrics" class="level3" data-number="7.1.2">
@@ -500,7 +514,7 @@ that is the question...</p>
 <h2 data-number="7.2" class="anchored" data-anchor-id="linear-classifiers"><span class="header-section-number">7.2</span> Linear Classifiers</h2>
 <p>As we observed, a lazy learner such as the k Nearest Neighbors (kNN) does not actually <em>learn</em> and build a model (function) that can be generalized. Although kNN has decent performances in many applications, it suffers in domains where, for example, test data appear on a different scale from that of training data.</p>
 <p>If we assume the classes can be separated by a <em>function</em> (model) with certain parameters, then building the model requires identification of those parameters from training data. Surely there are way too many different functional forms one can choose the model from. We start with the simplest, a linear function.</p>
-<p>With the shapes data in Figure&nbsp;<a href="#fig-bin-ed" data-reference-type="ref" data-reference="fig-bin-ed">[fig-bin-ed]</a>, there are two variables <span class="math inline">\(width\)</span> (<span class="math inline">\(v_1\)</span> for the <span class="math inline">\(x\)</span> axis) and <span class="math inline">\(height\)</span> (<span class="math inline">\(v_2\)</span> for <span class="math inline">\(y\)</span> axis). <span class="math inline">\(y\)</span> as a linear function of <span class="math inline">\(x\)</span> can be written as <span class="math inline">\(f(x) = a + b x\)</span> or <span class="math inline">\(a + b x - y = 0\)</span>, with two parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> for two variables.</p>
+<p>With the shapes data in <a href="#fig-bin-ed" class="quarto-xref">Figure&nbsp;<span>7.1</span></a>, there are two variables <span class="math inline">\(width\)</span> (<span class="math inline">\(v_1\)</span> for the <span class="math inline">\(x\)</span> axis) and <span class="math inline">\(height\)</span> (<span class="math inline">\(v_2\)</span> for <span class="math inline">\(y\)</span> axis). <span class="math inline">\(y\)</span> as a linear function of <span class="math inline">\(x\)</span> can be written as <span class="math inline">\(f(x) = a + b x\)</span> or <span class="math inline">\(a + b x - y = 0\)</span>, with two parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> for two variables.</p>
 <p>To make it extendable, We can rewrite this two-variable linear equation as:</p>
 <p><span class="math display">\[\begin{aligned}
   w_0 + w_1 v_1 + w_2 v_2 = 0
@@ -529,7 +543,7 @@ that is the question...</p>
   &amp; = &amp; \big( \frac{4+5+9}{3}, \frac{2+3+5}{3} \big) \\
   &amp; = &amp; \big( 6, \frac{10}{3} \big)
 \end{aligned}\]</span></p>
-<p>Figure&nbsp;<a href="#fig-bin-lin_cent" data-reference-type="ref" data-reference="fig-bin-lin_cent">[fig-bin-lin_cent]</a> shows the two centroids and a dashed line with an arrowhead connecting them. The arrow represents a vector in the direction <span class="math inline">\(\vec{\mu} = (6-\frac{8}{3}, \frac{10}{3} - 7) = (\frac{10}{3}, - \frac{11}{3})\)</span>, whereas the middle of the dashed line is <span class="math inline">\(\bar{\mu} = (\frac{13}{3}, \frac{31}{6})\)</span>.</p>
+<p><a href="#fig-bin-lin_cent" class="quarto-xref">Figure&nbsp;<span>7.3</span></a> shows the two centroids and a dashed line with an arrowhead connecting them. The arrow represents a vector in the direction <span class="math inline">\(\vec{\mu} = (6-\frac{8}{3}, \frac{10}{3} - 7) = (\frac{10}{3}, - \frac{11}{3})\)</span>, whereas the middle of the dashed line is <span class="math inline">\(\bar{\mu} = (\frac{13}{3}, \frac{31}{6})\)</span>.</p>
 <p>Now if we can find a linear equation, i.e.&nbsp;another straight line, that: 1) passes through the middle of the dashed line (equal to each centroid), and 2) is perpendicular to the dashed line, then any point on the linear equation (line) should have an equal distance from both centroid. In this case, the line can serve as the <em>boundary</em> between the two classes.</p>
 <p>Now, identifying the linear equation turns out to be very straightforward. For any point on the line <span class="math inline">\((v_1, v_2)\)</span>, it can be seen as a vector originated from the midle point <span class="math inline">\(\bar{\mu} = (\frac{13}{3}, - \frac{31}{6})\)</span>:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -549,11 +563,18 @@ that is the question...</p>
 <p><span class="math display">\[\begin{aligned}
 v_2 = 1.227 + 0.909 v_1
 \end{aligned}\]</span></p>
-<p>Comparing this to Equation&nbsp;<a href="#eq-bin-lin2" data-reference-type="ref" data-reference="eq-bin-lin2">[eq-bin-lin2]</a>, we have identified the parameters <span class="math inline">\(w_0=-1\)</span>, <span class="math inline">\(w_1=-\frac{20}{27}\)</span>, and <span class="math inline">\(w_2=\frac{22}{27}\)</span> for the linear classification function. This is the solid straight line separating the two classes (centroids) in Figure&nbsp;<a href="#fig-bin-lin_cent" data-reference-type="ref" data-reference="fig-bin-lin_cent">[fig-bin-lin_cent]</a>.</p>
-<div class="marginfigure">
-
+<p>Comparing this to Equation&nbsp;<a href="#eq-bin-lin2" data-reference-type="ref" data-reference="eq-bin-lin2">[eq-bin-lin2]</a>, we have identified the parameters <span class="math inline">\(w_0=-1\)</span>, <span class="math inline">\(w_1=-\frac{20}{27}\)</span>, and <span class="math inline">\(w_2=\frac{22}{27}\)</span> for the linear classification function. This is the solid straight line separating the two classes (centroids) in <a href="#fig-bin-lin_cent" class="quarto-xref">Figure&nbsp;<span>7.3</span></a>.</p>
+<div id="fig-bin-lin_cent" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Linear classification with centroids, + denotes standing (positive) and denotes lying (negative). represents a centroid of the respective class. is a test instance.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-lin_cent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-lin-cent.svg" class="img-fluid figure-img" style="width:70.0%" alt="Linear classification with centroids, + denotes standing (positive) and denotes lying (negative). represents a centroid of the respective class. is a test instance.">
 </div>
-<p>With the identified linear function <span class="math inline">\(f(v) = 1 + \frac{20}{27} v_1 - \frac{22}{27} v_2\)</span>, one can plug in values of a test instance and make a prediction. If the result is positive, it will predict positive (standing); otherwise, it will predict negative (lying). For example, given a test instance at <span class="math inline">\((4,7)\)</span> (<span class="math inline">\(\otimes\)</span> on Figure&nbsp;<a href="#fig-bin-lin_cent" data-reference-type="ref" data-reference="fig-bin-lin_cent">[fig-bin-lin_cent]</a>), we can put the values in the linear function and get:</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-lin_cent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.3: Linear classification with centroids, <span class="math inline">\(+\)</span> denotes <em>standing</em> (positive) and <span class="math inline">\(\circ\)</span> denotes <em>lying</em> (negative). <span class="math inline">\(\bullet\)</span> represents a centroid of the respective class. <span class="math inline">\(\otimes\)</span> is a test instance.
+</figcaption>
+</figure>
+</div>
+<p>With the identified linear function <span class="math inline">\(f(v) = 1 + \frac{20}{27} v_1 - \frac{22}{27} v_2\)</span>, one can plug in values of a test instance and make a prediction. If the result is positive, it will predict positive (standing); otherwise, it will predict negative (lying). For example, given a test instance at <span class="math inline">\((4,7)\)</span> (<span class="math inline">\(\otimes\)</span> on <a href="#fig-bin-lin_cent" class="quarto-xref">Figure&nbsp;<span>7.3</span></a>), we can put the values in the linear function and get:</p>
 <p><span class="math display">\[\begin{aligned}
 f(4,7)
 &amp; = &amp; -1 - \frac{20}{27} \times 4 + \frac{22}{27} \times 7 \\
@@ -562,9 +583,16 @@ f(4,7)
 \end{aligned}\]</span></p>
 <p>The final result is positive – the same positivity with the positive class centroid – and hence the test instance <span class="math inline">\(\otimes\)</span> will be classified into the <em>standing</em> class.</p>
 <p>Theoretically, we understand that the concept of <em>standing</em> is on the relation of <span class="math inline">\(height - width &gt;0\)</span> or, in terms of the linear function, <span class="math inline">\(0 - v_1 + v_2 &gt; 0\)</span>. The identified equation is a rough approximation of this theoretical function. The model assumption about a linear separation holds true in this example. But how precise we can establish the exact linear function depends largely on the training data. The data distribution influences the identification of related parameters.</p>
-<p>In particular, the centroid approach is greatly impacted by the density of the training set and where most data instances are. For example, having more data instances with smaller width and height in the negative class change its centroid, which will, in turn, lead to a very different linear function, illustrated in Figure&nbsp;<a href="#fig-bin-lin_cent2" data-reference-type="ref" data-reference="fig-bin-lin_cent2">[fig-bin-lin_cent2]</a> (compare to Figure&nbsp;<a href="#fig-bin-lin_cent" data-reference-type="ref" data-reference="fig-bin-lin_cent">[fig-bin-lin_cent]</a>).</p>
-<div class="marginfigure">
-
+<p>In particular, the centroid approach is greatly impacted by the density of the training set and where most data instances are. For example, having more data instances with smaller width and height in the negative class change its centroid, which will, in turn, lead to a very different linear function, illustrated in <a href="#fig-bin-lin_cent2" class="quarto-xref">Figure&nbsp;<span>7.4</span></a> (compare to <a href="#fig-bin-lin_cent" class="quarto-xref">Figure&nbsp;<span>7.3</span></a>).</p>
+<div id="fig-bin-lin_cent2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Linear classification with centroids, with smaller values in the negative class">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-lin_cent2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-lin-cent2.svg" class="img-fluid figure-img" style="width:70.0%" alt="Linear classification with centroids, with smaller values in the negative class">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-lin_cent2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.4: Linear classification with centroids, with smaller values in the negative class
+</figcaption>
+</figure>
 </div>
 <p>The centroid-based approach to linear classification is greatly influenced by all data points in the training set and how they are distributed. The basic assumption underlying the above modeling is that the two classes are of the same size roughly and the "border" lies halfway between their centers. This is often untrue and its performance suffers.</p>
 </section>
@@ -574,25 +602,46 @@ f(4,7)
 <p>Rather, it is much more relevant to find out where cities, landmarks, and populations are <em>on the border</em>. For U.S. and Canada, cities such as Seattle vs.&nbsp;Detroit vs.&nbsp;Vancouver, Detroit vs.&nbsp;Toronto help define their border.</p>
 <p>For classification, it matters not where the centroids are but where the <em>borderline</em> data are. The Support Vector Machines, or SVM, is a method focused on the border populations and draws the "border" based on the so-called <em>support vectors</em>, data points that are located on the boundary and together form the border.</p>
 <p>We start by connecting a number of data points within the same class to construct a linear function, i.e.&nbsp;a line on a 2-dimensional space, a plane for 3 dimensions, and a hyperplane for higher dimensions. On the 2-dimensional shapes data, this means using any two points in each class to form a straight line that, when used as the linear classification function, satisfies two conditions: 1) all data points in the same class fall on <em>one size</em> of the linear function, and 2) most if not all data points of the other class reside on the other side of the line. In other words, if a line is drawn in the positive (standing class), then 1) data in it will test all positive (or all negative), and 2) data in the other class will test the opposite, negative (or conversely positive).</p>
-<div class="marginfigure">
-
+<div id="fig-bin-svm" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Linear classification with SVM, one candidate margin">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-svm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-svm.svg" class="img-fluid figure-img" style="width:70.0%" alt="Linear classification with SVM, one candidate margin">
 </div>
-<p>Figure&nbsp;<a href="#fig-bin-svm" data-reference-type="ref" data-reference="fig-bin-svm">[fig-bin-svm]</a> illustrates the idea with the shapes data. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Pairwise lines drawn in the figure all satisfy the <span class="math inline">\(1^{st}\)</span> condition and collectively form a <em>convex hull</em> for each class. However, not all lines meet the <span class="math inline">\(2^{nd}\)</span> condition. In fact, only the lines marked <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>, and <span class="math inline">\(3\)</span> meet both conditions. They are candidate <em>support vectors</em>.</p>
-<p>For each of the three candidate lines, we can draw a line perpendicular to it from any point in the other class. From this process, we can find out the margin between that candidate support vector line and the other class (convex hull), which is where the boundary can be defined. For example, in Figure&nbsp;<a href="#fig-bin-svm" data-reference-type="ref" data-reference="fig-bin-svm">[fig-bin-svm]</a>, the two dotted lines show the margin between line <span class="math inline">\(\#3\)</span> and the negative class.</p>
-<div class="marginfigure">
-
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-svm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.5: Linear classification with SVM, one candidate margin
+</figcaption>
+</figure>
 </div>
-<p>Yet a greater margin – in fact the greatest margin of all – can be found between line <span class="math inline">\(\#1\)</span> and point <span class="math inline">\((2,4)\)</span> in the positive class, as the two dotted lines in Figure&nbsp;<a href="#fig-bin-svm2" data-reference-type="ref" data-reference="fig-bin-svm2">[fig-bin-svm2]</a> show. The greatest margin will be chosen as the decision boundary, which is defined by a few data points known as the <em>support vectors</em>. As shown as circled data points in Figure&nbsp;<a href="#fig-bin-svm2" data-reference-type="ref" data-reference="fig-bin-svm2">[fig-bin-svm2]</a>, support vectors are those that determine the maximum margin between the two <em>convex hulls</em> of the two classes.</p>
-<p>With this, it is now easy to identify the linear equation in the margin to separate the two classes. In Figure&nbsp;<a href="#fig-bin-svm2" data-reference-type="ref" data-reference="fig-bin-svm2">[fig-bin-svm2]</a>, for example, the solid line at <span class="math inline">\(v_2 = 1.1 + 0.667 v_1\)</span> can be used as the linear classifier. One can certainly use the linear functions on the support vectors for classification as well, e.g.&nbsp;to predict one class vs.&nbsp;another if a test instance is within the support vector boundary or to estimate a probability if it is on the margin.</p>
+<p><a href="#fig-bin-svm" class="quarto-xref">Figure&nbsp;<span>7.5</span></a> illustrates the idea with the shapes data. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Pairwise lines drawn in the figure all satisfy the <span class="math inline">\(1^{st}\)</span> condition and collectively form a <em>convex hull</em> for each class. However, not all lines meet the <span class="math inline">\(2^{nd}\)</span> condition. In fact, only the lines marked <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>, and <span class="math inline">\(3\)</span> meet both conditions. They are candidate <em>support vectors</em>.</p>
+<p>For each of the three candidate lines, we can draw a line perpendicular to it from any point in the other class. From this process, we can find out the margin between that candidate support vector line and the other class (convex hull), which is where the boundary can be defined. For example, in <a href="#fig-bin-svm" class="quarto-xref">Figure&nbsp;<span>7.5</span></a>, the two dotted lines show the margin between line <span class="math inline">\(\#3\)</span> and the negative class.</p>
+<div id="fig-bin-svm2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Linear classification with SVM, support vectors and maximum margin">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-svm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-svm2.svg" class="img-fluid figure-img" style="width:70.0%" alt="Linear classification with SVM, support vectors and maximum margin">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-svm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.6: Linear classification with SVM, support vectors and maximum margin
+</figcaption>
+</figure>
+</div>
+<p>Yet a greater margin – in fact the greatest margin of all – can be found between line <span class="math inline">\(\#1\)</span> and point <span class="math inline">\((2,4)\)</span> in the positive class, as the two dotted lines in <a href="#fig-bin-svm2" class="quarto-xref">Figure&nbsp;<span>7.6</span></a> show. The greatest margin will be chosen as the decision boundary, which is defined by a few data points known as the <em>support vectors</em>. As shown as circled data points in <a href="#fig-bin-svm2" class="quarto-xref">Figure&nbsp;<span>7.6</span></a>, support vectors are those that determine the maximum margin between the two <em>convex hulls</em> of the two classes.</p>
+<p>With this, it is now easy to identify the linear equation in the margin to separate the two classes. In <a href="#fig-bin-svm2" class="quarto-xref">Figure&nbsp;<span>7.6</span></a>, for example, the solid line at <span class="math inline">\(v_2 = 1.1 + 0.667 v_1\)</span> can be used as the linear classifier. One can certainly use the linear functions on the support vectors for classification as well, e.g.&nbsp;to predict one class vs.&nbsp;another if a test instance is within the support vector boundary or to estimate a probability if it is on the margin.</p>
 <p>Note that with the shapes data example, we only have to deal with two dimensions and any linear equation is a straight line. With a higher dimensionality, the process remains the same mathematically but a linear function becomes a plane or hyperplane. On three dimensions, for example, three data points should be connected to construct a linear equation (plane) to identify the convex hulls and support vectors. Chapter&nbsp; has details on the mathematics for SVM.</p>
 </section>
 <section id="perceptron-toward-a-neural-network" class="level3" data-number="7.2.3">
 <h3 data-number="7.2.3" class="anchored" data-anchor-id="perceptron-toward-a-neural-network"><span class="header-section-number">7.2.3</span> Perceptron: Toward a Neural Network</h3>
-<p>The linear function <span class="math inline">\(f(v)=w_0 + w_1 v_1 + w_2 v_2\)</span> can be visualized as a <em>perceptron</em> in Figure&nbsp;<a href="#fig-bin-perceptron" data-reference-type="ref" data-reference="fig-bin-perceptron">[fig-bin-perceptron]</a>, where the node at <span class="math inline">\(\sum\)</span> computes the weighted sum of input variables. Obviously, this can be extended to include any number of variables <span class="math inline">\(m\)</span> for which <span class="math inline">\(f(v)=\sum_{i=1}^{m} w_i v_i\)</span>.</p>
-<div class="marginfigure">
-
+<p>The linear function <span class="math inline">\(f(v)=w_0 + w_1 v_1 + w_2 v_2\)</span> can be visualized as a <em>perceptron</em> in <a href="#fig-bin-perceptron" class="quarto-xref">Figure&nbsp;<span>7.7</span></a>, where the node at <span class="math inline">\(\sum\)</span> computes the weighted sum of input variables. Obviously, this can be extended to include any number of variables <span class="math inline">\(m\)</span> for which <span class="math inline">\(f(v)=\sum_{i=1}^{m} w_i v_i\)</span>.</p>
+<div id="fig-bin-perceptron" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Linear classification with a Perceptron, where the output is a step function based on the weighted sum of input variables">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-perceptron-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-perceptron.svg" class="img-fluid figure-img" style="width:70.0%" alt="Linear classification with a Perceptron, where the output is a step function based on the weighted sum of input variables">
 </div>
-<p>A perceptron is a simple, one-layer neural network – besides the input variables, there is only one layer of nodes (only one <span class="math inline">\(\sum\)</span> node) in the model, as shown in Figure&nbsp;<a href="#fig-bin-perceptron" data-reference-type="ref" data-reference="fig-bin-perceptron">[fig-bin-perceptron]</a>. The final output of the perceptron is binary <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span> by using a step function, which simply converts values higher than a threshold to <span class="math inline">\(1\)</span> and those lower to <span class="math inline">\(0\)</span>. For example, one can use <span class="math inline">\(0\)</span> as the threshold for a step function <span class="math inline">\(f(s)\)</span>:</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-perceptron-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.7: Linear classification with a Perceptron, where the output is a step function based on the weighted sum of input variables
+</figcaption>
+</figure>
+</div>
+<p>A perceptron is a simple, one-layer neural network – besides the input variables, there is only one layer of nodes (only one <span class="math inline">\(\sum\)</span> node) in the model, as shown in <a href="#fig-bin-perceptron" class="quarto-xref">Figure&nbsp;<span>7.7</span></a>. The final output of the perceptron is binary <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span> by using a step function, which simply converts values higher than a threshold to <span class="math inline">\(1\)</span> and those lower to <span class="math inline">\(0\)</span>. For example, one can use <span class="math inline">\(0\)</span> as the threshold for a step function <span class="math inline">\(f(s)\)</span>:</p>
 <p><span class="math display">\[\begin{aligned}
   f(s) &amp; = &amp;
   \begin{cases}
@@ -600,12 +649,19 @@ f(4,7)
   0 &amp; \text{otherwise}
   \end{cases}
 \end{aligned}\]</span></p>
-<p>which is visualized in Figure&nbsp;<a href="#fig-bin-step" data-reference-type="ref" data-reference="fig-bin-step">[fig-bin-step]</a>.</p>
-<div class="marginfigure">
-
+<p>which is visualized in <a href="#fig-bin-step" class="quarto-xref">Figure&nbsp;<span>7.8</span></a>.</p>
+<div id="fig-bin-step" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Example of a step function. Output is 0 for any value below zero, and is 1 if above zero.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-step.svg" class="img-fluid figure-img" style="width:70.0%" alt="Example of a step function. Output is 0 for any value below zero, and is 1 if above zero.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.8: Example of a step function. Output is <span class="math inline">\(0\)</span> for any value below zero, and is <span class="math inline">\(1\)</span> if above zero.
+</figcaption>
+</figure>
 </div>
 <p>Before training, the weights are unknown and should be initialized with certain values, e.g.&nbsp;all <span class="math inline">\(0\)</span>. For each training instance, its values <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> will be fed into the input layer and multiplied with their weights <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> respectively.</p>
-<p>Note that in Figure&nbsp;<a href="#fig-bin-perceptron" data-reference-type="ref" data-reference="fig-bin-perceptron">[fig-bin-perceptron]</a>, the input with weight <span class="math inline">\(w_0\)</span> is always <span class="math inline">\(1\)</span> for every training instance. This is referred to as the <em>bias</em>, which adds the constant <span class="math inline">\(w_0\)</span> to the linear function. Once every input is multiplied by its weight, the output computes the sum of the weighted values.</p>
+<p>Note that in <a href="#fig-bin-perceptron" class="quarto-xref">Figure&nbsp;<span>7.7</span></a>, the input with weight <span class="math inline">\(w_0\)</span> is always <span class="math inline">\(1\)</span> for every training instance. This is referred to as the <em>bias</em>, which adds the constant <span class="math inline">\(w_0\)</span> to the linear function. Once every input is multiplied by its weight, the output computes the sum of the weighted values.</p>
 <p>For the shapes data, we can decide that the model will predict positive (standing) if the output is greater than <span class="math inline">\(0\)</span>; negative (lying) if otherwise. During training, if a correct prediction is made, the model will have no need to adjust its weights (for now) and will simply move to the next training instance.</p>
 <p>If a misclassification occurs, however, the model will have to adjust its weights so it can potentially make more correct predictions in the future. When the model predicts negative on an actual positive instance, the weights should be adjusted so the overall output (sum) will move toward the positive side; and vice versa.</p>
 <p>For example, for a specific shape instance with <span class="math inline">\(v_1\)</span> (width) and <span class="math inline">\(v_2\)</span> (height) values, which is <span class="math inline">\((1, v_1, v_2)\)</span> with the bias input included. Suppose <span class="math inline">\(v_2&gt;v_1\)</span> and this instance actually belongs to the positive (standing) class. Now if the model finds out <span class="math inline">\(w_0 + w_1 v_1 + w_2 v_2 &lt; 0\)</span> and predicts negative (lying). We will add the input values to their current weights:</p>
@@ -724,11 +780,18 @@ w'_2 &amp; \gets &amp; w_2 - v_2
 </table>
 </div>
 <p>In the data, the concept is about whether a car is <em>acceptable</em> or <em>unacceptable</em> given its <em>buying price</em> and <em>maintenance cost</em>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> The price (cost) variables are on an ordinal scale: low, medium, high, and very high, which we convert into an equal-interval numeric scale from <span class="math inline">\(1\)</span> (low) to <span class="math inline">\(4\)</span> (very high).</p>
-<p>While it is possible to include other variables such as the number of doors and safety features, we will focus on the cost factors in the discussion here. Figure&nbsp;<a href="#fig-bin-car" data-reference-type="ref" data-reference="fig-bin-car">[fig-bin-car]</a> plots <em>maintenance cost</em> vs.&nbsp;<em>buying price</em>, with the <span class="math inline">\(+\)</span> indicating an <em>acceptable</em> car and <span class="math inline">\(\circ\)</span> unacceptable. The two classes appear not separable linearly on the two-dimensional space – that is, there is no straight line that can be drawn to separate the two.</p>
+<p>While it is possible to include other variables such as the number of doors and safety features, we will focus on the cost factors in the discussion here. <a href="#fig-bin-car" class="quarto-xref">Figure&nbsp;<span>7.9</span></a> plots <em>maintenance cost</em> vs.&nbsp;<em>buying price</em>, with the <span class="math inline">\(+\)</span> indicating an <em>acceptable</em> car and <span class="math inline">\(\circ\)</span> unacceptable. The two classes appear not separable linearly on the two-dimensional space – that is, there is no straight line that can be drawn to separate the two.</p>
 <p>Again, if one can introduce other predictor variables and the classes might be separable linearly on a higher-dimensional space. But even with the only two variables, namely <em>maintenance cost</em> and <em>buying price</em>, the plot seems to suggest that a car will be evaluated <em>unacceptable</em> with either a high buying price or a high maintenance cost.</p>
-<p>Perhaps one can draw two straight lines, one to separate the classes on the price dimension and the other on the maintenance cost. However, this is no longer one linear equation of the two variables that can fit in with a linear model. Alternatively, we can still draw a curve (a non-linear function) to separate them. For example, as shown as the dashed line in Figure&nbsp;<a href="#fig-bin-car" data-reference-type="ref" data-reference="fig-bin-car">[fig-bin-car]</a>, a circular function such as <span class="math inline">\((v_1-1)^2 + (v_2 -1)^2 = 3\)</span> can set the boundary between the two classes. The question is: how can we identify such as a non-linear function from the training data?</p>
-<div class="marginfigure">
-
+<p>Perhaps one can draw two straight lines, one to separate the classes on the price dimension and the other on the maintenance cost. However, this is no longer one linear equation of the two variables that can fit in with a linear model. Alternatively, we can still draw a curve (a non-linear function) to separate them. For example, as shown as the dashed line in <a href="#fig-bin-car" class="quarto-xref">Figure&nbsp;<span>7.9</span></a>, a circular function such as <span class="math inline">\((v_1-1)^2 + (v_2 -1)^2 = 3\)</span> can set the boundary between the two classes. The question is: how can we identify such as a non-linear function from the training data?</p>
+<div id="fig-bin-car" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Car evaluation data. + is the positive (acceptable) class and is the negative (unacceptable).">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-car-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-car.svg" class="img-fluid figure-img" style="width:70.0%" alt="Car evaluation data. + is the positive (acceptable) class and is the negative (unacceptable).">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-car-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.9: Car evaluation data. <span class="math inline">\(+\)</span> is the positive (acceptable) class and <span class="math inline">\(\circ\)</span> is the negative (unacceptable).
+</figcaption>
+</figure>
 </div>
 <section id="kernel-svm" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="kernel-svm"><span class="header-section-number">7.3.1</span> Kernel SVM</h3>
@@ -739,52 +802,36 @@ w'_2 &amp; \gets &amp; w_2 - v_2
   \phi(v) &amp; = &amp; (v_1^2, v_2^2, \sqrt{2} v_1 v_2)
 \end{aligned}\]</span></p>
 <p>Note that the quadratic expansion should result in <span class="math inline">\(5\)</span> dimensions including the original dimensions of <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span>. We focus on the <span class="math inline">\(3\)</span> additional features and thus limit the number of dimensions to three, which can be visualized.</p>
-<p>With the <span class="math inline">\(v_1^2\)</span> and <span class="math inline">\(v_2^2\)</span> transformation, data in the two classes already appear to be linearly separable. As shown in Figure&nbsp;<a href="#fig-bin-car_q2" data-reference-type="ref" data-reference="fig-bin-car_q2">[fig-bin-car_q2]</a>, the solid line at <span class="math inline">\(v_1+v_2-9=0\)</span> can separate the data we have so far. However, this does not necessarily represent the general idea of car evaluation and new data may violate the rule (cross the decision boundary).</p>
-<div class="marginfigure">
-
+<p>With the <span class="math inline">\(v_1^2\)</span> and <span class="math inline">\(v_2^2\)</span> transformation, data in the two classes already appear to be linearly separable. As shown in <a href="#fig-bin-car_q2" class="quarto-xref">Figure&nbsp;<span>7.10</span></a>, the solid line at <span class="math inline">\(v_1+v_2-9=0\)</span> can separate the data we have so far. However, this does not necessarily represent the general idea of car evaluation and new data may violate the rule (cross the decision boundary).</p>
+<div id="fig-bin-car_q2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Car evaluation data, with transformed v_1^2 and v_2^2.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-car_q2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-car-q2.svg" class="img-fluid figure-img" style="width:70.0%" alt="Car evaluation data, with transformed v_1^2 and v_2^2.">
 </div>
-<p>Whether a car is acceptable or not may depend on some form of interaction between the buying price and maintenance cost. With the quadratic expansion, the additional dimension of <span class="math inline">\(\sqrt{2} v_1 v_2\)</span> can be seen as an interaction variable in the form of multiplication.</p>
-<p>When all three expanded features are considered, the data are mapped to a three-dimensional space shown in Figure&nbsp;<a href="#fig-bin-car_q3" data-reference-type="ref" data-reference="fig-bin-car_q3">1.1</a>, where they may be separated linearly. Of all linear equations (planes) formed by any three points in each class, we have identified two planes closest to their opposite classes.</p>
-<figure id="fig-bin-car_q3" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li>All data points
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li>Zoom in on support vectors
-</li></ol></td>
-</tr>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Car evaluation data, mapped to higher dimensions with <span class="math inline"><em>v</em><sub>1</sub><sup>2</sup></span>, <span class="math inline"><em>v</em><sub>2</sub><sup>2</sup></span>, and <span class="math inline"><span class="math inline">\(\sqrt{2} v_1 v_2\)</span></span>. The two planes are closest to the opposite class. The projected shadows are for reference only. (a) shows all data points in the three dimensional space, and (b) is a closer view of the two planes with support vectors. Dashed line is the gap (margin) between the two classes. Circled data points are support vectors.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-car_q2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.10: Car evaluation data, with transformed <span class="math inline">\(v_1^2\)</span> and <span class="math inline">\(v_2^2\)</span>.
 </figcaption>
 </figure>
-
-
-<p>Figure&nbsp;<a href="#fig-bin-car_q3" data-reference-type="ref" data-reference="fig-bin-car_q3">1.1</a> (a) shows all data points in the expanded dimensional space with quadratic mapping. The two planes formed by data points are the closest to the opposite class, which are candidate support vectors. Shadows of the planes are projected to the "ground" (i.e.&nbsp;<span class="math inline">\(v_2^2\)</span> vs.&nbsp;<span class="math inline">\(v_1^2\)</span> dimensions) for easier reading of related data points.</p>
-<p>Figure&nbsp;<a href="#fig-bin-car_q3" data-reference-type="ref" data-reference="fig-bin-car_q3">1.1</a> (b) zooms in on the planes formed by candidate support vectors in the three-dimensional space, where a decision boundary can be identified to maximize the margin between the two classes (convex hulls). The dashed line connects the closest points of data in the two classes (convex hulls), by drawing a line from the circled positive point perpendicular to the plane formed by three circled negative points. The four circled points (one positive and three negative) are the identified support vectors, based on which the margin is established and classification can be performed.</p>
+</div>
+<p>Whether a car is acceptable or not may depend on some form of interaction between the buying price and maintenance cost. With the quadratic expansion, the additional dimension of <span class="math inline">\(\sqrt{2} v_1 v_2\)</span> can be seen as an interaction variable in the form of multiplication.</p>
+<p>When all three expanded features are considered, the data are mapped to a three-dimensional space shown in <a href="#fig-bin-car_q3" class="quarto-xref">Figure&nbsp;<span>7.11</span></a>, where they may be separated linearly. Of all linear equations (planes) formed by any three points in each class, we have identified two planes closest to their opposite classes.</p>
+<div id="fig-bin-car_q3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Car evaluation data, mapped to higher dimensions with v_1^2, v_2^2, and 2 v_1 v_2. The two planes are closest to the opposite class. The projected shadows are for reference only. (a) shows all data points in the three dimensional space, and (b) is a closer view of the two planes with support vectors. Dashed line is the gap (margin) between the two classes. Circled data points are support vectors.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-car_q3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-car-q3.svg" class="img-fluid figure-img" style="width:70.0%" alt="Car evaluation data, mapped to higher dimensions with v_1^2, v_2^2, and 2 v_1 v_2. The two planes are closest to the opposite class. The projected shadows are for reference only. (a) shows all data points in the three dimensional space, and (b) is a closer view of the two planes with support vectors. Dashed line is the gap (margin) between the two classes. Circled data points are support vectors.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-car_q3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.11: Car evaluation data, mapped to higher dimensions with <span class="math inline">\(v_1^2\)</span>, <span class="math inline">\(v_2^2\)</span>, and <span class="math inline">\(\sqrt{2} v_1 v_2\)</span>. The two planes are closest to the opposite class. The projected shadows are for reference only. (a) shows all data points in the three dimensional space, and (b) is a closer view of the two planes with support vectors. Dashed line is the gap (margin) between the two classes. Circled data points are support vectors.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-bin-car_q3" class="quarto-xref">Figure&nbsp;<span>7.11</span></a> (a) shows all data points in the expanded dimensional space with quadratic mapping. The two planes formed by data points are the closest to the opposite class, which are candidate support vectors. Shadows of the planes are projected to the "ground" (i.e.&nbsp;<span class="math inline">\(v_2^2\)</span> vs.&nbsp;<span class="math inline">\(v_1^2\)</span> dimensions) for easier reading of related data points.</p>
+<p><a href="#fig-bin-car_q3" class="quarto-xref">Figure&nbsp;<span>7.11</span></a> (b) zooms in on the planes formed by candidate support vectors in the three-dimensional space, where a decision boundary can be identified to maximize the margin between the two classes (convex hulls). The dashed line connects the closest points of data in the two classes (convex hulls), by drawing a line from the circled positive point perpendicular to the plane formed by three circled negative points. The four circled points (one positive and three negative) are the identified support vectors, based on which the margin is established and classification can be performed.</p>
 <p>Besides polynomial kernels, other popular kernel functions for SVM include radial basis and string kernels. A string kernel, for example, operates directly on symbol sequences without vectorized features and is useful in applications such as text classification and gene sequence analysis.</p>
 </section>
 <section id="multi-layer-neural-networks" class="level3" data-number="7.3.2">
 <h3 data-number="7.3.2" class="anchored" data-anchor-id="multi-layer-neural-networks"><span class="header-section-number">7.3.2</span> Multi-Layer Neural Networks</h3>
-<p>We know the single perceptron can only be applied to linearly separable data. The car evaluation data, as shown in Figure&nbsp;<a href="#fig-bin-car" data-reference-type="ref" data-reference="fig-bin-car">[fig-bin-car]</a>, cannot be separated by one linear function. However, with a step function, one can transform the data into something linearly separable. Specifically, for a value <span class="math inline">\(s\)</span> on the <span class="math inline">\(v_1\)</span> or <span class="math inline">\(v_2\)</span> dimension, we use the following step function:</p>
+<p>We know the single perceptron can only be applied to linearly separable data. The car evaluation data, as shown in <a href="#fig-bin-car" class="quarto-xref">Figure&nbsp;<span>7.9</span></a>, cannot be separated by one linear function. However, with a step function, one can transform the data into something linearly separable. Specifically, for a value <span class="math inline">\(s\)</span> on the <span class="math inline">\(v_1\)</span> or <span class="math inline">\(v_2\)</span> dimension, we use the following step function:</p>
 <p><span class="math display">\[\begin{aligned}
   f(s) &amp; = &amp;
   \begin{cases}
@@ -792,38 +839,62 @@ Car evaluation data, mapped to higher dimensions with <span class="math inline">
   0 &amp; \text{otherwise}
   \end{cases}
 \end{aligned}\]</span></p>
-<p>So it returns <span class="math inline">\(1\)</span> for a value above <span class="math inline">\(2.5\)</span>, and <span class="math inline">\(0\)</span> for a value below. Applying the step function to both <span class="math inline">\(v_1\)</span> (buying price) and <span class="math inline">\(v_2\)</span> (maintenance cost), we have transformed data in Figure&nbsp;<a href="#fig-bin-car_step" data-reference-type="ref" data-reference="fig-bin-car_step">[fig-bin-car_step]</a>. All positive (acceptable) data have been mapped to the <span class="math inline">\((0,0)\)</span> point whereas the negative (unacceptable) ones are at <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((1,1)\)</span>, and <span class="math inline">\((1,0)\)</span>. As the solid line in Figure&nbsp;<a href="#fig-bin-car_step" data-reference-type="ref" data-reference="fig-bin-car_step">[fig-bin-car_step]</a> shows, the transformed data are now linearly separable.</p>
-<div class="marginfigure">
-
+<p>So it returns <span class="math inline">\(1\)</span> for a value above <span class="math inline">\(2.5\)</span>, and <span class="math inline">\(0\)</span> for a value below. Applying the step function to both <span class="math inline">\(v_1\)</span> (buying price) and <span class="math inline">\(v_2\)</span> (maintenance cost), we have transformed data in <a href="#fig-bin-car_step" class="quarto-xref">Figure&nbsp;<span>7.12</span></a>. All positive (acceptable) data have been mapped to the <span class="math inline">\((0,0)\)</span> point whereas the negative (unacceptable) ones are at <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((1,1)\)</span>, and <span class="math inline">\((1,0)\)</span>. As the solid line in <a href="#fig-bin-car_step" class="quarto-xref">Figure&nbsp;<span>7.12</span></a> shows, the transformed data are now linearly separable.</p>
+<div id="fig-bin-car_step" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Car evaluation data, transformed by a step function. A step function with a threshold 2.5 converts the original data (+ and in faded colors) to those with 0 and 1 values (+ and in bright colors). The solid line at v_1+v_2=0.5 separate the two classes.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-car_step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-car-step.svg" class="img-fluid figure-img" style="width:70.0%" alt="Car evaluation data, transformed by a step function. A step function with a threshold 2.5 converts the original data (+ and in faded colors) to those with 0 and 1 values (+ and in bright colors). The solid line at v_1+v_2=0.5 separate the two classes.">
 </div>
-<p>This non-linear classification with step function transformation can be represented with a multi-layer neural network. As shown in Figure&nbsp;<a href="#fig-bin-nn" data-reference-type="ref" data-reference="fig-bin-nn">1.2</a>, each of the input variables <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> is normalized by a step function and then multiplied by <span class="math inline">\(-1\)</span> before feeding into the final output, which is combined with the bias weighted <span class="math inline">\(0.5\)</span>. This is equivalent to <span class="math inline">\(0.5 \times 1 -1\times f(v_1) - 1\times f(v_2)\)</span>, where <span class="math inline">\(f\)</span> is the step function for <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> values.</p>
-<figure id="fig-bin-nn" class="figure">
-<figcaption>
-Multi-layer neural network with step functions. <span class="math inline">∑</span> represents the weighted sum of input values leading to the present node.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-car_step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.12: Car evaluation data, transformed by a step function. A step function with a threshold <span class="math inline">\(2.5\)</span> converts the original data (<span class="math inline">\(+\)</span> and <span class="math inline">\(\circ\)</span> in faded colors) to those with <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> values (<span class="math inline">\(+\)</span> and <span class="math inline">\(\circ\)</span> in bright colors). The solid line at <span class="math inline">\(v_1+v_2=0.5\)</span> separate the two classes.
 </figcaption>
 </figure>
+</div>
+<p>This non-linear classification with step function transformation can be represented with a multi-layer neural network. As shown in <a href="#fig-bin-nn" class="quarto-xref">Figure&nbsp;<span>7.13</span></a>, each of the input variables <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> is normalized by a step function and then multiplied by <span class="math inline">\(-1\)</span> before feeding into the final output, which is combined with the bias weighted <span class="math inline">\(0.5\)</span>. This is equivalent to <span class="math inline">\(0.5 \times 1 -1\times f(v_1) - 1\times f(v_2)\)</span>, where <span class="math inline">\(f\)</span> is the step function for <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> values.</p>
+<div id="fig-bin-nn" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Multi-layer neural network with step functions. represents the weighted sum of input values leading to the present node.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-nn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-nn.svg" class="img-fluid figure-img" style="width:70.0%" alt="Multi-layer neural network with step functions. represents the weighted sum of input values leading to the present node.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-nn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.13: Multi-layer neural network with step functions. <span class="math inline">\(\sum\)</span> represents the weighted sum of input values leading to the present node.
+</figcaption>
+</figure>
+</div>
 <p>For example, with data point <span class="math inline">\((2,2)\)</span>, the step function will convert them into <span class="math inline">\((0,0)\)</span>. With the bias <span class="math inline">\(0.5\times1\)</span>, the weighted sum is <span class="math inline">\(0.5\times1 - 1\times 0 - 1\times 0 = 0.5\)</span> and it will be classified positive (acceptable). With data point <span class="math inline">\((3,1)\)</span>, it is transformed into <span class="math inline">\((1,0)\)</span> by the step function and the final weighted sum is <span class="math inline">\(0.5\times1 - 1\times 1 - 1\times 0 = -0.5\)</span>, which will be classified negative (unacceptable).</p>
-<p>Using the multi-layer neural network, based on the additional hidden layer with step functions between the input and final output, it is now possible to establish a non-linear model such as the one in Figure&nbsp;<a href="#fig-bin-nn" data-reference-type="ref" data-reference="fig-bin-nn">1.2</a>.</p>
+<p>Using the multi-layer neural network, based on the additional hidden layer with step functions between the input and final output, it is now possible to establish a non-linear model such as the one in <a href="#fig-bin-nn" class="quarto-xref">Figure&nbsp;<span>7.13</span></a>.</p>
 <p>But the question remains – how can the weights of the model, together with the step function, be identified properly? While it is tempting to use a similar strategy as with the single perceptron, the non-linearity of the model rules out such a linear strategy for weight adjustment. That is, simply adding or subtracting weights (linear combinations) does not help when the model is non-linear.</p>
-<p>Can we adjust the weights in a non-linear manner during training? In other words, can we adjust the weights based on how much each variable contributes to the final output via the hidden layer? The general optimization technique called <em>gradient descent</em> makes it possible to find optimal values (weights) by searching in the derivatives of related functions. However, a step function, as illustrated in Figure&nbsp;<a href="#fig-bin-step" data-reference-type="ref" data-reference="fig-bin-step">[fig-bin-step]</a>, has a sudden jump (not smooth transition) between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> and is not differentiable.</p>
+<p>Can we adjust the weights in a non-linear manner during training? In other words, can we adjust the weights based on how much each variable contributes to the final output via the hidden layer? The general optimization technique called <em>gradient descent</em> makes it possible to find optimal values (weights) by searching in the derivatives of related functions. However, a step function, as illustrated in <a href="#fig-bin-step" class="quarto-xref">Figure&nbsp;<span>7.8</span></a>, has a sudden jump (not smooth transition) between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> and is not differentiable.</p>
 <p>If we are to retain the idea of a step function, can we develop one that functions in the like manner and yet smooth and differentiable? A candidate is the <em>sigmoid</em> function, which is defined by:</p>
 <p><span class="math display">\[\begin{aligned}
   f(v) &amp; = &amp; \frac{1}{1+e^{-v}}
 \end{aligned}\]</span></p>
-<p>for a value <span class="math inline">\(v\)</span>. Figure&nbsp;<a href="#fig-bin-sigmoid" data-reference-type="ref" data-reference="fig-bin-sigmoid">[fig-bin-sigmoid]</a> shows the functional curve of sigmoid, which transforms the weighted sum of a node to a value approaching <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>. The threshold is <span class="math inline">\(0\)</span> by default but we can use any threshold for the transformation. For example, with a threshold of <span class="math inline">\(5\)</span>, the sigmoid function becomes:</p>
+<p>for a value <span class="math inline">\(v\)</span>. <a href="#fig-bin-sigmoid" class="quarto-xref">Figure&nbsp;<span>7.14</span></a> shows the functional curve of sigmoid, which transforms the weighted sum of a node to a value approaching <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>. The threshold is <span class="math inline">\(0\)</span> by default but we can use any threshold for the transformation. For example, with a threshold of <span class="math inline">\(5\)</span>, the sigmoid function becomes:</p>
 <p><span class="math display">\[\begin{aligned}
   f(v) &amp; = &amp; \frac{1}{1+e^{-(v-5)}}
 \end{aligned}\]</span></p>
-<p>which shifts the functional curve on the <span class="math inline">\(x\)</span> coordinates by <span class="math inline">\(+5\)</span> (dashed line in Figure&nbsp;<a href="#fig-bin-sigmoid" data-reference-type="ref" data-reference="fig-bin-sigmoid">[fig-bin-sigmoid]</a>). <span class="math inline">\(v-5 = 1\times v + (-5)\times 1\)</span> is equivalent to the weighted sum of variable <span class="math inline">\(v\)</span> (with weight <span class="math inline">\(w=1\)</span>) and bias <span class="math inline">\(1\)</span> (with weight <span class="math inline">\(w_0=-5\)</span>). It can be generalized as a linear function of any number of input variables with bias in the form of <span class="math inline">\(\sum = w_0 + \sum_i w_i v_i\)</span>.</p>
-<div class="marginfigure">
-
+<p>which shifts the functional curve on the <span class="math inline">\(x\)</span> coordinates by <span class="math inline">\(+5\)</span> (dashed line in <a href="#fig-bin-sigmoid" class="quarto-xref">Figure&nbsp;<span>7.14</span></a>). <span class="math inline">\(v-5 = 1\times v + (-5)\times 1\)</span> is equivalent to the weighted sum of variable <span class="math inline">\(v\)</span> (with weight <span class="math inline">\(w=1\)</span>) and bias <span class="math inline">\(1\)</span> (with weight <span class="math inline">\(w_0=-5\)</span>). It can be generalized as a linear function of any number of input variables with bias in the form of <span class="math inline">\(\sum = w_0 + \sum_i w_i v_i\)</span>.</p>
+<div id="fig-bin-sigmoid" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Sigmoid function">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-sigmoid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-sigmoid.svg" class="img-fluid figure-img" style="width:70.0%" alt="Sigmoid function">
 </div>
-<p>Now if we replace the step function with the sigmoid function in Figure&nbsp;<a href="#fig-bin-nn" data-reference-type="ref" data-reference="fig-bin-nn">1.2</a>, we have the multi-layer neural network in Figure&nbsp;<a href="#fig-bin-nn_sigmoid" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid">1.3</a>, in which each layer (node) is differentiable and the weight can be learned by gradient descent.</p>
-<figure id="fig-bin-nn_sigmoid" class="figure">
-<figcaption>
-Multi-layer neural network with the sigmoid function. <span class="math inline"><em>s</em><sub>1</sub></span> and <span class="math inline"><em>s</em><sub>2</sub></span> are the weighted sum of input values leading to the respective hidden nodes whereas <span class="math inline"><em>s</em></span> is the weighted sum of input values leading to the output layer.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-sigmoid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.14: Sigmoid function
 </figcaption>
 </figure>
+</div>
+<p>Now if we replace the step function with the sigmoid function in <a href="#fig-bin-nn" class="quarto-xref">Figure&nbsp;<span>7.13</span></a>, we have the multi-layer neural network in <a href="#fig-bin-nn_sigmoid" class="quarto-xref">Figure&nbsp;<span>7.15</span></a>, in which each layer (node) is differentiable and the weight can be learned by gradient descent.</p>
+<div id="fig-bin-nn_sigmoid" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Multi-layer neural network with the sigmoid function. s_1 and s_2 are the weighted sum of input values leading to the respective hidden nodes whereas s is the weighted sum of input values leading to the output layer.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-nn_sigmoid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-nn-sigmoid.svg" class="img-fluid figure-img" style="width:70.0%" alt="Multi-layer neural network with the sigmoid function. s_1 and s_2 are the weighted sum of input values leading to the respective hidden nodes whereas s is the weighted sum of input values leading to the output layer.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-nn_sigmoid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.15: Multi-layer neural network with the sigmoid function. <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> are the weighted sum of input values leading to the respective hidden nodes whereas <span class="math inline">\(s\)</span> is the weighted sum of input values leading to the output layer.
+</figcaption>
+</figure>
+</div>
 <p>The weighted sum for each hidden node <span class="math inline">\(i\)</span> can be computed by:</p>
 <p><span class="math display">\[\begin{aligned}
   s_i &amp; = &amp; \sum_{j=0}^{m} w_{ij} v_j
@@ -834,7 +905,7 @@ Multi-layer neural network with the sigmoid function. <span class="math inline">
   &amp; = &amp; f(s_i) \\
   &amp; = &amp; f(\sum_{j=0}^{m} w_{ij} v_j)
 \end{aligned}\]</span></p>
-<p>In Figure&nbsp;<a href="#fig-bin-nn_sigmoid" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid">1.3</a>, this can be written as:</p>
+<p>In <a href="#fig-bin-nn_sigmoid" class="quarto-xref">Figure&nbsp;<span>7.15</span></a>, this can be written as:</p>
 <p><span class="math display">\[\begin{aligned}
   h_1
   &amp; = &amp; f(\sum_{j=0}^{m} w_{1j} v_j) \\
@@ -852,7 +923,7 @@ Multi-layer neural network with the sigmoid function. <span class="math inline">
   &amp; = &amp; f(\sum_{i=0}^{m} w_i h_i) \\
   &amp; = &amp; f\Big(\sum_{i=0}^{m} w_i f\big(\sum_{j=0}^{m} w_{ij} v_j\big)\Big)
 \end{aligned}\]</span></p>
-<p>which, for the model in Figure&nbsp;<a href="#fig-bin-nn_sigmoid" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid">1.3</a>, can be computed by:</p>
+<p>which, for the model in <a href="#fig-bin-nn_sigmoid" class="quarto-xref">Figure&nbsp;<span>7.15</span></a>, can be computed by:</p>
 <p><span class="math display">\[\begin{aligned}
   \hat{y}
   &amp; = &amp; f(w_0 h_0 + w_1 h_1 + w_2 h_2) \\
@@ -870,13 +941,13 @@ Multi-layer neural network with the sigmoid function. <span class="math inline">
   &amp; = &amp; \big( f(s) - y \big) f'(s) f(s_i) \\
   &amp; = &amp; \big( f(s) - y \big) f'(s) h_i
 \end{aligned}\]</span></p>
-<p>where <span class="math inline">\(s\)</span> is the weighted sum at the output layer and <span class="math inline">\(f'(s)\)</span> is the derivative of the sigmoid function <span class="math inline">\(f(s)\)</span>, which is as simple as <span class="math inline">\(f(s)(1-f(s))\)</span>. This gives the differentials needed to optimize <span class="math inline">\(w_i\)</span> weights from the hidden layer to the output, i.e.&nbsp;<span class="math inline">\(w_0\)</span>, <span class="math inline">\(w_1\)</span>, and <span class="math inline">\(w_2\)</span> weights in Figure&nbsp;<a href="#fig-bin-nn_sigmoid" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid">1.3</a>.</p>
+<p>where <span class="math inline">\(s\)</span> is the weighted sum at the output layer and <span class="math inline">\(f'(s)\)</span> is the derivative of the sigmoid function <span class="math inline">\(f(s)\)</span>, which is as simple as <span class="math inline">\(f(s)(1-f(s))\)</span>. This gives the differentials needed to optimize <span class="math inline">\(w_i\)</span> weights from the hidden layer to the output, i.e.&nbsp;<span class="math inline">\(w_0\)</span>, <span class="math inline">\(w_1\)</span>, and <span class="math inline">\(w_2\)</span> weights in <a href="#fig-bin-nn_sigmoid" class="quarto-xref">Figure&nbsp;<span>7.15</span></a>.</p>
 <p>Now that values in the hidden layer <span class="math inline">\(h\)</span> are based on weighted sums of the input layer, we also need to optimize <span class="math inline">\(w_{ij}\)</span> weights connecting the input to the hidden layer. Given input values <span class="math inline">\(v\)</span>, the differential with respect to a weight <span class="math inline">\(w_{ij}\)</span> to hidden node <span class="math inline">\(h_i\)</span> can be computed by:</p>
 <p><span class="math display">\[\begin{aligned}
   \frac{dE(v)}{dw_{ij}}
   &amp; = &amp; \big( f(s) - y \big) f'(s) f'(s_i) v_j
 \end{aligned}\]</span></p>
-<p>The differentials will be used to update weights to both layers during the training process. In particular, the differential <span class="math inline">\(\frac{dE(h)}{dw_i}\)</span> in Equation&nbsp;<a href="#eq-bin-dwi" data-reference-type="ref" data-reference="eq-bin-dwi">[eq-bin-dwi]</a> will be used to subtract from existing weights of <span class="math inline">\(w_0\)</span>, <span class="math inline">\(w_1\)</span>, and <span class="math inline">\(w_2\)</span>. The differential <span class="math inline">\(\frac{dE(v)}{dw_{ij}}\)</span> in Equation&nbsp;<a href="#eq-bin-dwij" data-reference-type="ref" data-reference="eq-bin-dwij">[eq-bin-dwij]</a> will be used to subtract from existing weights of <span class="math inline">\(w_{10}\)</span> and <span class="math inline">\(w_{11}\)</span> for <span class="math inline">\(h_1\)</span>; <span class="math inline">\(w_{20}\)</span> and <span class="math inline">\(w_{22}\)</span> for <span class="math inline">\(h_2\)</span> in Figure&nbsp;<a href="#fig-bin-nn_sigmoid" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid">1.3</a>. This approach of revising weights to the two layers can thought of as propagating differentials of squared errors <em>backward</em> in the feed-forward neural network, and is referred to as <em>backpropagation</em>.</p>
+<p>The differentials will be used to update weights to both layers during the training process. In particular, the differential <span class="math inline">\(\frac{dE(h)}{dw_i}\)</span> in Equation&nbsp;<a href="#eq-bin-dwi" data-reference-type="ref" data-reference="eq-bin-dwi">[eq-bin-dwi]</a> will be used to subtract from existing weights of <span class="math inline">\(w_0\)</span>, <span class="math inline">\(w_1\)</span>, and <span class="math inline">\(w_2\)</span>. The differential <span class="math inline">\(\frac{dE(v)}{dw_{ij}}\)</span> in Equation&nbsp;<a href="#eq-bin-dwij" data-reference-type="ref" data-reference="eq-bin-dwij">[eq-bin-dwij]</a> will be used to subtract from existing weights of <span class="math inline">\(w_{10}\)</span> and <span class="math inline">\(w_{11}\)</span> for <span class="math inline">\(h_1\)</span>; <span class="math inline">\(w_{20}\)</span> and <span class="math inline">\(w_{22}\)</span> for <span class="math inline">\(h_2\)</span> in <a href="#fig-bin-nn_sigmoid" class="quarto-xref">Figure&nbsp;<span>7.15</span></a>. This approach of revising weights to the two layers can thought of as propagating differentials of squared errors <em>backward</em> in the feed-forward neural network, and is referred to as <em>backpropagation</em>.</p>
 <p>To understand how backpropagation actually operates, let’s walk through the training process with the first data instance in Table&nbsp;<a href="#tab-bin-car_nn" data-reference-type="ref" data-reference="tab-bin-car_nn">1.3</a>.</p>
 <div id="tab-bin-car_nn">
 <table class="caption-top table">
@@ -903,10 +974,17 @@ Multi-layer neural network with the sigmoid function. <span class="math inline">
 </table>
 </div>
 <p>Before training, we don’t know the weights and may initialize them with all <span class="math inline">\(0\)</span> values. Note that we use <span class="math inline">\(0\)</span> initial weights for easy demonstration. This is not necessarily the best strategy for initialization.</p>
-<div class="marginfigure">
-
+<div id="fig-bin-nn_sigmoid_0" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Backpropagation step 1 with 0 initial weights.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-nn_sigmoid_0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-nn-sigmoid-0.svg" class="img-fluid figure-img" style="width:70.0%" alt="Backpropagation step 1 with 0 initial weights.">
 </div>
-<p>Now with the model and initial weights in Figure&nbsp;<a href="#fig-bin-nn_sigmoid_0" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid_0">[fig-bin-nn_sigmoid_0]</a>, given the first training instance of <span class="math inline">\((2,2)\)</span>, we can compute:</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-nn_sigmoid_0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.16: Backpropagation step 1 with <span class="math inline">\(0\)</span> initial weights.
+</figcaption>
+</figure>
+</div>
+<p>Now with the model and initial weights in <a href="#fig-bin-nn_sigmoid_0" class="quarto-xref">Figure&nbsp;<span>7.16</span></a>, given the first training instance of <span class="math inline">\((2,2)\)</span>, we can compute:</p>
 <p><span class="math display">\[\begin{aligned}
   h_0
   &amp; = &amp; f(1) \\
@@ -965,54 +1043,29 @@ Multi-layer neural network with the sigmoid function. <span class="math inline">
   &amp; = &amp; -0.0625
 \end{aligned}\]</span></p>
 <p>Subtracting these from current <span class="math inline">\(0\)</span> values, we obtain new weights for of all <span class="math inline">\(w_{ij}\)</span>, namely <span class="math inline">\(w_{10}=0.0313\)</span> and <span class="math inline">\(w_{11}=0.0625\)</span> to hidden node <span class="math inline">\(h_1\)</span>, and <span class="math inline">\(w_{20}=0.0313\)</span> and <span class="math inline">\(w_{22}=0.0625\)</span> for hidden node <span class="math inline">\(h_2\)</span>.</p>
-<div class="marginfigure">
-
+<div id="fig-bin-nn_sigmoid_1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Backpropagation step 2 with updated weights">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-nn_sigmoid_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-nn-sigmoid-1.svg" class="img-fluid figure-img" style="width:70.0%" alt="Backpropagation step 2 with updated weights">
 </div>
-<p>Figure&nbsp;<a href="#fig-bin-nn_sigmoid_1" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid_1">[fig-bin-nn_sigmoid_1]</a> shows the model with updated weights after training by the first instance <span class="math inline">\((2,2)\)</span> with a known class label <span class="math inline">\(1\)</span>. We can continue to train the model with additional data instances in Table&nbsp;<a href="#tab-bin-car_nn" data-reference-type="ref" data-reference="tab-bin-car_nn">1.3</a>. This can be repeated with the same data until weights are stabilized and the error is reduced to a certain level.</p>
-<figure id="fig-bin-car_nn_converge" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li>Weight <span class="math inline"><span class="math inline">\(\frac{w_{11}}{w_{10}}\)</span></span> to hidden layer
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li>Weight <span class="math inline"><span class="math inline">\(\frac{w_1}{w_0}\)</span></span> to output
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="3" type="a">
-<li>Error <span class="math inline"><span class="math inline">\(\frac{(y - \hat{y})^2}{2}\)</span></span>
-</li></ol></td>
-</tr>
-<tr>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Neural network training iterations and convergence
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-nn_sigmoid_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.17: Backpropagation step 2 with updated weights
 </figcaption>
 </figure>
-
-
-
-<p>Figure&nbsp;<a href="#fig-bin-car_nn_converge" data-reference-type="ref" data-reference="fig-bin-car_nn_converge">1.4</a> shows relative weights and error over time, via iterations of repeated training with data in Table&nbsp;<a href="#tab-bin-car_nn" data-reference-type="ref" data-reference="tab-bin-car_nn">1.3</a>. Note that in linear equations, absolute values of related weights (coefficients) are not important. Rather, it is their relative weight to one another that matters. Hence, we present weights relative to <span class="math inline">\(w_0\)</span>, i.e.&nbsp;divided by the <em>bias</em> weight.</p>
-<p>Overall, the figures show the weights and error all appear to converge. However, they seem to differ in the number of iterations needed for their convergence. In Figure&nbsp;<a href="#fig-bin-car_nn_converge" data-reference-type="ref" data-reference="fig-bin-car_nn_converge">1.4</a> (a), the relative weight of <span class="math inline">\(w_{11}\)</span> (the weight of <span class="math inline">\(v_1\)</span> to the hidden node <span class="math inline">\(h_1\)</span>) fluctuates a lot in the first <span class="math inline">\(10\)</span> iterations but stabilizes quickly after a few dozen iterations. In Figure&nbsp;<a href="#fig-bin-car_nn_converge" data-reference-type="ref" data-reference="fig-bin-car_nn_converge">1.4</a> (b), <span class="math inline">\(w_1\)</span> – the weight from the hidden node <span class="math inline">\(h_1\)</span> to the final output – appears to take hundreds of iterations to converge. The squared error, as shown in Figure&nbsp;<a href="#fig-bin-car_nn_converge" data-reference-type="ref" data-reference="fig-bin-car_nn_converge">1.4</a> (c), takes even even more iterations to be minimized.</p>
+</div>
+<p><a href="#fig-bin-nn_sigmoid_1" class="quarto-xref">Figure&nbsp;<span>7.17</span></a> shows the model with updated weights after training by the first instance <span class="math inline">\((2,2)\)</span> with a known class label <span class="math inline">\(1\)</span>. We can continue to train the model with additional data instances in Table&nbsp;<a href="#tab-bin-car_nn" data-reference-type="ref" data-reference="tab-bin-car_nn">1.3</a>. This can be repeated with the same data until weights are stabilized and the error is reduced to a certain level.</p>
+<div id="fig-bin-car_nn_converge" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Neural network training iterations and convergence">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-car_nn_converge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-car-nn-converge.svg" class="img-fluid figure-img" style="width:70.0%" alt="Neural network training iterations and convergence">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-car_nn_converge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.18: Neural network training iterations and convergence
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-bin-car_nn_converge" class="quarto-xref">Figure&nbsp;<span>7.18</span></a> shows relative weights and error over time, via iterations of repeated training with data in Table&nbsp;<a href="#tab-bin-car_nn" data-reference-type="ref" data-reference="tab-bin-car_nn">1.3</a>. Note that in linear equations, absolute values of related weights (coefficients) are not important. Rather, it is their relative weight to one another that matters. Hence, we present weights relative to <span class="math inline">\(w_0\)</span>, i.e.&nbsp;divided by the <em>bias</em> weight.</p>
+<p>Overall, the figures show the weights and error all appear to converge. However, they seem to differ in the number of iterations needed for their convergence. In <a href="#fig-bin-car_nn_converge" class="quarto-xref">Figure&nbsp;<span>7.18</span></a> (a), the relative weight of <span class="math inline">\(w_{11}\)</span> (the weight of <span class="math inline">\(v_1\)</span> to the hidden node <span class="math inline">\(h_1\)</span>) fluctuates a lot in the first <span class="math inline">\(10\)</span> iterations but stabilizes quickly after a few dozen iterations. In <a href="#fig-bin-car_nn_converge" class="quarto-xref">Figure&nbsp;<span>7.18</span></a> (b), <span class="math inline">\(w_1\)</span> – the weight from the hidden node <span class="math inline">\(h_1\)</span> to the final output – appears to take hundreds of iterations to converge. The squared error, as shown in <a href="#fig-bin-car_nn_converge" class="quarto-xref">Figure&nbsp;<span>7.18</span></a> (c), takes even even more iterations to be minimized.</p>
 <p>In the end, we obtain the weights in Table&nbsp;<a href="#tab-bin-car_nn_result" data-reference-type="ref" data-reference="tab-bin-car_nn_result">[tab-bin-car_nn_result]</a> with minimized squared error.</p>
 <div class="table*">
 <table class="caption-top table">
@@ -1066,17 +1119,29 @@ Neural network training iterations and convergence
 </tbody>
 </table>
 </div>
-<p>The result of Table&nbsp;<a href="#tab-bin-car_nn_result" data-reference-type="ref" data-reference="tab-bin-car_nn_result">[tab-bin-car_nn_result]</a> can be represented as the final (converged) model in Figure&nbsp;<a href="#fig-bin-car_nn_result" data-reference-type="ref" data-reference="fig-bin-car_nn_result">1.5</a>, which is highly similar to the one in Figure&nbsp;<a href="#fig-bin-nn_sigmoid" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid">1.3</a>. For example, the weighted sum for hidden node <span class="math inline">\(h_1\)</span> is <span class="math inline">\(2.5 - v_1\)</span> in the model here, which is simply the negative of what is in Figure&nbsp;<a href="#fig-bin-nn_sigmoid" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid">1.3</a>, where the sum is <span class="math inline">\(v_1 - 2.5\)</span>. We observe the same with the hidden node <span class="math inline">\(h_2\)</span>. This leads to the different signs of <span class="math inline">\(w_1, w_2\)</span> vs.&nbsp;<span class="math inline">\(w_0\)</span> to the output layer.</p>
-<figure id="fig-bin-car_nn_result" class="figure">
-<figcaption>
-Neural network final model. Compare to Figure&nbsp;<a href="#fig-bin-nn_sigmoid" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid">1.3</a>. Note that we transform the bias node on the hidden layer with the sigmoid as well, i.e.&nbsp;<span class="math inline"><span class="math inline">\(h_0 = f(1) = \frac{1}{1+e^{-1}} = 0.73\)</span></span>. In the final model, <span class="math inline"><em>w</em><sub>0</sub><em>h</em><sub>0</sub> = −1.92 × 0.73 = −1.4</span>.
+<p>The result of Table&nbsp;<a href="#tab-bin-car_nn_result" data-reference-type="ref" data-reference="tab-bin-car_nn_result">[tab-bin-car_nn_result]</a> can be represented as the final (converged) model in <a href="#fig-bin-car_nn_result" class="quarto-xref">Figure&nbsp;<span>7.19</span></a>, which is highly similar to the one in <a href="#fig-bin-nn_sigmoid" class="quarto-xref">Figure&nbsp;<span>7.15</span></a>. For example, the weighted sum for hidden node <span class="math inline">\(h_1\)</span> is <span class="math inline">\(2.5 - v_1\)</span> in the model here, which is simply the negative of what is in <a href="#fig-bin-nn_sigmoid" class="quarto-xref">Figure&nbsp;<span>7.15</span></a>, where the sum is <span class="math inline">\(v_1 - 2.5\)</span>. We observe the same with the hidden node <span class="math inline">\(h_2\)</span>. This leads to the different signs of <span class="math inline">\(w_1, w_2\)</span> vs.&nbsp;<span class="math inline">\(w_0\)</span> to the output layer.</p>
+<div id="fig-bin-car_nn_result" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Neural network final model. Compare to the referenced figure. Note that we transform the bias node on the hidden layer with the sigmoid as well, i.e. h_0 = f(1) = 11+e^-1 = 0.73. In the final model, w_0 h_0 = -1.920.73=-1.4.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-car_nn_result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-car-nn-result.svg" class="img-fluid figure-img" style="width:70.0%" alt="Neural network final model. Compare to the referenced figure. Note that we transform the bias node on the hidden layer with the sigmoid as well, i.e. h_0 = f(1) = 11+e^-1 = 0.73. In the final model, w_0 h_0 = -1.920.73=-1.4.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-car_nn_result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.19: Neural network final model. Compare to the referenced figure. Note that we transform the bias node on the hidden layer with the sigmoid as well, i.e.&nbsp;<span class="math inline">\(h_0 = f(1) = \frac{1}{1+e^{-1}} = 0.73\)</span>. In the final model, <span class="math inline">\(w_0 h_0 = -1.92\times0.73=-1.4\)</span>.
 </figcaption>
 </figure>
-<p>Figure&nbsp;<a href="#fig-bin-car_nn_result_plot" data-reference-type="ref" data-reference="fig-bin-car_nn_result_plot">[fig-bin-car_nn_result_plot]</a> visualizes how the model transforms the original data into something separable. A sigmoid function with a weighted sum of <span class="math inline">\(2.5 - v\)</span> (for both <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span>) converts the original data (<span class="math inline">\(+\)</span> and <span class="math inline">\(\circ\)</span> in faded colors) to values close to <span class="math inline">\(0\)</span> (if <span class="math inline">\(v&gt;2.5\)</span>) and <span class="math inline">\(1\)</span> values (if <span class="math inline">\(v&lt;2.5\)</span>).</p>
-<div class="marginfigure">
-
 </div>
-<p>Given the limited training data we have, there are many non-linear solutions to the classification problem. In the end, we obtain the model in Figure&nbsp;<a href="#fig-bin-car_nn_result" data-reference-type="ref" data-reference="fig-bin-car_nn_result">1.5</a> which is different from what we proposed in Figure&nbsp;<a href="#fig-bin-nn_sigmoid" data-reference-type="ref" data-reference="fig-bin-nn_sigmoid">1.3</a>. Both models will make perfect classifications on the training data presented in Table&nbsp;<a href="#tab-bin-car_nn" data-reference-type="ref" data-reference="tab-bin-car_nn">1.3</a>. However, a model thus obtained has not necessarily found the global optimal. In fact, the back-propagation mechanism via gradient descent can converge to a local optimum, which depends on many factors such as the starting point (initial values) and the sequence of training data. The learning rate also impacts the convergence of weights and, occasionally, may also influence where they converge.</p>
+<p><a href="#fig-bin-car_nn_result_plot" class="quarto-xref">Figure&nbsp;<span>7.20</span></a> visualizes how the model transforms the original data into something separable. A sigmoid function with a weighted sum of <span class="math inline">\(2.5 - v\)</span> (for both <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span>) converts the original data (<span class="math inline">\(+\)</span> and <span class="math inline">\(\circ\)</span> in faded colors) to values close to <span class="math inline">\(0\)</span> (if <span class="math inline">\(v&gt;2.5\)</span>) and <span class="math inline">\(1\)</span> values (if <span class="math inline">\(v&lt;2.5\)</span>).</p>
+<div id="fig-bin-car_nn_result_plot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Visualization of the final model on car evaluation. Data transformed by the sigmoid function h_i = f(s_i) = 11+e^-s_i, where s_i is the weighted sum of each hidden node: s_1=2.5 - v_1 and s_2 = 2.5 - v_2. The solid line at h_1+h_2 - 1.92 f(1)=0 is where the sigmoid of the output layer makes the cut.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bin-car_nn_result_plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter07/fig-bin-car-nn-result-plot.svg" class="img-fluid figure-img" style="width:70.0%" alt="Visualization of the final model on car evaluation. Data transformed by the sigmoid function h_i = f(s_i) = 11+e^-s_i, where s_i is the weighted sum of each hidden node: s_1=2.5 - v_1 and s_2 = 2.5 - v_2. The solid line at h_1+h_2 - 1.92 f(1)=0 is where the sigmoid of the output layer makes the cut.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bin-car_nn_result_plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.20: Visualization of the final model on car evaluation. Data transformed by the sigmoid function <span class="math inline">\(h_i = f(s_i) = \frac{1}{1+e^{-s_i}}\)</span>, where <span class="math inline">\(s_i\)</span> is the weighted sum of each hidden node: <span class="math inline">\(s_1=2.5 - v_1\)</span> and <span class="math inline">\(s_2 = 2.5 - v_2\)</span>. The solid line at <span class="math inline">\(h_1+h_2 - 1.92 f(1)=0\)</span> is where the sigmoid of the output layer makes the cut.
+</figcaption>
+</figure>
+</div>
+<p>Given the limited training data we have, there are many non-linear solutions to the classification problem. In the end, we obtain the model in <a href="#fig-bin-car_nn_result" class="quarto-xref">Figure&nbsp;<span>7.19</span></a> which is different from what we proposed in <a href="#fig-bin-nn_sigmoid" class="quarto-xref">Figure&nbsp;<span>7.15</span></a>. Both models will make perfect classifications on the training data presented in Table&nbsp;<a href="#tab-bin-car_nn" data-reference-type="ref" data-reference="tab-bin-car_nn">1.3</a>. However, a model thus obtained has not necessarily found the global optimal. In fact, the back-propagation mechanism via gradient descent can converge to a local optimum, which depends on many factors such as the starting point (initial values) and the sequence of training data. The learning rate also impacts the convergence of weights and, occasionally, may also influence where they converge.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">

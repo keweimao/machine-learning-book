@@ -64,7 +64,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aafe154f14b83768199b70e6209de778.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -392,15 +392,32 @@ window.Quarto = {
 <section id="probability" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="probability"><span class="header-section-number">4.1</span> Probability</h2>
 <p><em>Probability</em>, according to the Oxford Dictionaries, is "the quality or state of being probable; the extent to which something is likely to happen or be the case." While this definition appears common sense and easy to understand, in reality we use the term <em>probability</em> or likelihood in two very different ways. In the <em>Frequentist</em> view, probability is equivalent to the long-term frequency of an event’s occurrence. Flipping a <em>perfect</em> coin, for example, has a <span class="math inline">\(50\%\)</span> probability to turn up a head and <span class="math inline">\(50\%\)</span> tail because each side has equal chances (frequencies) if it is repeated for <em>sufficient</em> times.</p>
-<div class="marginfigure">
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td style="text-align: right;"><img src="../assets/figures/prob/coin_head.png" class="img-fluid" alt="image">{w</td>
-<td>idth=“1in”} <img src="../assets/figures/prob/coin_tail.png" class="img-fluid" style="width:1in" alt="image"></td>
-</tr>
-</tbody>
-</table>
+<div id="fig-prob-head-tail" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-head-tail-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/figures/prob/coin_head.png" class="img-fluid figure-img" alt="Heads side of a coin."></p>
+<figcaption>Head</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/figures/prob/coin_tail.png" class="img-fluid figure-img" alt="Tails side of a coin."></p>
+<figcaption>Tail</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-head-tail-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Head versus tail.
+</figcaption>
+</figure>
 </div>
 <p>On the other hand, the <em>Bayesian</em> view of probability is associated with the degree of belief without complete information or knowledge. Each coin flipping has nothing to do with a long-term repetition and which side it turns up is a result of many factors. Likewise, how likely you are going to get an A on an upcoming test is a belief based on the known and the unknown – for example, how well you are prepared and what questions the test will be comprised of.</p>
 <p>These views are rather divided and may lead to different approaches of modeling and interpretation. Nonetheless, many methods and tools of great practical values have been derived from both views. And we can focus on their application without digging deep into the theoretical subtlety.</p>
@@ -427,15 +444,17 @@ P(Tail) &amp; = &amp; P(Head') \\
 P(A \cup B)
 &amp; = &amp; P(A) + P(B)
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/figures/prob/p_no_overlap.png" class="img-fluid figure-img" style="width:2in"></p>
-<figcaption>image</figcaption>
+<div id="fig-prob-no-overlap" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two separate circles representing events A and B with no overlap.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-no-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/prob/p_no_overlap.png" class="img-fluid figure-img" style="width:45.0%" alt="Two separate circles representing events A and B with no overlap.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-no-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Mutually exclusive events.
+</figcaption>
 </figure>
 </div>
-</div>
-<p>where the symbol <span class="math inline">\(\cup\)</span> (union) is equivalent to logical OR and implies addition of the events. When two events are mutually exclusive, they do not occur simultaneously and, as visualized in Figure&nbsp;<a href="#fig-prob-no_overlap" data-reference-type="ref" data-reference="fig-prob-no_overlap">[fig-prob-no_overlap]</a>, have <em>no overlap</em> or intersection in their probability space. Because of that, we can simply add the two together.</p>
+<p>where the symbol <span class="math inline">\(\cup\)</span> (union) is equivalent to logical OR and implies addition of the events. When two events are mutually exclusive, they do not occur simultaneously and, as visualized in <a href="#fig-prob-no-overlap" class="quarto-xref">Figure&nbsp;<span>4.2</span></a>, have <em>no overlap</em> or intersection in their probability space. Because of that, we can simply add the two together.</p>
 <p>In the case of flipping a coin, Head and Tail are mutually exclusive. By the same rule, we have:</p>
 <p><span class="math display">\[\begin{aligned}
 P(Head \cup Tail)
@@ -455,27 +474,31 @@ P(Head \cup Tail)
 P(A \cup B)
   &amp; = &amp; P(A) + P(B) - P(A \cap B)
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/figures/prob/p_overlap.png" class="img-fluid figure-img" style="width:2in"></p>
-<figcaption>image</figcaption>
+<div id="fig-prob-overlap" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two overlapping circles representing events A and B.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/prob/p_overlap.png" class="img-fluid figure-img" style="width:45.0%" alt="Two overlapping circles representing events A and B.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Events that are not mutually exclusive.
+</figcaption>
 </figure>
 </div>
-</div>
-<p>The reason for subtracting the joint probability <span class="math inline">\(P(A \cap B)\)</span> can be illustrated in Figure&nbsp;<a href="#fig-prob-overlap" data-reference-type="ref" data-reference="fig-prob-overlap">[fig-prob-overlap]</a>. As shown in the figure, when A and B can occur simultaneously, they have an overlap (intersection) which should be discounted so it is not counted <em>twice</em> in the addition.</p>
+<p>The reason for subtracting the joint probability <span class="math inline">\(P(A \cap B)\)</span> can be illustrated in <a href="#fig-prob-overlap" class="quarto-xref">Figure&nbsp;<span>4.3</span></a>. As shown in the figure, when A and B can occur simultaneously, they have an overlap (intersection) which should be discounted so it is not counted <em>twice</em> in the addition.</p>
 <p>Here is an example of not mutually exclusive events – what is the probability of drawing a card from a deck (52 cards) that is <em>either</em> an Ace (4 out of 52) <em>or</em> a Spade (13 out of 52). The probability of having each can be estimated by:</p>
 <p><span class="math display">\[\begin{aligned}
 P(Ace) &amp; = &amp; \frac{4}{52} \\
 P(Spade) &amp; = &amp; \frac{13}{52}
 \end{aligned}\]</span></p>
-<div class="marginfigure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/figures/prob/ace_spades.png" class="img-fluid figure-img" style="width:2in"></p>
-<figcaption>image</figcaption>
-</figure>
+<div id="fig-prob-ace-spade" class="quarto-float quarto-figure quarto-figure-center anchored" alt="An ace of spades card representing the intersection of aces and spades.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-ace-spade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/prob/ace_spades.png" class="img-fluid figure-img" style="width:35.0%" alt="An ace of spades card representing the intersection of aces and spades.">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-ace-spade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Ace <span class="math inline">\(\cap\)</span> spade: a joint (AND) event.
+</figcaption>
+</figure>
 </div>
 <p>Because there is <span class="math inline">\(1\)</span> card that is both an Ace and a Spade, the joint probability is <span class="math inline">\(P(Ace \cap Spade) = \frac{1}{52}\)</span> and the union probability can be computed by:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -624,11 +647,11 @@ P(E_{prize} | H_{spam})
 <img src="../assets/figures/prob/elephant.jpg" class="img-fluid figure-img" style="width:3in">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: Blind men and elephant. If you have not seen an elephant, does it mean there is no elephant? If you only touch an elephant on its leg, does it mean the elephant is like a tree trunk? These misperceptions are due to our sample data (where you touch the elephant) and should be corrected with external knowledge.
+Figure&nbsp;4.5: Blind men and elephant. If you have not seen an elephant, does it mean there is no elephant? If you only touch an elephant on its leg, does it mean the elephant is like a tree trunk? These misperceptions are due to our sample data (where you touch the elephant) and should be corrected with external knowledge.
 </figcaption>
 </figure>
 </div>
-<p>Data may be localized, just as the story of <em>blind men and elephant</em> shows (Figure&nbsp;<a href="#fig-prob-elephant" data-reference-type="ref" data-reference="fig-prob-elephant">1.1</a>). But we should aim to see the whole picture.</p>
+<p>Data may be localized, just as the story of <em>blind men and elephant</em> shows (<a href="#fig-prob-elephant" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>). But we should aim to see the whole picture.</p>
 <p>In addition, there is also an undesired consequence for having a zero probability in the Naive Bayes model. With <span class="math inline">\(E_{prize}\)</span> as one of the evidence features, its probability <span class="math inline">\(P(E_{prize} | H_{spam})\)</span> is one of the factors in computing the product in the Bayes equation above. When <span class="math inline">\(P(E_{prize} | H_{spam}) = 0\)</span>, it leads to <span class="math inline">\(P(H|E) = 0\)</span> regardless of the values of other variables.</p>
 <p>In short, we have observed that zero probabilities are not desirable, neither theoretically nor practically. One simple remedy to zero probability estimates, as suggested by Pierre Laplace, is to add <span class="math inline">\(1\)</span> to each frequency (count) in the sample. So the frequency of having term <span class="math inline">\(prize\)</span> in the spams becomes:</p>
 <p><span class="math display">\[
@@ -659,24 +682,39 @@ P(E_i = v | H) &amp; = &amp; \frac{F(E_i=v | H) + c p_v}{F(H) + k c}
 <h2 data-number="4.9" class="anchored" data-anchor-id="probability-distributions-and-models"><span class="header-section-number">4.9</span> Probability Distributions and Models</h2>
 <p>Think about this. The very fact that we have to <em>normalize</em> the obtained frequencies – to avoid zeros or for other purposes – indicates that we do not totally trust what observed data (samples) can tell us about. The underlying assumption is that we have certain understanding (prior knowledge) about how data should behave and we will need to <em>correct</em> the data whenever they <em>drift</em> from that expected behavior. By doing the normalization or smoothing, we impose a <em>model</em> of expected <em>probability distributions</em> on the analysis.</p>
 <p>We shall now prepare us with an introductory discussion of probability distributions, from discrete to continuous cases.</p>
-<figure id="fig-prob-coin_freq" class="figure">
-<figcaption>
-Frequency distribution of flipping a coin, 500 heads vs.&nbsp;500 tails after <span class="math inline">1, 000</span> trials in the ideal world.
+<div id="fig-prob-coin-freq" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Bar chart with equal frequencies of 500 for heads and tails.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-coin-freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter04/fig-prob-coin-freq.svg" class="img-fluid figure-img" style="width:55.0%" alt="Bar chart with equal frequencies of 500 for heads and tails.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-coin-freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Frequency distribution of flipping a coin: 500 heads versus 500 tails after <span class="math inline">\(1,000\)</span> trials in the ideal world.
 </figcaption>
 </figure>
+</div>
 <p>First let’s look at some discrete cases. Imagine you toss a coin for 1000 times and in the perfect world you get 500 heads and 500 tails. And you can create a simple bar plot to show the frequency distribution of 500 for both heads and tails. This is a uniform distribution because every event, head vs.&nbsp;tail, has an equal chance.</p>
-<figure id="fig-prob-coin_prob" class="figure">
-<figcaption>
-Probability distribution of flipping a coin (500 heads vs. 500 tails).
+<div id="fig-prob-coin-prob" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Bar chart with probability 0.5 for heads and 0.5 for tails.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-coin-prob-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter04/fig-prob-coin-prob.svg" class="img-fluid figure-img" style="width:55.0%" alt="Bar chart with probability 0.5 for heads and 0.5 for tails.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-coin-prob-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: Probability distribution of flipping a coin: heads and tails each have probability <span class="math inline">\(0.5\)</span>.
 </figcaption>
 </figure>
-<p>Now instead of talking about frequencies or counts, we can describe the distribution in terms of chance (probabilities). And in this case, head and tail have equal chances (probabilities) of 50% or 0.5 in the distribution, as Figure&nbsp;<a href="#fig-prob-coin_prob" data-reference-type="ref" data-reference="fig-prob-coin_prob">1.3</a> shows.</p>
-<p>For the sake of discussion, let’s extend the binary case, head vs.&nbsp;tail, to a larger number of exclusive outcomes. For example, imagine you roll a dice. If you roll it for a sufficient number of times, the sides will have equal chances to appear, that is, each side from 1 to 6 has a probability of 1/6 to occur, as shown in Figure&nbsp;<a href="#fig-prob-dice" data-reference-type="ref" data-reference="fig-prob-dice">1.4</a>.</p>
-<figure id="fig-prob-dice" class="figure">
-<figcaption>
-Probability distribution of rolling a dice
+</div>
+<p>Now instead of talking about frequencies or counts, we can describe the distribution in terms of chance (probabilities). And in this case, head and tail have equal chances (probabilities) of 50% or 0.5 in the distribution, as <a href="#fig-prob-coin-prob" class="quarto-xref">Figure&nbsp;<span>4.7</span></a> shows.</p>
+<p>For the sake of discussion, let’s extend the binary case, head vs.&nbsp;tail, to a larger number of exclusive outcomes. For example, imagine you roll a dice. If you roll it for a sufficient number of times, the sides will have equal chances to appear, that is, each side from 1 to 6 has a probability of 1/6 to occur, as shown in <a href="#fig-prob-dice" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>.</p>
+<div id="fig-prob-dice" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Uniform bar chart assigning probability one sixth to each face from one through six.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter04/fig-prob-dice.svg" class="img-fluid figure-img" style="width:65.0%" alt="Uniform bar chart assigning probability one sixth to each face from one through six.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.8: Probability distribution of rolling a die.
 </figcaption>
 </figure>
+</div>
 <p>Two simple but important observations here:</p>
 <ol type="1">
 <li><p>The probabilities of the six sides add up to one because they are exhaustive, mutually exclusive choices;</p></li>
@@ -685,60 +723,68 @@ Probability distribution of rolling a dice
 </section>
 <section id="continuous-probability-distribution" class="level2" data-number="4.10">
 <h2 data-number="4.10" class="anchored" data-anchor-id="continuous-probability-distribution"><span class="header-section-number">4.10</span> Continuous Probability Distribution</h2>
-<p>So far these are discrete distributions. But we can extend this to a continuous distribution. If the outcome <span class="math inline">\(x\)</span> is no longer limited to such integers or specific labels. Perhaps the outcome of the question at hand can be any number in the range of 1 and 6, and you are to predict that number. If it is a uniform distribution in with the continuous variable, it remains a flat line in the range of 1 - 6, shown in Figure&nbsp;<a href="#fig-prob-cont" data-reference-type="ref" data-reference="fig-prob-cont">1.5</a>.</p>
-<figure id="fig-prob-cont" class="figure">
-<figcaption>
-Probability distribution of a continuous variable <span class="math inline"><em>x</em></span>
+<p>So far these are discrete distributions. But we can extend this to a continuous distribution. If the outcome <span class="math inline">\(x\)</span> is no longer limited to such integers or specific labels. Perhaps the outcome of the question at hand can be any number in the range of 1 and 6, and you are to predict that number. If it is a uniform distribution in with the continuous variable, it remains a flat line in the range of 1 - 6, shown in <a href="#fig-prob-cont" class="quarto-xref">Figure&nbsp;<span>4.9</span></a>.</p>
+<div id="fig-prob-cont" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Flat probability-density line between one and six.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-cont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter04/fig-prob-cont.svg" class="img-fluid figure-img" style="width:65.0%" alt="Flat probability-density line between one and six.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-cont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.9: Probability density of a continuous variable <span class="math inline">\(x\)</span>.
 </figcaption>
 </figure>
+</div>
 <p>Again, when we add all probabilities up in the distribution, the total should still be <span class="math inline">\(1\)</span>. But because this is a continuous space, we are talking about infinite amount of numbers. The outcome can be number 3 or any decimal number such as <span class="math inline">\(3.14159\)</span>. To add the infinite number of heights (some sort of "probability" values) in the distribution is essentially <em>integration</em> of the distribution function (a flat line in this case), that is, the area under the distribution line or curve. The result of the integration or the entire area will <em>always</em> be <span class="math inline">\(1\)</span>, as long as the plotted range includes all possible outcomes.</p>
-<p>With a uniform (flat) distribution, the area is a rectangle as shown in Figure&nbsp;<a href="#fig-prob-cont" data-reference-type="ref" data-reference="fig-prob-cont">1.5</a> and it is easy to calculate the area. In the above case, the area of the rectangle between <span class="math inline">\(1\)</span> and <span class="math inline">\(6\)</span> can be computed by width times height, which is <span class="math inline">\((6-1) \times 0.2 = 1\)</span>. So this meets the expectation that the sum of the entire probability distribution is <span class="math inline">\(1\)</span>.</p>
-<p>Although the above is discussed as a <em>probability</em> distribution, we shall clarify on an important concept. The uniform height <span class="math inline">\(0.2\)</span> in Figure&nbsp;<a href="#fig-prob-cont" data-reference-type="ref" data-reference="fig-prob-cont">1.5</a> is NOT a probability value per se. It is what we refer to as a <em>probability density</em>, but not exactly a probability. For now, let us move on from the uniform distribution to a more common distribution in the real world before we come back to elaborate on the concept of <em>probability density</em> again.</p>
+<p>With a uniform (flat) distribution, the area is a rectangle as shown in <a href="#fig-prob-cont" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> and it is easy to calculate the area. In the above case, the area of the rectangle between <span class="math inline">\(1\)</span> and <span class="math inline">\(6\)</span> can be computed by width times height, which is <span class="math inline">\((6-1) \times 0.2 = 1\)</span>. So this meets the expectation that the sum of the entire probability distribution is <span class="math inline">\(1\)</span>.</p>
+<p>Although the above is discussed as a <em>probability</em> distribution, we shall clarify on an important concept. The uniform height <span class="math inline">\(0.2\)</span> in <a href="#fig-prob-cont" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> is NOT a probability value per se. It is what we refer to as a <em>probability density</em>, but not exactly a probability. For now, let us move on from the uniform distribution to a more common distribution in the real world before we come back to elaborate on the concept of <em>probability density</em> again.</p>
 <p>In the real world, you do not often see uniform distributions<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Normal (Gaussian) distributions are much more common. For example, if we collect statistics about adult male heights in the U.S., you will see the heights are not equally likely. Instead, the overwhelming majority of (average) people have the average height around 70 inches. And much rarer are shorter than 62 or taller than 78. The whole distribution is a bell curve as shown in the figure here.</p>
-<figure id="fig-prob-height" class="figure">
-<figcaption>
-Distribution of adult male heights, approximately a normal distribution (bell curve)
+<div id="fig-prob-height" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Bell-shaped probability-density curve centered near the average adult male height.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter04/fig-prob-height.svg" class="img-fluid figure-img" style="width:65.0%" alt="Bell-shaped probability-density curve centered near the average adult male height.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.10: Distribution of adult male heights, approximately a normal distribution (bell curve).
 </figcaption>
 </figure>
+</div>
 <p>This is again a probability density distribution so if you integrate the curve, the total area under it will be <span class="math inline">\(1\)</span> or <span class="math inline">\(100\%\)</span> probability. When you pick a particular number on the <span class="math inline">\(x\)</span> axis such as <span class="math inline">\(70\)</span> inches in the middle, you notice it is <span class="math inline">\(y = 0.1\)</span> on the distribution curve. Now be careful that this value <span class="math inline">\(0.1\)</span> does NOT mean that there is <span class="math inline">\(10\%\)</span> chance to be <span class="math inline">\(70\)</span> inches height (exactly).</p>
 <p>Because they are infinite number of values in the range, each exact height value in fact has a <span class="math inline">\(0\)</span> probability to occur. The reason is when we say <span class="math inline">\(70\)</span> inches, we mean exactly <span class="math inline">\(70.000000...\)</span> with an infinite number of decimal zeros. And it is close to <em>impossible</em> to get that exact value on a continuous scale.</p>
 <p>Back to the question. So what does a value like <span class="math inline">\(0.1\)</span> mean on the <span class="math inline">\(y\)</span> axis? It means <span class="math inline">\(0.1\)</span> probability density – that is, <span class="math inline">\(0.1\)</span> probability <em>per inch</em> (range) on the adult height scale. And this value will change if you change the unit of height, for example by switching to centimeters.</p>
 <p>What does this probability density entail now that it is not probability and it varies on the measuring unit? Probability density does allow you to compare probabilities of different continuous <em>values</em> and <em>value ranges</em>. For example, in the normal distribution here, you can still tell that the probability of a height <em>around</em> <span class="math inline">\(70\)</span> inches is greater than that in the proximity of <span class="math inline">\(80\)</span>. But to tell the exact probability, you will need to specify a range. You can ask the question of how likely an adult height is <span class="math inline">\(70\)</span> <em>something</em> (i.e.&nbsp;between 70 and 71) inches. And you can integrate the area under the bell curve in the range to find out.</p>
-<p>To reiterate this point – on the simpler example of the uniform distribution presented in Figure&nbsp;<a href="#fig-prob-cont" data-reference-type="ref" data-reference="fig-prob-cont">1.5</a>, the <span class="math inline">\(0.2\)</span> value on y is not probability but probability density or probability per unit. You can still tell that all probabilities are equal by looking at the flat line. And you can ask the question about how likely you will get a value between 2 and 4 by multiplying the density which is <span class="math inline">\(0.2\)</span> and the range which is <span class="math inline">\(2\)</span> and the result turns out to be <span class="math inline">\(0.4\)</span> – that is <span class="math inline">\(40\%\)</span> of the chance you will get a value <em>in that range</em>.</p>
-<p>As always, all probabilities add up to <span class="math inline">\(1\)</span> as you can verify by <span class="math inline">\(0.2 \times (6-1) = 1\)</span>. So if you ask how likely a value occurs in the range between <span class="math inline">\(1\)</span> and <span class="math inline">\(6\)</span>, given the distribution in Figure&nbsp;<a href="#fig-prob-cont" data-reference-type="ref" data-reference="fig-prob-cont">1.5</a>, the answer is that it will <em>always be true</em>.</p>
+<p>To reiterate this point – on the simpler example of the uniform distribution presented in <a href="#fig-prob-cont" class="quarto-xref">Figure&nbsp;<span>4.9</span></a>, the <span class="math inline">\(0.2\)</span> value on y is not probability but probability density or probability per unit. You can still tell that all probabilities are equal by looking at the flat line. And you can ask the question about how likely you will get a value between 2 and 4 by multiplying the density which is <span class="math inline">\(0.2\)</span> and the range which is <span class="math inline">\(2\)</span> and the result turns out to be <span class="math inline">\(0.4\)</span> – that is <span class="math inline">\(40\%\)</span> of the chance you will get a value <em>in that range</em>.</p>
+<p>As always, all probabilities add up to <span class="math inline">\(1\)</span> as you can verify by <span class="math inline">\(0.2 \times (6-1) = 1\)</span>. So if you ask how likely a value occurs in the range between <span class="math inline">\(1\)</span> and <span class="math inline">\(6\)</span>, given the distribution in <a href="#fig-prob-cont" class="quarto-xref">Figure&nbsp;<span>4.9</span></a>, the answer is that it will <em>always be true</em>.</p>
 <p>There are several major categories of probability distributions beyond the uniform and normal distributions we discussed here. Some of these are asymmetric, exhibiting a form of imbalance between the lower and higher ends. Power-law distributions and their variations, for example, are very common in many natural and social structures. They are often associated with basic <em>counts</em> in these structures and activities.</p>
 <p>The distribution of wealth or income is an example of the power-law distribution, where the overwhelming majority is <em>poor</em> (with relatively little wealth) and a small percent at the top are extremely wealthy. This is a result commonly regarded as due to the <em>Matthew Effect</em><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, in which the rich get rich. In citation and network analysis, this effect is also known as the <em>cumulative advantage</em><span class="citation" data-cites="Price1976">(<a href="../references.html#ref-Price1976" role="doc-biblioref">Price 1976</a>)</span> or <em>preferential attachment</em><span class="citation" data-cites="Barabasi1999">(<a href="../references.html#ref-Barabasi1999" role="doc-biblioref">Barabási and Albert 1999</a>)</span>.</p>
-<p>Spoken language (word frequencies) follows the Zipf law, which can be regarded as a special case of the power-law distribution. Figure&nbsp;<a href="#fig-prob-word_freq" data-reference-type="ref" data-reference="fig-prob-word_freq">1.7</a> shows the distribution of word frequencies taken from the novel <em>Moby Dick</em>. As shown in Figure&nbsp;<a href="#fig-prob-word_freq" data-reference-type="ref" data-reference="fig-prob-word_freq">1.7</a> (a), there is a great divide between the rich and the poor – a large number of words have only been used once or twice in the novel (tall bars on the left of the distribution) where very few words have a frequency higher than <span class="math inline">\(100\)</span> (the long tail).</p>
-<p>It is difficult, however, to examine the long tail on normal coordinates as the values are very small (low) within a long range. Logarithmic transformation is often conducted to better visualize the distribution. The result is Figure&nbsp;<a href="#fig-prob-word_freq" data-reference-type="ref" data-reference="fig-prob-word_freq">1.7</a> (b), where both <span class="math inline">\(x\)</span> (words’ occurrences) and <span class="math inline">\(y\)</span> (frequencies of the occurrences) have been transformed with logarithm.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
-<figure id="fig-prob-word_freq" class="figure">
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">
-<img src="../assets/figures/prob/word_freq.png" style="width:2in" alt="image" class="figure-img">
-</td>
-<td style="text-align: center;">
-<img src="../assets/figures/prob/word_freq_log.png" style="width:2in" alt="image" class="figure-img">
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<ol type="a">
-<li>normal coordinates
-</li></ol></td>
-<td style="text-align: center;">
-<ol start="2" type="a">
-<li>log-log coordinates
-</li></ol></td>
-</tr>
-</tbody>
-</table>
-<figcaption>
-Word frequency distribution
+<p>Spoken language (word frequencies) follows the Zipf law, which can be regarded as a special case of the power-law distribution. <a href="#fig-prob-word-freq" class="quarto-xref">Figure&nbsp;<span>4.11</span></a> shows the distribution of word frequencies taken from the novel <em>Moby Dick</em>. As shown in <a href="#fig-prob-word-freq" class="quarto-xref">Figure&nbsp;<span>4.11</span></a> (a), there is a great divide between the rich and the poor – a large number of words have only been used once or twice in the novel (tall bars on the left of the distribution) where very few words have a frequency higher than <span class="math inline">\(100\)</span> (the long tail).</p>
+<p>It is difficult, however, to examine the long tail on normal coordinates as the values are very small (low) within a long range. Logarithmic transformation is often conducted to better visualize the distribution. The result is <a href="#fig-prob-word-freq" class="quarto-xref">Figure&nbsp;<span>4.11</span></a> (b), where both <span class="math inline">\(x\)</span> (words’ occurrences) and <span class="math inline">\(y\)</span> (frequencies of the occurrences) have been transformed with logarithm.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<div id="fig-prob-word-freq" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prob-word-freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/figures/prob/word_freq.png" class="img-fluid figure-img" style="width:2in" alt="Word frequency distribution on normal coordinates"></p>
+<figcaption>Normal coordinates</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/figures/prob/word_freq_log.png" class="img-fluid figure-img" style="width:2in" alt="Word frequency distribution on log-log coordinates"></p>
+<figcaption>Log-log coordinates</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prob-word-freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.11: Word frequency distribution
 </figcaption>
 </figure>
-
-
+</div>
 <p>One prominent characteristic of a power-law distribution is that it follows a straight line on log-transformed coordinates spanning across a vast range of numeric orders and is therefore considered <em>scale free</em>. One should caution though that many distributions may roughly look linear with log-transformation when they are in fact the result of a different distribution. In reality, there are various constraints and capacity limits on related structures where the outcome is not ideally power-law. In social networks, for example, even those who are super active can only maintain up to a certain number of friendly contacts and therefore the outcome of friendship distribution will be subject to such human limits and not scale-free.</p>
 </section>
 <section id="probability-estimators-1" class="level2" data-number="4.11">
