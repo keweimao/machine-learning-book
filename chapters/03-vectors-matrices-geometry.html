@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="An introductory journey from data and information to machine learning, language, search, and evaluation.">
+
+<title>3&nbsp; Vectors, Matrices, and Geometric Thinking – Machine Learning: The Quest for Information and Meaning</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/04-probability-statistics.html" rel="next">
+<link href="../chapters/02-data-representations.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-data-to-meaning.html">Data, Information, and Mathematical Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/03-vectors-matrices-geometry.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vectors, Matrices, and Geometric Thinking</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Machine Learning: The Quest for Information and Meaning</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/keweimao/machine-learning-book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../Machine-Learning--The-Quest-for-Information-and-Meaning.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../Machine-Learning--The-Quest-for-Information-and-Meaning.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data, Information, and Mathematical Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-data-to-meaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">From Data to Information and Meaning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-data-representations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Types and Representations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-vectors-matrices-geometry.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vectors, Matrices, and Geometric Thinking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-probability-statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability and Statistical Thinking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-information-entropy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Information, Entropy, and Divergence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-data-preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Preparation and Feature Engineering</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Learning from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Classification: From Neighbors to Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-multiclass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multiclass and Structured Decisions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-numeric-prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Numeric Prediction and Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Language, Retrieval, and Structure</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-text-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/12-search-retrieval.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13-structural-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Trustworthy and Practical Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/14-evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/15-generalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/16-scaling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#basic-matrix-operation" id="toc-basic-matrix-operation" class="nav-link active" data-scroll-target="#basic-matrix-operation"><span class="header-section-number">3.1</span> Basic Matrix Operation</a></li>
+  <li><a href="#sum-of-squares" id="toc-sum-of-squares" class="nav-link" data-scroll-target="#sum-of-squares"><span class="header-section-number">3.2</span> Sum of Squares</a></li>
+  <li><a href="#vector-magnitude-length" id="toc-vector-magnitude-length" class="nav-link" data-scroll-target="#vector-magnitude-length"><span class="header-section-number">3.3</span> Vector Magnitude (Length)</a></li>
+  <li><a href="#vector-distance" id="toc-vector-distance" class="nav-link" data-scroll-target="#vector-distance"><span class="header-section-number">3.4</span> Vector Distance</a></li>
+  <li><a href="#vector-angle" id="toc-vector-angle" class="nav-link" data-scroll-target="#vector-angle"><span class="header-section-number">3.5</span> Vector Angle</a></li>
+  <li><a href="#vector-cross-product" id="toc-vector-cross-product" class="nav-link" data-scroll-target="#vector-cross-product"><span class="header-section-number">3.6</span> Vector Cross Product</a></li>
+  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization"><span class="header-section-number">3.7</span> Optimization</a></li>
+  <li><a href="#kernel-functions" id="toc-kernel-functions" class="nav-link" data-scroll-target="#kernel-functions"><span class="header-section-number">3.8</span> Kernel Functions</a></li>
+  <li><a href="#graph-analysis" id="toc-graph-analysis" class="nav-link" data-scroll-target="#graph-analysis"><span class="header-section-number">3.9</span> Graph Analysis</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/keweimao/machine-learning-book/edit/main/chapters/03-vectors-matrices-geometry.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/keweimao/machine-learning-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-data-to-meaning.html">Data, Information, and Mathematical Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/03-vectors-matrices-geometry.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vectors, Matrices, and Geometric Thinking</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="ch-matrix" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vectors, Matrices, and Geometric Thinking</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>When we have multiple row vectors of data instances, they form a data matrix. For example, a data matrix of the two teams <span class="math inline">\(A^T\)</span> and <span class="math inline">\(B^T\)</span> can be represented as <span class="math inline">\(D\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+    D   &amp; = &amp;
+    \begin{pmatrix}
+        1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+        0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1
+    \end{pmatrix}
+\end{aligned}\]</span></p>
+<p>Here <span class="math inline">\(D\)</span> is an <span class="math inline">\(n \times m\)</span> matrix, with <span class="math inline">\(n=2\)</span> rows and <span class="math inline">\(m=7\)</span> columns. That is, <span class="math inline">\(D \in \mathbb{R}^{n\times m}\)</span>, where <span class="math inline">\(n=2\)</span> and <span class="math inline">\(m=7\)</span>. In <span class="math inline">\(D\)</span>, we not only have row vectors for the teams but also column vectors for the skills:</p>
+<p><span class="math display">\[\begin{aligned}
+\begin{matrix}
+  AI &amp; InfoVis &amp; Math &amp; Python &amp; R &amp; SQL &amp; Stats \\
+  = \begin{pmatrix} 1 \\ 0 \end{pmatrix} &amp;
+  = \begin{pmatrix} 0 \\ 1 \end{pmatrix} &amp;
+  = \begin{pmatrix} 1 \\ 1 \end{pmatrix} &amp;
+  = \begin{pmatrix} 1 \\ 0 \end{pmatrix} &amp;
+  = \begin{pmatrix} 0 \\ 1 \end{pmatrix} &amp;
+  = \begin{pmatrix} 1 \\ 1 \end{pmatrix} &amp;
+  =\begin{pmatrix} 0 \\ 1 \end{pmatrix}
+\end{matrix}
+\end{aligned}\]</span></p>
+<section id="basic-matrix-operation" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="basic-matrix-operation"><span class="header-section-number">3.1</span> Basic Matrix Operation</h2>
+<p>Consider another data set about the annual revenue and profit of three companies. Let <span class="math inline">\(X\)</span> be last year’s data (in million dollars):</p>
+<p><span class="math display">\[\begin{aligned}
+    X   &amp; = &amp;
+    \begin{matrix}
+        x_1 \\
+        x_2 \\
+        x_3
+    \end{matrix}
+    \begin{pmatrix}
+        3 &amp; 0.5 \\
+        20 &amp; 1.5 \\
+        12 &amp; 1
+    \end{pmatrix}
+\end{aligned}\]</span></p>
+<p>where each row is a 2-dimensional vector and can be visualized in Figure&nbsp;<a href="#fig-matrix-x" data-reference-type="ref" data-reference="fig-matrix-x">[fig-matrix-x]</a>.</p>
+<div class="marginfigure">
+
+</div>
+<p>Let <span class="math inline">\(Y\)</span> be this year’s data as follow, which, likewise, can be visualized as <span class="math inline">\(3\)</span> row vectors in Figure&nbsp;<a href="#fig-matrix-y" data-reference-type="ref" data-reference="fig-matrix-y">[fig-matrix-y]</a>:</p>
+<p><span class="math display">\[\begin{aligned}
+    Y   &amp; = &amp;
+    \begin{matrix}
+        y_1 \\
+        y_2 \\
+        y_3
+    \end{matrix}
+    \begin{pmatrix}
+        6 &amp; 1 \\
+        15 &amp; 1 \\
+        16 &amp; 2
+    \end{pmatrix}
+\end{aligned}\]</span></p>
+<div class="marginfigure">
+
+</div>
+<p>Apparently, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the same dimensionality – <span class="math inline">\(X \in \mathbb{R}^{3\times2}\)</span> and <span class="math inline">\(Y \in \mathbb{R}^{3\times2}\)</span> – as they are about the same three companies (rows) and two variables (columns). We can perform simple computation such as addition and subtraction on the matrices.</p>
+<p>For example, it is easy to compute the increase or decrease in revenue and profit with subtraction:</p>
+<p><span class="math display">\[\begin{aligned}
+    G
+    &amp; = &amp; Y - X   \\
+    &amp; = &amp;
+    \begin{pmatrix}
+        6 &amp; 1 \\
+        15 &amp; 1 \\
+        16 &amp; 2
+    \end{pmatrix}
+    -
+    \begin{pmatrix}
+        3 &amp; 0.5 \\
+        20 &amp; 1.5 \\
+        12 &amp; 1
+    \end{pmatrix} \\
+    &amp; = &amp;
+    \begin{pmatrix}
+        6 - 3 &amp; 1 - 0.5 \\
+        15 - 20 &amp; 1 - 1.5 \\
+        16 - 12 &amp; 2 - 1
+    \end{pmatrix} \\
+    &amp; = &amp;
+    \begin{matrix}
+        g_1 \\
+        g_2 \\
+        g_3
+    \end{matrix}
+    \begin{pmatrix}
+        3 &amp; 0.5 \\
+        -5 &amp; -0.5 \\
+        4 &amp; 1
+    \end{pmatrix}
+\end{aligned}\]</span></p>
+<p>Matrix <span class="math inline">\(G\)</span>, the result of the subtraction, contains data about growth (increases and decreases). The rows of matrix <span class="math inline">\(G\)</span> are vectors connecting respective <span class="math inline">\(X\)</span> vectors to <span class="math inline">\(Y\)</span> vectors. Let’s single out the <span class="math inline">\(3^{rd}\)</span> company from the data, i.e.&nbsp;<span class="math inline">\(x_3\)</span>, <span class="math inline">\(y_3\)</span>, and <span class="math inline">\(g_3\)</span>. As shown Figure&nbsp;<a href="#fig-matrix-xy" data-reference-type="ref" data-reference="fig-matrix-xy">[fig-matrix-xy]</a>, subtraction <span class="math inline">\(g_3=y_3-x_3\)</span> is the vector that starts at <span class="math inline">\(x_3\)</span> and ends at <span class="math inline">\(y_3\)</span>.</p>
+<div class="marginfigure">
+
+</div>
+<p>Suppose the rate of growth in <span class="math inline">\(G\)</span> is projected to continue (the same) next year. This will double the growth, which can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+    G \times 2 &amp; = &amp;
+    \begin{pmatrix}
+        3 &amp; 0.5 \\
+        -5 &amp; -0.5 \\
+        4 &amp; 1
+    \end{pmatrix}
+    \times 2 \\
+    &amp; = &amp;
+    \begin{pmatrix}
+        3 \times 2 &amp; 0.5 \times 2 \\
+        -5 \times 2 &amp; -0.5 \times 2 \\
+        4 \times 2 &amp; 1 \times 2
+    \end{pmatrix} \\
+    &amp; = &amp;
+    \begin{pmatrix}
+        6 &amp; 1 \\
+        -10 &amp; -1 \\
+        8 &amp; 2
+    \end{pmatrix}
+\end{aligned}\]</span></p>
+<div class="marginfigure">
+
+</div>
+<p>Here every value in matrix <span class="math inline">\(G\)</span> is doubled; so is every vector – row or column – in the matrix. For example, Figure&nbsp;<a href="#fig-matrix-2g" data-reference-type="ref" data-reference="fig-matrix-2g">[fig-matrix-2g]</a> shows when <span class="math inline">\(g_3\)</span>, the growth vector of the <span class="math inline">\(3^{rd}\)</span> company (row), multiplies <span class="math inline">\(2\)</span>, the vector doubles its length (magnitude) in the same direction. Multiplying a matrix with a scalar (single number) results in a matrix of the same dimensionality, in which every value is multiplied by the same scalar. Note the multiplication can be written as <span class="math inline">\(2 \cdot G\)</span>, <span class="math inline">\(2G\)</span> or, more generally, <span class="math inline">\(aG\)</span> given a scalar <span class="math inline">\(a\)</span> and a matrix <span class="math inline">\(G\)</span>.</p>
+<p>Now with the projected growth (or decrease) data in the <span class="math inline">\(2G\)</span> matrix, we can add them to the last year’s data matrix <span class="math inline">\(X\)</span> to compute the final projection for next year <span class="math inline">\(Z\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+Z &amp; = &amp; Y + 2G \\
+  &amp; = &amp;
+  \begin{pmatrix}
+      3 &amp; 0.5 \\
+      20 &amp; 1.5 \\
+      12 &amp; 1
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+      6 &amp; 1 \\
+      -10 &amp; -1 \\
+      8 &amp; 2
+  \end{pmatrix} \\
+  &amp; = &amp;
+  \begin{pmatrix}
+      3 + 6 &amp; 0.5+1 \\
+      20-10 &amp; 1.5-1 \\
+      12 + 8 &amp; 1 + 2
+  \end{pmatrix} \\
+  &amp; = &amp;
+  \begin{matrix}
+      z_1 \\
+      z_2 \\
+      z_3
+  \end{matrix}
+  \begin{pmatrix}
+      9 &amp; 1.5 \\
+      10 &amp; 0.5 \\
+      20 &amp; 3
+  \end{pmatrix}
+\end{aligned}\]</span></p>
+<div class="marginfigure">
+
+</div>
+<p>Note that the data matrix <span class="math inline">\(Z\)</span> projected from last year’s numbers in <span class="math inline">\(X\)</span> should be the same as that projected based on this year’s data in <span class="math inline">\(Y\)</span>, i.e.&nbsp;<span class="math inline">\(Z=X+2G=Y+G\)</span> given that <span class="math inline">\(G=Y-X\)</span>.</p>
+<p>Geometrically, for corresponding vectors in the matrices, the addition operation is to connect them head to tail. For example, as shown by the solid lines in Figure&nbsp;<a href="#fig-matrix-z" data-reference-type="ref" data-reference="fig-matrix-z">[fig-matrix-z]</a>, for the <span class="math inline">\(3^{rd}\)</span> row vector, <span class="math inline">\(x_3+g_3\times2\)</span> is to connect vectors <span class="math inline">\(x_3\)</span> and <span class="math inline">\(2g_3\)</span> and the result is <span class="math inline">\(z_3\)</span>, which draws from the tail of <span class="math inline">\(x_3\)</span> to the head of <span class="math inline">\(2g_3\)</span>. Vector and matrix addition is communicative, the same result can be obtained by <span class="math inline">\(2g_3 + x_3\)</span>, as shown by dashed lines in Figure&nbsp;<a href="#fig-matrix-z" data-reference-type="ref" data-reference="fig-matrix-z">[fig-matrix-z]</a>.</p>
+</section>
+<section id="sum-of-squares" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sum-of-squares"><span class="header-section-number">3.2</span> Sum of Squares</h2>
+<p>Suppose <span class="math inline">\(x\)</span> is a m-dimensional column vector, which is essentially a matrix of <span class="math inline">\(m\)</span> rows and <span class="math inline">\(1\)</span> column: <span class="math inline">\(x \in \mathbb{R}^{m\times1}\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    x &amp; = &amp;
+      \begin{pmatrix}
+        x_1 \\
+        x_2 \\
+        ... \\
+        x_m
+      \end{pmatrix}
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>Now we can transpose the column vector <span class="math inline">\(x\)</span> into a row vector <span class="math inline">\(x^T\)</span>, which is a matrix of <span class="math inline">\(1\)</span> row and <span class="math inline">\(m\)</span> columns, i.e. <span class="math inline">\(x^T \in \mathbb{R}^{1\times m}\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    x^T &amp; = &amp;
+      \begin{pmatrix}
+        x_1 &amp;
+        x_2 &amp;
+        ... &amp;
+        x_m
+      \end{pmatrix}
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>We can multiply <span class="math inline">\(x^T\)</span> with <span class="math inline">\(x\)</span> and get their dot product:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    x^Tx &amp; = &amp;
+      \begin{pmatrix}
+        x_1 &amp;
+        x_2 &amp;
+        ... &amp;
+        x_m
+      \end{pmatrix}
+      \times
+      \begin{pmatrix}
+        x_1 \\
+        x_2 \\
+        ... \\
+        x_m
+      \end{pmatrix} \\
+      &amp; = &amp; x_1^2 + x_2^2 + .. + x_m^2 \\
+      &amp; = &amp; \sum_{i=1}^{m} x_i^2
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>The result is the total sum of squares, a scalar. Sum of squares is often performed on error terms in statistical analysis. For example, given the following errors of three instances:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    e &amp; = &amp;
+    \begin{pmatrix}
+      0.5 \\
+      0.2 \\
+      0.7
+    \end{pmatrix}
+  \end{matrix}
+\end{aligned}\]</span></p>
+<p>We can compute the Error Sum of Squares (ESS) by:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    e^Te &amp; = &amp;
+      \begin{pmatrix}
+        0.5 &amp;
+        0.2 &amp;
+        0.7
+      \end{pmatrix}
+      \times
+      \begin{pmatrix}
+        0.5 \\
+        0.2 \\
+        0.7
+      \end{pmatrix} \\
+      &amp; = &amp; 0.5^2 + 0.2^2 + 0.7^2 \\
+      &amp; = &amp; 0.78
+    \end{matrix}
+\end{aligned}\]</span></p>
+</section>
+<section id="vector-magnitude-length" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="vector-magnitude-length"><span class="header-section-number">3.3</span> Vector Magnitude (Length)</h2>
+<p>Any vector has two components: a direction and a magnitude (length). Taking the square root of the sum of squares, we can compute a vector’s magnitude:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \left\lVert x \right\rVert &amp; = &amp; \sqrt{x^Tx} \\
+      &amp; = &amp; \sqrt{\sum_{i=1}^{m} x_i^2}
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>which is the length from the origin to the data point <span class="math inline">\(x\)</span>. For example, given a two-dimensional vector <span class="math inline">\(v\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    v &amp; = &amp;
+      \begin{pmatrix}
+        3 \\ 4
+      \end{pmatrix}
+  \end{matrix}
+\end{aligned}\]</span></p>
+<p>Its magnitude can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \left\lVert v \right\rVert &amp; = &amp; \sqrt{3^2 + 4^2} \\
+          &amp; = &amp; 5
+    \end{matrix}
+\end{aligned}\]</span></p>
+<div class="marginfigure">
+
+</div>
+<p>which is the length shown in Figure&nbsp;<a href="#fig-matrix-magnitude" data-reference-type="ref" data-reference="fig-matrix-magnitude">[fig-matrix-magnitude]</a>.</p>
+</section>
+<section id="vector-distance" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="vector-distance"><span class="header-section-number">3.4</span> Vector Distance</h2>
+<p>Let <span class="math inline">\(y\)</span> be another column vector with the same dimensionality <span class="math inline">\(y \in \mathbb{R}^{m\times1}\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+y &amp; = &amp;
+  \begin{pmatrix}
+    y_1 \\
+    y_2 \\
+    ... \\
+    y_m
+  \end{pmatrix}
+\end{matrix}
+\end{aligned}\]</span></p>
+<p>The difference between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+x - y &amp; = &amp;
+  \begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    ... \\
+    x_m
+  \end{pmatrix}
+  -
+  \begin{pmatrix}
+    y_1 \\
+    y_2 \\
+    ... \\
+    y_m
+  \end{pmatrix}\\
+  &amp; = &amp;
+  \begin{pmatrix}
+    x_1 - y_1 \\
+    x_2 - y_2 \\
+    ... \\
+    x_m - y_m
+  \end{pmatrix}
+\end{matrix}
+\end{aligned}\]</span></p>
+<p>which, geometrically, is the vector connecting the head of <span class="math inline">\(x\)</span> to that of <span class="math inline">\(y\)</span>. The magnitude of this difference vector can be computed using Equation&nbsp;<a href="#eq-matrix-magnitude" data-reference-type="ref" data-reference="eq-matrix-magnitude">[eq-matrix-magnitude]</a>:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \left\lVert x - y \right\rVert &amp; = &amp; \sqrt{(x-y)^T(x-y)} \\
+      &amp; = &amp; \sqrt{\sum_{i=1}^{m} (x_i-y_i)^2}
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>Consider two two-dimensional vectors:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    u &amp; = &amp;
+      \begin{pmatrix}
+        2 \\ 1
+      \end{pmatrix}
+    &amp;
+    v &amp; = &amp;
+      \begin{pmatrix}
+        3 \\ 4
+      \end{pmatrix}
+  \end{matrix}
+\end{aligned}\]</span></p>
+<p>There difference can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    v - u &amp; = &amp;
+      \begin{pmatrix}
+        3 \\ 4
+      \end{pmatrix}
+      -
+      \begin{pmatrix}
+        2 \\ 1
+      \end{pmatrix} \\
+      &amp; = &amp;
+        \begin{pmatrix}
+          1 \\ 3
+        \end{pmatrix}
+  \end{matrix}
+\end{aligned}\]</span></p>
+<div class="marginfigure">
+
+</div>
+<p>Their Euclidean distance can be computed by the magnitude of their difference:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \left\lVert v - u \right\rVert &amp; = &amp; \sqrt{1^2 + 3^2} \\
+          &amp; = &amp; \sqrt{10}
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>Euclidean distance is symmetric as a metric, i.e. <span class="math inline">\(\left\lVert v-u \right\rVert = \left\lVert u-v \right\rVert\)</span>. The distance between the two vectors is illustrated in Figure&nbsp;<a href="#fig-matrix-distance" data-reference-type="ref" data-reference="fig-matrix-distance">[fig-matrix-distance]</a>.</p>
+</section>
+<section id="vector-angle" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="vector-angle"><span class="header-section-number">3.5</span> Vector Angle</h2>
+<p>For any vector <span class="math inline">\(x\)</span>, we can factor in its magnitude with <span class="math inline">\(\frac{1}{\left\lVert x \right\rVert}\)</span>, we obtain its unit vector:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \hat{x} &amp; = &amp; \frac{x}{\left\lVert x \right\rVert}
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>of which the length is normalized to <span class="math inline">\(1\)</span>. We can do the same to another vector <span class="math inline">\(y\)</span> to obtain its unit vector:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \hat{y} &amp; = &amp; \frac{y}{\left\lVert y \right\rVert}
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>If <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are both column vectors of the same dimensionality, <span class="math inline">\(x \in \mathbb{R}^{m}\)</span> and <span class="math inline">\(y \in \mathbb{R}^{m}\)</span>, we can compute their dot product by:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    x^Ty &amp; = &amp;
+      \begin{pmatrix}
+        x_1 &amp;
+        x_2 &amp;
+        ... &amp;
+        x_m
+      \end{pmatrix}
+      \times
+      \begin{pmatrix}
+        y_1 \\
+        y_2 \\
+        ... \\
+        y_m
+      \end{pmatrix} \\
+      &amp; = &amp; x_1 y_1 + x_2 y_2 + .. + x_m y_m \\
+      &amp; = &amp; \sum_{i=1}^{m} x_i y_i
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>Likewise, we can compute the dot product of their unit vectors:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \hat{x}^T\hat{y}
+      &amp; = &amp;
+      \begin{pmatrix}\frac{x}{\left\lVert x \right\rVert}\end{pmatrix}^T
+      \begin{pmatrix}\frac{y}{\left\lVert y \right\rVert} \end{pmatrix} \\
+      &amp; = &amp; \sum_{i=1}^{m} \frac{x_i}{\left\lVert x \right\rVert} \frac{y_i}{\left\lVert y \right\rVert}
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>This turns out to be the cosine of the angle between the two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    cosine(x,y)
+      &amp; = &amp;
+      \begin{pmatrix}\frac{x}{\left\lVert x \right\rVert}\end{pmatrix}^T
+      \begin{pmatrix}\frac{y}{\left\lVert y \right\rVert} \end{pmatrix} \\
+      &amp; = &amp; \frac{x^T y}{\left\lVert x \right\rVert \left\lVert y \right\rVert} \\
+      &amp; = &amp; \sum_{i=1}^{m} \frac{x_i}{\left\lVert x \right\rVert} \frac{y_i}{\left\lVert y \right\rVert} \\
+      &amp; = &amp; \frac{\sum_{i=1}^{m} x_i y_i}{\left\lVert x \right\rVert \left\lVert y \right\rVert}
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>Consider the same two vectors discussed earlier:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    u &amp; = &amp;
+      \begin{pmatrix}
+        2 \\ 1
+      \end{pmatrix}
+    &amp;
+    v &amp; = &amp;
+      \begin{pmatrix}
+        3 \\ 4
+      \end{pmatrix}
+  \end{matrix}
+\end{aligned}\]</span></p>
+<p>Their magnitudes are:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \left\lVert u \right\rVert &amp; = &amp; \sqrt{2^2 + 1^2} \\
+          &amp; = &amp; \sqrt{5} \\
+    \left\lVert v \right\rVert &amp; = &amp; \sqrt{3^2 + 4^2} \\
+          &amp; = &amp; 5
+    \end{matrix}
+\end{aligned}\]</span></p>
+<p>The two vectors can be normalized to unit vectors:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \hat{u} &amp; = &amp;
+      \frac{1}{\sqrt{5}}
+      \cdot
+      \begin{pmatrix}
+        2 \\ 1
+      \end{pmatrix}
+      &amp; = &amp;
+      \begin{pmatrix}
+        0.894 \\ 0.447
+      \end{pmatrix} \\
+    \hat{v} &amp; = &amp;
+      \frac{1}{5}
+      \cdot
+      \begin{pmatrix}
+        3 \\ 4
+      \end{pmatrix}
+      &amp; = &amp;
+      \begin{pmatrix}
+        0.6 \\ 0.8
+      \end{pmatrix}
+  \end{matrix}
+\end{aligned}\]</span></p>
+<div class="marginfigure">
+
+</div>
+<p>As shown in Figure&nbsp;<a href="#fig-matrix-unit" data-reference-type="ref" data-reference="fig-matrix-unit">[fig-matrix-unit]</a>, the normalized unit vectors <span class="math inline">\(\hat{u}\)</span> and <span class="math inline">\(\hat{v}\)</span> point to the same directions of their original vectors <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> respectively. However, the normalization produce vectors of equal magnitudes. As the dotted circle shows, the unit vectors are part of a unit circle with radius <span class="math inline">\(1\)</span>.</p>
+<p>Please note that we can use a circle to visualize the unit vectors on the 2-dimensional space (for the 2-dimensional vectors here). For <span class="math inline">\(3\)</span> dimensions, we can use a unit sphere for such visualization. For higher dimensionality, however, we can hardly visualize it but the same idea holds true mathematically with the notion of <em>hypersphere</em>.</p>
+<p>Now the dot product of the two unit vectors is:</p>
+<p><span class="math display">\[\begin{aligned}
+  \begin{matrix}
+    \hat{u}^T \hat{v}
+      &amp; = &amp;
+      \begin{pmatrix}
+        0.894 &amp; 0.447
+      \end{pmatrix}
+      \cdot
+      \begin{pmatrix}
+        0.6 \\ 0.8
+      \end{pmatrix} \\
+      &amp; = &amp; 0.894\times0.6 + 0.447\times0.8 \\
+      &amp; = &amp; 0.894
+  \end{matrix}
+\end{aligned}\]</span></p>
+<div class="marginfigure">
+<p><span id="fig-matrix-cosine" data-label="fig-matrix-cosine"></span></p>
+</div>
+<p>which is the cosine of the angle between <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, shown in Figure&nbsp;<a href="#fig-matrix-unit" data-reference-type="ref" data-reference="fig-matrix-unit">[fig-matrix-unit]</a>. The arc cosine of <span class="math inline">\(0.894\)</span> corresponds to an angle of roughly <span class="math inline">\(27^\circ\)</span> out of a <span class="math inline">\(360^\circ\)</span> full circle, or <span class="math inline">\(0.465\)</span> on a <span class="math inline">\(2\pi\)</span> scale. Cosine values range between <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>: it is <span class="math inline">\(1\)</span> when two vector are in the exact same direction (parallel) and <span class="math inline">\(-1\)</span> when they are in the opposite direction (a <span class="math inline">\(180^\circ\)</span> or <span class="math inline">\(\pi\)</span> angle). Cosine is <span class="math inline">\(0\)</span> when two vectors are orthogonal (perpendicular) to each other (right angle). See Figure&nbsp;<a href="#fig-matrix-cosine" data-reference-type="ref" data-reference="fig-matrix-cosine">[fig-matrix-cosine]</a>.</p>
+</section>
+<section id="vector-cross-product" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="vector-cross-product"><span class="header-section-number">3.6</span> Vector Cross Product</h2>
+</section>
+<section id="optimization" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="optimization"><span class="header-section-number">3.7</span> Optimization</h2>
+</section>
+<section id="kernel-functions" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="kernel-functions"><span class="header-section-number">3.8</span> Kernel Functions</h2>
+</section>
+<section id="graph-analysis" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="graph-analysis"><span class="header-section-number">3.9</span> Graph Analysis</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/02-data-representations.html" class="pagination-link" aria-label="Data Types and Representations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Types and Representations</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/04-probability-statistics.html" class="pagination-link" aria-label="Probability and Statistical Thinking">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability and Statistical Thinking</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/keweimao/machine-learning-book/edit/main/chapters/03-vectors-matrices-geometry.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/keweimao/machine-learning-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

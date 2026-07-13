@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="An introductory journey from data and information to machine learning, language, search, and evaluation.">
+
+<title>14&nbsp; Evaluation and Experimentation – Machine Learning: The Quest for Information and Meaning</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/15-generalization.html" rel="next">
+<link href="../chapters/13-structural-analysis.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Machine Learning: The Quest for Information and Meaning</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/keweimao/machine-learning-book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../Machine-Learning--The-Quest-for-Information-and-Meaning.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../Machine-Learning--The-Quest-for-Information-and-Meaning.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data, Information, and Mathematical Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-data-to-meaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">From Data to Information and Meaning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-data-representations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Types and Representations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-vectors-matrices-geometry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vectors, Matrices, and Geometric Thinking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-probability-statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability and Statistical Thinking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-information-entropy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Information, Entropy, and Divergence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-data-preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Preparation and Feature Engineering</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Learning from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Classification: From Neighbors to Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-multiclass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multiclass and Structured Decisions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-numeric-prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Numeric Prediction and Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Language, Retrieval, and Structure</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-text-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/12-search-retrieval.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13-structural-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Trustworthy and Practical Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/14-evaluation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/15-generalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/16-scaling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#precision" id="toc-precision" class="nav-link active" data-scroll-target="#precision"><span class="header-section-number">14.1</span> Precision</a></li>
+  <li><a href="#recall" id="toc-recall" class="nav-link" data-scroll-target="#recall"><span class="header-section-number">14.2</span> Recall</a></li>
+  <li><a href="#sensitivity-and-specificity" id="toc-sensitivity-and-specificity" class="nav-link" data-scroll-target="#sensitivity-and-specificity"><span class="header-section-number">14.3</span> Sensitivity and Specificity</a></li>
+  <li><a href="#kappa-and-chance-agreement" id="toc-kappa-and-chance-agreement" class="nav-link" data-scroll-target="#kappa-and-chance-agreement"><span class="header-section-number">14.4</span> Kappa and Chance Agreement</a></li>
+  <li><a href="#averaging" id="toc-averaging" class="nav-link" data-scroll-target="#averaging"><span class="header-section-number">14.5</span> Averaging</a></li>
+  <li><a href="#rank-evaluation" id="toc-rank-evaluation" class="nav-link" data-scroll-target="#rank-evaluation"><span class="header-section-number">14.6</span> Rank Evaluation</a></li>
+  <li><a href="#evaluation-of-numeric-predictions" id="toc-evaluation-of-numeric-predictions" class="nav-link" data-scroll-target="#evaluation-of-numeric-predictions"><span class="header-section-number">14.7</span> Evaluation of Numeric Predictions</a>
+  <ul class="collapse">
+  <li><a href="#error-metrics" id="toc-error-metrics" class="nav-link" data-scroll-target="#error-metrics"><span class="header-section-number">14.7.1</span> Error Metrics</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">14.7.2</span> Correlation</a></li>
+  </ul></li>
+  <li><a href="#experimentation" id="toc-experimentation" class="nav-link" data-scroll-target="#experimentation"><span class="header-section-number">14.8</span> Experimentation</a></li>
+  <li><a href="#on-efficiency" id="toc-on-efficiency" class="nav-link" data-scroll-target="#on-efficiency"><span class="header-section-number">14.9</span> On Efficiency</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/keweimao/machine-learning-book/edit/main/chapters/14-evaluation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/keweimao/machine-learning-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="ch-evaluation" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Imagine you are asked to design an algorithm to help detect credit card fraud. Suppose you are told that your algorithm will be tested for its accuracy and, as a way to motivate you, your boss promises a bonus based on its accuracy. Accuracy, as it turns out, can be roughly defined as the fraction of answers that are correct. In the context of credit card fraud detection, one can produce a confusion matrix by cross-examining predictions (model) vs.&nbsp;real outcomes (ground truth):</p>
+<div id="tab-eval-cmatrix">
+<table class="caption-top table">
+<caption>A confusion matrix</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Predicted Positive <span class="math inline">\(\hat{\oplus}\)</span></th>
+<th style="text-align: center;">Predicted Negative <span class="math inline">\(\hat{\ominus}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Actual Positive <span class="math inline">\(\oplus\)</span></td>
+<td style="text-align: center;">True Positive (TP)</td>
+<td style="text-align: center;">False Negative (FN)</td>
+</tr>
+<tr class="even">
+<td>Actual Negative <span class="math inline">\(\ominus\)</span></td>
+<td style="text-align: center;">False Positive (FP)</td>
+<td style="text-align: center;">True Negative (TN)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Based on the counts in Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a>, accuracy can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  Accuracy &amp; = &amp; \frac{TP + TN}{TP + TN + FP + FN}
+\end{aligned}\]</span></p>
+<p>which is again the total number of correct answers (true positive and true negative) divided by the total number of answers.</p>
+<p>Given the evaluation based on accuracy, how would you do to maximize your reward? Surely you can develop a very sophisticated algorithm with massive data and effort. There is, nonetheless, a simple response to this challenge. If you look at statistics on credit cards, fraud transactions represent only a very small fraction. Suppose the likelihood of a fraud is <span class="math inline">\(10\)</span> out of every <span class="math inline">\(1000\)</span>. One may simply classify all <span class="math inline">\(1000\)</span> transactions as non-fraud and the confusion matrix will become:</p>
+<div id="tab-eval-cmatrix0">
+<table class="caption-top table">
+<caption>Confusion matrix based on the zero-effort solution, by classifying all transactions to non-fraud.</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Predicted Fraud</th>
+<th style="text-align: center;">Predicted Non-Fraud</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Actual Fraud</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td>Actual Non-Fraud</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">990</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>And the accuracy is:</p>
+<p><span class="math display">\[\begin{aligned}
+  Accuracy
+  &amp; = &amp; \frac{0 + 990}{1000} \\
+  &amp; = &amp; 0.99
+\end{aligned}\]</span></p>
+<p>This solution requires virtually zero effort but its accuracy appears to be pretty good: <span class="math inline">\(99\%\)</span>. There are several reasons why an overall accuracy can be rather misleading, if not completely useless here. For one, the evaluation metric ignores the data distribution among class labels (e.g.&nbsp;fraud vs.&nbsp;non-fraud) and does not account for potential <em>chance</em> accuracy. In the above example, it is very easy to cheat and get rewarded just <em>by chance</em>. Here you simply favor the dominant class (non-fraud) to boost accuracy.</p>
+<p>Second, an evaluation metric should align properly with the purpose of the assigned task. For credit card fraud detection, one can argue that missing a <em>fraud</em> transaction is much more costly and undesirable than misclassifying a normal transaction as fraud. In other words, one should be motivated to identify most if not <em>all</em> fraud transactions; and the result should be heavily penalized if real frauds are identified as non-fraud (false negative). We shall look into these issues to see what alternatives may offer.</p>
+<section id="precision" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="precision"><span class="header-section-number">14.1</span> Precision</h2>
+<p>Given a skewed distribution of data in the classes, it may be useful to evaluate accuracy within each predicted class. This is equivalent to a metric commonly known as <em>precision</em>, which is the fraction of those predicted positive to a class that actually belong to that class. In terms of the confusion matrix Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a>, precision is computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  Precision
+  &amp; = &amp; \frac{TP}{TP + FP}
+\end{aligned}\]</span></p>
+<p>When both <span class="math inline">\(TP\)</span> and <span class="math inline">\(FP\)</span> are zero, precision is <span class="math inline">\(1\)</span> (<span class="math inline">\(100\%\)</span>) by definition. Based on the numbers in Table&nbsp;<a href="#tab-eval-cmatrix0" data-reference-type="ref" data-reference="tab-eval-cmatrix0">1.2</a>, we can compute precision for those predicted to be fraud (in the first column of numbers):</p>
+<p><span class="math display">\[\begin{aligned}
+  Precision(fraud)
+  &amp; = &amp; \frac{0}{0 + 0} \\
+  &amp; = &amp; 1
+\end{aligned}\]</span></p>
+<p>This does not seem to resolve the issue with accuracy, to which precision is very similar. This is due to the second reason we discussed, that there should be a greater emphasis and penalty on the <em>false negative</em>. Now instead of looking at the columns to compute precision, we can examine the rows and evaluate the same result from a very different perspective.</p>
+</section>
+<section id="recall" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="recall"><span class="header-section-number">14.2</span> Recall</h2>
+<p><em>Recall</em>, a classic evaluation metric, refers to the fraction of actual positive that have been classified positive. In the example here, it is the fraction of real fraud transactions that have been identified as such. Recall can be computed in terms of the confusion matrix Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a>:</p>
+<p><span class="math display">\[\begin{aligned}
+  Recall
+  &amp; = &amp; \frac{TP}{TP + FN}
+\end{aligned}\]</span></p>
+<p>where false negative (FN) is part of the denominator. Applying this to data in Table&nbsp;<a href="#tab-eval-cmatrix0" data-reference-type="ref" data-reference="tab-eval-cmatrix0">1.2</a>, we get a recall of:</p>
+<p><span class="math display">\[\begin{aligned}
+  Recall(fraud)
+  &amp; = &amp; \frac{0}{0 + 10} \\
+  &amp; = &amp; 0
+\end{aligned}\]</span></p>
+<p>By focusing on true positive vs.&nbsp;false negative, recall gives a better indication than precision on the poor performance in fraud detection. Precision and recall are often used together in evaluation. It is attempting to compute an average score of the two so there is only one score to represent the overall performance. The arithmetic mean of precision and recall here is <span class="math inline">\((1+0)/2 = 0.5\)</span>, which still appears too good for a zero-effort solution.</p>
+<p>Arithmetic mean gives equal weights to both metrics and is not very indicative of the overall performance. We suggest that such an "averaging" measure show an alarming score if one of the scores is extremely low – that is, we will regard a method as bad if it performs miserably in one metric. One function that leans more heavily on the lower score is the <span class="math inline">\(F\)</span> measure of precision and recall:</p>
+<p><span class="math display">\[\begin{aligned}
+  F_\beta
+  &amp; = &amp; (1+\beta^2) \frac{Precision \cdot Recall}{\beta^2 \cdot Precision + Recall}
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(\beta\)</span> value can be adjusted in favor of precision or recall. When <span class="math inline">\(\beta=1\)</span>, this becomes the <span class="math inline">\(F_1\)</span> measure, i.e.&nbsp;the <em>harmonic mean</em>:</p>
+<p><span class="math display">\[\begin{aligned}
+  F_1
+  &amp; = &amp; \frac{2 \cdot Precision \cdot Recall}{Precision + Recall}
+\end{aligned}\]</span></p>
+<p>With <span class="math inline">\(Precision=1\)</span> and <span class="math inline">\(Recall=0\)</span> in the above example, the harmonic mean is <span class="math inline">\(F_1=0\)</span> – here, the one zero score (recall in this case) completely dominates and the average suffers.</p>
+<p>In applications where a model can be adjusted or tuned, we can evaluate the model based on more than one pairs of precision and recall scores. A common practice is to plot the precision-recall curve. Figure&nbsp;<a href="#fig-eval-pr_curve" data-reference-type="ref" data-reference="fig-eval-pr_curve">[fig-eval-pr_curve]</a> shows precision-recall curves of two methods, where method 1 appears to perform better as its curve is closer to the top-right (higher precision and recall).</p>
+<div class="marginfigure">
+
+</div>
+</section>
+<section id="sensitivity-and-specificity" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="sensitivity-and-specificity"><span class="header-section-number">14.3</span> Sensitivity and Specificity</h2>
+<p>Precision and recall are both focused on the fraction of true positive. Recall is also referred to as the <em>true positive rate</em> (TPR), sensitivity, or the probability of detection. It measures how <em>sensitive</em> a method is in identifying the actual positives.</p>
+<p>Conversely, one can also measure the <em>true negative rate</em> (TNR) or the fraction of actual negatives that have been correctly identified as such. This is often referred to as <em>specificity</em>, which is computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  Specificity
+  &amp; = &amp; \frac{TN}{TN + FP}
+\end{aligned}\]</span></p>
+<p>Sensitivity and specificity are concepts relative to the class in question. Sensitivity for the <em>fraud</em> class is specificity for the <em>non-fraud</em> class; and vise versa.</p>
+<p>The false negative rate (FNR) is complementary to specificity or the true negative rate (TNR), i.e.&nbsp;<span class="math inline">\(FNR=1 - TNR\)</span>, and is often referred to as fall-out or <em>probability of false alarm</em>. Similar to precision vs. recall, sensitivity and fall-out (i.e.&nbsp;1 - specificity) are often plotted to produce an <em>ROC</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> curve.</p>
+<p>ROC analysis has been widely used and well studied for model performance assessment in many fields including defense and medicine. It not only enables the evaluation of model effectiveness in terms of true positive and true negative rates, but can also help identify best practice with cost constraints.</p>
+<div class="marginfigure">
+
+</div>
+<p>Figure&nbsp;<a href="#fig-eval-roc" data-reference-type="ref" data-reference="fig-eval-roc">[fig-eval-roc]</a> illustrates a plot of an ROC curve, where the diagonal line (dashed) defines the acceptable performance. To understand what the diagonal line means, imagine we create a random model that takes a 50-50 guess during classification. As a result of this random guessing, there will be an equal split between the predicted positives <span class="math inline">\(\hat{\oplus}\)</span> and predicted negatives <span class="math inline">\(\hat{\ominus}\)</span>. Hence, column values of the same row in Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a> will be identical:</p>
+<p><span class="math display">\[\begin{aligned}
+  N_{\hat{\oplus}} &amp; = &amp; N_{\hat{\ominus}} \\
+  TP &amp; = &amp; FN \\
+  FP &amp; = &amp; TN
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(N_{\hat{\oplus}}\)</span> and <span class="math inline">\(N_{\hat{\ominus}}\)</span> are the numbers of predicted positives and negatives respectively. It follows that <span class="math inline">\(TPR = FNR\)</span>, i.e.&nbsp;<span class="math inline">\(Sensitivity = 1 - Specificity\)</span> or <span class="math inline">\(Sensitivity + Specificity=1\)</span>. This equation defines the diagonal line in Figure&nbsp;<a href="#fig-eval-roc" data-reference-type="ref" data-reference="fig-eval-roc">[fig-eval-roc]</a> and is the result of random guessing.</p>
+<p>Below the diagonal line <span class="math inline">\(Sensitivity+Specificity=1\)</span>, the model performs worse than random and is undesirable. The farther the ROC curve is above the diagonal line, the better the performance with a greater area under curve. Therefore, the <em>area under curve</em> (AUC), i.e.&nbsp;the shaded area in the plot, is a single score that can be computed to measure the overall performance in terms of ROC.</p>
+</section>
+<section id="kappa-and-chance-agreement" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="kappa-and-chance-agreement"><span class="header-section-number">14.4</span> Kappa and Chance Agreement</h2>
+<p>So far the metrics are focused on different aspects of the confusion matrix in evaluation. However, we are yet to address one important problem in assessing the agreement between the predicted and the ground truth – chance agreement. A method may hit the correct answer simply by chance. The evaluation cannot be fairly conducted unless we find a way to discount the chance agreement.</p>
+<p>Let’s first look at some of the chances or probabilities. In binary classification, for example, the outcome is either positive (e.g.&nbsp;fraud) or negative (e.g.&nbsp;non-fraud). Based on the confusion matrix Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a>, the likelihood of a positive prediction vs.&nbsp;a negative prediction can be estimated:</p>
+<p><span class="math display">\[\begin{aligned}
+  P(\hat{\oplus})
+  &amp; = &amp; \frac{N_{\hat{ \oplus}}}{N} \\
+  &amp; = &amp; \frac{TP + FP}{TP + FN + FP + TN} \\
+  P(\hat{\ominus})
+  &amp; = &amp; \frac{N_{\hat{\ominus}}}{N} \\
+  &amp; = &amp; \frac{TN + FN}{TP + FN + FP + TN}
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(N_{\hat{\oplus}}\)</span> and <span class="math inline">\(N_{\hat{\ominus}}\)</span> are the number of predicted positive and negative answers respectively. <span class="math inline">\(N\)</span> is the total number of instances. <span class="math inline">\(TP+FP\)</span> is the sum of the <em>Predicted Positive <span class="math inline">\(\hat{\oplus}\)</span></em> column where as <span class="math inline">\(TN+FN\)</span> is the sum of the <em>Predicted Negative <span class="math inline">\(\hat{\ominus}\)</span></em> column in Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a>. These are probabilities of model predictions.</p>
+<p>Likewise, we can estimate probabilities of having a positive vs. negative outcome in the ground truth:</p>
+<p><span class="math display">\[\begin{aligned}
+  P(\oplus)
+  &amp; = &amp; \frac{N_{\oplus}}{N} \\
+  &amp; = &amp; \frac{TP + FN}{TP + FN + FP + TN} \\
+  P(\ominus)
+  &amp; = &amp; \frac{N_{\ominus}}{N}  \\
+  &amp; = &amp; \frac{TN + FP}{TP + FN + FP + TN}
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(N_{\oplus}\)</span> and <span class="math inline">\(N_{\ominus}\)</span> are the numbers of actual positive and negative results respectively. <span class="math inline">\(TP+FN\)</span> is the sum of the <em>Actual Positive</em> row and <span class="math inline">\(TN+FP\)</span> is the sum of the <em>Actual Negative</em> row in Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a>. These are probabilities based on the ground truth.</p>
+<p>With these probability, it is now possible to estimate chance agreement. If we assume the model and ground truth are independent, then the (hypothetical) probabilities that they will reach the same conclusion, namely the joint probability of both saying "yes" (positive) and the joint probability of both saying "no" (negative) can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  P_e(\oplus \cap \hat{\oplus}) &amp; = &amp; P(\oplus) P(\hat{\oplus}) \\
+  P_e(\ominus \cap \hat{\ominus}) &amp; = &amp; P(\ominus) P(\hat{\ominus})
+\end{aligned}\]</span></p>
+<p>The overall chance agreement, the probability of either both "yes" or both "no" is:</p>
+<p><span class="math display">\[\begin{aligned}
+   P_e
+   &amp; = &amp; P_e[ (\oplus \cap \hat{\oplus}) \cup  (\ominus \cap \hat{\ominus})]  \\
+   &amp; = &amp; P_e(\oplus \cap \hat{\oplus}) + P_e(\oplus \cap \hat{\oplus})  \\
+   &amp; = &amp; P(\oplus) P(\hat{\oplus}) + P(\ominus) P(\hat{\ominus})
+\end{aligned}\]</span></p>
+<p>Note that we add the two probabilities to compute the OR (<span class="math inline">\(\cup\)</span>) probability because <em>positive</em> and <em>negative</em> are mutually exclusive.</p>
+<p>Now that we know the chance agreement <span class="math inline">\(P_e\)</span>, we can use it to discount the overall agreement <span class="math inline">\(P_o\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+   \kappa &amp; = &amp; \frac{P_o - P_e}{1 - P_e}
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(P_o\)</span> is the relative agreement of two, e.g.&nbsp;two raters such as a model and an expert (the ground truth), and is identical to the accuracy metric in our discussion <span class="math inline">\(P_o = Accuracy\)</span>. This is commonly known as the <em>Kappa</em> coefficient, a statistic that measures the agreement of two sets of results.</p>
+<p>As Equation&nbsp;<a href="#eq-eval-kappa" data-reference-type="ref" data-reference="eq-eval-kappa">[eq-eval-kappa]</a> shows, Kappa takes into account potential agreement by chance and discounts the overall coefficient by the chance agreement. This makes it harder for a model to "cheat" on the result by simply favoring the dominant classes (e.g.&nbsp;classifying all transactions into non-fraud).</p>
+<p>With the result in Table&nbsp;<a href="#tab-eval-cmatrix0" data-reference-type="ref" data-reference="tab-eval-cmatrix0">1.2</a>, the chance agreement <span class="math inline">\(P_e\)</span> is:</p>
+<p><span class="math display">\[\begin{aligned}
+  P_e
+  &amp; = &amp; P(\oplus) P(\hat{\oplus}) + P(\ominus) P(\hat{\ominus}) \\
+  &amp; = &amp; \frac{10}{1000} \times 0 + \frac{990}{1000} \times \frac{1000}{1000} \\
+  &amp; = &amp; 0.99
+\end{aligned}\]</span></p>
+<p>By discounting this chance agreement, we get a <em>Kappa</em> coefficient of zero:</p>
+<p><span class="math display">\[\begin{aligned}
+  \kappa
+  &amp; = &amp; \frac{P_o - P_e}{1 - P_e} \\
+  &amp; = &amp; \frac{0.99 - 0.99}{1 - 0.99} \\
+  &amp; = &amp; 0
+\end{aligned}\]</span></p>
+<p>A kappa score of <span class="math inline">\(0\)</span> does not mean there is no agreement. There is in fact an agreement between the model prediction and the ground truth. However, this agreement is purely due to chance and is reduced to <span class="math inline">\(0\)</span> after discounted for the chance agreement.</p>
+<p>Indeed, <span class="math inline">\(\kappa=0\)</span> means completely chance agreement. Its minimum value, <span class="math inline">\(\kappa=-1\)</span>, indicates total disagreement whereas a maximum value <span class="math inline">\(\kappa=1\)</span> shows the two are in full agreement even after accounting for chances.</p>
+</section>
+<section id="averaging" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="averaging"><span class="header-section-number">14.5</span> Averaging</h2>
+<p>When evaluating model performance on multiple classes – even binary classification entails two classes – there are two major strategies to compute an overall score (average).</p>
+<p>Suppose precision is the evaluation metric, one can construct a confusion matrix for each class <span class="math inline">\(c\)</span> and compute its precision by:</p>
+<p><span class="math display">\[\begin{aligned}
+  P_c &amp; = &amp; \frac{TP_c}{TP_c + FP_c}
+\end{aligned}\]</span></p>
+<p>And the overall (average) precision can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  \bar{P}_{macro} &amp; = &amp; \frac{\sum_{c \in C} P_c}{|C|}
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(C\)</span> is the set of unique classes and <span class="math inline">\(|C|\)</span> is the size of the set or the number of classes, e.g.&nbsp;<span class="math inline">\(2\)</span> for binary classification. This is <em>macro averaging</em>, which computes the average based on class-level scores. It gives equal treatment to each class and disregard their relative sizes (significance).</p>
+<p>The alternative is micro averaging which takes into account the composition of each classes and produces a final average weighted by class sizes. With micro averaging, all related counts are summed up before a ratio is taken. For example, average precision can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  \bar{P}_{micro} &amp; = &amp; \frac{\sum_{c \in C} TP_c}{\sum_{c \in C} TP_c + FP_c}
+\end{aligned}\]</span></p>
+<p>This turns out to be the overall fraction of predictions that are correct – in fact, a micro averaged precision is identical to <em>accuracy</em> in binary classification.</p>
+<p>Whether one should use macro or micro averaging depends on the relative importance of classes in the final assessment. If all classes are equally important regardless of their sizes, macro-averaging should be preferred. If one aims to emphasize the absolute number of correct predictions, then micro-averaging is appropriate.</p>
+</section>
+<section id="rank-evaluation" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="rank-evaluation"><span class="header-section-number">14.6</span> Rank Evaluation</h2>
+<p>There are applications where the focus is not about definitive correct vs.&nbsp;incorrect answer. In information retrieval, for example, a model may return a sorted list of search results. Such a rank list requires a different approach to evaluation.</p>
+<p>Surely one can regard a rank list as the set of correct answers and use the discussed metrics such as precision and recall. More precisely, we can create a cut-off at a certain position <span class="math inline">\(k\)</span> in the rank and use the top <span class="math inline">\(k\)</span> as the set to be evaluated. For example, precision at <span class="math inline">\(k=10\)</span> is useful to evaluate early results in web searches, where the emphasis is often on the first result page (top <span class="math inline">\(10\)</span>).</p>
+<p>If one knows the total number of relevant document <span class="math inline">\(r\)</span> (recall) for a query, the cut-off can be set at position <span class="math inline">\(r\)</span> to measure it precision. This is referred to as <em>R-Precision</em> because at this particular position precision is equal to recall. It is also possible to measure average precision by starting with the top position <span class="math inline">\(k=1\)</span> and increasing it until recall reaches <span class="math inline">\(100\%\)</span>.</p>
+<p>Several other metrics can be derived from variations of these strategies. However, they only attack the problem of rank list evaluation by indirectly addressing positions in the list.</p>
+<p>A direct attack on this issue is to assign a <em>different score</em> (amount of reward) for a correct (relevant) answer in a <em>different position</em>. A relevant answer at the top should be highly rewarded, which should be discounted down the rank.</p>
+<p>This is the idea behind the <em>Normalized Discounted Cumulative Gain</em>, or nDCG, which has been widely used in the information retrieval community since its proposal.<span class="citation" data-cites="Jarvelin:2002">(<a href="../references.html#ref-Jarvelin:2002" role="doc-biblioref">Järvelin and Kekäläinen 2002</a>)</span> Given the relevance <span class="math inline">\(rel_i\)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of an answer at position <span class="math inline">\(i\)</span>, the Discounted Cumulative Gain at position <span class="math inline">\(k\)</span> can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  DCG_k
+  &amp; = &amp; \sum_{i=1}^{k} \frac{rel_i}{\log_2(i+1)} \\
+  &amp; = &amp; rel_i + \sum_{i=2}^{k} \frac{rel_i}{\log_2(i+1)}
+\end{aligned}\]</span></p>
+<p>where a relevant (correct) answer at position <span class="math inline">\(1\)</span> will receive its full credit and others will be discounted by their positions down the rank, with <span class="math inline">\(\log_2(i+1)\)</span>.</p>
+<p>Among all possible arrangements of the rank list for a query, there exists at least one ideal (perfect) list in which answers are sorted by their relative relevance scores in the descending order. This produces the best possible DCG score, which we call the ideal DCG or IDCG. Comparing a DCG score against its corresponding ideal score, we can obtain the <em>normalized</em> DCG or nDCG:</p>
+<p><span class="math display">\[\begin{aligned}
+  nDCG_p &amp; = &amp; \frac{DCG_p}{IDCG_p}
+\end{aligned}\]</span></p>
+<p>Normalized by the ideal score, an nDCG score is always between <span class="math inline">\([0, 1]\)</span>, with <span class="math inline">\(1\)</span> indicating a perfect ranking and <span class="math inline">\(0\)</span> no relevant answer at all in the list<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. nDCG is a popular metric for web search evaluation and one can adjust the position <span class="math inline">\(k\)</span> to emphasize relevant results at the very top, e.g.&nbsp;with <span class="math inline">\(nDCG_3\)</span>.</p>
+</section>
+<section id="evaluation-of-numeric-predictions" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="evaluation-of-numeric-predictions"><span class="header-section-number">14.7</span> Evaluation of Numeric Predictions</h2>
+<p>When the outcome of a model is a on a continuous scale rather than discrete values, the evaluation is no longer about <em>correct</em> answers because it is rarely possible to make predictions that are <em>exactly</em> the actual outcome. Instead, the focus should be on how closely predictions are to the actual values or how much apart they are (errors).</p>
+<section id="error-metrics" class="level3" data-number="14.7.1">
+<h3 data-number="14.7.1" class="anchored" data-anchor-id="error-metrics"><span class="header-section-number">14.7.1</span> Error Metrics</h3>
+<p>Many evaluation metrics for numeric predictions are indeed based on the error terms. The mean absolute error (MAE), mean squared error (MSE), and root mean-squared error (RMSE), for example, compute mean errors in their absolute, squared, and root squared forms:</p>
+<p><span class="math display">\[\begin{aligned}
+  MAE &amp; = &amp; \frac{\sum_{i=1}^{N} |\hat{v}_i - v_i|}{N} \\
+  MSE &amp; = &amp; \frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{N} \\
+  RMSE &amp; = &amp; \sqrt{\frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{N}}
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is the total number of instances to test the numeric predictions, <span class="math inline">\(\hat{v}_i\)</span> is the predicted value on the <span class="math inline">\(i^{th}\)</span> instance, and <span class="math inline">\(v_i\)</span> is the actual value of the <span class="math inline">\(i^{th}\)</span> instance. Relatively speaking, metrics based on squared errors such as MSE and RMSE are amplify the impact of large errors and are more sensitive to outliers.</p>
+<p>Each of these error metrics can be normalized by the corresponding error of a pseudo-model predicting the mean value of training data, to obtain its <em>relative</em> error. For example, relative squared error (RSE) can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+RSE &amp; = &amp; \frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{\sum_{i=1}^{N} (\bar{\mu} - v_i)^2}
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(\bar{\mu}\)</span> is the estimated mean based on training data. Root relative squared error (RRSE) and relative absolute error (RAE) can be established in the like manner.</p>
+</section>
+<section id="correlation" class="level3" data-number="14.7.2">
+<h3 data-number="14.7.2" class="anchored" data-anchor-id="correlation"><span class="header-section-number">14.7.2</span> Correlation</h3>
+<p>While RSE measures the deviation of predicted values <span class="math inline">\(\hat{v_i}\)</span> from actual values <span class="math inline">\(v_i\)</span>, standard deviations of predicted and actual values can be computed by:</p>
+<p><span class="math display">\[\begin{aligned}
+  \sigma &amp; = &amp; \sqrt{\frac{\sum_{i=1}^{N} (v_i - \mu)^2}{N-1}} \\
+  \hat{\sigma} &amp; = &amp; \sqrt{\frac{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})^2}{N-1}}
+\end{aligned}\]</span></p>
+<p>where <span class="math inline">\(\mu\)</span> is the mean of actual values and <span class="math inline">\(\hat{\mu}\)</span> the mean of predicted values. The covariance between the predicted and actual is:</p>
+<p><span class="math display">\[\begin{aligned}
+  cov(\hat{v},v) &amp; = &amp; \frac{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})(v_i - \mu)}{N-1}
+\end{aligned}\]</span></p>
+<p>By normalizing the covariance by the product of both standard deviations (also a value of variance), we can obtain the Pearson correlation between the predicted and actual values:</p>
+<p><span class="math display">\[\begin{aligned}
+  cor(\hat{v},v)
+  &amp; = &amp; \frac{cov(\hat{v},v)}{\hat{\sigma}\sigma} \\
+  &amp; = &amp; \frac{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})(v_i - \mu)}{\sqrt{\sum_{i=1}^{N} (v_i - \mu)^2} \sqrt{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})^2}}
+\end{aligned}\]</span></p>
+<p>Pearson correlation measures the similarity in their variances from means and is equivalent to cosine of <span class="math inline">\(v\)</span> and <span class="math inline">\(\hat{v}\)</span> as vectors from their means. Figure&nbsp;<a href="#fig-eval-cor" data-reference-type="ref" data-reference="fig-eval-cor">[fig-eval-cor]</a> illustrates the connection using a 2-dimensional space. To simplify the discussion, suppose there are only <span class="math inline">\(N=2\)</span> instances on which the actual outcomes are <span class="math inline">\((v_1, v_2)\)</span> and predicted values are <span class="math inline">\((\hat{v_1},\hat{v_2})\)</span>, with means <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\hat{\mu}\)</span> respectively.</p>
+<div class="marginfigure">
+
+</div>
+<p>As shown in Figure&nbsp;<a href="#fig-eval-cor" data-reference-type="ref" data-reference="fig-eval-cor">[fig-eval-cor]</a>, the actual values can be regarded as a vector pointing in the <span class="math inline">\(\vec{v} = (v_1-\mu, v_2-\mu)\)</span> direction, whereas the predicted is represented by the vector <span class="math inline">\(\vec{\hat{v}}=(\hat{v_1}-\hat{\mu}, \hat{v_2}-\hat{\mu})\)</span>. In this representation, Pearson correlation is identical to the cosine of the two vectors, i.e.&nbsp;<span class="math inline">\(cov(\hat{v}, v) = cosine(\vec{\hat{v}},\vec{v})\)</span>. Chapter&nbsp; has more on the cosine similarity.</p>
+<p>Because of this connection, Pearson correlation shares important characteristics with cosine. It reaches its maximum value of <span class="math inline">\(1\)</span> when errors from their mean, i.e.&nbsp;<span class="math inline">\(\hat{v_i} - \hat{\mu}\)</span> vs.&nbsp;<span class="math inline">\(v_i - \mu\)</span> for all instances, are distributed identically (in the same vector direction) – they are perfectly correlated in this case. When the errors are distributed in absolutely <em>orthogonal</em> directions, the two are perfectly independent and has no correlation. When their errors distribute in the opposite direction, they are negatively correlated, with the minimum value of <span class="math inline">\(-1\)</span> indicating perfectly opposite.</p>
+</section>
+</section>
+<section id="experimentation" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="experimentation"><span class="header-section-number">14.8</span> Experimentation</h2>
+<p>Now that we know some of the metrics for model evaluation, how do we actually conduct the assessment with data? In the ideal world, one builds a model using training data with known outcomes and rolls out the model to be tested in the operating environment. In the real world, however, we have to make sure a model works reliably well for its purpose before it is used in production for important predictions and decision making.</p>
+<p>We often have to use existing data to test models with experiments. It is a common practice to split the data into training and testing subsets – one to build and train the model, and the other to evaluate its performance.</p>
+<p>Random sampling can be used to create the training and testing subsets. Once a model is trained, it can be experimented with the test data and evaluated using metrics suitable for related objectives. This process can be repeated to test different models or the same model with different parameters or configurations. It can be done with different random samples.</p>
+<p>Along the process, one may be able to find out what leads to best performances in terms of certain metrics. Given various model configurations, it is also possible to create plots such as precision-recall or ROC curves, where one can examine related parameters and tradeoffs.</p>
+<p>The ratio to split training vs.&nbsp;testing depends the amount of available data and the amount required to sufficiently train the specific model. One may be tempted to conduct a 50-50 split. In this case, you use half of the data (sample) for training and the other half for testing. Afterwards, it also makes sense to switch the two subsets, testing data now for training and training for testing.</p>
+<p>This is cross validation. And you can do it on 50-50, a 2-fold validation, you can certainly do it on more folds. Practically, it is popular to conduct a 10-fold cross validation, where the data is split into 10 random subsets. Each time, <span class="math inline">\(1\)</span> subset is held out for testing and the other <span class="math inline">\(9\)</span> are used for training. This is repeated <span class="math inline">\(10\)</span> times so the model is tested on every fold of the data.</p>
+</section>
+<section id="on-efficiency" class="level2" data-number="14.9">
+<h2 data-number="14.9" class="anchored" data-anchor-id="on-efficiency"><span class="header-section-number">14.9</span> On Efficiency</h2>
+<p>In this chapter, we have focused on the evaluation of model <em>effectiveness</em> or, loosely speaking, how satisfactory predictions are compared to the ground truth. This is about the <em>quality</em> of a model.</p>
+<p>The other side of evaluation is on the <em>efficiency</em> of operations. This is about the time and cost necessary to train a model and to perform assigned tasks. It depends on the space and time complexity of the model, and the structure and magnitude of data the model has to work on in the production settings.</p>
+<p>A thorough evaluation should include an assessment of both effectiveness and efficiency. We will elaborate on important aspects of efficiency as well as <em>scalability</em> in Chapter .</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Jarvelin:2002" class="csl-entry" role="listitem">
+Järvelin, Kalervo, and Jaana Kekäläinen. 2002. <span>“Cumulated Gain-Based Evaluation of IR Techniques.”</span> <em>ACM Trans. Inf. Syst.</em> (New York, NY, USA) 20 (4): 422–46. <a href="https://doi.org/10.1145/582415.582418">https://doi.org/10.1145/582415.582418</a>.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>ROC stands for <em>receiver operating characteristic</em> and was initially used in the military to evaluate the performance of a radar detector.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Relevance scores can be on any scale dictated by the evaluation protocol. For example, they can be as simple as <span class="math inline">\(1\)</span> for a relevant (correct) answer and <span class="math inline">\(0\)</span> if otherwise.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Here assume relevance scores are non-negative, e.g.&nbsp;<span class="math inline">\(0\)</span> no reward for non-relevance. In certain applications, it might be reasonable to assign negative scores for non-relevant answers to penalize a ranking with any non-relevant results.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/13-structural-analysis.html" class="pagination-link" aria-label="Graphs and Structural Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/15-generalization.html" class="pagination-link" aria-label="Generalization, Model Selection, and Fit">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/keweimao/machine-learning-book/edit/main/chapters/14-evaluation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/keweimao/machine-learning-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
