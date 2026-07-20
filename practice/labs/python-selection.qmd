@@ -1,0 +1,96 @@
+---
+execute:
+  enabled: false
+---
+
+# Python Selection {#ch-lab-python-selection .unnumbered}
+
+## Recovered activity {#sec-lab-python-selection}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `python/python_selection.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/python-selection.ipynb)
+to run and modernize it interactively.
+:::
+
+In the programming introduction, we discussed three different programming structures: sequential, selection, and repetition.
+
++ **Sequential** is to follow program instructions one by one (in a sequence);
++ **Selection** allows the program to do something depending on the situation;
++ **Repetition** enables the program to repeat something many times.
+
+Today we discuss the **selection** programming structure in Python. Let's start with an example:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+name = input("What is your name? ")
+```
+
+Here the program displays a message and asks the user to enter his or her name. To make this more personal, we can change the program to display ```What's your name, sir?``` for a male, and ```What's your name, madam?``` for a female.
+
+So instead of asking for the name, we ask for the user's gender first:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+gender = input("Are you a lady (L) or a gentleman (M)? Enter L or M: ")
+```
+
+## IF... Structure
+
+Now if one enters ```L``` and hits Enter, the variable ```gender``` will contain this value and we shall display a message concerning a lady. 
+
+In Python, we can use an ```if... elif... else``` structure to find out the condition and act accordingly. 
+
+For the problem here, we can have:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+if gender=="L":
+  name = input("What is your name, madam? ")
+```
+
+You probably notice that we have **two spaces** (indentation) before ```name=input("What is your name, madam?")```. This is because this ```madam``` message is part of the ```if``` structure where the user enters ```L```. In Python, we can use 2 (or 4) spaces as indentation to structure a program.
+
+Also, pay attention that we have double equal signs ```==``` in the ```if``` condition. Double equals ```==``` is an equality operator, which determines whether the values on its two sides (left and right) are equal (true) or not (false).
+
+Compare this to a single equal sign ```=```, which is the **assignment** operator. For example, if you put ```gender="L"```, it will change the value of variable ```gender``` to ```"L"```, which is **NOT** what we wanted here.
+
+> Now, do you understand the difference between ```=``` and ```==```?
+
+## IF... ELIF... ELSE... Structure
+
+Back to the program, ```L``` is not the only situation because the user may be a man and enters ```M```, or, if she or he does not want to tell, the value of ```gender``` can be **anything else**. Let's expand on the above to include the other two situations:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+gender = input("Are you a lady (L) or a gentleman (M)? Enter L or M: ")
+if gender=="L":
+  name = input("What is your name, madam? ")
+elif gender=="M":
+  name = input("What is your name, sir? ")
+else:
+  name = input("What is your name? ")
+```
+
+Note that ```elif...``` stands for **else if**, which means, if you are NOT "L" (in the ```if``` condition), **then** are you ...?
+
+When entering the gender information, the user may enter in lowercase or capital. Run your program and try entering lowercase ```l``` or ```m``` and see what happens.
+
+We should further revise the code a bit to accommodate situations of different cases, for example:
+
+```python
+if gender=="L" or gender=="l":
+```
+
+Here ```or``` is a logical **OR** operator -- the entire condition is true if any one of the conditions ("L" or "l") is true. In other programs, you may need the ```and``` operator, which turns true when both conditions are true.
+
+Likewise, can you revise the code for a boy ("M" ```or``` "m")?
+
+```{python}
+#| slideshow: {slide_type: subslide}
+# Enter your code and try it here...
+# gender = input("Are you a lady (L) or a gentleman (M)? Enter L or M: ")
+# ...
+```
+

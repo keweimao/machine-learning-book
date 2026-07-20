@@ -4,14 +4,62 @@
 
 ## Graphs as Data
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/13-graphs-and-structural-analysis.qmd#sec-pr-13-graphs-as-data)
+to turn **Graphs as Data** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Paths, Connectivity, and Traversal
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/13-graphs-and-structural-analysis.qmd#sec-pr-13-paths-connectivity-and-traversal)
+to turn **Paths, Connectivity, and Traversal** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Centrality and Influence
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/13-graphs-and-structural-analysis.qmd#sec-pr-13-centrality-and-influence)
+to turn **Centrality and Influence** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Communities and Structural Roles
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/13-graphs-and-structural-analysis.qmd#sec-pr-13-communities-and-structural-roles)
+to turn **Communities and Structural Roles** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Link Prediction
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/13-graphs-and-structural-analysis.qmd#sec-pr-13-link-prediction)
+to turn **Link Prediction** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## From Graph Features to Graph Learning
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/13-graphs-and-structural-analysis.qmd#sec-pr-13-from-graph-features-to-graph-learning)
+to turn **From Graph Features to Graph Learning** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Summary, Exercises, and Lab

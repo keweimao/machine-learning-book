@@ -59,6 +59,14 @@ great practical values have been derived from both views. And we can
 focus on their application without digging deep into the theoretical
 subtlety.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-probability)
+to turn **Probability** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Probability Basics
 
 We denote the probability of an event A's occurrence as $P(A)$. A
@@ -127,6 +135,14 @@ $$\begin{aligned}
 & = & 1
 \end{aligned}$$
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-probability-basics)
+to turn **Probability Basics** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Joint probability
 
 If events A and B are not mutually exclusive, their union probability
@@ -167,6 +183,14 @@ $$\begin{aligned}
 & = & \frac{4}{52} + \frac{13}{52} - \frac{1}{52}
 \end{aligned}$$
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-joint-probability)
+to turn **Joint probability** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Independent events
 
 Again, the joint probability of A and B, denoted by $P(A \cap B)$,[^ch04-2]
@@ -203,6 +227,14 @@ Again, the equation holds as long as the events are independent -- that
 is, one event's occurrence does not influence the other. While this is
 often unrealistic, event independence is often assumed for model
 simplicity.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-independent-events)
+to turn **Independent events** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Dependent Events
 
@@ -284,6 +316,14 @@ coupons of baby clothes? With other related evidence in the shopping
 history, can we predict whether the customer is pregnant (or how likely
 she is) and, if so, follow up with customized marketing efforts?
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-dependent-events)
+to turn **Dependent Events** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## The Bayesian Theorem
 
 To attack the above questions, we need to take one step further and look
@@ -311,6 +351,14 @@ And with this, we arrive at a very important probability rule, the
 named after Rev. Thomas Bayes[^ch04-3] and further developed by Pierre-Simon
 Laplace. The rule provides a foundation for various applications with
 Bayesian inference and probabilistic modeling.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-the-bayesian-theorem)
+to turn **The Bayesian Theorem** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Naive Bayes' Model
 
@@ -438,6 +486,14 @@ probability of each discrete outcome (hypothesis) and find out which one
 has the greatest likelihood. It can also be extended to a continuous
 case where numeric predictions can be made based on certain probability
 distribution models, which we will discuss later in the chapter.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-naive-bayes-model)
+to turn **Naive Bayes' Model** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Probability Estimators
 
@@ -584,6 +640,14 @@ training samples are often the major source where we gather related
 statistics so the simple transformation of adding $1$ or another
 constant is what works in many practical applications.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-probability-estimators)
+to turn **Probability Estimators** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Probability Distributions and Models
 
 Think about this. The very fact that we have to *normalize* the obtained
@@ -630,6 +694,14 @@ Two simple but important observations here:
 2.  The probability distribution is a uniform distribution as they are
     all equal. The heights of the bars form a flat, horizontal line that
     characterizes the uniform distribution.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-probability-distributions-and-models)
+to turn **Probability Distributions and Models** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Continuous Probability Distribution
 
@@ -770,6 +842,14 @@ power-law. In social networks, for example, even those who are super
 active can only maintain up to a certain number of friendly contacts and
 therefore the outcome of friendship distribution will be subject to such
 human limits and not scale-free.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-continuous-probability-distribution)
+to turn **Continuous Probability Distribution** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Probability Estimators
 
@@ -912,6 +992,14 @@ $$\begin{aligned}
 
 where $n$ is the number of observations in the sample data.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-discrete-probability-estimation)
+to turn **Discrete Probability Estimation** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### MLE for a Continuous Variable
 
 For a continuous variable, we can also assume a specific functional form
@@ -952,6 +1040,23 @@ of the symmetric distribution, we can now estimate the population mean
 using directly the mean of the sample, which is what
 Equation [\[eq-prob-norm_paras\]](#eq-prob-norm_paras){reference-type="ref"
 reference="eq-prob-norm_paras"} does.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-mle-for-a-continuous-variable)
+to turn **MLE for a Continuous Variable** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/04-probability-and-statistical-thinking.qmd#sec-pr-04-probability-estimators-2)
+to turn **Probability Estimators** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Summary
 

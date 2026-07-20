@@ -112,6 +112,14 @@ clustering method has performed. In the end, if each identified cluster
 can be related to one of the species, then the clustering process must
 have done something right with regard to the data.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-example-data)
+to turn **Example Data** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Hierarchical Clustering
 
 Hierarchical clustering is primarily used to create a tree structure of
@@ -216,6 +224,23 @@ minutes (about $19$ years). On large volumes of data, HAC can be costly
 to perform and one has to find an alternative to hierarchical clustering
 in a cost-effective way.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-issues-of-hac)
+to turn **Issues of HAC** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-hierarchical-clustering)
+to turn **Hierarchical Clustering** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## K-means Partitioning {#sect:org:kmeans}
 
 We shall now look at *k-means*, a more efficient method for flat
@@ -310,6 +335,23 @@ the same scale, e.g. within $[0,1]$ for positive values. Otherwise, they
 should be properly weighted by their discriminative power based on
 domain theory and/or statistics.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-issues-of-k-means)
+to turn **Issues of K-means** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-k-means-partitioning)
+to turn **K-means Partitioning** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Probabilistic Clustering
 
 While k-means discovers cluster centroids, the Euclidean distance, for
@@ -388,6 +430,14 @@ parameters.
 In addition, we don't know the prior probability $P(c)$ of each cluster
 $c$. If we assume equal chances, we have for the $3$ clusters in the
 IRIS data: $P(c_1)=P(c_2)=P(c_3)=1/3$.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-initialization)
+to turn **Initialization** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ### Expectation
 
@@ -492,6 +542,14 @@ data. A data instance's color indicates the cluster with the highest
 probability -- that is, the bell curve that best \"covers\" the data
 instance.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-expectation)
+to turn **Expectation** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Maximization
 
 The objective of clustering is to find clusters such that the overall
@@ -574,6 +632,14 @@ models, both mean $\mu$ and variance $\delta^2$ are to be updated. If
 one assumes a different probability distribution, then a different set
 of parameters will be maximized.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-maximization)
+to turn **Maximization** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Iterations of Expection-Maximization
 
 Now that the cluster models have changed, we need to go back to the
@@ -590,6 +656,14 @@ the data instances they represent and, in the end, get well aligned with
 them.
 
 ![Iterations of Expectation and Maximization. Note that there are $5$ data instances in each iris species. But because their petal width values overlap on the only dimension, there appear to be $3$ or $4$ instances in each cluster, which, in fact, has $5$.](../assets/figures/chapter10/fig-org-em4){#fig-org-em4 fig-alt="Iterations of Expectation and Maximization. Note that there are 5 data instances in each iris species. But because their petal width values overlap on the only dimension, there appear to be 3 or 4 instances in each cluster, which, in fact, has 5." width="70%"}
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-iterations-of-expection-maximization)
+to turn **Iterations of Expection-Maximization** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ### EM with Higher Dimensionality
 
@@ -610,3 +684,20 @@ clustering application, for example, it is very common to use poisson
 distributions. Regardless of the assumed distribution, the idea and
 process of expectation and maximization for the optimization of
 log-likelihood of observed data remain the same.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-em-with-higher-dimensionality)
+to turn **EM with Higher Dimensionality** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/10-clustering-and-organization.qmd#sec-pr-10-probabilistic-clustering)
+to turn **Probabilistic Clustering** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->

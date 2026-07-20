@@ -4,14 +4,62 @@
 
 ## From Binary to Multiple Classes
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/08-multiclass-and-structured-decisions.qmd#sec-pr-08-from-binary-to-multiple-classes)
+to turn **From Binary to Multiple Classes** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## One-vs-Rest and One-vs-One Strategies
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/08-multiclass-and-structured-decisions.qmd#sec-pr-08-one-vs-rest-and-one-vs-one-strategies)
+to turn **One-vs-Rest and One-vs-One Strategies** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Scores, Probabilities, and Softmax
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/08-multiclass-and-structured-decisions.qmd#sec-pr-08-scores-probabilities-and-softmax)
+to turn **Scores, Probabilities, and Softmax** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Decision Trees and Rule-Based Decisions
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/08-multiclass-and-structured-decisions.qmd#sec-pr-08-decision-trees-and-rule-based-decisions)
+to turn **Decision Trees and Rule-Based Decisions** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Multilabel and Ordinal Outcomes
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/08-multiclass-and-structured-decisions.qmd#sec-pr-08-multilabel-and-ordinal-outcomes)
+to turn **Multilabel and Ordinal Outcomes** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Error Analysis and Calibration
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/08-multiclass-and-structured-decisions.qmd#sec-pr-08-error-analysis-and-calibration)
+to turn **Error Analysis and Calibration** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Summary, Exercises, and Lab

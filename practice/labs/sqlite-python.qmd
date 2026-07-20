@@ -1,0 +1,225 @@
+---
+execute:
+  enabled: false
+---
+
+# SQLite with Python {#ch-lab-sqlite-python .unnumbered}
+
+## Recovered activity {#sec-lab-sqlite-python}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `sql/sqlite_python.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/sqlite-python.ipynb)
+to run and modernize it interactively.
+:::
+
+## SQLite with Python
+
++ SQLite: File-based relational SQL database
++ Python: A popular language in data science, etc.
++ SQLite is well supported in Python
+
+This tutorial will follow the same ```college.db``` example in the [SQLite Practice](sqlite.qmd#sec-lab-sqlite) presentation. 
+
+## Python Code for SQLite
+
+### Import SQLite 
+
+```{python}
+#| slideshow: {slide_type: skip}
+import sqlite3
+```
+
+### Load SQLite Database
+
+To open and connect to the database file ```college.db```:
+
+```{python}
+#| slideshow: {slide_type: skip}
+db = 'college.db'
+conn = sqlite3.connect(db)
+c = conn.cursor()
+```
+
+We can now create the two tables: 
+
+1. Programs with ID, program name, and description; 
+2. Students with ID, name, program info, and class year. 
+
+using SQL statements with the SQLite3 interactive. 
+
+### ```programs``` table
+
+Create the ```programs``` table structure: 
+
+```{python}
+#| slideshow: {slide_type: fragment}
+c.execute("drop table if exists programs")
+c.execute("""create table programs (
+                program_id varchar(10) not null primary key, 
+                program_name varchar(20), 
+                program_desc varchar(500)
+            )""")
+conn.commit()
+```
+
+Now we can start adding students data: 
+
+```{python}
+#| slideshow: {slide_type: fragment}
+insert_sql = "insert into programs (program_id, program_name, program_desc) values (?, ?, ?)"
+
+c.execute(insert_sql, ('IS', 'Information Systems', 'Information systems with a business angle') )
+c.execute(insert_sql, ('DS', 'Data Science', 'New data science program') ) 
+c.execute(insert_sql, ('CS', 'Computer Science', 'Traditional computer science') ) 
+c.execute(insert_sql, ('CST', 'Computing & Security Technology', 'CST with a new focus on security') )
+
+conn.commit()
+```
+
+Now let's take a look at data in the table: 
+
+### ```students``` table
+
+Create the students table: 
+
+```{python}
+#| slideshow: {slide_type: fragment}
+c.execute("drop table if exists students")
+c.execute("""
+    create table students (
+        student_id integer primary key, 
+        student_name varchar(100), 
+        program_id varchar(10),
+        class_year int
+    )
+""")
+conn.commit()
+```
+
+For the students tables, we have preppared a csv file with students records, which can be downloaded from: [students.csv](data/students.csv). 
+
+Suppose data file ```students.csv``` is in the **data** sub-directory (folder): 
+
+```csv
+1	John Smith,        IS,  2020
+2	Albert Einstein,   DS	2021
+3	George Washington, CS,  2019
+4	Donald Trump,      CST, 2020
+5	Barack Obama,      IS,  2021
+.   ...                ..   ....
+```
+
+Let read the CSV file and load data into the ```students``` table: 
+
+```{python}
+#| slideshow: {slide_type: fragment}
+import csv
+
+# remove all student data first
+delete_sql = "delete from students"
+c.execute(delete_sql)
+
+# load CSV data
+f=open("data/students.csv")
+insert_sql = "insert into students values (?, ?, ?, ?)"
+for row in csv.reader(f):
+    c.execute(insert_sql, row)
+    
+conn.commit()
+```
+
+Now check out the data: 
+
+```{python}
+#| slideshow: {slide_type: fragment}
+c.execute("select * from students limit 10")
+rows = c.fetchall()
+for row in rows: 
+    print(row)
+```
+
+Now let's count the number of records in the table:
+
+```{python}
+#| slideshow: {slide_type: slide}
+c.execute("select count(*) from students")
+rows = c.fetchall()
+for row in rows: 
+    print("The total number of students:", row[0])
+```
+
+### Group Aggregates
+
+Perhaps, you only want to know statistics in each program: 
+
+```{python}
+#| slideshow: {slide_type: fragment}
+query = """select program_id, 
+       count(*) as student_count, 
+       min(class_year) as first_class, 
+       max(class_year) as last_class
+from students 
+group by program_id
+order by student_count DESC
+"""
+c.execute(query)
+rows = c.fetchall()
+for row in rows: 
+    print(row[0], row[1], row[2], row[3])
+```
+
+### Update Student Data
+
+Now that you see from the statistics some data values are unrealistic such as a class year $>2030$. Perhaps we can reset all these values to $2030$ if they are greater than that:
+
+```{python}
+#| slideshow: {slide_type: fragment}
+update_sql = "update students set class_year = 2030 where class_year > 2030"
+c.execute(update_sql)
+conn.commit()
+```
+
+We can run the statistics again to see if data have been updated: 
+
+```{python}
+#| slideshow: {slide_type: fragment}
+from pprint import pprint
+
+query = """select program_id, 
+       count(*) as student_count, 
+       min(class_year) as first_class, 
+       max(class_year) as last_class
+from students 
+group by program_id
+order by student_count DESC
+"""
+c.execute(query)
+rows = c.fetchall()
+pprint(rows)
+```
+
+### Join Tables
+
+Suppose you want to retrieve student data with their corresponding program information (e.g. program name): 
+
+```{python}
+#| slideshow: {slide_type: fragment}
+query = """
+    select student_name, program_name, class_year
+    from students s join programs p 
+         on s.program_id = p.program_id
+    limit 10
+"""
+c.execute(query)
+rows = c.fetchall()
+for row in rows: 
+    print("{:s} {:s} {:d}".format(row[0].ljust(20), row[1].ljust(40), row[2]))
+```
+
+# References
+
++ Chapter 3 Managing Data, section Managing Data using SQL, of LauraCasselland AlanGauld (2014). Python Projects.https://ebookcentral-proquest-com.ezproxy2.library.drexel.edu/lib/drexel-ebooks/detail.action?docID=1875898
++ SQLite operations in Python:http://sebastianraschka.com/Articles/2014_sqlite_in_python_tutorial.html
+

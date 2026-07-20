@@ -1,0 +1,111 @@
+---
+execute:
+  enabled: false
+---
+
+# Python Input and Output {#ch-lab-python-io .unnumbered}
+
+## Recovered activity {#sec-lab-python-io}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `python/python_io.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/python-io.ipynb)
+to run and modernize it interactively.
+:::
+
+## Output
+
+```{python}
+#| slideshow: {slide_type: subslide}
+print('Hello!')
+```
+
+We know we can use the ```print()``` function to show information on the screen. 
+
+We can also show the value (data) stored in a variable such as:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+name = 'John Paul'
+print(name)
+```
+
+The ```print()``` function can also display multiple things at one time:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+print(name, "how are you?")
+```
+
+Notice that with multiple values, they are separated by a *space* ' ', which is called the **separator**. We can actually change the separator with the ```sep=``` parameter in the ```print()``` function. 
+
+An example of ```print``` with a ```sep``` (separator) specified:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+print(name, "how are you?", sep=', ')
+```
+
+This is basic python output -- it is the *output* from the computer to the *user* (person) who can see it by using the output device (e.g. looking at the screen).
+
+## Input
+
+How does the *user* -- the person who uses your program -- enter data into the program? 
+The ```input()``` function in Python does just that. 
+
+For example:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+name = input('What is your name? ')
+```
+
+The ```input``` function first displays a message (prompt) ```What is your name?``` and waits for the user to type. Once the user enters something and presses the ```Eneter``` key, the input data (e.g. letters of a name) will be stored in the ```name``` variable. 
+
+Remember, with the assignment operator ```=```, the statement here is to take the value on the right (```input```) and store it in the variable on the left (```name```).
+
+Now if you use:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+print("You entered: ", name)
+```
+
+It shows what the user just typed in and has been stored in the variable ```name```.
+
+## Example Program: Knock-knock
+
+### Python Program
+
+#### The Game (Algorithm)
+
+Consider a knock-knock joke, it consists of the following steps between two persons, say John and Mary:
+
+1. John pretends to knock on the door, saying, "Knock knock."
+2. Mary responds with "Who is there?"
+3. John answers with a ```name```, e.g. "Boo"
+4. Mary is confused by the name and continue to ask in a pattern like "```name``` who?", e.g. "Boo who? "
+5. The final response depends on the joke and can be difficult to program. For now, let's simply repeats it by saying "Don't cry!"
+
+An example knock-knock: 
+
+1. John: Knock knock!
+2. Mary: Who is there?
+3. John: Boo.
+4. Mary: Boo who? (sounds like Boohoo...)
+5. John: Please don't cry...
+
+### The Program Code
+
+Suppose **John** is the *user* who will play with the program, here is the simple Python code:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+print("John: Knock knock.")
+print("Mary: Who is there? ")
+name = input("Enter your response: ")
+print("Mary:", name, "who?") # sounds like name hoo...
+print("John: Please don't cry...")
+```
+

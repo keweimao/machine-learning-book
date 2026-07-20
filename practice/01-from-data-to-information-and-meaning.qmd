@@ -1,0 +1,25 @@
+---
+number-sections: false
+---
+
+# Practice 1: From Data to Information and Meaning {#ch-practice-01 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 1](../chapters/01-data-to-meaning.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## From Data to Meaning {#sec-pr-01-from-data-to-meaning}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Concept Generalizability {#sec-pr-01-concept-generalizability}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

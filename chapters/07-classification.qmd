@@ -142,6 +142,14 @@ analogous to a *lazy* student who memorizes everything without
 understanding -- she will not be able to answer a question for which no
 similar examples have been provided in the materials.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-k-nearest-neighbors-knn)
+to turn **K Nearest Neighbors (kNN)** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Other Distance Metrics
 
 Euclidean distance is a special case of a category of distance metrics
@@ -173,6 +181,23 @@ which counts the number of dimensions where there is a difference and is
 often referred to as *edit distance*. This is equivalent to treating
 every dimension as a binary variable and the overall distance is the
 amount of change in the bits.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-other-distance-metrics)
+to turn **Other Distance Metrics** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-lazy-learning)
+to turn **Lazy Learning** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Linear Classifiers
 
@@ -346,6 +371,14 @@ the two classes are of the same size roughly and the \"border\" lies
 halfway between their centers. This is often untrue and its performance
 suffers.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-between-centroids)
+to turn **Between Centroids** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Support Vector Machines
 
 Imagine settling the border between two countries, for example, the
@@ -418,6 +451,14 @@ function becomes a plane or hyperplane. On three dimensions, for
 example, three data points should be connected to construct a linear
 equation (plane) to identify the convex hulls and support vectors.
 Chapter  has details on the mathematics for SVM.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-support-vector-machines)
+to turn **Support Vector Machines** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ### Perceptron: Toward a Neural Network
 
@@ -520,6 +561,23 @@ The *perception* model is learning by *mistakes*, as it updates the
 weights only when there is misclassification. For classes that are
 linearly separable, the updating strategy is guaranteed to converge on a
 set of weights.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-perceptron-toward-a-neural-network)
+to turn **Perceptron: Toward a Neural Network** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-linear-classifiers)
+to turn **Linear Classifiers** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Non-Linear Models
 
@@ -662,6 +720,14 @@ include radial basis and string kernels. A string kernel, for example,
 operates directly on symbol sequences without vectorized features and is
 useful in applications such as text classification and gene sequence
 analysis.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-kernel-svm)
+to turn **Kernel SVM** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ### Multi-Layer Neural Networks
 
@@ -1060,3 +1126,20 @@ converge.
     collection. However, this simplified version is intended for
     demonstration only and does not represent the actual data in the UCI
     repository.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-multi-layer-neural-networks)
+to turn **Multi-Layer Neural Networks** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/07-classification.qmd#sec-pr-07-non-linear-models)
+to turn **Non-Linear Models** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->

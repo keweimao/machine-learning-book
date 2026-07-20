@@ -1,0 +1,34 @@
+---
+number-sections: false
+---
+
+# Computational Toolkit {#ch-practice-toolkit .unnumbered}
+
+The book's practice volume uses Python and Jupyter-compatible notebooks. These
+recovered primers are optional for readers who already have a working Python
+environment.
+
+## Environment setup {#sec-pr-toolkit-setup}
+
+Continue with [Python and Jupyter Setup](labs/setup.qmd#sec-lab-setup).
+
+## Python programming primer {#sec-pr-toolkit-python}
+
+Continue with [Python Programming Primer](labs/python-intro.qmd#sec-lab-python-intro).
+
+## Control flow, randomness, and input/output {#sec-pr-toolkit-control-flow}
+
+Continue with [Python Input and Output](labs/python-io.qmd#sec-lab-python-io),
+[Python Selection](labs/python-selection.qmd#sec-lab-python-selection),
+[Python Randomness](labs/python-random.qmd#sec-lab-python-random), and
+[Python Repetition](labs/python-loops.qmd#sec-lab-python-loops).
+
+## File processing {#sec-pr-toolkit-files}
+
+Continue with [Python File Processing](labs/python-file-processing.qmd#sec-lab-python-file-processing).
+
+## Core data types and structures {#sec-pr-toolkit-data}
+
+Continue with [Python Data Types](labs/python-data-types.qmd#sec-lab-python-data-types),
+[Python Data Structures](labs/python-data-structures.qmd#sec-lab-python-data-structures), and
+[Python Data Structures Assignment](labs/python-data-structures-assignment.qmd#sec-lab-python-data-structures-assignment).

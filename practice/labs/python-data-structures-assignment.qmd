@@ -1,0 +1,189 @@
+---
+execute:
+  enabled: false
+---
+
+# Python Data Structures Assignment {#ch-lab-python-data-structures-assignment .unnumbered}
+
+## Recovered activity {#sec-lab-python-data-structures-assignment}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `problems/python_data_structure.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/python-data-structures-assignment.ipynb)
+to run and modernize it interactively.
+:::
+
+## Objectives
+
+Please solve the following problem with Python programming using proper data
+structures.
+
+1. Create a **Jupyter Notebook** with code and markdown descriptions; 
+2. **Test your code** and make sure it works properly; 
+3. Submit your Jupyter Notebook (.ipynb) to **blackboard**. 
+
+A similar application to the parentheses matching problem is
+HTML (hypertext markup language) validation. In HTML, tags exist in both opening
+and closing forms and must be balanced to properly describe a web
+document. 
+
+This simple HTML code (string) here:
+
+```html
+<html>
+<head>
+<title>
+Example>
+</title>
+</head>
+<body>
+<h1>
+Hello, world
+</h1>
+</body>
+</html>
+```
+
+shows the matching and nesting structure for tags in the language.
+
+Please create a Jupyter notebook and write a Python program that can **validate HTML code** 
+with proper opening and
+åclosing tags. To simplify the problem, we suppose the opening and closing tags are
+provided in **separate lines without indentation** (as shown in the above example).
+
+Consult the example on the math checker (parentheses matching) in lecture slides/notes: 
+
+python-data-structures.qmd#sec-lab-python-data-structures
+
+
+## 0. Academic Honesty Statement
+
+Please put the Academic Honesty Statement with your full name printed on your notebook. 
+
+Your submission **will not be graded without the statement**. 
+
+## 1. Create a Stack abstract data type (2 points)
+
+The ```Stack``` class should include the following methods:
+
+-  ```push(item)``` function to add a new item to the stack
+-  ```pop()``` function to remove and **return** the top item from the stack
+-  ```peek()``` to return the top item in the stack
+-  ```is_empty()``` to test whether the stack is empty
+-  ```size()``` to tell the size (number of items) in the stack
+
+
+```{python}
+class Stack: 
+    """
+    The Stack class to be implemented. 
+    Please define all required methods 
+    within the class structure. 
+    """
+```
+
+## 2. Create a check_html function (5 points)
+
+```{python}
+def check_html(html_string):
+    """Validates an HTML string (text)
+    Arguments: 
+        html_string (string): the HTML string with tags in each line (separated by \n)
+        
+    Returns: 
+        bool: True if the HTML tags are balanced; False if otherwise. 
+    """
+```
+
+Here is what the function should do:
+
++ Create a ```balanced``` variable and set its initial value to ```True```
+
++ Create a new Stack object;
+
++ Use the split() method of a string to split it into text lines;
+
++ Create a loop to read each text line:
+
+    -   You can use a for loop such as --
+    
+       ```python
+       for line in text_lines:
+       ```
+
+    -   If the text line matches an opening tag (e.g. ```<h1>```), add
+        the tag name (e.g. "h1") to the stack;
+
+        -  You can use expressions such as ``` "<" in line ``` to check
+           if the symbol "<" appears in the string variable
+           
+        -  You should make sure "<" is in the text line AND "/" is NOT in it for an openning tag;
+        
+        -  Use the logical ```and``` operator to connect multiple logical conditions;
+        
+        -  Use statements such as ``` tag_name = line.replace("<","")``` 
+           to remove special symbols, so you can reduce it to its tag name only;
+
+    -   If the text line is a closing tag (e.g. ```</h1>```), check
+        whether the stack is empty:
+
+        -   The HTML code is unbalanced if stack is currently empty:
+            -   Please use the ```is_empty()``` method of the stack object. 
+
+        -   If not empty, use the stack object's ```pop()``` to read and
+            remove the top (last) item from stack:
+            -   Again, use the ```replace()``` method of the text line string 
+                variable to remove symbols ```</>```, to reduce it to its tag
+                name only;
+
+            -   If the top (last) tag matches (```==```) the current closing
+                tag, then the HTML code is balanced (True);
+
+            -   Otherwise, the HTML code is unbalanced (False).
+
+    -   If the text line is ordinary content without a HTML tag, skip
+        the line;
+        -   You do not actually need to do anything in this case.
+
++ After the loop, check: 
+    - If the Stack is empty (balanced out), return the value of the ```balanced``` variable
+    - Otherwise, ```return False```
+
+## 3. Function Calls (0.5 point)
+
+Create two string variables, one with ***balanced HTML*** code and the other
+with ***unbalanced HTML code***. 
+
+Call the html_checker() function **twice** in your code, each time with each 
+of the two variables as argument to test the program. For example: 
+
+```{python}
+str1 = "(Valid/balanced HTML code here)"
+str2 = "(Invalid/unbalanced HTML code here)"
+print("Is the first string valid?", check_html(str1))
+print("Is the second string valid?", check_html(str2))
+```
+
+You can use the syntax in the box here to create a string with multiple
+lines. 
+
+## 4. Markdown and Comments (2 point)
+
+Besides your Python code, you should also have: 
++ Markdown headers and text to provide basic descriptions of your work
++ Comments in the Python code for each function and major step in the code
+
+## Bonus (+1 point)
+
+Create a loop to read user input for multiple lines of HTML code (until
+the user enters an empty line to signal the end) and run the
+```check_html()``` function to validate the entered HTML.
+
+# Important Notes
+
++ Do **NOT copy and paste** other people's code without understanding it and proper acknowledgment. 
++ Make sure your **code runs** properly before submitting it. 
++ The grade will be significantly penalized if code does NOT work. 
++ Get in touch with the instructor if you need **guidance** / assistance. 
+

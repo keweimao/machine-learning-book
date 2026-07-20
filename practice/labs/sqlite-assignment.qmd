@@ -1,0 +1,157 @@
+---
+execute:
+  enabled: false
+---
+
+# SQLite and Data Retrieval Assignment {#ch-lab-sqlite-assignment .unnumbered}
+
+## Recovered activity {#sec-lab-sqlite-assignment}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `problems/python_sqlite.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/sqlite-assignment.ipynb)
+to run and modernize it interactively.
+:::
+
+This assignment is to load data from CSV, populate them in an SQLite
+database, and run in-database analytics with SQL. 
+
+Please create a Jupyter Notebook for this assignment. 
+
+
+## A. Data
+
+The data is provided as [CCSubset.csv](../data/CCSubset.csv), which is a subset of the UCI
+Credit Card data set. You only need to use this provided subset for the assignment. 
+
+Please open and review the data file [CCSubset.csv](../data/CCSubset.csv) to determine the following when creating your table structure: 
+1. The name of the table: please use a name with **NO Space** in it. 
+2. How many fields (columns) do you have and what are they? 
+3. What are their field types? 
+
+The full dataset is available at: https://www.kaggle.com/uciml/default-of-credit-card-clients-dataset. 
+
+## B. SQLite Database Schema (2 points)
+
+Make sure you import sqlite3 module by:
+
+```{python}
+import sqlite3
+```
+
+Create a new database, connect to it, and create a table structure
+corresponding to data fields in the CSV data source.
+
+  - Use ```sqlite3.connect(“DatabaseFileName”)``` to connect the database
+    and once you establish the connection, use its ```.cursor()``` method
+    to maintain the cursor. For example: 
+
+```{python}
+my_connection = sqlite3.connect("../data/mydatabase.db")
+my_cursor = my_connection.cursor()
+```
+
+  - Use the cursor’s ```.execute()``` method to run SQL statements;
+
+  - Use ```CREATE TABLE``` statement as a parameter for the ```execute()```
+    method to create a new table. 
+    
+Syntax of the ```create table``` statement in SQL: 
+
+```sql
+CREATE TABLE table1 (
+    field1 int primary key, 
+    field2 varchar(100),
+    field3 numeric
+)
+```
+
+## C. Load Data into SQLite (2 points)
+
+Read data from the CSV file, use a loop to read each CSV line (data
+instance), and insert it into the SQLite table:
+
+  - Include ```import csv``` so you can use CSV-related functions;
+
+  - Please use the following program structure to read CSV data:
+
+```python
+with open('students.csv') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+```
+
+Inside the loop: 
+
+  - You can use ```row['CSVColumnName']``` to read each column
+    value;
+
+  - Execute a SQL statement using ```INSERT INTO```, combined with data from
+    CSV, for example, within the for loop:
+
+Example: 
+
+```python
+sql = "INSERT INTO table1 (field1, field2, field3)" \
+        " VALUES({0}, '{1}', {2})".format(row["column1"], row["column2"], row["column3"])
+my_cursor.execute(sql)
+```
+
+Change (and add) names such as ```field1/2/3/...``` and ```column1/2/3/...``` to the correct ones in database and CSV respectively. 
+
+## D. In-database Query and Analytics with SQLite Data (6 points)
+
+Outside the previous structure, create code in Python with related
+SQL statements to do the following:
+
+1.  ```Update``` the data so that current marriage=2 (single) and
+    marriage=3 values (others) are merged/updated to 2 (single).
+
+2.  Remove all data records with ```negative BILL_AMT``` values using ```DELETE```. 
+
+3.  Select and show the first 10 records in the database table, using
+    ```SELECT … LIMIT…```.  
+
+4.  Select and show all records with a ```BILL_AMT``` amount ```> 500,000```;
+
+5.  Compute the **total number of records** ```count(*)```, average (```avg```) AGE, ```min```
+    LIMIT_BAL, ```max``` LIMIT_BAL in the data. 
+
+6.  ```Count``` the \# records, average AGE, ```min``` LIMIT\_BAL, ```max```
+    LIMIT_BAL, using ```GROUP BY```, for each group of ```DefaultNext``` (0 and 1 levels). 
+
+7.  ```Count``` the \# records, ```average``` AGE, ```min``` LIMIT\_BAL,
+    ```max``` LIMIT_BAL for each ```Marriage``` group (1, 2), again using
+    ```GROUP BY```. 
+
+8.  Count the \# records in each combination of ```Marriage``` groups and ```DefaultNext``` levels, using ```GROUP BY Marriage, DefaultNext```.
+
+For Items 1 and 2 above, you only need to call the cursor’s
+```.execute()``` method with proper SQL statements to execute. 
+
+For Items 3 and after, when you execute the SQL statement, you
+need to print the retrieved results using a loop such as:
+
+```python
+print("Say a few words about what you are printing here")
+rows = my_cursor.fetchall()
+for row in rows
+    print(row[0], row[1], ...)
+```
+
+## Bonus (+1 point)
+
+Organize the above result printing code as a **function** so that: 
+
+1)  You can call the function to print all rows and columns each time
+    you query the database;
+
+2)  You reduce redundant code on printing results from item 3 through 8.
+
+## Submission
+
+1. Complete all tasks of this assignment in a Jupyter Notebook. 
+2. Test the code and make sure it works and produces proper results in the notebook. 
+3. Submit the notebook to blackboard for A3. 
+

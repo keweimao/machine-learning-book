@@ -1,0 +1,75 @@
+---
+number-sections: false
+---
+
+# Practice 3: Vectors, Matrices, and Geometric Thinking {#ch-practice-03 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 3](../chapters/03-vectors-matrices-geometry.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Basic Matrix Operation {#sec-pr-03-basic-matrix-operation}
+
+Recovered starting point: [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Sum of Squares {#sec-pr-03-sum-of-squares}
+
+Recovered starting point: [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Vector Magnitude (Length) {#sec-pr-03-vector-magnitude-length}
+
+Recovered starting point: [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Vector Distance {#sec-pr-03-vector-distance}
+
+Recovered starting point: [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Vector Angle {#sec-pr-03-vector-angle}
+
+Recovered starting point: [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Vector Cross Product {#sec-pr-03-vector-cross-product}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Vector Cross Product** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+## Optimization {#sec-pr-03-optimization}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Kernel Functions {#sec-pr-03-kernel-functions}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Graph Analysis {#sec-pr-03-graph-analysis}
+
+Recovered starting point: [Reinforcement Learning Extension](labs/reinforcement-learning-extension.qmd#sec-lab-reinforcement-learning-extension).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

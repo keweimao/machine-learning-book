@@ -1,0 +1,407 @@
+---
+execute:
+  enabled: false
+---
+
+# Python Data Types {#ch-lab-python-data-types .unnumbered}
+
+## Recovered activity {#sec-lab-python-data-types}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `python/python_data_types.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/python-data-types.ipynb)
+to run and modernize it interactively.
+:::
+
+### Programming – Data Types
+
++ Basic data representation: binary digits
++ We need data types 
+  - With respect to the problem at hand
+  - Based on primitive data types as building blocks
++ Computation is associated with data types: 
+  - Characters and strings can be sorted, concatenated
+  - Integers and numbers can added, subtracted, and multiplied
+
+On the lower level, all data and variables in a computer are represented with binary digits, 0 and 1s. 
+On the application level, however, we need different data types and ways in which data can be operated with respect to the problems we have. We need the basic building blocks, or primitive data types, to construct more comnplex data objects. 
+
+Ultimately, whatever computation we can perform is associated with data types. For example, characters and strings can be sorted and concatenated. Integers and numbers in general, on the other hand, can be added, subtracted, and multiplied. 
+
+## Data abstraction
+
+Abstract data type (ADT)
+
++ Logical description of data and related operations on the data
++ Abstract from actual implementation
++ Actual implementation (data structure) using programming constructs and primitive data types
+
+The notion of Abstract Data Type (ADT) represents a logical description of data and related operations on the data. 
+It is an abstraction or a blueprint of the actual implementation, which will be based on programming constructs and primitive data types. 
+
+## Basic Python: Atomic Data Types
+
+Numeric types: 
+
++ ```int``` class for integer
++ ```Float``` class for floating point data types
+
+Operations allowed: 
+
+```
+  + - * / 
+  **       exponentiation
+  %        modulo
+  //       integer division
+```
+
+There are built-in basic atomic data types, or classes, in Python. 
+Numeric types such as ```int``` and ```Float``` can be computed with operators such as division, exponentiation, modulo, among others. 
+
+## Basic Python – Atomic Data Types
+
+Relational and Logical Operators:
+
+| Operation Name | Operator | Meaning          |
+|----------------|----------|------------------|
+| less than      |    <     |                  |
+| greater than   |    >     |                  |
+| less than or equal to      |    <=     |                  |
+| greater than or equal to   |    >=     |                  |
+| equal          |    ==    |                  |
+| not equal      |    !=    |                  |
+| logical and    |    and   | Both true for result to be true      |
+| logical or     |    or    | Either true for result to be true    |
+| logical not    |    not   | Negates true to false, false to true |
+
+Numeric values are ordinal data and you can use relational operators such as less than or greater than to evaluate and compare different values. The result of an relational expression is either true or false, a boolean type. 
+
+There are ways in which boolean values or boolean expressions can be combined. Using ```and```, ```or```, and ```not```, you will be able to construct any complex conditions. 
+
+## Basic Python – Atomic Data Types
+
+Try these numeric operator examples: 
+
+```{python}
+#| slideshow: {slide_type: subslide}
+print("5+3*4 =", 5+3*4)
+print("20/5 =",20/5)
+print("11/4 =", 11/4)
+print("11//4 =", 11//4)
+print("11%4 =",11%4)
+print("5/20 =", 5/20)
+print("5//20 =", 5//20)
+print("2**10 =", 2**10)
+print("100**2 =", 100**2)
+```
+
+You can pause here and test some the operators. 
+Change some of the expression and run them again. Do they meet your expectation? 
+
+## Basic Python – Boolean
+
+Boolean data type: 
++ ```bool``` class
++ True or False value
+
+Examples: 
+
+```{python}
+#| slideshow: {slide_type: subslide}
+x = True
+print("x is", x)
+y = False
+print("y is", y)
+print("x or y is", x or y)
+print("x and y is", x and y)
+print("not (x and y) is", not (x and y))
+```
+
+You can see a boolean type is either ```True``` or ```False```. And you can combine them using operators such as ```and```, ```or```, and ```not```. 
+
+Another set of examples: 
+
+```{python}
+#| slideshow: {slide_type: subslide}
+print("Is 5 equal to 10?", 5 == 10)
+print("Is 10 greater than 5?", 10 > 5)
+x = 15
+print("Is x between 10 and 20?", (x>=10) and (x<=20))
+```
+
+Here you see the result of an equality and inequality comparison is also a bool value. For example, ```5==10``` is False, and it is True that ```10>5```. Again, you can combine multiple conditions using the logical operators. 
+
+Again, change the expressions and test them for yourself. Do logical operators such as ```and```, ```or```, and ```not``` make sense? 
+
+## Basic Python - Collections
+
+Collection Data Types
++ Ordered collections: 
+  1. Lists
+  2. Strings
+  3. Tuples
++ Unordered collections: 
+  * Sets
+  * Dictionaries
+
+So far the data types are associated with single data values, such as a number, an boolean expression. 
+
+In data processing, we often need to deal with a collection of data values. There are multiple types of collection data. You may have an ordered collection such as a list, a sequence of characters as a string, and data tuples. In other situations, an unordered collection such as a set or a dictionary might have been what you need. 
+
+Let's discuss some of these collecton data types. 
+
+## Basic Python - List
+
+List: 
+> an ordered collection of zero or more references to data objects
+
++ Empty list: ```[]```
++ Items are delimited by comma
++ Can be heterogeneous (data objects from same or different classes / types)
+
+If ```x``` variable is a list: 
++ ```x[index]``` references the item in the ```index+1``` position of the list
++ ```x[0]``` the first item, ```x[1]``` the seond, and so on
++ You can retrieve the value, or assign a new value using ```x[index]=...```
+
+A list is an ordered collection of zero or more (references to) data objects. 
+An empty list without data is constructed by a pairs of square brackets. 
+By adding values to the brackets, we can add new data to the list. Multiple values are separated by comma. 
+In Python, a list can be either homogeneous (i.e. consisting of data of the same type) or heterogeneous (i.e. data of different types or classes). This makes programming flexible as well as dangerous. 
+
+To access an individual element in the list, you can use an index to refer to a specific position in the list. 
+The index is an integer starting from 0, which references the first element; 1 refers to the second, and so on. 
+You can get the value of an element, or assign a new value to it using the assignment operator. 
+
+Examples of ```list```: 
+
+```{python}
+#| slideshow: {slide_type: subslide}
+students = ["John", "Mary", "Peter", "Paul"]
+print("Students are: ", students)
+x = True
+mix = ["rock", "paper", x, 5]
+print("What's in there? ", mix)
+```
+
+In the examples, we can have a list of names and they are homogeneous -- every element is a string here in the students lilst. You can also have data of different types in the list such as the ```mix``` variable, which has strings as well as a bool value and a number. 
+
+```{python}
+#| slideshow: {slide_type: slide}
+m = [30]*12
+print("Does each month have 30 days? ", m)
+print("How many days in February? ", m[1])
+m[1] = 29
+print("Days in February, now that it is a leap year: ", m[1])
+```
+
+To quickly create a list of many data values, you can simply multiply a list by a number. Here for example, you have a one-element list ```[30]``` and, when multiplied by 12, it becomes a list of 12 items with the same value. 
+
+You can then change the value of a speicific item by using the indexing we discussed early. For example, ```m[1]``` references the second item in the list, which can be used for the month of February. 
+
+## Basic Python - List Methods
+
+Additional operations of a list: 
++ Using predefined functions (methods) of the list class)
++ For a variable that is of the list type
+
+For a list variablle ```x```, here are some of these functions: 
+
+| Method         | Use.                   | Meaning                                          |
+|----------------|------------------------|--------------------------------------------------|
+| append         | x.append(item)         | Adds a new item to the end                       |
+| insert         | x.insert(i, item)      | Inserts a new item at position i                 |
+| pop            | x.pop()                | Removes and returns last item                    |
+| pop            | x.pop(i)               | Removes and returns an item at position i        |
+| sort           | x.sort()               | Sort the list in the ascending order by default  |
+| reverse.       | x.reverse()            | Reverse the current order of the list            |
+
+More can be found at: https://www.w3schools.com/python/python_ref_list.asp 
+
+List method examples:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+week = ["Sunday", "Monday", "Wednesday", "Thursday", "Friday", "Sabbath?"]
+week.pop()                 # removes the last item
+week.append("Saturday")    # adds Saturday
+week.insert(2, "Tuesday")  # inserts Tuesday
+print("Weekdays", week)
+```
+
+In the example here, we fist have a list of 6 weekdays in the variable ```week```. The ```week.pop()``` is called, the last item is called and ```Sabbath?``` is removed; and with ```week.append()```, we add Saturday to the end of the list, and insert ```Tuesday``` at position 2, which will placed before the existing ```Wednesday```. 
+
+## Basic Python - List functions
+
+List-related functions: 
+
++ ```range(..)``` defines a sequence of values in a range (iterable)
++ ```list(...)``` constructs a range of values based on an iterable
++ ```len(x)``` returns the number of items in ```x```
+
+Examples: 
+
+```{python}
+#| slideshow: {slide_type: subslide}
+it = range(10)
+print("The iterable is in", it)
+sequence = list(it) 
+print("A list thus generated is", sequence)
+print("which has", len(sequence), "values")
+```
+
+```range(10)``` create a range between 0 and 10, but does not include 10. A list can then be created based on the range, which is an iterable, and the results are 10 integers from 0 to 9. 
+
+## Basic Python - String
+
+String, a list of characters: 
+> a sequential collection of zero or more letters, numbers, and other symbols
+
+```{python}
+#| slideshow: {slide_type: subslide}
+season = "Spring"
+print("The string has", len(season), "characters")
+print("The third character is", season[2])
+```
+
+Because a string is essentially a list, you can continue to use functions such as ```len()``` for a list and the same indexing mechanism to access individual items or characters in the string. 
+
+String methods, with a string variable ```x```: 
+
+| Method         | Use.                   | Meaning                                          |
+|----------------|------------------------|--------------------------------------------------|
+| find           | x.find(item)           | Returns the index of first occurrence of item    |
+| lower          | x.lower().             | Returns the string in lowercase                  |
+| upper          | x.upper()              | Returns the string in uppercase                  |
+| split          | x.split(sep)           | Split the string into substrings with a separator|
+
+More can be found at: https://www.w3schools.com/python/python_strings.asp
+
+```{python}
+#| slideshow: {slide_type: subslide}
+name = "John P. Smith"
+p = name.find("P")
+print("First P appears at", p)
+(f,m,l) = name.split(" ")
+print("First name is", f.upper())
+```
+
+In the example, you can use the ```find()``` method to search the stirng and find out where a substring such as "P" appears first. You can use the ```split()``` method to divide the full name into first, middle, and last name, with the space as delimiter. 
+
+## Basic Python - Tuple
+
+Tuple
+> immutable sequence of data objects
+
++ Similar to list
++ Cannot be changed (immutable) once constructed
++ Less overhead and more memory efficient than list
++ Values comma-delimited in parentheses ```()```
+
+```{python}
+#| slideshow: {slide_type: subslide}
+slogan = ("I", "am", "here", "to", "stay")
+# works like a list
+print(len(slogan))
+print("What did you say?", slogan[4])
+# slogan[4] = "leave"    # Sorry, but you cannot make me leave
+```
+
+A Tuple behaves like a list. But try if you can uncomment the last statement and see if you can change the value in a tuple. What happened? Why? 
+
+## Basic Python – Set 
+
+A set is 
+> an unordered collection of zero or more immutable data objects. 
+
++ Every item is unique (with no duplicates)
++ Empty set with ```set()``` or ```{}```
++ Values comma-delimited in curly braces ```{}```
+
+```{python}
+#| slideshow: {slide_type: subslide}
+chess = {"King", "Queen", "Knight", "Knight", "Bishop", "Bishop"}
+print(chess)
+```
+
+So you see only the unique elements are preserved even though we enter multiple ```knights``` and ```bishops``` in the set. 
+
+Set methods, with a variable ```x``` of the type: 
+
+| Method         | Use.                   | Meaning                                          |
+|----------------|------------------------|--------------------------------------------------|
+| union          | x.union(y)             | Returns a new set with unique elements from both |
+| intersection   | x.intersection(y)      | Returns a new set with unique elements in common |
+| difference     | x.difference(y)        | Returns a new set with elements from 1st set ONLY|
+| issubset       | x.issubset(y)          | Returns whether x is a subset of y               |
+
+There are also methods to add and remove elements. 
+
+More can be found at: https://www.w3schools.com/python/python_ref_set.asp
+
+```{python}
+#| slideshow: {slide_type: subslide}
+john = {"Python", "Java", "R", "C++"}
+mary = {"Python", "R", "Javascript"}
+team = john.union(mary)
+print("Team skills", team)
+print("Common skills",john.intersection(mary))
+print("Mary's unique skills", mary.difference(john))
+```
+
+With built-in methods of the ```set``` class, you can easily find out -- between John and Mary -- what's in common, what's the joint skill set, or what unique skills Mary has. 
+
+## Basic Python – Dictionary 
+
+A dictionary is
+> an unordered structure of associated pairs of items: 
+
++ Each pair is a key and a value
++ Pairs are comma delimited in curly braces
++ Each value can be referenced using its key in square bracket ```[key]```
+
+```{python}
+#| slideshow: {slide_type: subslide}
+# state population data
+pop = {"PA":12813969, "NY":19491339, "FL":21646155, "TX":29087070, "CA":39747267 }
+print("Pennsylvannia:", pop["PA"])
+ca_to_pa = pop["CA"] // pop["PA"]
+print("CA population is about", ca_to_pa, "times that of PA.")
+```
+
+A dictionary is very useful and highly efficient to keep track of data associated with unique identifiers. The example here keeps state population data and can quickly look it up using a two-letter, unqiue state name. 
+
+Dictionary methods, with a variable ```x```: 
+
+| Method         | Use.                   | Meaning                                          |
+|----------------|------------------------|--------------------------------------------------|
+| keys           | x.keys()               | Returns the keys in the dictionary               |
+| values         | x.values()             | Returns the values in the dictionary             |
+| items          | x.items()              | Returns the key-value pairs in the dictionary    |
+| get            | x.get(k, alt)          | Returns the value of key k, or alt if no such key|
+
+More can be found at: https://www.w3schools.com/python/python_ref_dictionary.asp
+
+```{python}
+#| slideshow: {slide_type: subslide}
+votes = {"John":10, "Mary":3}
+for candidate in votes:
+    print(candidate, "received", votes[candidate], "votes, so far. ")
+
+# count last three votes
+votes["John"] += 1
+votes["Mary"] = votes["Mary"] + 1
+votes["Paul"] = votes.get("Paul",0) + 1     # if no such key, treat current value as 0
+print("Final votes:", votes)
+```
+
+In this example of voting counting. Every time we see a vote for one candidate, we can add 1 to the candidate's key in the directory. However, a potential problem may arise when a key does not exist yet. The ```get``` method is useful when certain keys may not have existed in the middle of a counting process. 
+
+Paul, for example, has not received a vote so his name is not in the dictionary yet. So when you use ```votes.get("Paul",0)```, it will return 0 if the key is not there yet so we can add 1 to it. Without the default value 0, the program will trigger an error when you try to add 1 to a null value. 
+
+## References
+
+1. Chapter 1 Introduction, of Miller and Ranum (2013). Problem Solving with Algorithms and Data Structures using Python. http://interactivepython.org/runestone/static/pythonds/index.html
+2. Data Structures in Python: http://opentechschool.github.io/python-data-intro/core/data.html 
+

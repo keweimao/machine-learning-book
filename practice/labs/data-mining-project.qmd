@@ -1,0 +1,67 @@
+---
+execute:
+  enabled: false
+---
+
+# Data Mining Project {#ch-lab-data-mining-project .unnumbered}
+
+## Recovered activity {#sec-lab-data-mining-project}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `problems/data_mining_project.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/data-mining-project.ipynb)
+to run and modernize it interactively.
+:::
+
+Please think about tentative ideas for your final project, which will account for $24\%$
+of your final grade. 
+
+This is a group project so please find other students to work together (**up to four** students). 
+
+
+Please **choose one** of the following project types: 
+
+## I. Data Mining and Report
+
+Find an **application domain** where you can use apply the methods of data mining for knowledge discovery (see topics above). Use real (not hypothetical) **data** and problems related to your interests. While there are various types of data you can use, make sure there are sufficient data for your problems. 
+
+General **topics of data mining** you can think about: 
++ Generalization: integration, aggregation, summariation, etc. 
++ Association and correlation analysis: frequent patterns, rules
++ Classification: training and testing (predictions)
++ Cluster analysis: major patterns, themes, discovery of new categories
++ Outlier analysis: outliers, noise or exception
++ Sequence, trend and evolution analysis
++ Graph mining, network analysis, web mining, etc. 
+
+The focus is on your mining *processes, analysis, and report*. 
+
+## II. Algorithm Implementation
+
+Pick a specific **data mining method** and implement it as a piece of software that can be tested with data. You can develop the method in Python or any other languages. The method (algorithm) can be any process in: 
+
+1. Data cleaning
+2. Data integration
+3. Data selection
+4. Data transformation
+5. Data mining
+6. Pattern evaluation
+7. Knowledge representation
+
+The focus is your *design, code, test, and brief documentation*. 
+
+## III. Literature Review
+
+If you are interested in a specific **research** area in data mining, you may choose to do a literature review about it. For this type of project, your survey of the area, critical review, and writing will be the focus of your work. There are a wide range of topics that you can review (see above). You can consult the textbook and related revenues such as KDD, CIKM, etc for additional references.
+
+We do not cover everything in this class so feel free to explore. 
+
+## Group Submission
+
+To submit the project abstract, you need to: 
+
+1. Form a group of up to 4 students. 
+2. Pick a category and identify your topic/problem. 
+3. Write and submit an abstract about your project (about **150 words**). 
+

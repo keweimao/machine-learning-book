@@ -1,0 +1,383 @@
+{
+  "canonical_archive": "/Users/wk77/Documents/git/book/oldbook_organized/web-source",
+  "selection_policy": "latest corrected, non-checkpoint source; rendered HTML excluded",
+  "labs": [
+    {
+      "slug": "setup",
+      "title": "Python and Jupyter Setup",
+      "practice_chapter": "toolkit",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/setup.ipynb",
+      "sha256": "bc745536582dcb490032ea48eb50590b3dfa8a2ef3bb307316d62b80ed4e6bf8",
+      "notebook": "practice/notebooks/setup.ipynb",
+      "qmd": "practice/labs/setup.qmd"
+    },
+    {
+      "slug": "python-intro",
+      "title": "Python Programming Primer",
+      "practice_chapter": "toolkit",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/python_intro.ipynb",
+      "sha256": "af29d1443b893c471fb92532b6f9f977eef7cbb2a387b89728cb613d042147b7",
+      "notebook": "practice/notebooks/python-intro.ipynb",
+      "qmd": "practice/labs/python-intro.qmd"
+    },
+    {
+      "slug": "python-io",
+      "title": "Python Input and Output",
+      "practice_chapter": "toolkit",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/python_io.ipynb",
+      "sha256": "8e8144511527260a536302bca8d775237639dbca31799cc1e304bdc28a8b1bca",
+      "notebook": "practice/notebooks/python-io.ipynb",
+      "qmd": "practice/labs/python-io.qmd"
+    },
+    {
+      "slug": "python-selection",
+      "title": "Python Selection",
+      "practice_chapter": "toolkit",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/python_selection.ipynb",
+      "sha256": "6cbbb417f4ff5aee0d1b1d2129e7149442a2aa116e8cbe5429175e90d1a8a6bd",
+      "notebook": "practice/notebooks/python-selection.ipynb",
+      "qmd": "practice/labs/python-selection.qmd"
+    },
+    {
+      "slug": "python-random",
+      "title": "Python Randomness",
+      "practice_chapter": "toolkit",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/python_random.ipynb",
+      "sha256": "62c7451d565e59927f093d1e0fe24964050c1f32cfd196c6f3a934910b55f1e3",
+      "notebook": "practice/notebooks/python-random.ipynb",
+      "qmd": "practice/labs/python-random.qmd"
+    },
+    {
+      "slug": "python-loops",
+      "title": "Python Repetition",
+      "practice_chapter": "toolkit",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/python_loop.ipynb",
+      "sha256": "bfac8ae729377a7ca061cccc09897180dfcbde2c3158b7fb8f729137d56713a8",
+      "notebook": "practice/notebooks/python-loops.ipynb",
+      "qmd": "practice/labs/python-loops.qmd"
+    },
+    {
+      "slug": "python-file-processing",
+      "title": "Python File Processing",
+      "practice_chapter": "toolkit",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/python_data_files.ipynb",
+      "sha256": "c89f4427305d45cb19da7407d894be6fcff077e86e3369a58594ebf75edc1202",
+      "notebook": "practice/notebooks/python-file-processing.ipynb",
+      "qmd": "practice/labs/python-file-processing.qmd"
+    },
+    {
+      "slug": "python-data-types",
+      "title": "Python Data Types",
+      "practice_chapter": "02",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/python_data_types.ipynb",
+      "sha256": "604e67199c75500e77dc10b82f03b94bf4e0dc72dba9282229d75ca3363f3672",
+      "notebook": "practice/notebooks/python-data-types.ipynb",
+      "qmd": "practice/labs/python-data-types.qmd"
+    },
+    {
+      "slug": "python-data-structures",
+      "title": "Python Data Structures",
+      "practice_chapter": "02",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/python_data_structures.ipynb",
+      "sha256": "2a352b2df2b350b6ef5ffaff1e4b4fefb0997281256217abb43e15713985ece5",
+      "notebook": "practice/notebooks/python-data-structures.ipynb",
+      "qmd": "practice/labs/python-data-structures.qmd"
+    },
+    {
+      "slug": "python-data-structures-assignment",
+      "title": "Python Data Structures Assignment",
+      "practice_chapter": "02",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/python_data_structure.ipynb",
+      "sha256": "1b11d2d49cfd081d13e0c7ad97d03e6201d2f3412bd3538be806555786961590",
+      "notebook": "practice/notebooks/python-data-structures-assignment.ipynb",
+      "qmd": "practice/labs/python-data-structures-assignment.qmd"
+    },
+    {
+      "slug": "data-initialization-assignment",
+      "title": "Data, Vectors, and Cosine Assignment",
+      "practice_chapter": "03",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/python_data_init.ipynb",
+      "sha256": "4a6afc7465cffd67048fe298082c65f789da750839c5b6dcd6d66e711c965f19",
+      "notebook": "practice/notebooks/data-initialization-assignment.ipynb",
+      "qmd": "practice/labs/data-initialization-assignment.qmd"
+    },
+    {
+      "slug": "probability-linearity",
+      "title": "Probability and Linearity in Data",
+      "practice_chapter": "04",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/data_prob_linear.ipynb",
+      "sha256": "d55e361d67116b8ff0909a2125e33aba529c49678bea291decf1037541ee6cea",
+      "notebook": "practice/notebooks/probability-linearity.ipynb",
+      "qmd": "practice/labs/probability-linearity.qmd"
+    },
+    {
+      "slug": "data-preprocessing",
+      "title": "Python Data Preprocessing",
+      "practice_chapter": "06",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/python_data_preprocessing.ipynb",
+      "sha256": "032cddf8717bd44b133822f25325ed1379c353444b9878cf375c650b0492d7e7",
+      "notebook": "practice/notebooks/data-preprocessing.ipynb",
+      "qmd": "practice/labs/data-preprocessing.qmd"
+    },
+    {
+      "slug": "outliers",
+      "title": "Outliers versus the Normal",
+      "practice_chapter": "06",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/demo_outliers.ipynb",
+      "sha256": "df9d86385986ed62fa6767315d993aa4ddb7d3b65e443ba22dc962bbae9213ba",
+      "notebook": "practice/notebooks/outliers.ipynb",
+      "qmd": "practice/labs/outliers.qmd"
+    },
+    {
+      "slug": "classification-patterns-assignment",
+      "title": "Classification Patterns and Evaluation Assignment",
+      "practice_chapter": "09",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/assignment_2_final.ipynb",
+      "sha256": "e8ef8e36da326f24b62b14a31108892d4c2a06976be1835cafe95c8fdd58be22",
+      "notebook": "practice/notebooks/classification-patterns-assignment.ipynb",
+      "qmd": "practice/labs/classification-patterns-assignment.qmd"
+    },
+    {
+      "slug": "clustering",
+      "title": "Text and Cluster Analysis",
+      "practice_chapter": "10",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/python_clustering.ipynb",
+      "sha256": "d3c22f7368178b109a3a9c6c3b777a611fb322a1c518d80100faaaf7d8ce8253",
+      "notebook": "practice/notebooks/clustering.ipynb",
+      "qmd": "practice/labs/clustering.qmd"
+    },
+    {
+      "slug": "text-vectorization",
+      "title": "Text Vectorization",
+      "practice_chapter": "11",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/python_text_vector.ipynb",
+      "sha256": "c441b5a4a5d68f3b55a60fc7341b937fd371ba7261efb15c466edab93c3b2bd2",
+      "notebook": "practice/notebooks/text-vectorization.ipynb",
+      "qmd": "practice/labs/text-vectorization.qmd"
+    },
+    {
+      "slug": "text-vectorization-assignment",
+      "title": "Text Vectorization Programming Assignment",
+      "practice_chapter": "11",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/python_text_vector.ipynb",
+      "sha256": "ba44c66dfef9030458d5199fea2a7b970ae50958a28ba22348850760e0e3f7b0",
+      "notebook": "practice/notebooks/text-vectorization-assignment.ipynb",
+      "qmd": "practice/labs/text-vectorization-assignment.qmd"
+    },
+    {
+      "slug": "integrated-learning-assignment",
+      "title": "Integrated Data Learning Assignment",
+      "practice_chapter": "11",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/data_learning.ipynb",
+      "sha256": "d9274a32fe24967f3250bb3eda16e239473333194ce659202f7ddf99c7d1a315",
+      "notebook": "practice/notebooks/integrated-learning-assignment.ipynb",
+      "qmd": "practice/labs/integrated-learning-assignment.qmd"
+    },
+    {
+      "slug": "sqlite-assignment",
+      "title": "SQLite and Data Retrieval Assignment",
+      "practice_chapter": "12",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/python_sqlite.ipynb",
+      "sha256": "5c462c58e6cb23ab3a2bbc63b25bd275b26e620fb1dbcd3c88fb8d0b3e32df64",
+      "notebook": "practice/notebooks/sqlite-assignment.ipynb",
+      "qmd": "practice/labs/sqlite-assignment.qmd"
+    },
+    {
+      "slug": "sqlite",
+      "title": "SQLite Practice",
+      "practice_chapter": "12",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/sql/sqlite.ipynb",
+      "sha256": "bef1b691c7a9e71d754bc819db0f41757474fbab6a50dbbe1c1c1a5433c347db",
+      "notebook": "practice/notebooks/sqlite.ipynb",
+      "qmd": "practice/labs/sqlite.qmd"
+    },
+    {
+      "slug": "sqlite-python",
+      "title": "SQLite with Python",
+      "practice_chapter": "12",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/sql/sqlite_python.ipynb",
+      "sha256": "e426155bf53e089cc8ad65d1af46294c3312e925bee5d0544f43c8bca9794b71",
+      "notebook": "practice/notebooks/sqlite-python.ipynb",
+      "qmd": "practice/labs/sqlite-python.qmd"
+    },
+    {
+      "slug": "association-rules",
+      "title": "Association Rule Mining",
+      "practice_chapter": "14",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/python_association_rule_mining.ipynb",
+      "sha256": "45730cd5c4651a2a9bbf5d6ea7790130358a0052b6052df98b3eeae3e51d848c",
+      "notebook": "practice/notebooks/association-rules.ipynb",
+      "qmd": "practice/labs/association-rules.qmd"
+    },
+    {
+      "slug": "data-mining-project",
+      "title": "Data Mining Project",
+      "practice_chapter": "16",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/data_mining_project.ipynb",
+      "sha256": "70ec5cb6077850b831b3aa0b08d6ddd41ee796f4cb5a9e858ab45fb8f923aeb9",
+      "notebook": "practice/notebooks/data-mining-project.ipynb",
+      "qmd": "practice/labs/data-mining-project.qmd"
+    },
+    {
+      "slug": "reinforcement-learning-extension",
+      "title": "Reinforcement Learning Extension",
+      "practice_chapter": "16",
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/research/rl_taxi.ipynb",
+      "sha256": "f59b2fd16a6cac0df058c947b4e197676b31c6d7ca93db9d36f7c40ad31bc460",
+      "notebook": "practice/notebooks/reinforcement-learning-extension.ipynb",
+      "qmd": "practice/labs/reinforcement-learning-extension.qmd"
+    }
+  ],
+  "data": [
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/data/adult.data",
+      "destination": "practice/data/adult.data"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/data/cars.txt",
+      "destination": "practice/data/cars.txt"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/data/phones.csv",
+      "destination": "practice/data/phones.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/data/spam.csv",
+      "destination": "practice/data/spam.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/yelp_reviews.csv",
+      "destination": "practice/data/yelp_reviews.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/demo/groceries/groceries_modified.csv",
+      "destination": "practice/data/groceries/groceries_modified.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/data/Yelp_Usefulness_Practice.csv",
+      "destination": "practice/data/Yelp_Usefulness_Practice.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/python/data/students.csv",
+      "destination": "practice/data/students.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/data/CCSubset.csv",
+      "destination": "practice/data/CCSubset.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/data/Yelp_Usefulness_Assignment2_1.csv",
+      "destination": "practice/data/Yelp_Usefulness_Assignment2_1.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/data/Yelp_Usefulness_Assignment2_2.csv",
+      "destination": "practice/data/Yelp_Usefulness_Assignment2_2.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/data/Yelp_Usefulness_Assignment2_3.csv",
+      "destination": "practice/data/Yelp_Usefulness_Assignment2_3.csv"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/problems/mydatabase.db",
+      "destination": "practice/data/mydatabase.db"
+    }
+  ],
+  "figures": [
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/drexel_vpn1.png",
+      "destination": "practice/figures/drexel_vpn1.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/drexel_vpn3.png",
+      "destination": "practice/figures/drexel_vpn3.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/right.png",
+      "destination": "practice/figures/right.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/jupyter_hub.png",
+      "destination": "practice/figures/jupyter_hub.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/jupyter1.png",
+      "destination": "practice/figures/jupyter1.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/jupyter2.png",
+      "destination": "practice/figures/jupyter2.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/book_stack.jpg",
+      "destination": "practice/figures/book_stack.jpg"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/wait_line.jpg",
+      "destination": "practice/figures/wait_line.jpg"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/served.jpg",
+      "destination": "practice/figures/served.jpg"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/train.jpg",
+      "destination": "practice/figures/train.jpg"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/outliers/summer.jpg",
+      "destination": "practice/figures/outliers/summer.jpg"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/models/figures/nn_sigmoid.png",
+      "destination": "practice/figures/nn_sigmoid.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/research/figures/demo_state.png",
+      "destination": "practice/figures/research/demo_state.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/research/figures/soccer_game.jpg",
+      "destination": "practice/figures/research/soccer_game.jpg"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/research/figures/taxi.png",
+      "destination": "practice/figures/research/taxi.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/research/figures/cab2.png",
+      "destination": "practice/figures/research/cab2.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/research/figures/0_south.png",
+      "destination": "practice/figures/research/0_south.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/research/figures/8_dropoff.png",
+      "destination": "practice/figures/research/8_dropoff.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/research/figures/7_north.png",
+      "destination": "practice/figures/research/7_north.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/sql/figures/sqlite3.png",
+      "destination": "practice/figures/sqlite/sqlite3.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/sql/figures/sqlite_open.png",
+      "destination": "practice/figures/sqlite/sqlite_open.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/python_data/typewrite.jpg",
+      "destination": "practice/figures/python_data/typewrite.jpg"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/python_data/text.png",
+      "destination": "practice/figures/python_data/text.png"
+    },
+    {
+      "source": "/Users/wk77/Documents/git/book/oldbook_organized/web-source/figures/python_data/radish.png",
+      "destination": "practice/figures/python_data/radish.png"
+    }
+  ]
+}

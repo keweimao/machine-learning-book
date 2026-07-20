@@ -1,0 +1,189 @@
+---
+execute:
+  enabled: false
+---
+
+# Integrated Data Learning Assignment {#ch-lab-integrated-learning-assignment .unnumbered}
+
+## Recovered activity {#sec-lab-integrated-learning-assignment}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `problems/data_learning.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/integrated-learning-assignment.ipynb)
+to run and modernize it interactively.
+:::
+
+## Preparation
+
+Before completing the assignment, please get yourself familiar with the models and techniques discussed in Week 6. In particular, you will be **well prepared** for the assignment if you have done **the following exercise**: 
+
++ [ ] [Probability and Linearity in Data](../demo/data_prob_linear.html)
+
+
+## A. Data Preparation (1 points)
+
+Please identify or prepare a text classification dataset. You can either: 
++ Find and download an **existing dataset**, OR
++ **Create a dataset** on your own
+
+Some of the websites to search for a dataset: 
++ https://www.kaggle.com/datasets
++ https://archive.ics.uci.edu/ml/datasets.php
++ https://vincentarelbundock.github.io/Rdatasets/datasets.html
+
+Specific **requirements** of your dataset: 
+1. [ ] It has to have **text** data, e.g. abstracts, news reports. 
+2. [ ] It has to have a **class** attribute, e.g. with at least **two** categories or labels.
+3. [ ] It has to have at least: 
+    + If it is an **existing dataset, 300+** data instances total and **100+** in each class, **OR**
+    + If you **create** the dataset, **30+** data instances total and **10+** in each class. 
+4. [ ] Please **avoid** any dataset already used in **existing** exercises or assignments in this class. 
+
+Please do: 
++ [ ] Include a **link** to your data or **submit** your data. 
++ [ ] Include a **brief description** of your data, attributes, and instances. 
++ [ ] Discuss the classification **task** on the data and **objectives**. 
+
+## B. Probabilities and Zipf (3 points)
+
+### B.1. Class Distributions and Probabilities (0.5 point)
+
+Find out the number of instances in each class $c$ and compute it's probability $p(c)$. Compile a table like this (example): 
+
+|   Class $c$    |  Instances $n_c$  |   Probability $p(c)$   |
+|----------------|-------------------|------------------------|
+| Fake           |    100            | $\frac{100}{300} = 1/3$|
+| True           |    200            | $\frac{200}{300} = 2/3$|
+
+### B.2. Term Probabilities and Zipf's Law (2.5 points)
+
+Conduct analysis in the following steps to obtain the term probability pattern in your text data. You can follow the example in [Probability and Linearity in Data](../demo/data_prob_linear.html) to use ```CountVectorizer``` from ```sklearn.feature_extraction.text```. 
+
+#### B.2.1. Rank, Frequency, and Probability
+
+Rank terms by frequency and show the top five with probabilities (example): 
+
+|      |t       |$k_t$ |$f_t$| $p_t$ |
+|------|--------|------|-----|-------|
+|0     |to      |1     |2242 |   |
+|1     |you     |2     |2240 |   |
+|2     |the     |3     |1328 |   |
+|3     |and     |4     |979  |   |
+|4     |in      |5     |898  |   |
+
+#### B.2.2. Probability vs. Rank Plot
+
+Produce a probability $p_t$ vs. $k_t$ plot on **log-log** coordinates. 
+
+#### B.2.3. Regression line 
+
+Use linear regression to fit the $log(p_t) \sim log(k_t)$ relation: 
+1. Identify the **coefficient** value from the regression, e.g. a value like $-1.2$ means $p_t \propto \frac{1}{k_t^{1.2}}$. 
+2. Plot the regression line on the $p_t$ vs. $k_t$ plot. 
+3. Do your data follow Zipf's law? Discuss the visual pattern, the fitted coefficient, and the regression line. 
+
+## C. Text Vectorization (2 points)
+
+### C.1. Training and Test Data
+
+Split your data into $80\%$ training and $20\%$ test data. 
+
+### C.2. Text Vectorization
+
+Use the ```CountVectorizer``` to: 
+1. [ ] Vectorize (fit) your **training** data, based on the ```text``` field. 
+2. [ ] Your vectorizer should now have a set of **features** (words) from the training data 
+3. [ ] Transform your **test** data (text field), with the same vectorizer. 
+
+### C.3. Terms and Conditional Probabilities
+
+**Think** about two terms (words): 
+1. [ ] One term (word) $t_1$ that is relevant to one class $c_1$, e.g. ```prize``` for a **spam** class for spam classification. 
+2. [ ] A second term (word) $t_2$ that is relevant to another class $c_2$. 
+
+Identify their conditional probabilities: 
+
+\begin{eqnarray}
+p(t_1|c_1) & = & ... \\
+p(t_1|c_2) & = & ... \\
+p(t_2|c_1) & = & ... \\
+p(t_2|c_2) & = & ... \\
+\end{eqnarray}
+
+Discuss and explain: 
+1. [ ] What do these probabilities mean? 
+2. [ ] Are the above probability values reasonable (sensible)? Why or why not? 
+3. [ ] Do you think they will be helpful in the classification task?
+
+## D. Classification (5 points)
+
+### D.1. Probabilistic Naive Bayes Model (2 points)
+
+Pick one of the Naive Bayes models we discussed: ```BernoulliNB``` **OR** ```MultinomialNB```, and conduct the following experiments: 
+
+1. [ ] Pick an **alpha** parameter, build and train (fit) the model using the $80\%$ training data. 
+2. [ ] Test (predict) the model on the $20\%$ test data. 
+3. [ ] Evaluate, show the **confusion matrix**. 
+4. [ ] Discuss, for your task and objectives, **which number(s)** in the confusion matrix is most important, that you wish to minimize or maximize? Why? 
+5. [ ] Compute **accuracy**, **kappa**, and a **3rd metric** (do some research in ```sklearn.metrics```) that best evaluates evaluate your objective in the above **\#4** bullet point. 
+6. [ ] Change **alpha**, train, test, and evaluate again. 
+
+|  Model                 |  Accuracy   |  Kappa     |  3rd Metric  |
+|------------------------|-------------|------------|--------------|
+| Naive Bayes $\alpha_1$ |             |            |              |
+| Naive Bayes $\alpha_2$ |             |            |              |
+
+
+### D.2. Linear Model (2 points)
+
+#### D.2.1. Linearity
+
+Remember the two terms $t_1$ and $t_2$ for two classes $c_1$ and $c_2$ you picked earlier? 
+
+Scatter plot the training data with: 
+
+1. [ ] $t_1$ and $t_2$ as the $X$ and $Y$ axes. 
+2. [ ] **Color code** data points based on their classes $c_1$ and $c_2$. 
+    + You only need to plot data in the two classes. 
+    + Make sure the two colors are distinguishable. 
+3. [ ] Discuss whether: 
+    + The two classes are (roughly) **separable** on the plot? 
+    + The two classes are **linearly** separable on the plot? 
+    + (Optional) It is possible they are linearly separable in a higher dimensional space with **all term features**? 
+
+#### D.2.2. Linear Classification
+
+1. [ ] Pick a linear classification model: ```Perceptron``` **OR** ```sklearn.svm.LinearSVC```. 
+2. [ ] Conduct the same experiments outlined in section D.1 (for the Naive Bayes model). 
+3. [ ] Make sure you research the model, pick a **parameter**, and use **two** different values for the parameter to train, test, and evaluate the model. 
+
+|  Model                 |  Accuracy   |  Kappa     |  3rd Metric  |
+|------------------------|-------------|------------|--------------|
+| Linear model, param1   |             |            |              |
+| Linear model, param2   |             |            |              |
+
+### D.3 Non-linear Classification or Alternative (1 points)
+
+Pick **one classification model** from the following: 
++ Non-linear Support Vector Machines (SVM) ```sklearn.svm.SVC```
++ Non-linear Multi-layer Perceptron: ```sklearn.neural_network.MLPClassifier```
++ Decision Tree: ```sklearn.tree.DecisionTreeClassifier```
++ Lazy Learning: ```sklearn.neighbors.KNeighborsClassifier```
++ Or any other classification model in ```sklearn```
+
+Conduct the **same analysis as in D.2.2.**
+
+|  Model                 |  Accuracy   |  Kappa     |  3rd Metric  |
+|------------------------|-------------|------------|--------------|
+| Third model, param1    |             |            |              |
+| Third model, param2    |             |            |              |
+
+
+## E. Conclusion (1 point)
+
++ [ ] Compare the results in section D. 
++ [ ] Review your classification task and objectives. 
++ [ ] Which model gives you the best result so far? Why? 
++ [ ] Thoughts on future work on the data? 
+

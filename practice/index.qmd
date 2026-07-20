@@ -1,0 +1,25 @@
+---
+number-sections: false
+---
+
+# Practice and Projects {#ch-practice .unnumbered}
+
+This volume turns the conceptual development in Volume I into observable,
+testable work. It is intentionally placed after the theory chapters so readers
+can follow the conceptual narrative continuously, while every substantive
+theory section provides a direct route here.
+
+## How to use this volume
+
+- **Read-first path:** finish a theory section, then follow its *Put it into
+  practice* link to the aligned activity or development scaffold.
+- **Build-first path:** start from an activity, use its *Theory connection* to
+  revisit the underlying model, and return with a concrete question.
+- **Course path:** combine selected activities into short labs, assignments,
+  and a final project without changing the theory sequence.
+
+Recovered activities preserve their original wording and code wherever
+possible. They are rendered without execution until dependencies, datasets,
+and expected outputs have been modernized and tested. Sections marked as
+development scaffolds make the missing practical coverage explicit rather than
+hiding it.

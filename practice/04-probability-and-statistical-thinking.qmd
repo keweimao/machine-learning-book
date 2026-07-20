@@ -1,0 +1,102 @@
+---
+number-sections: false
+---
+
+# Practice 4: Probability and Statistical Thinking {#ch-practice-04 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 4](../chapters/04-probability-statistics.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Probability {#sec-pr-04-probability}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Probability Basics {#sec-pr-04-probability-basics}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Joint probability {#sec-pr-04-joint-probability}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Independent events {#sec-pr-04-independent-events}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Dependent Events {#sec-pr-04-dependent-events}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## The Bayesian Theorem {#sec-pr-04-the-bayesian-theorem}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Naive Bayes' Model {#sec-pr-04-naive-bayes-model}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Probability Estimators {#sec-pr-04-probability-estimators}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Probability Distributions and Models {#sec-pr-04-probability-distributions-and-models}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Continuous Probability Distribution {#sec-pr-04-continuous-probability-distribution}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Probability Estimators {#sec-pr-04-probability-estimators-2}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Discrete Probability Estimation {#sec-pr-04-discrete-probability-estimation}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### MLE for a Continuous Variable {#sec-pr-04-mle-for-a-continuous-variable}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

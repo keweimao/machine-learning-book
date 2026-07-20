@@ -1,0 +1,53 @@
+---
+number-sections: false
+---
+
+# Practice 2: Data Types and Representations {#ch-practice-02 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 2](../chapters/02-data-representations.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Datum {#sec-pr-02-datum}
+
+Recovered starting point: [Python Data Types](labs/python-data-types.qmd#sec-lab-python-data-types).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Numerical {#sec-pr-02-numerical}
+
+Recovered starting point: [Python Data Types](labs/python-data-types.qmd#sec-lab-python-data-types).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Categorical {#sec-pr-02-categorical}
+
+Recovered starting point: [Python Data Types](labs/python-data-types.qmd#sec-lab-python-data-types).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Data {#sec-pr-02-data}
+
+Recovered starting point: [Python Data Structures](labs/python-data-structures.qmd#sec-lab-python-data-structures) and [Python Data Structures Assignment](labs/python-data-structures-assignment.qmd#sec-lab-python-data-structures-assignment) and [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Sets {#sec-pr-02-sets}
+
+Recovered starting point: [Python Data Structures](labs/python-data-structures.qmd#sec-lab-python-data-structures) and [Python Data Structures Assignment](labs/python-data-structures-assignment.qmd#sec-lab-python-data-structures-assignment) and [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Vectors {#sec-pr-02-vectors}
+
+Recovered starting point: [Python Data Structures](labs/python-data-structures.qmd#sec-lab-python-data-structures) and [Python Data Structures Assignment](labs/python-data-structures-assignment.qmd#sec-lab-python-data-structures-assignment) and [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

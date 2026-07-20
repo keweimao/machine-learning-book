@@ -151,6 +151,14 @@ comparing values in the data. Normally such concept representation is
 discovered through *training data* and to be applied on testing data,
 where decisions or predictions will be made.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/01-from-data-to-information-and-meaning.qmd#sec-pr-01-from-data-to-meaning)
+to turn **From Data to Meaning** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Concept Generalizability
 
 The example shows that we can potentially identify a concept and gain
@@ -209,6 +217,14 @@ It takes an in-depth analysis with proper evaluation and interpretation
 to assess the learned concept, its generalizability, and applicability.
 This cannot be accomplished by crunching the numbers alone. It requires
 human intelligence along with machine learning.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/01-from-data-to-information-and-meaning.qmd#sec-pr-01-concept-generalizability)
+to turn **Concept Generalizability** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Final Observation
 

@@ -1,0 +1,405 @@
+---
+execute:
+  enabled: false
+---
+
+# Classification Patterns and Evaluation Assignment {#ch-lab-classification-patterns-assignment .unnumbered}
+
+## Recovered activity {#sec-lab-classification-patterns-assignment}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `problems/assignment_2_final.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/classification-patterns-assignment.ipynb)
+to run and modernize it interactively.
+:::
+
+## Preparation
+
+Please import all necessary packages and setup ```%matplotlib``` for inline plots in the report. Also, load the dataset, which you can download from here: [Yelp_Usefulness_Assignment2_1.csv](../data/Yelp_Usefulness_Assignment2_1.csv). There are several versions of the dataset, so please make sure that you load the correct version. Please refer to the [Python Data Proprocessing](data-preprocessing.qmd#sec-lab-data-preprocessing) for details about the dataset.
+
+
+```{python}
+## Imports all necessary modules
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+from numpy import linalg
+from scipy import stats
+from mlxtend.feature_selection import SequentialFeatureSelector as SFS
+from mlxtend.plotting import plot_sequential_feature_selection as plot_sfs
+from sklearn.naive_bayes import MultinomialNB
+from sklearn import preprocessing
+
+## This loads the csv file from disk
+yelp_data = pd.read_csv(
+    filepath_or_buffer = "../data/Yelp_Usefulness_Assignment2_1.csv", sep = ",", header=0 )
+
+print(yelp_data.head(20))
+## print the dimension of the data
+print(yelp_data.shape)
+```
+
+## 1. Data Cleaning
+
+The data from the real world is not necessarily clean. Therefore, you need to clean your data. If it is not cleaned properly, it can have a significant impact on the analysis. You need to find three problems in the loaded data. It should be noted that there might be more than three problems. As far as you can find three major problems, you will meet the expectation. Examine the data by applying descriptive analysis and other measures. The data preprocessing exercise should include the basic code and procedures for this. Once you found those problems,  please describe those problems and explain how you will handle the problems. You also need to provide rationale and pros/cons for your approach in detail. 
+
+### 1.1. The first problem (1 point)
+1.1.1 What is the first problem you found? How did you find it?
+
+```{python}
+## Provide codes to find the problem
+```
+
+```{python}
+## Provide your open-ended answer
+```
+
+1.1.2 How will you handle this problem? Please code your approach.
+
+```{python}
+## Provide your open-ended answer
+```
+
+```{python}
+## Provide codes to handle the problem
+```
+
+1.1.3 What are pros/cons of your approach?
+
+```{python}
+## Provide your open-ended answer
+```
+
+### 1.2. The second problem (1 point)
+1.2.1 What is the second problem you found? How did you find it?
+
+```{python}
+## Provide codes to find the problem
+```
+
+```{python}
+## Provide your open-ended answer
+```
+
+1.2.2 How will you handle this problem?. Please code your approach.
+
+```{python}
+## Provide your open-ended answer
+```
+
+```{python}
+## Provide codes to handle the problem
+```
+
+1.2.3 What are pros/cons of your approach?
+
+```{python}
+## Provide your open-ended answer
+```
+
+### 1.3. The third problem (1 point)
+1.3.1 What is the third problem your found? How did you find it?
+
+```{python}
+## Provide codes to find the problem 
+```
+
+```{python}
+## Provide your open-ended answer
+```
+
+1.3.2 How will you handle the problems. Please code your approach.
+
+```{python}
+## Provide your open-ended answer
+```
+
+```{python}
+## Provide codes to handle the problem
+```
+
+1.3.3 What are pros/cons of your approach?
+
+```{python}
+## Provide your open-ended answer
+```
+
+## 2. Data Normalization + Reduction
+
+In data mining, you need to scale data to the same range to avoid dependence on the choice of measurement units (e.g., lb vs. kg). You also want to obtain a reduced representation of the dataset that is much smaller in volume but yet produces the same (or almost the same) analytical results. 
+
+In this assignment, you will explore different options for feature subset selection (e.g., metrics and methods) and normalization (e.g., z-transformation and max-min). After exploring all options, the goal is to create the best classifier. The performance will be measured by accuracy, the ratio of the number of correct predictions to the total number of input samples, considering the even distribution of the class. You are not allowed to explore any options other than feature subset selection and normalization. For instance, you can only use one machine learning algorithm (Logistic Regression). You cannot create a new attribute, and so on. In this way, you can know how feature subset selection and normalization would contribute to the modeling. It should be noted that we are not splitting the dataset into the training set and testing set, although the generalizability of the classifiers' performance can be tested only with the unseen data (i.e., testing data). We will learn about this topic later. 
+
+Please load the dataset ([Yelp_Usefulness_Assignment2_2.csv](../data/Yelp_Usefulness_Assignment2_2.csv)). There are several versions of the dataset, so please make sure that you load the correct version. 
+
+```{python}
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+## This loads the csv file from disk
+yelp_data = pd.read_csv(
+    filepath_or_buffer = "../data/Yelp_Usefulness_Assignment2_2.csv", sep = ",", header=0 )
+
+print(yelp_data.head(20))
+```
+
+Then, we are going to build a baseline model by using the Logistic Regression classifier. At the end of the following code, you can see the accuracy of this baseline classifier (0.752). After exploring various options for the normalization and feature subset selection, you would want to beat this baseline model.
+
+```{python}
+## Create feature matrix by dropping the review_id and label attribute
+## Review_id is not going to helpful to predict the usefulness of reviews
+X = yelp_data.drop(["review_id","class"], 1)    
+
+## Pre-processing. Sklearn takes integer as label
+## Create target attribute
+yelp_data[yelp_data['class'] == 'useful'] = 1
+yelp_data[yelp_data['class'] == 'not_useful'] = 0
+
+## Specify the data type. Before specifying, the type was unknown
+y = yelp_data["class"].astype('int')
+
+## Create a model
+clf = LogisticRegression()
+clf.fit(X, y)
+
+## predict target class based on the trained model 
+predictions = clf.predict(X)
+
+## Calculate the performance of the classifier
+accuracy = accuracy_score(predictions, y)
+
+print(accuracy)
+```
+
+Here is an example to scale data using z-scale. 
+
+```python
+## Apply z-transformation
+z_scaler = preprocessing.StandardScaler()
+X_scaled = z_caler.fit_transform(X)
+X_scaled = pd.DataFrame(X_scaled, columns = X.columns)
+```
+
+Here is an example to scale data using max-min transformation.
+
+```python
+## Apply Min_Max Scaler
+min_max_scaler = preprocessing.MinMaxScaler()
+X_minmax = min_max_scaler.fit_transform(X)
+X_minmax = pd.DataFrame(X_minmax, columns = X.columns)
+```
+
+Here is an example of using forward feature selection with max_min transformation.
+
+```python
+## import the necessary libraries
+from mlxtend.feature_selection import SequentialFeatureSelector as SFS
+
+min_max_scaler = preprocessing.MinMaxScaler()
+X_minmax = min_max_scaler.fit_transform(X)
+X_minmax = pd.DataFrame(X_minmax, columns = X.columns)
+
+## Sequential Forward Selection(sfs)
+sfs = SFS(LogisticRegression(),
+           k_features=(1,X_minmax.shape[1]),
+           forward=True, 
+           floating=False,
+           scoring = 'accuracy',
+           cv = 10)
+
+sfs = sfs.fit(X_minmax, y)
+## Get the final set of features
+print(sfs.k_feature_names_)
+
+X_selected = sfs.transform(X_minmax)
+
+# Fit the estimator using the new feature subset
+# and make a prediction on the test data
+clf.fit(X_selected, y)
+predictions = clf.predict(X_selected)
+
+## Calculate the performance of the classifier
+accuracy = accuracy_score(predictions, y)
+
+print(accuracy)
+```
+
+Actually, the performance would be lower than the baseline classifier, if you use the forward feature selection with max_min transformation. Now, explore all possible options. For instance, you can set the "forward" argument of the SequentialFeatureSelector as "False" to use backward feature selection. If you set the "floating" argument as "True", then you will use bi-directional stepwise feature selection. You can also change "scoring" and "cv" options. 
+
+Please refer to the following link for the detailed arguments options:
+http://rasbt.github.io/mlxtend/user_guide/feature_selection/SequentialFeatureSelector/#sequential-feature-selector
+
+Enjoy all options, find the best classifier, and answer the following questions.
+
+### 2.1. Performance (1 point)
+What was the best performance you got? Please provide the code for your best classifier. The student that achieves the best accuracy will be given ONE bonus point towards his/her final grade and, of course, fame and glory.
+
+```{python}
+## Provide the best accuracy
+```
+
+```{python}
+## Provide codes to find the best classifier
+```
+
+### 2.2. Insight and Explanation (2 points)
+
+Provide a couple of paragraphs description of what you tried, what worked, and what did not work. Describe the lesson you got by this exercise. Please be comprehensive to deliver what you have done. Perhaps, using graphs or tables will be helpful to find a meaningful pattern from your experiments.
+
+```{python}
+## Provide your open-ended answer
+```
+
+## 3. Association Rule Mining: Theory
+
+A typical example of association rule mining is market basket analysis. This process analyzes transaction data to find associations between the different items that customers place in their “shopping baskets”. The discovery of these associations can help retailers develop marketing strategies by understanding which items are frequently purchased together by customers. Also, online retailers can develop a recommendation system based on association rule mining.
+
+You are going to find association rules from the following virtual transactional data. 
+
+
+|  Transaction ID |  Items bought  |
+|------------|-------------|
+| 1 | Computer, Mouse |
+| 2 | Computer, Tablet, Smart Phone, Smart Watch |
+| 3 | Computer, Smart Watch, Game Console      |
+| 4 | Mouse, Game Console     |
+| 5 | Tablet, Smart Watch, Smart Phone     |
+| 6 | Smart Phone, Smart Watch |
+
+
+### 3.1. Rule Calculation 
+3.1.1 Calculation of support (1 point)
+
+First of all, you need to calculate the first rule, support, which is the frequency of an itemset. You are going to use relative support, which is the fraction of transactions that contain X itemset (i.e., the probability that a transaction contains X itemset). If you are not familiar with this, please watch the lecture video or read the textbook (section 6.1). Please note that both minimum support and minimum confidence are 50% (i.e., 0.5).
+
+First, you need to calculate support for frequent 1-itemsets that consist of 1 item. If each item does not pass the minimum support threshold, it does not need to be included for 2-itemsets candidates that consist of 2 items (e.g., computer and mouse) according to the Apriori property. Examine data values in the previous table and include the calculation process. If it takes too much to use the Jupter Notebook to write the calculation process, you can write them on paper and turn them in as attached. Please create tables to list corresponding values: 
+
+
+#### Frequent 1-itemsets
+|  Itemset |  Count   | Total # of Transactions | Support   | Passing Minimum Support ? | 
+|------------|-------------|------------------|-------------------|-------------------|
+| Computer |     3       |    6     |     0.5      | Yes  |
+| Mouse |     #       |    #     |     .xx      | Yes / No  |
+| Smart Watch |     #       |    #     |     .xx      | Yes / No  |
+| Tablet |     #       |    #    |     .xx      | Yes / No  |
+| Smart Phone |     #       |    #     |     .xx      | Yes / No  |
+| Game Console |     #       |    #     |     .xx      | Yes / No  |
+
+#### Frequent 2-itemsets
+|  Itemset |  Count   | Total # of Transactions | Support   | Passing Minimum Support ? | 
+|------------|-------------|------------------|-------------------|-------------------|
+| Computer, Mouse |     #       |    #     |     .xx      | Yes / No  |
+| Computer, Smart Watch |     #       |    #     |     .xx      | Yes / No  |
+|     ...    |
+
+#### Frequent 3-itemsets
+|  Itemset |  Count   | Total # of Transactions | Support   | Passing Minimum Support ? | 
+|------------|-------------|------------------|-------------------|-------------------|
+| Computer, Tablet, Smart Phone |     #       |    #     |     .xx      | Yes / No  |
+|     ...    |
+
+3.1.2 Association Rules (1 point)
+
+Itemsets that pass the minimum support can be used to find the association rule X ⇒ Y. Find all the rules X ⇒ Y with minimum support and confidence. Please see the following equations:
+
+$$ support (A⇒B) =  P(AUB) $$
+
+$$ confidence (A⇒B) =  P(B|A) = \frac{support(AUB)}{support(A)} $$
+
+Please calculate the support and confidence for each rule you found and and include the calculation process. If it takes too much to use the Jupter Notebook to write the calculation process, you can write them on paper and turn them in as attached. Please create a table to list corresponding values: 
+
+
+|  Rule |  support (A⇒B)   | confidence (A⇒B) | Passing Minimum Support ? | Passing Minimum Confidence ? | 
+|------------|-------------|------------------|-------------------|-------------------|
+| Computer ⇒ Smart Watch |     .xx       |   .xx     |     Yes / No     | Yes / No  |
+|     ...    |
+
+### 3.2. Pattern Evaluation Method
+The support-Confidence framework is often limited because not all rules found strong by this framework are interesting. Therefore, we need to utilize other interestingness measures such as lift and chi-squared ($χ^2$). You are going to calculate those other interestingness measures from the table and compare their pros/cons.
+
+|  |  Smart Watch  | Not Smart Watch |  
+|------------|-------------|------------------|
+| Smart Phone |     500    |   350    |
+| Not Smart Phone   |  100    |   50    |
+
+<br>
+$$ Lift (A,B) = \frac{Confidence(A⇒B)}{Support(C)} = \frac{Support(AUB)}{Support(A)×Support(B)} $$
+
+3.2.1 Calculation of interestingness measures (0.5 points)
+
+Please calculate the lift and chi-squared ($χ^2$) for each rule and and include the calculation process. If it takes too much to use the Jupter Notebook to write the calculation process, you can write them on paper and turn them in as attached. Please create a table to list corresponding values:
+
+
+
+|  Rule |  support (A⇒B)   | confidence (A⇒B) | Lift (A⇒B) | chi-squared ($χ^2$) | 
+|------------|-------------|------------------|-------------------|-------------------|
+| Smart Watch ⇒ Smart Phone |     .xx       |   .xx     |     .xx     | xx.xx  |
+| Not Smart Watch ⇒ Smart Phone |     .xx       |   .xx     |     .xx     | xx.xx  |
+
+3.2.2 Insight and Explanation (0.5 points)
+
+If you calculated correctly, each measure might tell you different stories. Let's assume that both minimum support and minimum confidence are 35% (i.e., .35). What do these interestingness measures tell you? Please explain what each measure means. In other words, can you tell whether there is a strong association or not? What are the pros/cons of each measure, particularly related to this example? How are you going to use these measures in the future according to what you learned?
+
+```{python}
+## Provide your open-ended answer
+```
+
+## 4. Association Rule Mining: Practice
+
+You will practice with one of the advanced pattern mining topics, quantitative association rules. So far, you have practiced with categorical variables and calculate rules based on the contingency table. However, relational and data warehouse data often involve quantitative attributes and measures. For instance, in the Yelp dataset, most attributes are not categorical variables but numeric variables. To apply association rule mining, you can convert those attributes to binary attributes by using either median or mean split. This is not an ideal approach because it will lose information, but good enough for illustration. In this assignment, you are going to use the mean split. Based on this discretization, you will find association rules and analyze those rules. Perhaps, these association rules can help you find discriminative attributes to predict the usefulness of reviews. In other words, you can use the association rule mining for feature selection. You will need to use evaluation metrics and your own (subjective) judgments to find meaningful associations. 
+
+### 4.1. Discretization (1 point)
+
+Now you need to create a binary representation of attributes. We will need to include "class" attribute, but drop "review_id" attribute.  
+
+Here is an example of converting textual representation to numeric representation. The library (MLXtend) you will use 1/0 representation for binary attributes.
+
+```python
+yelp_data['class'][yelp_data['class'] == 'useful'] = 1
+yelp_data['class'][yelp_data['class'] == 'not_useful'] = 0
+yelp_data["class"].astype('int')
+```
+
+Here is an example for descretization.
+
+```python
+yelp_data["degree"] = np.where(yelp_data["degree"] >= np.mean(yelp_data["degree"]),1,0)
+yelp_data["degree"].astype('int')
+```
+You need to iteratively apply the above transformation for all attributes. 
+
+Please load the dataset (Yelp_Usefulness_Assignment2_2.csv). As noted, there are several versions of the dataset, so please make sure that you load the correct version. Convert the data by using your own code and show the first 20 lines.
+
+```{python}
+## This loads the csv file from disk
+yelp_data = pd.read_csv(
+    filepath_or_buffer = "../data/Yelp_Usefulness_Assignment2_2.csv", sep = ",", header=0 )
+
+print(yelp_data.head(20))
+print(yelp_data.shape)
+```
+
+```{python}
+## Provide codes
+```
+
+### 4.2. Implementation (1 point)
+
+Now you need to create association rules between attributes. Please refer to the [Association Rule Mining exercise](../demo/python_association_rule_mining.html) for more details. You need to change minimum support and/or other parameters to filter out less interesting rules.
+
+Please provide the code for your association rules. If you were not able to transform the data in the previous step, you can load the preprocessed data ([Yelp_Usefulness_Assignment2_3.csv](../data/Yelp_Usefulness_Assignment2_3.csv)). Although you use this preprocessed data, any points will not be deducted.
+
+```{python}
+## Provide codes
+```
+
+### 4.3. Insight and Explanation (1 point)
+
+Provide a couple of paragraphs' description of what rules you have found. Did you find any interesting rules? Pick one interesting rule and explain how it is interesting and how you used evaluation measures. Pick one not-interesting rule and explain how it is not interesting and how evaluation measures overate the rule. Describe the lesson you got by this exercise. Please be comprehensive to deliver what you learned. Perhaps, using graphs or tables will be helpful in finding a meaningful pattern from your experiments. Also, you can compare association rules with the attributes selected from Section 2.2. 
+
+```{python}
+## Provide your open-ended answer
+```
+

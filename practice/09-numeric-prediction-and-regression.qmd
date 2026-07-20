@@ -1,0 +1,53 @@
+---
+number-sections: false
+---
+
+# Practice 9: Numeric Prediction and Regression {#ch-practice-09 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 9](../chapters/09-numeric-prediction.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Prediction with Continuous Outcomes {#sec-pr-09-prediction-with-continuous-outcomes}
+
+Recovered starting point: [Outliers versus the Normal](labs/outliers.qmd#sec-lab-outliers) and [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Linear Regression {#sec-pr-09-linear-regression}
+
+Recovered starting point: [Outliers versus the Normal](labs/outliers.qmd#sec-lab-outliers) and [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Loss Functions and Fitting {#sec-pr-09-loss-functions-and-fitting}
+
+Recovered starting point: [Outliers versus the Normal](labs/outliers.qmd#sec-lab-outliers) and [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Regularization {#sec-pr-09-regularization}
+
+Recovered starting point: [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Nonlinear Regression {#sec-pr-09-nonlinear-regression}
+
+Recovered starting point: [Outliers versus the Normal](labs/outliers.qmd#sec-lab-outliers) and [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Uncertainty and Diagnostics {#sec-pr-09-uncertainty-and-diagnostics}
+
+Recovered starting point: [Outliers versus the Normal](labs/outliers.qmd#sec-lab-outliers) and [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

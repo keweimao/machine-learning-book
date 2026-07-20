@@ -212,6 +212,14 @@ draws from the tail of $x_3$ to the head of $2g_3$. Vector and matrix
 addition is communicative, the same result can be obtained by
 $2g_3 + x_3$, as shown by dashed lines in @fig-matrix-z.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/03-vectors-matrices-and-geometric-thinking.qmd#sec-pr-03-basic-matrix-operation)
+to turn **Basic Matrix Operation** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Sum of Squares
 
 Suppose $x$ is a m-dimensional column vector, which is essentially a
@@ -304,6 +312,14 @@ $$\begin{aligned}
     \end{matrix}
 \end{aligned}$$
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/03-vectors-matrices-and-geometric-thinking.qmd#sec-pr-03-sum-of-squares)
+to turn **Sum of Squares** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Vector Magnitude (Length)
 
 Any vector has two components: a direction and a magnitude (length).
@@ -341,6 +357,14 @@ $$\begin{aligned}
 ![Vector magnitude.](../assets/figures/chapter03/fig-matrix-magnitude){#fig-matrix-magnitude fig-alt="A vector from the origin to the point 3,4, forming a right triangle with length 5." width="55%"}
 
 which is the length shown in @fig-matrix-magnitude.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/03-vectors-matrices-and-geometric-thinking.qmd#sec-pr-03-vector-magnitude-length)
+to turn **Vector Magnitude (Length)** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Vector Distance
 
@@ -449,6 +473,14 @@ $$\begin{aligned}
 Euclidean distance is symmetric as a metric, i.e.
 $\left\lVert v-u \right\rVert = \left\lVert u-v \right\rVert$. The distance between the two vectors is
 illustrated in @fig-matrix-distance.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/03-vectors-matrices-and-geometric-thinking.qmd#sec-pr-03-vector-distance)
+to turn **Vector Distance** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Vector Angle
 
@@ -618,10 +650,50 @@ $-1$ when they are in the opposite direction (a $180^\circ$ or $\pi$
 angle). Cosine is $0$ when two vectors are orthogonal (perpendicular) to
 each other (right angle). See @fig-matrix-cosine.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/03-vectors-matrices-and-geometric-thinking.qmd#sec-pr-03-vector-angle)
+to turn **Vector Angle** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Vector Cross Product
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/03-vectors-matrices-and-geometric-thinking.qmd#sec-pr-03-vector-cross-product)
+to turn **Vector Cross Product** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Optimization
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/03-vectors-matrices-and-geometric-thinking.qmd#sec-pr-03-optimization)
+to turn **Optimization** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Kernel Functions
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/03-vectors-matrices-and-geometric-thinking.qmd#sec-pr-03-kernel-functions)
+to turn **Kernel Functions** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Graph Analysis
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/03-vectors-matrices-and-geometric-thinking.qmd#sec-pr-03-graph-analysis)
+to turn **Graph Analysis** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->

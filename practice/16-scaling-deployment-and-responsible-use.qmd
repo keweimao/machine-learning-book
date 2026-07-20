@@ -1,0 +1,60 @@
+---
+number-sections: false
+---
+
+# Practice 16: Scaling, Deployment, and Responsible Use {#ch-practice-16 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 16](../chapters/16-scaling.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Time, Space, Data, and Compute {#sec-pr-16-time-space-data-and-compute}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Batch, Streaming, and Distributed Workflows {#sec-pr-16-batch-streaming-and-distributed-workflows}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## From Experiment to Reproducible Pipeline {#sec-pr-16-from-experiment-to-reproducible-pipeline}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Deployment, Monitoring, and Drift {#sec-pr-16-deployment-monitoring-and-drift}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Privacy, Security, and Misuse {#sec-pr-16-privacy-security-and-misuse}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project) and [Reinforcement Learning Extension](labs/reinforcement-learning-extension.qmd#sec-lab-reinforcement-learning-extension).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Energy, Sustainability, and Proportionality {#sec-pr-16-energy-sustainability-and-proportionality}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project) and [Reinforcement Learning Extension](labs/reinforcement-learning-extension.qmd#sec-lab-reinforcement-learning-extension).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Responsible Decisions and Human Oversight {#sec-pr-16-responsible-decisions-and-human-oversight}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project) and [Reinforcement Learning Extension](labs/reinforcement-learning-extension.qmd#sec-lab-reinforcement-learning-extension).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

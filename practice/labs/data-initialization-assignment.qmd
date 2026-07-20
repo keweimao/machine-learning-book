@@ -1,0 +1,295 @@
+---
+execute:
+  enabled: false
+---
+
+# Data, Vectors, and Cosine Assignment {#ch-lab-data-initialization-assignment .unnumbered}
+
+## Recovered activity {#sec-lab-data-initialization-assignment}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `problems/python_data_init.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/data-initialization-assignment.ipynb)
+to run and modernize it interactively.
+:::
+
+## Preparation
+
+Please import all necessary packages and setup ```%matplotlib``` for inline plots in the report. 
+
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+from numpy import linalg
+
+from scipy import stats
+from scipy.stats import norm, probplot
+from sklearn.datasets import load_iris
+from sklearn.preprocessing import StandardScaler
+
+
+%matplotlib inline
+```
+
+## 1. Basic Statistics (2 points)
+
+Suppose that the data for analysis includes the attribute age. The age values for the data tuples are
+(in increasing order): 
+
+```{python}
+age = [13, 15, 16, 16, 19, 20, 20, 21, 22, 22, 25, 25, 25, 25, 30, 33, 33, 35, 35, 35, 35, 36, 40, 45, 46, 52, 70]
+```
+
+(a) What is the mean of the data? What is the median?
+
+```{python}
+# Use Numpy's np.mean(age)
+# Use Numpy's np.median(age)
+```
+
+(b) What is the mode of the data? 
+
+```{python}
+# Use Scipy's stats.mode(age)
+```
+
+(c) Plot the distribution and comment on the data’s modality (i.e., bimodal, trimodal, etc.)
+
+```{python}
+# Use Matplotlib's plt.hist(age)
+```
+
+(d) Can you find (roughly) the first quartile (Q1) and the third quartile (Q3) of the data?
+
+```{python}
+# Try: np.percentile(age, [25, 75])
+```
+
+(e) Give the five-number summary of the data.
+
+(f) Show a boxplot of the data.
+
+```{python}
+# Try: plt.boxplot(age)
+```
+
+(g) What does the boxplot tell? Be thorough. 
+
+## 2. IRIS Data Statistics
+
+Consult IRIS data documentation online about the dataset: 
+
+http://archive.ics.uci.edu/ml/datasets/Iris
+
+which has been included in related packages such as Sklearn and Seaborn. 
+
+Here is an example to load data into a data frame. 
+
+```python
+iris = load_iris()
+iris_df = pd.DataFrame(data= np.c_[iris['data'], iris['target']], columns= iris['feature_names'] + ['target'])
+iris_df.head()
+```
+
+
+### 2.1. Attribute Types (1 point)
+
+Examine data values in the data frame and create a table to list all attribute data types: 
+
+|  Attribute |  # Values   |      Order?      |     Interval?     |     Zero Point?    | Data Type     |
+|------------|-------------|------------------|-------------------|--------------------|-----------------------|
+|Sepal Length|     #       |     Yes / No     |     Yes / No      |      Yes / No      | Nominal /Ordinal/Interval/Ratio |
+|     ...    |
+
+### 2.2. Data Distributions (1.5 points)
+
+Examine data distributions for each **numeric** attribute, using a histogram with a density plot. 
+
+For example, you can use the Seaborn's ```distplot()``` function to create a histogram: 
+
+```python
+sns.distplot(iris_df["sepal length (cm)"])
+```
+
+
+#### Questions
+
+1. Does it look like a normal distribution? 
+2. What modality is the distribution? (# modes)
+3. Is the distribution skewed? If so, positively or negatively? 
+
+#### Repeat for Each Attribute
+
++ Repeat the above for each numeric attribute, and answer the questions. 
++ Pick a distribution that is unlikely a normal distribution
++ Generate a QQ plot on the actual quantiles vs. normal distribution quantiles
++ Is it a normal distribution according to QQ? Why or why not? 
+
+Example code to generate a QQ plot against normal: 
+
+```python
+probplot(iris_df["sepal length (cm)"], dist="norm", plot=plt)
+```
+
+
+### 2.3. Subset Data Distributions (2 points)
+
+Now take a data subset for a specific ```target``` (species). For example: 
+
+```python
+iris_df[iris_df["target"]==0.0]
+```
+
+will limit the data to rows with target value ```0.0```. 
+
+Produce and exmamine each numeric attribute's data distribution for each target. 
+
+Example code to plot subset distribution: 
+
+```python
+sns.distplot(iris_df[iris_df["target"]==0.0]["sepal length (cm)"])
+```
+
+
+#### Questions
+
+1. Does it look like a normal distribution? 
+2. What modality is the distribution? (# modes)
+3. Is the distribution symmetric or skewed? If so, positively or negatively? 
+
+#### Repeat for Each Target
+
++ Repeat the above for **each numeric attribute** and **each target** level (0, 1, 2). 
++ Pick a distribution that looks like a normal distribution. 
++ Generate a QQ plot on the actual quantiles vs. normal distribution quantiles
++ Is it a normal distribution according to QQ? Why or why not? 
+
+Example code to generate a QQ plot against the normal distribution: 
+
+```python
+probplot(iris_df[iris_df["target"]==1.0]["petal length (cm)"], dist="norm", plot=plt)
+```
+
+
+### 2.4. Boxplots vs. Target Levels (1.5 points)
+
+For each numeric attribute, generate boxplots across the target levels. 
+
+For example: 
+
+```python
+sns.boxplot(x="target", y="sepal length (cm)", data=iris_df)
+```
+
+
+#### For Each Attribute
+
+Examine the boxplots and discuss the following questions: 
+
+1. Do the distributions show a **constant variance** on the different target levels? 
+2. On each level, does it show a **symmetric** distribution? Or is it positively or negatively skewed? 
+3. Are the means constant or different? What does it mean (about potential correlation)? 
+
+Please do the boxplots and answer the question for each numeric attribute. 
+
+## 3. Correlation, Similarity and Distance
+
+### 3.1. Scatter Plots (0.25 point)
+
+Reload the IRIS data from Seaborn and create pairwise scatter plots for IRIS variables: 
+
+```python
+iris = sns.load_dataset("iris")   # reload data from seaborn
+sns.pairplot(iris)
+```
+
+
+Optional: You may also consider using the hue parameter to color code the target (species) on the plots: 
+
+```python
+sns.pairplot(iris, hue="species");
+```
+
+### 3.2. Visual Examination (1 point)
+
+Examine the scatterplots and identify **two pairs** of numeric attributes: 
+1. One pair of **strongly correlated** attributes; Briefly explain **why or whether** they are positively or negatively correlated? 
+2. One pair of weakly correlated or **uncorrelated** attributes; Briefly explain **why** they appear to be uncorrelated. 
+
+### 3.3. Pearson Correlation (1 point)
+
+Now compute Pearson correlation on the data attributes. 
+
+```python
+pcorr = iris.corr(method='pearson')
+pcorr
+```
+
+
+For the two pairs of attributes you identified earlier, single out their Pearson correlation scores: 
+
+1. Strongly correlated pair: Pearson score
+2. Uncorrelated pair: Pearson score
+
+Note: please keep **3 digits** after the decimal point, e.g. *0.123*. 
+
+What do the scores tell you? Are they consistent with your visual observation? 
+
+### 3.4. Euclidean Distance (0.25 point)
+
+Compute Euclidean distances for the two pairs of attributes. For example: 
+
+```python
+a = iris['sepal_length']
+b = iris['sepal_width']
+d = linalg.norm(a-b)
+d
+```
+
+
+### 3.5. Cosine 1 with Original Values (0.25 point)
+
+Compute Cosine similarities for the two pairs of attributes. For example: 
+
+```python
+a = iris['petal_length']
+b = iris['petal_width']
+c1 = np.dot(a,b)/(linalg.norm(a)*linalg.norm(b))
+c1
+```
+
+
+### 3.6. Cosine 2 with Vectors from Mean (0.25 point)
+
+Subtract the mean from each attribute value and make each attribute (column) a vector from its mean (instead of from the origin), and compute Cosine similarities. For example: 
+
+```python
+a = iris['petal_length']
+a2 = a - np.mean(a)
+b = iris['petal_width']
+b2 = b - np.mean(b)
+c2 = np.dot(a2,b2)/(linalg.norm(a2)*linalg.norm(b2))
+c2
+```
+
+
+### 3.7. Summary and Observation (1 point)
+
+Compile all scores (pearson, euclidean distance, cosine 1 and cosine 2) together as one table below: 
+
+|   Pair                               |   Pearson   |    Euclidean Dist  |  Cosine 1   |   Cosine 2   |
+|--------------------------------------|-------------|--------------------|-------------|--------------|
+| Strong correlation: attr 1 vs. attr 2|             |                    |             |              |
+| Weak correlation: attr 3 vs. attr 4  |             |                    |             |              |
+
+
+Examine the scores for each pair in the table, and answer the questions: 
+
+1. Does a stronger Pearson correlation necessarily lead to a smaller or greater Euclidean distance? 
+2. Does a strong Pearson correlation lead to a greater Cosine 1 (vectors from the origin)? 
+3. What do you observe is the relation between Pearson correlation and Cosine 2 (vectors from the mean)? 
+

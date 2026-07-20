@@ -10,15 +10,63 @@ Torture the data, and it will confess to anything.
 
 ## Training Performance and Generalization
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/15-generalization-model-selection-and-fit.qmd#sec-pr-15-training-performance-and-generalization)
+to turn **Training Performance and Generalization** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Bias, Variance, and Model Capacity
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/15-generalization-model-selection-and-fit.qmd#sec-pr-15-bias-variance-and-model-capacity)
+to turn **Bias, Variance, and Model Capacity** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Validation and Cross-Validation
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/15-generalization-model-selection-and-fit.qmd#sec-pr-15-validation-and-cross-validation)
+to turn **Validation and Cross-Validation** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Regularization
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/15-generalization-model-selection-and-fit.qmd#sec-pr-15-regularization)
+to turn **Regularization** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Learning Curves and Diagnostics
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/15-generalization-model-selection-and-fit.qmd#sec-pr-15-learning-curves-and-diagnostics)
+to turn **Learning Curves and Diagnostics** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Hyperparameter Selection Without Leakage
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/15-generalization-model-selection-and-fit.qmd#sec-pr-15-hyperparameter-selection-without-leakage)
+to turn **Hyperparameter Selection Without Leakage** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Summary, Exercises, and Lab
 

@@ -1,0 +1,59 @@
+---
+number-sections: false
+---
+
+# Practice 13: Graphs and Structural Analysis {#ch-practice-13 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 13](../chapters/13-structural-analysis.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Graphs as Data {#sec-pr-13-graphs-as-data}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Graphs as Data** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+## Paths, Connectivity, and Traversal {#sec-pr-13-paths-connectivity-and-traversal}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Paths, Connectivity, and Traversal** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+## Centrality and Influence {#sec-pr-13-centrality-and-influence}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Centrality and Influence** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+## Communities and Structural Roles {#sec-pr-13-communities-and-structural-roles}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Communities and Structural Roles** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+## Link Prediction {#sec-pr-13-link-prediction}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Link Prediction** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+## From Graph Features to Graph Learning {#sec-pr-13-from-graph-features-to-graph-learning}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **From Graph Features to Graph Learning** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+:::

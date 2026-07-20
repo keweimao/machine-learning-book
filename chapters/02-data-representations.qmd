@@ -1,4 +1,4 @@
-# Data Types and Representations
+# Data Types and Representations {#ch-representations}
 
 As we employ computers to crunch the data to find meaning and insight,
 we need to understand the basic form of data, their basic types and
@@ -66,6 +66,14 @@ interval-scaled. While we can compare its values, one should refrain
 from performing subtraction on them. Neither is addition meaningful with
 an ordinal variable.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/02-data-types-and-representations.qmd#sec-pr-02-numerical)
+to turn **Numerical** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Categorical
 
 Ordinal variables are in fact categorical. The values are discrete
@@ -89,6 +97,23 @@ unless another variable such as state population is considered. This
 type of variable is purely categorical, not ordinal. With a categorical
 variable, we can only use the equality operator to determine whether two
 values are equal or not, e.g. is *PA* the same or different from *NY*.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/02-data-types-and-representations.qmd#sec-pr-02-categorical)
+to turn **Categorical** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/02-data-types-and-representations.qmd#sec-pr-02-datum)
+to turn **Datum** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Data
 
@@ -229,6 +254,14 @@ If A and B have no intersection, $A-B$ is the same as A. If A is a
 subset of B, then the result is an empty set. Subtraction is not
 communicative, as $A-B \ne B-A$.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/02-data-types-and-representations.qmd#sec-pr-02-sets)
+to turn **Sets** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Vectors
 
 In geometrical terms, a *vector* is an entity having both magnitude
@@ -299,3 +332,20 @@ Here, each column vector is a column with $7$ rows of *real* numbers.
 Hence, $A \in \mathbb{R}^m$ and $B \in \mathbb{R}^m$, where $m=7$. By transposing the
 column vectors, we obtain row vectors, each of which has $m$ columns of
 *real* numbers.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/02-data-types-and-representations.qmd#sec-pr-02-vectors)
+to turn **Vectors** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/02-data-types-and-representations.qmd#sec-pr-02-data)
+to turn **Data** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->

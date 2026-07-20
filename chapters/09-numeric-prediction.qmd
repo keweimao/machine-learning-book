@@ -4,14 +4,62 @@
 
 ## Prediction with Continuous Outcomes
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/09-numeric-prediction-and-regression.qmd#sec-pr-09-prediction-with-continuous-outcomes)
+to turn **Prediction with Continuous Outcomes** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Linear Regression
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/09-numeric-prediction-and-regression.qmd#sec-pr-09-linear-regression)
+to turn **Linear Regression** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Loss Functions and Fitting
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/09-numeric-prediction-and-regression.qmd#sec-pr-09-loss-functions-and-fitting)
+to turn **Loss Functions and Fitting** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Regularization
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/09-numeric-prediction-and-regression.qmd#sec-pr-09-regularization)
+to turn **Regularization** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Nonlinear Regression
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/09-numeric-prediction-and-regression.qmd#sec-pr-09-nonlinear-regression)
+to turn **Nonlinear Regression** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Uncertainty and Diagnostics
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/09-numeric-prediction-and-regression.qmd#sec-pr-09-uncertainty-and-diagnostics)
+to turn **Uncertainty and Diagnostics** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Summary, Exercises, and Lab

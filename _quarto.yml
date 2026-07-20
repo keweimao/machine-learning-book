@@ -36,6 +36,51 @@ book:
         - chapters/14-evaluation.qmd
         - chapters/15-generalization.qmd
         - chapters/16-scaling.qmd
+    - part: "Practice and Projects: A Companion Volume"
+      chapters:
+        - practice/index.qmd
+        - practice/00-toolkit.qmd
+        - practice/labs/setup.qmd
+        - practice/labs/python-intro.qmd
+        - practice/labs/python-io.qmd
+        - practice/labs/python-selection.qmd
+        - practice/labs/python-random.qmd
+        - practice/labs/python-loops.qmd
+        - practice/labs/python-file-processing.qmd
+        - practice/01-from-data-to-information-and-meaning.qmd
+        - practice/02-data-types-and-representations.qmd
+        - practice/labs/python-data-types.qmd
+        - practice/labs/python-data-structures.qmd
+        - practice/labs/python-data-structures-assignment.qmd
+        - practice/03-vectors-matrices-and-geometric-thinking.qmd
+        - practice/labs/data-initialization-assignment.qmd
+        - practice/04-probability-and-statistical-thinking.qmd
+        - practice/labs/probability-linearity.qmd
+        - practice/05-information-entropy-and-divergence.qmd
+        - practice/06-data-preparation-and-feature-engineering.qmd
+        - practice/labs/data-preprocessing.qmd
+        - practice/labs/outliers.qmd
+        - practice/07-classification.qmd
+        - practice/08-multiclass-and-structured-decisions.qmd
+        - practice/09-numeric-prediction-and-regression.qmd
+        - practice/labs/classification-patterns-assignment.qmd
+        - practice/10-clustering-and-organization.qmd
+        - practice/labs/clustering.qmd
+        - practice/11-text-and-human-language.qmd
+        - practice/labs/text-vectorization.qmd
+        - practice/labs/text-vectorization-assignment.qmd
+        - practice/labs/integrated-learning-assignment.qmd
+        - practice/12-search-and-retrieval.qmd
+        - practice/labs/sqlite-assignment.qmd
+        - practice/labs/sqlite.qmd
+        - practice/labs/sqlite-python.qmd
+        - practice/13-graphs-and-structural-analysis.qmd
+        - practice/14-evaluation-and-experimentation.qmd
+        - practice/labs/association-rules.qmd
+        - practice/15-generalization-model-selection-and-fit.qmd
+        - practice/16-scaling-deployment-and-responsible-use.qmd
+        - practice/labs/data-mining-project.qmd
+        - practice/labs/reinforcement-learning-extension.qmd
     - references.qmd
 
 bibliography: references.bib

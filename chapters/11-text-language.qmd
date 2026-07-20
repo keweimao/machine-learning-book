@@ -89,6 +89,14 @@ n-grams have shown its utility in applications such as spam detection,
 where junk emails may pad normal keywords with special characters to
 avoid being identified.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-tokenization)
+to turn **Tokenization** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Term Weighting {#fig-text-weight}
 
 Once tokens -- single words or phrases -- have been identified, they can
@@ -276,6 +284,23 @@ In certain applications, TF may be normalized by document length to
 alleviate potential favoritism toward longer documents. This is one of
 the most widely used term weighting methods in information retrieval and
 text mining.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-term-weighting)
+to turn **Term Weighting** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-text-vectorization)
+to turn **Text Vectorization** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Similarity Measures {#fig-text-sim}
 
@@ -502,6 +527,14 @@ In short, cosine is a similarity measure in the vector space model,
 which ranges from $0$ and $1$. A greater cosine value indicates a higher
 similarity of two vectors.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-similarity-measures)
+to turn **Similarity Measures** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Probabilities and Implications
 
 ### Zipf's Law
@@ -550,6 +583,14 @@ effect* -- as we tend to a minimum set of vocabulary, what we have
 frequently used (old \"rich\" words) will be used even more frequently
 (richer).
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-zipf-s-law)
+to turn **Zipf's Law** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Feature Selection
 
 We have observed that any text processing may involve a very large
@@ -574,6 +615,23 @@ shown that having the right number of features is key to the success of
 text clustering and classification -- using all features not only slows
 down the processing but also contributes more noise than information for
 related tasks.[@Ke:2015]
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-feature-selection)
+to turn **Feature Selection** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-probabilities-and-implications)
+to turn **Probabilities and Implications** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Text Classification
 
@@ -846,6 +904,14 @@ In this way, we perform the addition of log-likelihood and can maintain
 a better precision with float points. Again $\log p(d)$ is a constant
 across the classes and can be omitted in the computing.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-naive-bayes-with-binary-term-occurrences-bernoulli)
+to turn **Naive Bayes with Binary Term Occurrences (Bernoulli)** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Naive Bayes with Term Frequencies (Multinomial)
 
 Now let us look beyond binary term occurrences for text classification.
@@ -1002,6 +1068,23 @@ where $c$ is each class in the set of classes $C$, $t$ is each term in
 dictionary $T$, $p(t|c)$ is the probability of term $t$ in class $c$,
 and $TF_{dt}$ is the term frequency of $t$ in document $d$, the document
 to be classified.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-naive-bayes-with-term-frequencies-multinomial)
+to turn **Naive Bayes with Term Frequencies (Multinomial)** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/11-text-and-human-language.qmd#sec-pr-11-text-classification)
+to turn **Text Classification** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Summary {#text-summary .unnumbered}
 

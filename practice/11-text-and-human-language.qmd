@@ -1,0 +1,82 @@
+---
+number-sections: false
+---
+
+# Practice 11: Text and Human Language {#ch-practice-11 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 11](../chapters/11-text-language.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Text Vectorization {#sec-pr-11-text-vectorization}
+
+Recovered starting point: [Text Vectorization](labs/text-vectorization.qmd#sec-lab-text-vectorization) and [Text Vectorization Programming Assignment](labs/text-vectorization-assignment.qmd#sec-lab-text-vectorization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Tokenization {#sec-pr-11-tokenization}
+
+Recovered starting point: [Text Vectorization](labs/text-vectorization.qmd#sec-lab-text-vectorization) and [Text Vectorization Programming Assignment](labs/text-vectorization-assignment.qmd#sec-lab-text-vectorization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Term Weighting {#sec-pr-11-term-weighting}
+
+Recovered starting point: [Text Vectorization](labs/text-vectorization.qmd#sec-lab-text-vectorization) and [Text Vectorization Programming Assignment](labs/text-vectorization-assignment.qmd#sec-lab-text-vectorization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Similarity Measures {#sec-pr-11-similarity-measures}
+
+Recovered starting point: [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment) and [Text Vectorization](labs/text-vectorization.qmd#sec-lab-text-vectorization).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Probabilities and Implications {#sec-pr-11-probabilities-and-implications}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Probabilities and Implications** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+### Zipf's Law {#sec-pr-11-zipf-s-law}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Feature Selection {#sec-pr-11-feature-selection}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Text Classification {#sec-pr-11-text-classification}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Naive Bayes with Binary Term Occurrences (Bernoulli) {#sec-pr-11-naive-bayes-with-binary-term-occurrences-bernoulli}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Naive Bayes with Term Frequencies (Multinomial) {#sec-pr-11-naive-bayes-with-term-frequencies-multinomial}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

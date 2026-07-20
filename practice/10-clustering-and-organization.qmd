@@ -1,0 +1,88 @@
+---
+number-sections: false
+---
+
+# Practice 10: Clustering and Organization {#ch-practice-10 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 10](../chapters/10-clustering.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Example Data {#sec-pr-10-example-data}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Hierarchical Clustering {#sec-pr-10-hierarchical-clustering}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Issues of HAC {#sec-pr-10-issues-of-hac}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## K-means Partitioning {#sec-pr-10-k-means-partitioning}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Issues of K-means {#sec-pr-10-issues-of-k-means}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Probabilistic Clustering {#sec-pr-10-probabilistic-clustering}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Initialization {#sec-pr-10-initialization}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Expectation {#sec-pr-10-expectation}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Maximization {#sec-pr-10-maximization}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Iterations of Expection-Maximization {#sec-pr-10-iterations-of-expection-maximization}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### EM with Higher Dimensionality {#sec-pr-10-em-with-higher-dimensionality}
+
+Recovered starting point: [Text and Cluster Analysis](labs/clustering.qmd#sec-lab-clustering).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

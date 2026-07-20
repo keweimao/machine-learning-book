@@ -1,0 +1,173 @@
+---
+number-sections: false
+---
+
+# Practice 12: Search and Retrieval {#ch-practice-12 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 12](../chapters/12-search-retrieval.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Basic Paradigm {#sec-pr-12-basic-paradigm}
+
+Recovered starting point: [SQLite Practice](labs/sqlite.qmd#sec-lab-sqlite) and [SQLite with Python](labs/sqlite-python.qmd#sec-lab-sqlite-python) and [SQLite and Data Retrieval Assignment](labs/sqlite-assignment.qmd#sec-lab-sqlite-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Indexing {#sec-pr-12-indexing}
+
+Recovered starting point: [SQLite Practice](labs/sqlite.qmd#sec-lab-sqlite) and [SQLite with Python](labs/sqlite-python.qmd#sec-lab-sqlite-python) and [SQLite and Data Retrieval Assignment](labs/sqlite-assignment.qmd#sec-lab-sqlite-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Matching {#sec-pr-12-matching}
+
+Recovered starting point: [SQLite Practice](labs/sqlite.qmd#sec-lab-sqlite) and [SQLite with Python](labs/sqlite-python.qmd#sec-lab-sqlite-python) and [SQLite and Data Retrieval Assignment](labs/sqlite-assignment.qmd#sec-lab-sqlite-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Ranking {#sec-pr-12-ranking}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Content-based Ranking {#sec-pr-12-content-based-ranking}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Popularity-based Ranking {#sec-pr-12-popularity-based-ranking}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### PageRank {#sec-pr-12-pagerank}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Information Filtering {#sec-pr-12-information-filtering}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Recovered retrieval questions and exercise {#sec-pr-12-recovered-exercise}
+
+## Recovered questions
+
+I do want to stress the key advantage AND disadvantage of normalization,
+which is to treat terms of different forms as the same.
+
+1\) There are situations in which the different variations are indeed
+about the same and should be treated as one term. This way, users who
+uses one variation in the query may be able to find documents containing
+terms in another.
+
+2\) But there are also situations where normalization is an
+over-treatment and can lead to results that are in fact not relevant
+(false positives). There are plenty of examples in both 1) and 2). In
+specific domains, there might be more in 1) vs. 2), or vise versa. By
+examining your domain data and use cases, you may find whether it is
+better to do certain normalization or not (e.g. casefolding, but not
+stemming).
+
+Now, we have increasingly more storage and computing power at a cheaper
+price. So often we can do more with these technologies. For example, it
+is common to have multiple indices even for the same data, e.g. one with
+certain normalization and one without. Then at search time, you combine
+evidence from all indices to final matching and ranking of results.
+
+We know terms have different discriminative powers -- that some terms
+are more useful than the others. We know stopwords (highly frequent
+terms) are generally less useful. What about rare terms, i.e., terms
+that are used in a very tiny portion of documents? What about terms in
+between (neither rare or too frequent)? If you have to choose a limited
+number of terms to index your documents, what kind of terms would you
+pick?
+
+In the vector space model, cosine similarity is often used to measure
+how close (or distant) two vectors are? For example, you can compare a
+query (vector) with each document (vector), and rank them according to
+their cosine similarities. Given that cosine is about the angle (vector
+directions) and disregards vector magnitude (length), why is vector
+direction more important than magnitude here (for term-based text
+representation)?
+
+Your analogue is good in that both \"generators\" are in a dynamic
+process of generating something, which can trap a crawler in their space
+(in both worlds).
+
+The generator here in the context of the web is a general reference to
+dynamic web pages that generate page contents based on different given
+parameters.
+
+An example of this is ﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿the \"next page\" link to help users navigate to
+additional lists of information. An ordinary user may click on \"next\",
+and \"next\", \... for a few iterations.
+
+But a spider, without sufficient intelligence and design, may go on and
+on by simply \"clicking\" on (following) the \"next page\" link
+nonstop\... The notion of \"trap\" goes both ways -- it traps the
+crawler on the site gathering data on and on; but it also leads to
+intensive load on the generator (as there appear to be lots of clicks
+and page loads to the web server). Years ago when I was a graduate
+student, I developed a crawler with an aim to collect all web pages of
+the entire university (where I was studying) and, the first night I ran
+it, it was able to collect 2 million+ pages with a cost. The crawler was
+trapped by another college/school's site with a page \"generator\" and,
+in the end, brought the entire server down\... You can imagine what
+happened the next morning when the IT manager found out\... And it did
+take me some time to settle the issue as as a student. ;)
+
+Good question.
+
+For website or pages that no one knows and links to, crawlers won't be
+able to collect them. A ﻿crawler starts with seed websites (those ﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿already
+known) and, ultimately, will get to those where there is a path. But
+there are \"islands\" to which there is no path. There are also pages
+that can be reached from certain parts of the web and cannot be reached
+either unless you have seeds to crawl from specific locations\...
+
+There is always a part of the web where crawlers cannot ﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿penetrate. We
+generally refer to this as the deep web. There are private sites, sites
+with access control, and sites that can be interacted with but too
+difficult for crawler to collect\... they represent a space much much
+greater than the regular web covered by search engines. ﻿
+
+## Recovered retrieval calculation
+
+Assume we have a tiny collection of two documents with the following
+terms: Doc 1: apple, pear, dessert, cream, cook, work, berry Doc 2:
+work, computer, disk, apple, network, system Given a free text query
+\"apple computer,\" rank the documents using Dice's coefficient. Please
+provide the formula and list calculation steps.
+
+Which ones (more than one) of the following statements about Euclidean
+distance are true? It measures that distance between the end points of
+two vectors. It measures that angle between two vectors. Euclidean
+distance is affected by vector magnitudes. Euclidean distance is zero
+when two vectors point to the same direction.
+
+Which ones (more than one) of the following statements about Cosine
+similarity are true? It measures that distance between the end points of
+two vectors. It measures that angle between two vectors. Cosine is
+affected by vector magnitudes. Cosine is 1 (max value) when two vectors
+point to the same direction.
+
+Does vector length normalization (dividing a vector by its
+length/magnitude) have any impact on Cosine ranking?

@@ -4,16 +4,72 @@
 
 ## Time, Space, Data, and Compute
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/16-scaling-deployment-and-responsible-use.qmd#sec-pr-16-time-space-data-and-compute)
+to turn **Time, Space, Data, and Compute** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Batch, Streaming, and Distributed Workflows
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/16-scaling-deployment-and-responsible-use.qmd#sec-pr-16-batch-streaming-and-distributed-workflows)
+to turn **Batch, Streaming, and Distributed Workflows** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## From Experiment to Reproducible Pipeline
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/16-scaling-deployment-and-responsible-use.qmd#sec-pr-16-from-experiment-to-reproducible-pipeline)
+to turn **From Experiment to Reproducible Pipeline** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Deployment, Monitoring, and Drift
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/16-scaling-deployment-and-responsible-use.qmd#sec-pr-16-deployment-monitoring-and-drift)
+to turn **Deployment, Monitoring, and Drift** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Privacy, Security, and Misuse
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/16-scaling-deployment-and-responsible-use.qmd#sec-pr-16-privacy-security-and-misuse)
+to turn **Privacy, Security, and Misuse** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Energy, Sustainability, and Proportionality
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/16-scaling-deployment-and-responsible-use.qmd#sec-pr-16-energy-sustainability-and-proportionality)
+to turn **Energy, Sustainability, and Proportionality** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Responsible Decisions and Human Oversight
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/16-scaling-deployment-and-responsible-use.qmd#sec-pr-16-responsible-decisions-and-human-oversight)
+to turn **Responsible Decisions and Human Oversight** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Summary and Exercises

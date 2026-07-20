@@ -1,0 +1,88 @@
+---
+execute:
+  enabled: false
+---
+
+# Python Randomness {#ch-lab-python-random .unnumbered}
+
+## Recovered activity {#sec-lab-python-random}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `python/python_random.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/python-random.ipynb)
+to run and modernize it interactively.
+:::
+
+When you flip a coin or roll a die, you can guess what the outcome will be but cannot be certain about it. The result is random.
+
+In computer programming, generating a random value (number) is very useful in many applications. Take the educational app *ExtraMath*, for example, you can generate random numbers combined with arithmetic operators to test a student on basic math skills such as addition and multiplication.
+
+In Python, we can generate random numbers using the ```random``` library by importing it first:
+
+```python
+import random
+```
+
+To generate a random integer, we can call the ```random.randint()``` function:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+import random
+x = random.randint(1,9)
+print(x)
+```
+
+Do it one more time: 
+
+```{python}
+#| slideshow: {slide_type: subslide}
+x = random.randint(1,9)
+print(x)
+```
+
+and chances are you will get different numbers. 
+
+In the above code, the ```randint()``` function takes two parameters ```1``` and ```9```, which define the range for the random number. The generated random number is limited to between ```1``` and ```9```. That is, the above code will generate any integer among ```[1,2,3,4,5,6,7,8,9]```.
+
+## Example: Addition Game
+
+Now that we know how to generate a random number, let's attempt to create a math game about ```addition```.
+
+Here is the idea --
+
+1. generate two random integers from ```1``` to ```9```;
+2. store them in two variables ```x``` and ```y```;
+3. calculate ```x+y``` and store the result in ```z``` (correct answer);
+4. ask the user for the answer with ```input``` and store it in the ```answer``` variable;
+5. finally, compare the correct answer in ```z``` vs. that from the user in ```answer```.
+
+Try the following code:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+import random
+
+# Generate two numbers x and y
+x = random.randint(1, 9)
+y = random.randint(1, 9)
+# Save the result of addition to z
+z = x + y
+
+# Show the numbers to the user
+print(x, "+", y)
+
+# And ask the user for an answer
+answer = input("= ")
+
+# Feedback to the user about correctness
+if int(answer) == z:
+  print("You are right!")
+else:
+  print("Wrong! The correct answer is", z)
+```
+
+Run the code and test the program. 
+
+Run it again, and see what happens -- what is different now? What is still the same? 
+

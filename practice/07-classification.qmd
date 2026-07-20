@@ -1,0 +1,82 @@
+---
+number-sections: false
+---
+
+# Practice 7: Classification {#ch-practice-07 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 7](../chapters/07-classification.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Lazy Learning {#sec-pr-07-lazy-learning}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Lazy Learning** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+### K Nearest Neighbors (kNN) {#sec-pr-07-k-nearest-neighbors-knn}
+
+Recovered starting point: [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Other Distance Metrics {#sec-pr-07-other-distance-metrics}
+
+Recovered starting point: [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Linear Classifiers {#sec-pr-07-linear-classifiers}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity) and [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Between Centroids {#sec-pr-07-between-centroids}
+
+Recovered starting point: [Data, Vectors, and Cosine Assignment](labs/data-initialization-assignment.qmd#sec-lab-data-initialization-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Support Vector Machines {#sec-pr-07-support-vector-machines}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Perceptron: Toward a Neural Network {#sec-pr-07-perceptron-toward-a-neural-network}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity) and [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Non-Linear Models {#sec-pr-07-non-linear-models}
+
+Recovered starting point: [Probability and Linearity in Data](labs/probability-linearity.qmd#sec-lab-probability-linearity) and [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Kernel SVM {#sec-pr-07-kernel-svm}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Multi-Layer Neural Networks {#sec-pr-07-multi-layer-neural-networks}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

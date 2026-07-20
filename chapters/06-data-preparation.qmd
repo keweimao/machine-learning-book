@@ -10,15 +10,63 @@ Trust, but verify.
 
 ## Data Quality and Provenance
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/06-data-preparation-and-feature-engineering.qmd#sec-pr-06-data-quality-and-provenance)
+to turn **Data Quality and Provenance** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Missing, Noisy, and Inconsistent Data
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/06-data-preparation-and-feature-engineering.qmd#sec-pr-06-missing-noisy-and-inconsistent-data)
+to turn **Missing, Noisy, and Inconsistent Data** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Scaling, Normalization, and Transformation
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/06-data-preparation-and-feature-engineering.qmd#sec-pr-06-scaling-normalization-and-transformation)
+to turn **Scaling, Normalization, and Transformation** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Encoding Categorical and Structured Variables
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/06-data-preparation-and-feature-engineering.qmd#sec-pr-06-encoding-categorical-and-structured-variables)
+to turn **Encoding Categorical and Structured Variables** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Feature Selection and Dimensionality Reduction
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/06-data-preparation-and-feature-engineering.qmd#sec-pr-06-feature-selection-and-dimensionality-reduction)
+to turn **Feature Selection and Dimensionality Reduction** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Leakage and Reproducible Pipelines
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/06-data-preparation-and-feature-engineering.qmd#sec-pr-06-leakage-and-reproducible-pipelines)
+to turn **Leakage and Reproducible Pipelines** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Summary and Exercises
 

@@ -1,0 +1,76 @@
+---
+number-sections: false
+---
+
+# Practice 5: Information, Entropy, and Divergence {#ch-practice-05 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 5](../chapters/05-information-entropy.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Shannon Entropy {#sec-pr-05-shannon-entropy}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Properties of Shannon Entropy {#sec-pr-05-properties-of-shannon-entropy}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Entropy in Thermodynamics? {#sec-pr-05-entropy-in-thermodynamics}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Applications {#sec-pr-05-applications}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Applications** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+## Limits and Other Measures {#sec-pr-05-limits-and-other-measures}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Limits and Other Measures** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+### Relative Entropy {#sec-pr-05-relative-entropy}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Jensen-Shannon Divergence {#sec-pr-05-jensen-shannon-divergence}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## IDF and KL Divergence {#sec-pr-05-idf-and-kl-divergence}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Least Information Theory (LIT) {#sec-pr-05-least-information-theory-lit}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

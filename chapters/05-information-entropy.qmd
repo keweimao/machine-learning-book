@@ -203,6 +203,14 @@ candidates regardless of their parties (sub-systems). It can be shown
 that the overall entropy of any probability distribution is the same as
 the weighted sum of entropies of its sub-systems.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/05-information-entropy-and-divergence.qmd#sec-pr-05-properties-of-shannon-entropy)
+to turn **Properties of Shannon Entropy** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ### Entropy in Thermodynamics?
 
 The notion of *entropy* predated Shannon's information theory, and had
@@ -243,6 +251,14 @@ positions and velocities. It is a macroscopic measure of probability
 distributions on related microscopic states. Mathematically, this is
 consistent with quantifying entropy in the arrangements of coding and
 communication given a probability distribution.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/05-information-entropy-and-divergence.qmd#sec-pr-05-entropy-in-thermodynamics)
+to turn **Entropy in Thermodynamics?** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ### Applications
 
@@ -377,6 +393,23 @@ broadly distributed as cluster (2) and has less entropy. In terms of the
 examples in Table [1.2](#tab-info-groups){reference-type="ref"
 reference="tab-info-groups"}, Shannon entropy measures the overall
 distribution better than purity.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/05-information-entropy-and-divergence.qmd#sec-pr-05-applications)
+to turn **Applications** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/05-information-entropy-and-divergence.qmd#sec-pr-05-shannon-entropy)
+to turn **Shannon Entropy** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Limits and Other Measures
 
@@ -550,6 +583,23 @@ function derived from KL divergence. Later in the chapter, we will
 discuss related problems due to undesirable properties of KL and a
 remedy developed and tested recently.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/05-information-entropy-and-divergence.qmd#sec-pr-05-relative-entropy)
+to turn **Relative Entropy** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/05-information-entropy-and-divergence.qmd#sec-pr-05-limits-and-other-measures)
+to turn **Limits and Other Measures** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Jensen-Shannon Divergence
 
 One approach to make KL divergence symmetric is to compute the sum of
@@ -645,6 +695,14 @@ can still be regarded as measuring the amount of information in bits (at
 least with log base $2$), it is not clear what its square root (JSR)
 actually means.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/05-information-entropy-and-divergence.qmd#sec-pr-05-jensen-shannon-divergence)
+to turn **Jensen-Shannon Divergence** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## IDF and KL Divergence
 
 Before we get to an alternative to the divergence measures, we shall
@@ -696,6 +754,14 @@ term can be extremely large when the term is very rare. When term IDF
 weights are combined to determine ranking, for example, the rare term
 will dominate the ranking score and the weights of other terms will no
 longer matter.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/05-information-entropy-and-divergence.qmd#sec-pr-05-idf-and-kl-divergence)
+to turn **IDF and KL Divergence** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Least Information Theory (LIT) {#ch-info-lit}
 
@@ -941,3 +1007,11 @@ information retrieval.[@Ke:2017]
 [^ch05-4]: The data are hypothetical, rough estimates of the election day
     sentiment. For a simplified discussion, we only focus on candidates
     of the two major parties rather than the actual four.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/05-information-entropy-and-divergence.qmd#sec-pr-05-least-information-theory-lit)
+to turn **Least Information Theory (LIT)** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->

@@ -1,0 +1,136 @@
+---
+execute:
+  enabled: false
+---
+
+# Association Rule Mining {#ch-lab-association-rules .unnumbered}
+
+## Recovered activity {#sec-lab-association-rules}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `demo/python_association_rule_mining.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/association-rules.ipynb)
+to run and modernize it interactively.
+:::
+
+### Introduction
+
++ A typical example of association rule mining is market basket analysis. 
++ This process analyzes transaction data to find associations between the different items that customers place in their “shopping baskets”. 
++ The discovery of these associations can help retailers develop marketing strategies by understanding which items are frequently purchased together by customers. 
++ Also, online retailers can develop a recommendation system based on association rule mining.
+
+In this exercise, we are going to utilize a dataset downloaded from Kaggle (https://www.kaggle.com/irfanasrullah/groceries). Please see the data description on the site, if you are interested in details. Please note that the file format is somewhat different from what we used to be familiar with. Tuples contain itemsets purchased together in a transaction. Therefore, each tuple contains a different number of attributes, i.e., items. The ultimate goal is to find strong associations among items. I left up to six items per transaction on purpose. If there were more than six items, I deleted them. Let's open the data. There are 9,835 tuples.
+
+```{python}
+#| slideshow: {slide_type: subslide}
+import pandas as pd
+import numpy as np
+from mlxtend.frequent_patterns import apriori, association_rules
+import matplotlib.pyplot as plt
+
+## This loads the csv file from disk
+basket_data = pd.read_csv("../data/groceries/groceries_modified.csv", sep = ",", header = None )
+
+print(basket_data.head(20))
+## print the dimension of the data
+print(basket_data.shape)
+```
+
+You can see a lot of NaN from the Pandas dataframe. It's because they were empty in the original data. You may be interested in how many unique items are actually in the data.
+
+```{python}
+#| slideshow: {slide_type: subslide}
+items = list()
+for attr in range(basket_data.shape[1]):
+    items.extend(list(basket_data[attr].unique()))
+print(set(items))
+print(len(set(items)))
+```
+
+### Preprocessing
+
+There are 168 items in total that made up the entire data. Let's find some interesting associations between them!
+
+Before starting the fun part, we need to preprocess the dataset. The library (MLXtend) requires 1/0 representation for attributes. With that being said, the shape of the dataframe should be changed. As there are 168 unique items, the number of columns should be 168. In tuples, the values should represent whether each item occurs or not in the transaction. If an item is in the basket, it should be represented as 1. If not, it should be represented as 0.
+
+```{python}
+#| slideshow: {slide_type: subslide}
+# Create empty list to contain the converted data
+converted_vals = []
+for index, row in basket_data.iterrows():
+    labels = {}
+    # Find items that do not occur in the transaction
+    not_occurred = list(set(items) - set(row))
+    # Find items that occur in the transaction
+    occurred = list(set(items).intersection(row))
+    for nc in not_occurred:
+        labels[nc] = 0
+    for occ in occurred:
+        labels[occ] = 1
+    converted_vals.append(labels)
+
+converted_basket = pd.DataFrame(converted_vals)
+print(converted_basket.head())
+```
+
+If you look at the table carefully, you will find one unwelcomed guest, "NaN". It was included to process empty values, now plays like a real value. We should drop this. You see the importance of data preprocessing. 
+
+```{python}
+#| slideshow: {slide_type: subslide}
+converted_basket = converted_basket.drop([np.nan], 1)  
+print(converted_basket.head())
+```
+
+### Implementation
+
+Now It's time for fun. You will create association rules between attributes. You need to change minimum support and/or other parameters to filter out less interesting rules.
+
+```{python}
+#| slideshow: {slide_type: subslide}
+frequent_itemsets = apriori(converted_basket, min_support=0.3, use_colnames=True)
+
+print(frequent_itemsets.head())
+```
+
+You got no frequent itemsets. You have relatively large transactions, so having high support is challenging. You have to tune this parameter to get a good number of candidates.
+
+```{python}
+#| slideshow: {slide_type: subslide}
+frequent_itemsets = apriori(converted_basket, min_support=0.04, use_colnames=True)
+
+print(frequent_itemsets)
+```
+
+```{python}
+#| slideshow: {slide_type: subslide}
+rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1)
+print(rules)
+```
+
+We can filter the dataframe. Let's look for cases whose lift is larger than 2 and confidence is larger than 0.3.
+
+```{python}
+#| slideshow: {slide_type: subslide}
+rules[ (rules['lift'] >= 2) & (rules['confidence'] >= 0.3) ]
+```
+
+### Visualization
+
+Now It might be helpful to visualize the result. The visualization will help you understand how each rule performs.
+
+```{python}
+#| slideshow: {slide_type: subslide}
+plt.scatter(rules['support'], rules['confidence'], alpha=0.7)
+for i in range(rules.shape[0]):
+    plt.text(rules.loc[i,"support"], rules.loc[i,"confidence"], str(i))
+plt.xlabel('support')
+plt.ylabel('confidence')
+plt.title('Support vs Confidence')
+plt.show()
+```
+
+Now, you are ready to apply association rule mining to find interesting patterns. Please find more details about the libraries you used at: http://rasbt.github.io/mlxtend/user_guide/frequent_patterns/apriori/ and http://rasbt.github.io/mlxtend/user_guide/frequent_patterns/association_rules/.
+
+

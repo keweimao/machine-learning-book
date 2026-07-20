@@ -1,0 +1,163 @@
+---
+execute:
+  enabled: false
+---
+
+# Python Programming Primer {#ch-lab-python-intro .unnumbered}
+
+## Recovered activity {#sec-lab-python-intro}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `python/python_intro.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/python-intro.ipynb)
+to run and modernize it interactively.
+:::
+
+# Programming 
+
+What is computer programming? Programming is to create a step-by-step list of instructions to solve a problem. Today's computers are very capable of computing, that is, to add, to subtract, to multiple, and to divide, etc. They are good at crunching numbers.
+
+To program a solution to a problem with computers, that problem has to be computable. We also refer to the program thus created as an **algorithm**.
+
+Let's consider a daily example of a program or algorithm: to bake a brownie: 
+1. Preheat the oven to 325 &deg;F;
+2. Gather the ingredients;
+3. Mix the ingredients in a bowl;
+4. Pour the mixture into a baking pan;
+5. Put the pan in the oven for 30 minutes;
+6. Check if baking is done;
+  * If it is NOT done: wait 3 more minutes and go back to step 6;
+  * Otherwise -- if it is done -- remove the pan;
+7. Let the brownie cool before serving it.
+8. Enjoy!
+
+From the example, we observe the following structures: 
++ ```Sequential```: one step follows another in a sequence; 
++ ```Selection```: one does things differently depending on the condition; 
++ ```repetition```: one repeats a task for some times. 
+
+Each step above is a statement or instruction about what to do. Most of the steps follow one after another (**sequential**). For step 6, however, it has a different structure. It has IF...OTHERWISE (else)..., which does some things for a specific condition (e.g. wait if the brownie is NOT done), or something else for a different condition (e.g. remove it if it IS done). This is a **selection** structure because it does things selectively based on conditions.
+
+Finally, step 6 also has another unique programming structure, **repetition**. You will be waiting for 3 minutes, and over and over again, until it is all done. We also call this repeating structure a loop.
+
+So with the simple example of baking a brownie, we have seen three different programming structures in play: sequential, selection, and repetition. In fact, every computable algorithm or program can be written by the three structures and these three **ONLY**.
+
+Your creativity is about how to mix them together, just like making your own brownie! :)
+
+# Introduction to Python
+
+Now that you know about the general logic of programming, how do you actually do it? In what language can you give instructions to the computer so it can follow and do the job?
+
+## Python Language
+
++ A high-level language that resembles English
++ Popular choice for introductory programming
++ No. 1 for data sciences, e.g. for data processing and analytics
+
+There are many so-called high-level languages you can use, programming languages that resemble the style of English and can be translated into computer languages to give instructions.
+
+**Python** is one of these high-level languages. It is, in fact, one of the most popular today, especially for the very hot topic of **data sciences**. Python was first developed by a computer programmer named Guido van Rossum, who wanted "computer programming for everybody." As of today (2019), Python is the de facto official language for introductory programming and data analytics at the college level.
+
+With this brief introduction, let's meet Python "in person" and interact with it.
+
+## Working Environment
+
+### Jupyter Notebook (or Hub)
+
+If you have ```Jupyter Notebook``` installed or have access to a ```JupyterHub``` server (website), 
+you can create a New Python3 Notebook and test your Python code there. 
+
+### Command Line
+
+For a computer with Python installed, you can go to the command line, i.e. 
+
++ `cmd` on Windows, OR 
++ ```Terminal``` on Mac or Linux
+
+and type the following command:
+
+```shell
+python3
+>>>
+```
+
+You will be prompted with ```>>>``` and that is where you give the computer instructions in the language of Python. 
+
+## First Interactions
+
+Now type a statement (instruction) in Python, in the notebook and Python command line:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+print(2+3)
+```
+
+and the computer will spit out 5 on the screen. What it does here is to compute the result of 2+3, which is 5, and then execute the ```print``` statement to show the result. 
+
+Likewise, you can do any of the following:
+
+```python
+print(4*5)
+print((2+3)*7)
+print(12-8)
+print(36/9)
+print(100%3)
+print(3**4)
+```
+
+It should be easy to tell what + and - do? Now have you figured out what \*, /, %, and \*\* are about? All these are operators you can use to tell a computer how to compute.
+
+The ```print``` here is a function, a.k.a. a process or a method, that is already part of python. You can call a function by its name, i.e. ```print``` here, followed by a pair of parentheses ```()```. The ```print``` function requires a piece of data (information) about what to print, and you put this piece of data (called an **argument**), e.g. ```2+3```, in the parentheses.
+
+## Variables
+
+Often, your program can be more complex and it may take many steps before you want to print out the result.
+
+For example, if you want to calculate the average height of four people in inches: 
+1. Joe 81''
+2. Carol 76'' 
+3. Larry 77''
+4. Brenna 48''
+
+you may want to save these numbers somewhere before adding them up and divide the total by 4.
+
+Do this in Python:
+
+```{python}
+#| slideshow: {slide_type: subslide}
+j = 81  # joe's height
+c = 76  # carol's height
+l = 77  # larry's height
+b = 48  # brian's height
+total = j + c + l + b
+avg = total / 4
+print(avg)
+```
+
+Note that anything after ```#``` is a **comment** (to help programmers remember/understand the code) and is **NOT executed**. 
+
+The ```j```, ```c```, ```l```, and ```b``` are variables, which are in the computer's **memory** holding the heights of Joe, Carol, Larry, and Brian respectively.
+
+Be cautious, however, that:
+
+... the equal sign ```=``` 
+  
+... *does NOT mean* "equal to." 
+
+It is an ```assignment``` operator that 
+
+... takes the value (result) from its right side 
+
+... and assign it to the variable on its left. 
+
+For example:
+
+```python
+j = 81
+```
+
+means ```j``` &larr; ```81```. 
+
+That is, to take the value of 81 and put it in a computer memory location marked as ```j```. This way you can use ```j``` later to get the value (e.g. Joe's height) on that location.
+

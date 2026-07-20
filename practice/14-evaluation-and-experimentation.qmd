@@ -1,0 +1,89 @@
+---
+number-sections: false
+---
+
+# Practice 14: Evaluation and Experimentation {#ch-practice-14 .unnumbered}
+
+**Theory connection:** [Volume I, Chapter 14](../chapters/14-evaluation.qmd)
+
+Use this chapter as the practical companion to the corresponding theory chapter.
+Recovered activities are linked where a strong match exists; other sections are
+explicit development scaffolds for the next writing cycle.
+
+## Precision {#sec-pr-14-precision}
+
+Recovered starting point: [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Recall {#sec-pr-14-recall}
+
+Recovered starting point: [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Sensitivity and Specificity {#sec-pr-14-sensitivity-and-specificity}
+
+Recovered starting point: [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Kappa and Chance Agreement {#sec-pr-14-kappa-and-chance-agreement}
+
+Recovered starting point: [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Averaging {#sec-pr-14-averaging}
+
+Recovered starting point: [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Rank Evaluation {#sec-pr-14-rank-evaluation}
+
+Recovered starting point: [Integrated Data Learning Assignment](labs/integrated-learning-assignment.qmd#sec-lab-integrated-learning-assignment) and [Association Rule Mining](labs/association-rules.qmd#sec-lab-association-rules).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Evaluation of Numeric Predictions {#sec-pr-14-evaluation-of-numeric-predictions}
+
+::: {.callout-note title="Practice development scaffold"}
+Create an activity that makes **Evaluation of Numeric Predictions** observable through a calculation,
+small implementation, visualization, diagnostic, or written interpretation.
+Include a reproducible input, a checkable result, and one reflection question.
+::: 
+
+### Error Metrics {#sec-pr-14-error-metrics}
+
+Recovered starting point: [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+### Correlation {#sec-pr-14-correlation}
+
+Recovered starting point: [Classification Patterns and Evaluation Assignment](labs/classification-patterns-assignment.qmd#sec-lab-classification-patterns-assignment).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## Experimentation {#sec-pr-14-experimentation}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.
+
+## On Efficiency {#sec-pr-14-on-efficiency}
+
+Recovered starting point: [Data Mining Project](labs/data-mining-project.qmd#sec-lab-data-mining-project).
+
+Use the recovered material as evidence and raw material; revise package calls,
+expected outputs, and assessment criteria before assigning it in a current course.

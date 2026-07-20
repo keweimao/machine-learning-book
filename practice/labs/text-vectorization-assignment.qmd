@@ -1,0 +1,187 @@
+---
+execute:
+  enabled: false
+---
+
+# Text Vectorization Programming Assignment {#ch-lab-text-vectorization-assignment .unnumbered}
+
+## Recovered activity {#sec-lab-text-vectorization-assignment}
+
+::: {.callout-note title="Historical source and execution note"}
+This activity was recovered from `problems/python_text_vector.ipynb`. Its code is preserved but
+is not executed during the public book build, so readers can inspect it without
+requiring legacy package versions. Download the [source notebook](../notebooks/text-vectorization-assignment.ipynb)
+to run and modernize it interactively.
+:::
+
+## Objectives
+
+This assignment is to process a collection of text files (documents) and compute the following statistics: 
+
+1. Term Frequencies (TF) of terms in each document. 
+2. Inverse Document Frequencies (IDF) of terms in the entire collection. 
+
+
+## A. Data Files (1 point)
+
+Please collect about **20 text data instances** (e.g. brief news
+reports or research abstracts) and save them as individual .txt files.
+Files names should be named in a sequential order such as 1.txt, 2.txt,
+3.txt, ... and 20.txt.
+
+## B. Create a *Document* abstract data type/class (2 points)
+
+```{python}
+class Document: 
+    """
+    The Document class to be implemented. 
+    Please define all required methods 
+    within the class structure. 
+    """
+    def __init__(self, doc_id):
+        """to be implemented"""
+    
+    def tokenize(text):
+        """to be implemented"""
+```
+
+The ```Document``` class should have:
+
++ A ```__init__(self, doc_id)``` method as the constructor method
+
+    1. Assign ```doc_id``` to ```self.id```
+    2. Create an empty **dictionary variable** with
+    
+    ```self.variable_name```
+
+    Later you will keep track of all unique words and their frequencies in the document. 
+
++ A ```tokenize(text)``` method that:
+
+    1. Splits text into single words using ```space``` and ```punctuation``` as delimiter;
+    2. Use a loop to go through all the words, and for each word:
+        - Convert the word to lower case using the ```lower()``` method of a string;
+        - If it does not appear in the dictionary, add it to the dictionary and set its count/frequency to 1;
+        - If it is already in the dictionary, increment its count/frequency by adding 1 to it; 
+        
+Hint: See the lecture on data structures and follow the *radish vote couting* example. 
+
+## C. NOW OUTSIDE THE DOCUMENT CLASS
+
+### C1. Create a ```save_dictionary``` function (1 points)
+
+```{python}
+def save_dictionary(dict_data, file_path_name):
+    """Saves dictionary data to a text file. 
+    Arguments: 
+        dict_data: a dictionary with key-value pairs
+        file_path_name: the full path name of a text file (output)
+    """
+```
+
+The function should accept **two arguments**:
+
+1. One argument for the dictionary with data to be saved;
+2. Second argument about the file pathname to save the data;
+
+The function saves all data/statistics in the dictionary to text files,
+with each key-value pair in one text line separated by a tab ("\t").
+
+The output file should look like:
+
+```
+Key1 value1
+Key2 value2
+Key3 value3
+.. ..
+```
+
+### C2. Create a ```vectorize``` function (5 points)
+
+```{python}
+def vectorize(data_path):
+    """Vectorizes text files in the path. 
+    Arguments: 
+        data_path: the path to the directory (folder) where text files are
+    """
+```
+
+The function should:
+
++ Take a **string argument** as the path (folder) to where the text data files are;
++ Process all data files in the path and produces TF and DF statistics;
+
+Here are steps in the function:
+
+1. Create a **dictionary variable** (this is a **global dictionary
+    variable** outside the class) to keep track all unique words and
+    their DF (document frequency) values;
+
+2. Create a loop to go through every **.txt** files in the path
+    argument. File names should be: ```1.txt```, ```2.txt```, ..., ```20.txt```. 
+
+3. **For each** .txt file (within the loop):
+
+    -   Create a Document object (based on the Document class) using the
+        filename as ```doc_id``` parameter. For example, doc_id should be ```2``` for ```2.txt```.
+
+    -   Read the content (text lines) from the text file. 
+
+    -   Call the document object's ```.tokenize()``` function to process the
+        text content. 
+
+    -   Call the ```save_dictionary()``` function to save the document's
+        dictionary with TF (term frequencies) to a file, where the
+        filename should be ```tf_DOCID.txt``` in the same
+        path.
+
+        * The TF dictionary can be accessed via the **document
+            object's** ```.dictionary_variable_name```.
+
+        * For example, after processing 1.txt file, the data should be
+            saved to ```tf_1.txt``` file in the same directory.
+
+    -   Create a **nested loop** (a smaller/indented loop inside the
+        above loop), and **for each word in the document's dictionary**:
+
+        -   If it does not appear in the **dictionary for DF** (**the
+            dictionary variable outside class**), then add the word to
+            the DF dictionary; 
+        -   If it is already in the DF dictionary, increment its DF
+            value by adding 1 to itself; 
+
+4. After all files are processed (**OUTSIDE the BIG LOOP above**), call
+    the ```save_dictionary()``` function **again** to save the DF dictionary
+    to a file named ```df.txt``` in the same path with the
+    input text files.
+
+### C3. Finally, call the vectorize function (1 point)
+
+For example, suppose all text files are in the same directory as your code (notebook): 
+
+```python
+vectorize("./")    # to process text files in the current irectory/folder
+```
+
+## Bonus (optional, +1 point)
+
+Compute pair-wise cosine similarities among the documents using Term
+Frequency (TF) weights, and save the results to a file. 
+
+Your outuput may look like (```id1 id2 score```): 
+
+```
+1 2 0.37
+1 3 0.12
+1 4 0.98
+. . ....
+18 19 0.33
+18 20 0.57
+19 20 0.49
+```
+
+## Submission
+
+1. Test and debug to make sure your **code works** properly; 
+2. Submit a **ZIP file** containing your Jupyter Notebook (**code**) and text files (**data**) to blackboard. 
+

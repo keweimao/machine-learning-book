@@ -107,6 +107,14 @@ discussed, that there should be a greater emphasis and penalty on the
 precision, we can examine the rows and evaluate the same result from a
 very different perspective.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-precision)
+to turn **Precision** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Recall
 
 *Recall*, a classic evaluation metric, refers to the fraction of actual
@@ -173,6 +181,14 @@ to the top-right (higher precision and recall).
 
 ![Precision-recall curve](../assets/figures/chapter14/fig-eval-pr-curve){#fig-eval-pr_curve fig-alt="Precision-recall curve" width="70%"}
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-recall)
+to turn **Recall** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Sensitivity and Specificity
 
 Precision and recall are both focused on the fraction of true positive.
@@ -235,6 +251,14 @@ the diagonal line, the better the performance with a greater area under
 curve. Therefore, the *area under curve* (AUC), i.e. the shaded area in
 the plot, is a single score that can be computed to measure the overall
 performance in terms of ROC.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-sensitivity-and-specificity)
+to turn **Sensitivity and Specificity** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Kappa and Chance Agreement
 
@@ -363,6 +387,14 @@ $\kappa=-1$, indicates total disagreement whereas a maximum value
 $\kappa=1$ shows the two are in full agreement even after accounting for
 chances.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-kappa-and-chance-agreement)
+to turn **Kappa and Chance Agreement** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Averaging
 
 When evaluating model performance on multiple classes -- even binary
@@ -407,6 +439,14 @@ importance of classes in the final assessment. If all classes are
 equally important regardless of their sizes, macro-averaging should be
 preferred. If one aims to emphasize the absolute number of correct
 predictions, then micro-averaging is appropriate.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-averaging)
+to turn **Averaging** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ## Rank Evaluation
 
@@ -471,6 +511,14 @@ in the list[^ch14-3]. nDCG is a popular metric for web search evaluation and
 one can adjust the position $k$ to emphasize relevant results at the
 very top, e.g. with $nDCG_3$.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-rank-evaluation)
+to turn **Rank Evaluation** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Evaluation of Numeric Predictions
 
 When the outcome of a model is a on a continuous scale rather than
@@ -511,6 +559,14 @@ RSE & = & \frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{\sum_{i=1}^{N} (\bar{\mu} - 
 where $\bar{\mu}$ is the estimated mean based on training data. Root
 relative squared error (RRSE) and relative absolute error (RAE) can be
 established in the like manner.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-error-metrics)
+to turn **Error Metrics** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
 
 ### Correlation
 
@@ -570,6 +626,23 @@ are perfectly independent and has no correlation. When their errors
 distribute in the opposite direction, they are negatively correlated,
 with the minimum value of $-1$ indicating perfectly opposite.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-correlation)
+to turn **Correlation** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-evaluation-of-numeric-predictions)
+to turn **Evaluation of Numeric Predictions** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## Experimentation
 
 Now that we know some of the metrics for model evaluation, how do we
@@ -612,6 +685,14 @@ into 10 random subsets. Each time, $1$ subset is held out for testing
 and the other $9$ are used for training. This is repeated $10$ times so
 the model is tested on every fold of the data.
 
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-experimentation)
+to turn **Experimentation** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
+
 ## On Efficiency
 
 In this chapter, we have focused on the evaluation of model
@@ -640,3 +721,11 @@ well as *scalability* in Chapter .
     for non-relevance. In certain applications, it might be reasonable
     to assign negative scores for non-relevant answers to penalize a
     ranking with any non-relevant results.
+
+<!-- practice-link:start -->
+::: {.callout-tip collapse="true" title="Put it into practice"}
+Continue with [the corresponding practice activity](../practice/14-evaluation-and-experimentation.qmd#sec-pr-14-on-efficiency)
+to turn **On Efficiency** into a calculation,
+implementation, visualization, diagnostic, or interpretation task.
+:::
+<!-- practice-link:end -->
