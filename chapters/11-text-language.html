@@ -2,21 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="An introductory journey from data and information to machine learning, language, search, and evaluation.">
 
-<title>11&nbsp; Text and Human Language – Machine Learning: The Quest for Information and Meaning</title>
+<title>12&nbsp; Text and Human Language – Machine Learning: The Quest for Information and Meaning</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -61,10 +64,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9a6e6ad007c27a295cfd1f08f4b733a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -94,7 +97,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -134,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/11-text-language.html">Language, Retrieval, and Structure</a></li><li class="breadcrumb-item"><a href="../chapters/11-text-language.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text and Human Language</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/11-text-language.html">Language, Retrieval, and Structure</a></li><li class="breadcrumb-item"><a href="../chapters/11-text-language.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text and Human Language</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -261,8 +264,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Convolutional Neural Networks: Learning Spatial Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/10-clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,19 +288,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/11-text-language.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/12-search-retrieval.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/13-structural-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -308,19 +317,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/14-evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/15-generalization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/16-scaling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
   </div>
 </li>
       </ul>
@@ -492,6 +501,30 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../practice/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice 10: Convolutional Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practice/labs/mnist-mlp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: MNIST with a Multilayer Perceptron</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practice/labs/cnn-concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: CNN Concepts from Arrays to Feature Maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practice/labs/mnist-cnn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: MNIST with a Convolutional Neural Network</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../practice/10-clustering-and-organization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practice 10: Clustering and Organization</span></a>
   </div>
@@ -610,21 +643,21 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#text-vectorization" id="toc-text-vectorization" class="nav-link active" data-scroll-target="#text-vectorization"><span class="header-section-number">11.1</span> Text Vectorization</a>
+  <li><a href="#text-vectorization" id="toc-text-vectorization" class="nav-link active" data-scroll-target="#text-vectorization"><span class="header-section-number">12.1</span> Text Vectorization</a>
   <ul class="collapse">
-  <li><a href="#tokenization" id="toc-tokenization" class="nav-link" data-scroll-target="#tokenization"><span class="header-section-number">11.1.1</span> Tokenization</a></li>
-  <li><a href="#fig-text-weight" id="toc-fig-text-weight" class="nav-link" data-scroll-target="#fig-text-weight"><span class="header-section-number">11.1.2</span> Term Weighting</a></li>
+  <li><a href="#tokenization" id="toc-tokenization" class="nav-link" data-scroll-target="#tokenization"><span class="header-section-number">12.1.1</span> Tokenization</a></li>
+  <li><a href="#fig-text-weight" id="toc-fig-text-weight" class="nav-link" data-scroll-target="#fig-text-weight"><span class="header-section-number">12.1.2</span> Term Weighting</a></li>
   </ul></li>
-  <li><a href="#fig-text-sim" id="toc-fig-text-sim" class="nav-link" data-scroll-target="#fig-text-sim"><span class="header-section-number">11.2</span> Similarity Measures</a></li>
-  <li><a href="#probabilities-and-implications" id="toc-probabilities-and-implications" class="nav-link" data-scroll-target="#probabilities-and-implications"><span class="header-section-number">11.3</span> Probabilities and Implications</a>
+  <li><a href="#fig-text-sim" id="toc-fig-text-sim" class="nav-link" data-scroll-target="#fig-text-sim"><span class="header-section-number">12.2</span> Similarity Measures</a></li>
+  <li><a href="#probabilities-and-implications" id="toc-probabilities-and-implications" class="nav-link" data-scroll-target="#probabilities-and-implications"><span class="header-section-number">12.3</span> Probabilities and Implications</a>
   <ul class="collapse">
-  <li><a href="#zipfs-law" id="toc-zipfs-law" class="nav-link" data-scroll-target="#zipfs-law"><span class="header-section-number">11.3.1</span> Zipf’s Law</a></li>
-  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection"><span class="header-section-number">11.3.2</span> Feature Selection</a></li>
+  <li><a href="#zipfs-law" id="toc-zipfs-law" class="nav-link" data-scroll-target="#zipfs-law"><span class="header-section-number">12.3.1</span> Zipf’s Law</a></li>
+  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection"><span class="header-section-number">12.3.2</span> Feature Selection</a></li>
   </ul></li>
-  <li><a href="#text-classification" id="toc-text-classification" class="nav-link" data-scroll-target="#text-classification"><span class="header-section-number">11.4</span> Text Classification</a>
+  <li><a href="#text-classification" id="toc-text-classification" class="nav-link" data-scroll-target="#text-classification"><span class="header-section-number">12.4</span> Text Classification</a>
   <ul class="collapse">
-  <li><a href="#naive-bayes-with-binary-term-occurrences-bernoulli" id="toc-naive-bayes-with-binary-term-occurrences-bernoulli" class="nav-link" data-scroll-target="#naive-bayes-with-binary-term-occurrences-bernoulli"><span class="header-section-number">11.4.1</span> Naive Bayes with Binary Term Occurrences (Bernoulli)</a></li>
-  <li><a href="#naive-bayes-with-term-frequencies-multinomial" id="toc-naive-bayes-with-term-frequencies-multinomial" class="nav-link" data-scroll-target="#naive-bayes-with-term-frequencies-multinomial"><span class="header-section-number">11.4.2</span> Naive Bayes with Term Frequencies (Multinomial)</a></li>
+  <li><a href="#naive-bayes-with-binary-term-occurrences-bernoulli" id="toc-naive-bayes-with-binary-term-occurrences-bernoulli" class="nav-link" data-scroll-target="#naive-bayes-with-binary-term-occurrences-bernoulli"><span class="header-section-number">12.4.1</span> Naive Bayes with Binary Term Occurrences (Bernoulli)</a></li>
+  <li><a href="#naive-bayes-with-term-frequencies-multinomial" id="toc-naive-bayes-with-term-frequencies-multinomial" class="nav-link" data-scroll-target="#naive-bayes-with-term-frequencies-multinomial"><span class="header-section-number">12.4.2</span> Naive Bayes with Term Frequencies (Multinomial)</a></li>
   </ul></li>
   <li><a href="#text-summary" id="toc-text-summary" class="nav-link" data-scroll-target="#text-summary">Summary</a></li>
   </ul>
@@ -633,9 +666,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/11-text-language.html">Language, Retrieval, and Structure</a></li><li class="breadcrumb-item"><a href="../chapters/11-text-language.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text and Human Language</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/11-text-language.html">Language, Retrieval, and Structure</a></li><li class="breadcrumb-item"><a href="../chapters/11-text-language.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text and Human Language</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="ch-text" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></h1>
+<h1 class="title"><span id="ch-text" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></h1>
 </div>
 
 
@@ -657,13 +690,13 @@ window.Quarto = {
 <p><em>Fulton J. Sheen</em></p>
 </div>
 <p>Text has been the primary form of documentation in human history. Today large volumes of unstructured text data are being generated and disseminated at an unprecedented pace, via such media as tweets, emails, and scholarly publications. The magnitude of these data has far exceeded our human capacity to read and digest. How can we possibly sift through the world of written text and access what we need? In what ways can computers, which have helped create this ever-growing pile of data, be harnessed to also help us discover relevance and meaning?</p>
-<section id="text-vectorization" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="text-vectorization"><span class="header-section-number">11.1</span> Text Vectorization</h2>
+<section id="text-vectorization" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="text-vectorization"><span class="header-section-number">12.1</span> Text Vectorization</h2>
 <p>Let’s start with some basic issues and ideas for processing text.</p>
 <p>Imagine having a long legal document, it can be stored digitally along with other documents and files. In its raw text format, you can hardly use the document to compute and compare – for example, to find other documents related to the same or similar cases – unless we can convert the text into some numbers to be used in the calculation.</p>
 <p>Indeed, the first step of text processing involves a general process called <em>vectorization</em>, which identifies elements in the text and assigns numbers (weights) to them as its numerical representation. The result of this is a list of values, which can then be used for searching, ranking, and association.</p>
-<section id="tokenization" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="tokenization"><span class="header-section-number">11.1.1</span> Tokenization</h3>
+<section id="tokenization" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="tokenization"><span class="header-section-number">12.1.1</span> Tokenization</h3>
 <p>Through <em>tokenization</em>, the text can be split into basic elements (tokens) such as paragraphs, sentences, phrases, and/or words. Taking single words as basic elements, the following text:</p>
 <div class="displayquote">
 <p>John is quicker than Mary.</p>
@@ -700,8 +733,8 @@ window.Quarto = {
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="fig-text-weight" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="fig-text-weight"><span class="header-section-number">11.1.2</span> Term Weighting</h3>
+<section id="fig-text-weight" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="fig-text-weight"><span class="header-section-number">12.1.2</span> Term Weighting</h3>
 <p>Once tokens – single words or phrases – have been identified, they can be sorted and merged into a set of unique tokens, which we refer to as the <em>dictionary</em>. Suppose we have a book collection of <em>The Chronicles of Narnia</em>, for which we only store their titles<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
 <ol type="1">
 <li><p>The Lion, the Witch and the Wardrobe</p></li>
@@ -952,8 +985,8 @@ w_{dt} &amp; = &amp;
 <!-- practice-link:end -->
 </section>
 </section>
-<section id="fig-text-sim" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="fig-text-sim"><span class="header-section-number">11.2</span> Similarity Measures</h2>
+<section id="fig-text-sim" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="fig-text-sim"><span class="header-section-number">12.2</span> Similarity Measures</h2>
 <p>Once each document is represented as a vector of terms with weights, we can conduct various operations, such as clustering and ranking, on them. The basic unit of these computational tasks is to measure how similar or dissimilar one document is to another.</p>
 <p>A simple method to compute the similarity of any two documents <span class="math inline">\(d_u\)</span> and <span class="math inline">\(d_v\)</span> is by the dot product of their vector values:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -1007,55 +1040,55 @@ Jaccard(d_u, d_v) &amp; = &amp; \frac{|d_u \cap d_v|}{|d_u \cup d_v|}
 </table>
 <p><span id="tab-text-tf" data-label="tab-text-tf"></span></p>
 </div>
-<p>These two documents can be plotted on the two-dimensional space, e.g. <em>machine</em> for the <span class="math inline">\(x\)</span> dimension and <em>data</em> for the <span class="math inline">\(y\)</span> dimension, shown in <a href="#fig-text-2d" class="quarto-xref">Figure&nbsp;<span>11.1</span></a>:</p>
+<p>These two documents can be plotted on the two-dimensional space, e.g. <em>machine</em> for the <span class="math inline">\(x\)</span> dimension and <em>data</em> for the <span class="math inline">\(y\)</span> dimension, shown in <a href="#fig-text-2d" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>:</p>
 <div id="fig-text-2d" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Documents in a two-dimensional space">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-text-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/chapter11/ch-text-2d.svg" class="img-fluid figure-img" style="width:70.0%" alt="Documents in a two-dimensional space">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.1: Documents in a two-dimensional space
+Figure&nbsp;12.1: Documents in a two-dimensional space
 </figcaption>
 </figure>
 </div>
-<p>With this dimensional representation, pair-wise similarity or difference can be measured by the geometric distance between two document data points. A classic metric of such is the <em>Euclidean Distance</em>, which measures the length of the straight line connecting the two data points in question, as shown in <a href="#fig-text-2d" class="quarto-xref">Figure&nbsp;<span>11.1</span></a>. In an <span class="math inline">\(m\)</span>-dimensional space, the general <em>Euclidean Distance</em> function is:</p>
+<p>With this dimensional representation, pair-wise similarity or difference can be measured by the geometric distance between two document data points. A classic metric of such is the <em>Euclidean Distance</em>, which measures the length of the straight line connecting the two data points in question, as shown in <a href="#fig-text-2d" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>. In an <span class="math inline">\(m\)</span>-dimensional space, the general <em>Euclidean Distance</em> function is:</p>
 <p><span class="math display">\[\begin{aligned}
   ED(u,v) &amp; = &amp; \sqrt{\sum_{i=1}^{m} (u_i - v_i)^2}
 \end{aligned}\]</span></p>
-<p>where <span class="math inline">\(u_i\)</span> and <span class="math inline">\(v_i\)</span> are the <span class="math inline">\(i^{th}\)</span> dimensional value of data points <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> respectively. Given documents <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> in <a href="#fig-text-2d" class="quarto-xref">Figure&nbsp;<span>11.1</span></a>, their euclidean distance is:</p>
+<p>where <span class="math inline">\(u_i\)</span> and <span class="math inline">\(v_i\)</span> are the <span class="math inline">\(i^{th}\)</span> dimensional value of data points <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> respectively. Given documents <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> in <a href="#fig-text-2d" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>, their euclidean distance is:</p>
 <p><span class="math display">\[\begin{aligned}
   ED(d_1,d_2)
   &amp; = &amp; \sqrt{(5-1)^2 + (1-4)^2}   \\
   &amp; = &amp; 5
 \end{aligned}\]</span></p>
 <p>While <em>Euclidean Distance</em> is widely used in text mining, its performance may suffer in applications where there is a wide distribution of document sizes. A thought experiment will help illustrate the problem.</p>
-<p>Imagine we have two documents <span class="math inline">\(d_1 = (4,5)\)</span> and <span class="math inline">\(d_2=(5,4)\)</span> (with TF weights) that are highly similar and have a very small Euclidean distance between them, as show in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>11.2</span></a>:</p>
+<p>Imagine we have two documents <span class="math inline">\(d_1 = (4,5)\)</span> and <span class="math inline">\(d_2=(5,4)\)</span> (with TF weights) that are highly similar and have a very small Euclidean distance between them, as show in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>12.2</span></a>:</p>
 <div id="fig-text-thought" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Thought experiment with two documents">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-text-thought-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/chapter11/ch-text-thought.svg" class="img-fluid figure-img" style="width:70.0%" alt="Thought experiment with two documents">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-thought-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.2: Thought experiment with two documents
+Figure&nbsp;12.2: Thought experiment with two documents
 </figcaption>
 </figure>
 </div>
-<p>For now, one may think the line distance in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>11.2</span></a> is a reasonable estimate of their difference. But imagine make a double-copy of <span class="math inline">\(d_2\)</span> and treat the new copy as <span class="math inline">\(d_3\)</span>, resulting in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>11.2</span></a>:</p>
+<p>For now, one may think the line distance in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>12.2</span></a> is a reasonable estimate of their difference. But imagine make a double-copy of <span class="math inline">\(d_2\)</span> and treat the new copy as <span class="math inline">\(d_3\)</span>, resulting in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>12.2</span></a>:</p>
 <div id="fig-text-thought2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Thought experiment a third document, where d_3 doubles the content of d_2">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-text-thought2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/chapter11/ch-text-thought2.svg" class="img-fluid figure-img" style="width:70.0%" alt="Thought experiment a third document, where d_3 doubles the content of d_2">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-thought2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.3: Thought experiment a third document, where <span class="math inline">\(d_3\)</span> doubles the content of <span class="math inline">\(d_2\)</span>
+Figure&nbsp;12.3: Thought experiment a third document, where <span class="math inline">\(d_3\)</span> doubles the content of <span class="math inline">\(d_2\)</span>
 </figcaption>
 </figure>
 </div>
-<p>Because <span class="math inline">\(d_3\)</span> is copy of <span class="math inline">\(d_2\)</span> – the only difference is that it doubles everything in <span class="math inline">\(d_2\)</span> – its semantics should remain the same as <span class="math inline">\(d_2\)</span>. A fair distance measure should give a relatively small value, indicating <span class="math inline">\(d_3\)</span> is <em>close</em> to <span class="math inline">\(d_1\)</span> and especially <span class="math inline">\(d_2\)</span>. However, as shown in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>11.2</span></a>, <span class="math inline">\(d_3\)</span> is much farther away from <span class="math inline">\(d_1\)</span> and consequently the euclidean distance is much greater.</p>
+<p>Because <span class="math inline">\(d_3\)</span> is copy of <span class="math inline">\(d_2\)</span> – the only difference is that it doubles everything in <span class="math inline">\(d_2\)</span> – its semantics should remain the same as <span class="math inline">\(d_2\)</span>. A fair distance measure should give a relatively small value, indicating <span class="math inline">\(d_3\)</span> is <em>close</em> to <span class="math inline">\(d_1\)</span> and especially <span class="math inline">\(d_2\)</span>. However, as shown in <a href="#fig-text-thought" class="quarto-xref">Figure&nbsp;<span>12.2</span></a>, <span class="math inline">\(d_3\)</span> is much farther away from <span class="math inline">\(d_1\)</span> and consequently the euclidean distance is much greater.</p>
 <p>In short, Euclidean Distance treats documents differently simply because they are of different sizes (magnitude). In this light, we should somehow disregard the sizes when measuring their similarities.</p>
-<p>Another perspective on similarity vs.&nbsp;distance in the dimensional space is by measuring the <em>direction</em> of a vector. In physics, the notion of vector has been used extensively for quantities such as velocity, which has both a <em>magnitude</em> (speed) and direction. Likewise, as shown as dashed lines in <a href="#fig-text-thought2" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>, documents such as <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> can be treated as vectors from the origin, with a magnitude (line length) and direction (arrow). The difference between the two documents can be measured by their angle distance.</p>
-<p>Also in <a href="#fig-text-thought2" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>, <span class="math inline">\(d_3\)</span> as copy of <span class="math inline">\(d_2\)</span> is pointing in the exact same direction of <span class="math inline">\(d_2\)</span> and their angle distance is <span class="math inline">\(0\)</span>. Consequently, the angle distance between <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_3\)</span> is the same as that of <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span>.</p>
-<p>All this makes sense with angle distance as <span class="math inline">\(d_2\)</span> and <span class="math inline">\(d_3\)</span> essentially have the same content and should be treated equivalent. In this <em>vector space</em> representation, a vector’s direction is dependent on the <em>distribution of term weights</em> in the corresponding text document. While the magnitude is about the absolute values of term weights, the direction is a rather relative measure – that means, in the case of <a href="#fig-text-thought2" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>, to what degree a document vector is more or less about <em>machine</em> (to the east) vs.&nbsp;<em>data</em> (to the north).</p>
+<p>Another perspective on similarity vs.&nbsp;distance in the dimensional space is by measuring the <em>direction</em> of a vector. In physics, the notion of vector has been used extensively for quantities such as velocity, which has both a <em>magnitude</em> (speed) and direction. Likewise, as shown as dashed lines in <a href="#fig-text-thought2" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>, documents such as <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> can be treated as vectors from the origin, with a magnitude (line length) and direction (arrow). The difference between the two documents can be measured by their angle distance.</p>
+<p>Also in <a href="#fig-text-thought2" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>, <span class="math inline">\(d_3\)</span> as copy of <span class="math inline">\(d_2\)</span> is pointing in the exact same direction of <span class="math inline">\(d_2\)</span> and their angle distance is <span class="math inline">\(0\)</span>. Consequently, the angle distance between <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_3\)</span> is the same as that of <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span>.</p>
+<p>All this makes sense with angle distance as <span class="math inline">\(d_2\)</span> and <span class="math inline">\(d_3\)</span> essentially have the same content and should be treated equivalent. In this <em>vector space</em> representation, a vector’s direction is dependent on the <em>distribution of term weights</em> in the corresponding text document. While the magnitude is about the absolute values of term weights, the direction is a rather relative measure – that means, in the case of <a href="#fig-text-thought2" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>, to what degree a document vector is more or less about <em>machine</em> (to the east) vs.&nbsp;<em>data</em> (to the north).</p>
 <p>To measure an <em>angle distance</em>, one can calculate the degree of the angle between two vectors. Nonetheless, a classic approach is to measure the <em>cosine</em> of the angle as their <em>similarity</em>.</p>
 <div id="fig-text-cosine" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Cosine of an angle">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1063,11 +1096,11 @@ Figure&nbsp;11.3: Thought experiment a third document, where <span class="math i
 <img src="../assets/figures/chapter11/ch-text-cosine.svg" class="img-fluid figure-img" style="width:70.0%" alt="Cosine of an angle">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-cosine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.4: Cosine of an angle
+Figure&nbsp;12.4: Cosine of an angle
 </figcaption>
 </figure>
 </div>
-<p>As shown in <a href="#fig-text-cosine" class="quarto-xref">Figure&nbsp;<span>11.4</span></a>, with the help line perpendicular to vector <span class="math inline">\(d_1\)</span>, the cosine of <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> is:</p>
+<p>As shown in <a href="#fig-text-cosine" class="quarto-xref">Figure&nbsp;<span>12.4</span></a>, with the help line perpendicular to vector <span class="math inline">\(d_1\)</span>, the cosine of <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> is:</p>
 <p><span class="math display">\[\begin{aligned}
   Cosine(d_1, d_2)
   &amp; = &amp; \frac{a}{c}
@@ -1090,25 +1123,25 @@ Cosine(d_1, d_2)
 &amp; = &amp; 1  \\
 \end{aligned}\]</span></p>
 <p>In this case, <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are identical with cosine <span class="math inline">\(1\)</span> whereas <span class="math inline">\(d_2\)</span> and <span class="math inline">\(d_3\)</span> have the same similarity compared to <span class="math inline">\(d_1\)</span>.</p>
-<p>Cosine is inversely related to the angle <span class="math inline">\(\theta\)</span> (distance) and is a similarity measure. When two vectors are close in their direction, with a small angle shown in <a href="#fig-text-cosine2" class="quarto-xref">Figure&nbsp;<span>11.5</span></a>, <span class="math inline">\(a\)</span> is almost the same as <span class="math inline">\(c\)</span> and cosine similarity is nearly <span class="math inline">\(1\)</span>. The two vectors are highly similar in their directions, with <span class="math inline">\(1\)</span> indicating the same direction and perfect match.</p>
+<p>Cosine is inversely related to the angle <span class="math inline">\(\theta\)</span> (distance) and is a similarity measure. When two vectors are close in their direction, with a small angle shown in <a href="#fig-text-cosine2" class="quarto-xref">Figure&nbsp;<span>12.5</span></a>, <span class="math inline">\(a\)</span> is almost the same as <span class="math inline">\(c\)</span> and cosine similarity is nearly <span class="math inline">\(1\)</span>. The two vectors are highly similar in their directions, with <span class="math inline">\(1\)</span> indicating the same direction and perfect match.</p>
 <div id="fig-text-cosine2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Cosine of a small angle, i.e. vectors of close directions">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-text-cosine2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/chapter11/ch-text-cosine2.svg" class="img-fluid figure-img" style="width:70.0%" alt="Cosine of a small angle, i.e. vectors of close directions">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-cosine2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.5: Cosine of a small angle, i.e.&nbsp;vectors of close directions
+Figure&nbsp;12.5: Cosine of a small angle, i.e.&nbsp;vectors of close directions
 </figcaption>
 </figure>
 </div>
-<p>On the other hand, when two vectors point to directions nearly perpendicular to one another, with a large angle shown in <a href="#fig-text-cosine3" class="quarto-xref">Figure&nbsp;<span>11.6</span></a>, <span class="math inline">\(a\)</span> becomes extremely small and cosine similarity is close to <span class="math inline">\(0\)</span>. For vectors based on text documents, their vector values are normally positive (in the first quadrant in the two-dimensional space). Therefore, the smallest cosine similarity value one can obtain is <span class="math inline">\(0\)</span> when two vectors are exactly perpendicular (orthogonal directions).</p>
+<p>On the other hand, when two vectors point to directions nearly perpendicular to one another, with a large angle shown in <a href="#fig-text-cosine3" class="quarto-xref">Figure&nbsp;<span>12.6</span></a>, <span class="math inline">\(a\)</span> becomes extremely small and cosine similarity is close to <span class="math inline">\(0\)</span>. For vectors based on text documents, their vector values are normally positive (in the first quadrant in the two-dimensional space). Therefore, the smallest cosine similarity value one can obtain is <span class="math inline">\(0\)</span> when two vectors are exactly perpendicular (orthogonal directions).</p>
 <div id="fig-text-cosine3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Cosine of a large angle, i.e. vectors with nearly perpendicular directions">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-text-cosine3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/chapter11/ch-text-cosine3.svg" class="img-fluid figure-img" style="width:70.0%" alt="Cosine of a large angle, i.e. vectors with nearly perpendicular directions">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-cosine3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.6: Cosine of a large angle, i.e.&nbsp;vectors with nearly perpendicular directions
+Figure&nbsp;12.6: Cosine of a large angle, i.e.&nbsp;vectors with nearly perpendicular directions
 </figcaption>
 </figure>
 </div>
@@ -1132,10 +1165,10 @@ Figure&nbsp;11.6: Cosine of a large angle, i.e.&nbsp;vectors with nearly perpend
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="probabilities-and-implications" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="probabilities-and-implications"><span class="header-section-number">11.3</span> Probabilities and Implications</h2>
-<section id="zipfs-law" class="level3" data-number="11.3.1">
-<h3 data-number="11.3.1" class="anchored" data-anchor-id="zipfs-law"><span class="header-section-number">11.3.1</span> Zipf’s Law</h3>
+<section id="probabilities-and-implications" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="probabilities-and-implications"><span class="header-section-number">12.3</span> Probabilities and Implications</h2>
+<section id="zipfs-law" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="zipfs-law"><span class="header-section-number">12.3.1</span> Zipf’s Law</h3>
 <p>The notion of <em>least action</em> or <em>least effort</em> has long been observed in the natural world as well as human behavior. In spoken language, we tend to minimize our efforts by reusing old words and expressions, as if they are old tools meant for many applications. The results of this: words tend toward "a minimum in number and size" and "the older the tool (word) the more different jobs it can perform."<span class="citation" data-cites="Zipf:1949">(<a href="../references.html#ref-Zipf:1949" role="doc-biblioref">Zipf 1949</a>)</span></p>
 <p>Under the <em>Principle of Least Effort</em>, there appears to be a great divide between a small number of words so frequently used and those rarely mentioned. In particular, if we sort words by their frequencies, a term <span class="math inline">\(t\)</span>’s frequency <span class="math inline">\(f_t\)</span> is proportional to the inverse of its rank <span class="math inline">\(k_t\)</span>:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -1145,18 +1178,18 @@ Figure&nbsp;11.6: Cosine of a large angle, i.e.&nbsp;vectors with nearly perpend
 <p><span class="math display">\[\begin{aligned}
   p(t) &amp; = &amp; \frac{c}{k_t}
 \end{aligned}\]</span></p>
-<p>where <span class="math inline">\(c\)</span> is a constant. In the English language, empirical data have shown <span class="math inline">\(p(t) \approx 0.1 / k_t\)</span> within the top <span class="math inline">\(1,000\)</span> rank. This relation can be visualized in <a href="#fig-text-zipf" class="quarto-xref">Figure&nbsp;<span>11.7</span></a> (a).</p>
+<p>where <span class="math inline">\(c\)</span> is a constant. In the English language, empirical data have shown <span class="math inline">\(p(t) \approx 0.1 / k_t\)</span> within the top <span class="math inline">\(1,000\)</span> rank. This relation can be visualized in <a href="#fig-text-zipf" class="quarto-xref">Figure&nbsp;<span>12.7</span></a> (a).</p>
 <div id="fig-text-zipf" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Zipf law function, roughly for the top 1,000 in English">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-text-zipf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/chapter11/fig-text-zipf.svg" class="img-fluid figure-img" style="width:70.0%" alt="Zipf law function, roughly for the top 1,000 in English">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-zipf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.7: Zipf law function, roughly for the top <span class="math inline">\(1,000\)</span> in English
+Figure&nbsp;12.7: Zipf law function, roughly for the top <span class="math inline">\(1,000\)</span> in English
 </figcaption>
 </figure>
 </div>
-<p>With a long tail, <a href="#fig-text-zipf" class="quarto-xref">Figure&nbsp;<span>11.7</span></a> (a) on normal coordinates is difficult to examine and it is often useful to apply the logarithmic transformation. By taking the log of both <span class="math inline">\(x\)</span> (rank) and <span class="math inline">\(y\)</span> (frequency) values, this can be transformed into <a href="#fig-text-zipf" class="quarto-xref">Figure&nbsp;<span>11.7</span></a> (b). As shown, Zipf law is a linear function on log-log coordinates and is a special case of <em>power-law</em> distributions, which, as we discussed in Chapter&nbsp;, are results of the <em>Matthew effect</em> (the rich get richer). In fact, there is an intrinsic connection between the <em>Principle of Least Effort</em> and the <em>Matthew effect</em> – as we tend to a minimum set of vocabulary, what we have frequently used (old "rich" words) will be used even more frequently (richer).</p>
+<p>With a long tail, <a href="#fig-text-zipf" class="quarto-xref">Figure&nbsp;<span>12.7</span></a> (a) on normal coordinates is difficult to examine and it is often useful to apply the logarithmic transformation. By taking the log of both <span class="math inline">\(x\)</span> (rank) and <span class="math inline">\(y\)</span> (frequency) values, this can be transformed into <a href="#fig-text-zipf" class="quarto-xref">Figure&nbsp;<span>12.7</span></a> (b). As shown, Zipf law is a linear function on log-log coordinates and is a special case of <em>power-law</em> distributions, which, as we discussed in Chapter&nbsp;, are results of the <em>Matthew effect</em> (the rich get richer). In fact, there is an intrinsic connection between the <em>Principle of Least Effort</em> and the <em>Matthew effect</em> – as we tend to a minimum set of vocabulary, what we have frequently used (old "rich" words) will be used even more frequently (richer).</p>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -1176,8 +1209,8 @@ Figure&nbsp;11.7: Zipf law function, roughly for the top <span class="math inlin
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="feature-selection" class="level3" data-number="11.3.2">
-<h3 data-number="11.3.2" class="anchored" data-anchor-id="feature-selection"><span class="header-section-number">11.3.2</span> Feature Selection</h3>
+<section id="feature-selection" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="feature-selection"><span class="header-section-number">12.3.2</span> Feature Selection</h3>
 <p>We have observed that any text processing may involve a very large number of features (terms) and it is a common practice to perform <em>feature selection</em> in such processes as clustering, classification, and retrieval (search).</p>
 <p>In light of Zipf’s law, there are a large number of words that are rarely used, only in a few documents. While these terms might be informative when they occur, their rare occurrences make them less useful in such tasks as clustering and classification where documents are grouped by terms they have in common. Given that there are many low frequent words – the long tail of the Zipf function – removing them will reduce the dictionary size (feature space) significantly.</p>
 <p>In terms of document frequency (DF), on the other hand, we know highly frequent words such as stop words are not informative and can be safely removed in certain applications. In practice, simple feature selection techniques such as DF (document frequency) thresholding has performed very effectively with little computational cost.<span class="citation" data-cites="Yang:1997">(<a href="../references.html#ref-Yang:1997" role="doc-biblioref">Yang and Pedersen 1997</a>)</span> It has been shown that having the right number of features is key to the success of text clustering and classification – using all features not only slows down the processing but also contributes more noise than information for related tasks.<span class="citation" data-cites="Ke:2015">(<a href="../references.html#ref-Ke:2015" role="doc-biblioref">Ke 2015</a>)</span></p>
@@ -1219,8 +1252,8 @@ Figure&nbsp;11.7: Zipf law function, roughly for the top <span class="math inlin
 <!-- practice-link:end -->
 </section>
 </section>
-<section id="text-classification" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="text-classification"><span class="header-section-number">11.4</span> Text Classification</h2>
+<section id="text-classification" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="text-classification"><span class="header-section-number">12.4</span> Text Classification</h2>
 <p>With a distance or similarity measure in the vector representation, it is now possible to compare documents to one another and associate them with data groups or labels. For example, one may use an instance-based lazy learning method such as kNN (see Chapter&nbsp;<a href="#ch-choices" data-reference-type="ref" data-reference="ch-choices">[ch-choices]</a>) with cosine similarity to perform classification and prediction based on the nearest data vectors.</p>
 <p>Another successful approach is to model the probability that a document belongs to each class (label) and assign the document to the class that maximizes the probability. That is, given a document representation <span class="math inline">\(d\)</span>, we need to estimate the probability of each class <span class="math inline">\(p(c_i|d)\)</span>, where <span class="math inline">\(c_i\)</span> is one of the given classes to be predicted.</p>
 <p>Say we are working on email <em>spam</em> filtering based on subject titles. This is a binary classification problem, for which we have two classes (labels) – an email is either a <em>ham</em> (normal) or a <em>spam</em> (junk). Suppose we have a small collection of email subjects which we have labeled <em>ham</em> or <em>spam</em> to train our model (learning):</p>
@@ -1273,8 +1306,8 @@ Figure&nbsp;11.7: Zipf law function, roughly for the top <span class="math inlin
 </table>
 <p><span id="tab-text-emails" data-label="tab-text-emails"></span></p>
 </div>
-<section id="naive-bayes-with-binary-term-occurrences-bernoulli" class="level3" data-number="11.4.1">
-<h3 data-number="11.4.1" class="anchored" data-anchor-id="naive-bayes-with-binary-term-occurrences-bernoulli"><span class="header-section-number">11.4.1</span> Naive Bayes with Binary Term Occurrences (Bernoulli)</h3>
+<section id="naive-bayes-with-binary-term-occurrences-bernoulli" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="naive-bayes-with-binary-term-occurrences-bernoulli"><span class="header-section-number">12.4.1</span> Naive Bayes with Binary Term Occurrences (Bernoulli)</h3>
 <p>Given the short subject titles, let us first look at how we can model probabilities in text if we only consider binary occurrences of terms. Assume we remove some of stop-words (e.g.&nbsp;have, been) and normalize some others (e.g.&nbsp;meeting <span class="math inline">\(\to\)</span> meet, won <span class="math inline">\(\to\)</span> win), we can represent the email using the following dictionary:</p>
 <div class="table*">
 <table class="caption-top table">
@@ -1613,8 +1646,8 @@ Figure&nbsp;11.7: Zipf law function, roughly for the top <span class="math inlin
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="naive-bayes-with-term-frequencies-multinomial" class="level3" data-number="11.4.2">
-<h3 data-number="11.4.2" class="anchored" data-anchor-id="naive-bayes-with-term-frequencies-multinomial"><span class="header-section-number">11.4.2</span> Naive Bayes with Term Frequencies (Multinomial)</h3>
+<section id="naive-bayes-with-term-frequencies-multinomial" class="level3" data-number="12.4.2">
+<h3 data-number="12.4.2" class="anchored" data-anchor-id="naive-bayes-with-term-frequencies-multinomial"><span class="header-section-number">12.4.2</span> Naive Bayes with Term Frequencies (Multinomial)</h3>
 <p>Now let us look beyond binary term occurrences for text classification. As we discussed earlier in the chapter, term frequency (TF) is a useful statistic, which we should also take advantage of in this task.</p>
 <p>Suppose we extend the email representation from subject title to include email body (content) as well. Assume the dictionary (vocabulary) remains the same as in Table&nbsp;<a href="#tab-text-emails_bin" data-reference-type="ref" data-reference="tab-text-emails_bin">[tab-text-emails_bin]</a> but obviously terms may occur multiple times in the email text. The following is a hypothetical TF representation of the same emails:</p>
 <div class="table*">
@@ -2347,12 +2380,12 @@ Zipf, George K. 1949. <em>Human Behaviour and the Principle of Least Effort</em>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/10-clustering.html" class="pagination-link" aria-label="Clustering and Organization">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/12-search-retrieval.html" class="pagination-link" aria-label="Search and Retrieval">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

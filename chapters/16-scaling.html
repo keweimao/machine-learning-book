@@ -2,21 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="An introductory journey from data and information to machine learning, language, search, and evaluation.">
 
-<title>16&nbsp; Scaling, Deployment, and Responsible Use – Machine Learning: The Quest for Information and Meaning</title>
+<title>17&nbsp; Scaling, Deployment, and Responsible Use – Machine Learning: The Quest for Information and Meaning</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -42,10 +45,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9a6e6ad007c27a295cfd1f08f4b733a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -86,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/16-scaling.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/16-scaling.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -213,8 +216,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Convolutional Neural Networks: Learning Spatial Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/10-clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
   </div>
 </li>
       </ul>
@@ -231,19 +240,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/11-text-language.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/12-search-retrieval.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/13-structural-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -260,19 +269,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/14-evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/15-generalization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/16-scaling.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
   </div>
 </li>
       </ul>
@@ -444,6 +453,30 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../practice/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice 10: Convolutional Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practice/labs/mnist-mlp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: MNIST with a Multilayer Perceptron</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practice/labs/cnn-concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: CNN Concepts from Arrays to Feature Maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practice/labs/mnist-cnn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: MNIST with a Convolutional Neural Network</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../practice/10-clustering-and-organization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practice 10: Clustering and Organization</span></a>
   </div>
@@ -562,23 +595,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#time-space-data-and-compute" id="toc-time-space-data-and-compute" class="nav-link active" data-scroll-target="#time-space-data-and-compute"><span class="header-section-number">16.1</span> Time, Space, Data, and Compute</a></li>
-  <li><a href="#batch-streaming-and-distributed-workflows" id="toc-batch-streaming-and-distributed-workflows" class="nav-link" data-scroll-target="#batch-streaming-and-distributed-workflows"><span class="header-section-number">16.2</span> Batch, Streaming, and Distributed Workflows</a></li>
-  <li><a href="#from-experiment-to-reproducible-pipeline" id="toc-from-experiment-to-reproducible-pipeline" class="nav-link" data-scroll-target="#from-experiment-to-reproducible-pipeline"><span class="header-section-number">16.3</span> From Experiment to Reproducible Pipeline</a></li>
-  <li><a href="#deployment-monitoring-and-drift" id="toc-deployment-monitoring-and-drift" class="nav-link" data-scroll-target="#deployment-monitoring-and-drift"><span class="header-section-number">16.4</span> Deployment, Monitoring, and Drift</a></li>
-  <li><a href="#privacy-security-and-misuse" id="toc-privacy-security-and-misuse" class="nav-link" data-scroll-target="#privacy-security-and-misuse"><span class="header-section-number">16.5</span> Privacy, Security, and Misuse</a></li>
-  <li><a href="#energy-sustainability-and-proportionality" id="toc-energy-sustainability-and-proportionality" class="nav-link" data-scroll-target="#energy-sustainability-and-proportionality"><span class="header-section-number">16.6</span> Energy, Sustainability, and Proportionality</a></li>
-  <li><a href="#responsible-decisions-and-human-oversight" id="toc-responsible-decisions-and-human-oversight" class="nav-link" data-scroll-target="#responsible-decisions-and-human-oversight"><span class="header-section-number">16.7</span> Responsible Decisions and Human Oversight</a></li>
-  <li><a href="#summary-and-exercises" id="toc-summary-and-exercises" class="nav-link" data-scroll-target="#summary-and-exercises"><span class="header-section-number">16.8</span> Summary and Exercises</a></li>
+  <li><a href="#time-space-data-and-compute" id="toc-time-space-data-and-compute" class="nav-link active" data-scroll-target="#time-space-data-and-compute"><span class="header-section-number">17.1</span> Time, Space, Data, and Compute</a></li>
+  <li><a href="#batch-streaming-and-distributed-workflows" id="toc-batch-streaming-and-distributed-workflows" class="nav-link" data-scroll-target="#batch-streaming-and-distributed-workflows"><span class="header-section-number">17.2</span> Batch, Streaming, and Distributed Workflows</a></li>
+  <li><a href="#from-experiment-to-reproducible-pipeline" id="toc-from-experiment-to-reproducible-pipeline" class="nav-link" data-scroll-target="#from-experiment-to-reproducible-pipeline"><span class="header-section-number">17.3</span> From Experiment to Reproducible Pipeline</a></li>
+  <li><a href="#deployment-monitoring-and-drift" id="toc-deployment-monitoring-and-drift" class="nav-link" data-scroll-target="#deployment-monitoring-and-drift"><span class="header-section-number">17.4</span> Deployment, Monitoring, and Drift</a></li>
+  <li><a href="#privacy-security-and-misuse" id="toc-privacy-security-and-misuse" class="nav-link" data-scroll-target="#privacy-security-and-misuse"><span class="header-section-number">17.5</span> Privacy, Security, and Misuse</a></li>
+  <li><a href="#energy-sustainability-and-proportionality" id="toc-energy-sustainability-and-proportionality" class="nav-link" data-scroll-target="#energy-sustainability-and-proportionality"><span class="header-section-number">17.6</span> Energy, Sustainability, and Proportionality</a></li>
+  <li><a href="#responsible-decisions-and-human-oversight" id="toc-responsible-decisions-and-human-oversight" class="nav-link" data-scroll-target="#responsible-decisions-and-human-oversight"><span class="header-section-number">17.7</span> Responsible Decisions and Human Oversight</a></li>
+  <li><a href="#summary-and-exercises" id="toc-summary-and-exercises" class="nav-link" data-scroll-target="#summary-and-exercises"><span class="header-section-number">17.8</span> Summary and Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/keweimao/machine-learning-book/edit/main/chapters/16-scaling.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/keweimao/machine-learning-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/16-scaling.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/16-scaling.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="ch-scaling" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></h1>
+<h1 class="title"><span id="ch-scaling" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></h1>
 </div>
 
 
@@ -596,8 +629,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <!-- DEVELOPMENT OUTLINE: original chapter contained only its title. -->
-<section id="time-space-data-and-compute" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="time-space-data-and-compute"><span class="header-section-number">16.1</span> Time, Space, Data, and Compute</h2>
+<section id="time-space-data-and-compute" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="time-space-data-and-compute"><span class="header-section-number">17.1</span> Time, Space, Data, and Compute</h2>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -617,8 +650,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="batch-streaming-and-distributed-workflows" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="batch-streaming-and-distributed-workflows"><span class="header-section-number">16.2</span> Batch, Streaming, and Distributed Workflows</h2>
+<section id="batch-streaming-and-distributed-workflows" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="batch-streaming-and-distributed-workflows"><span class="header-section-number">17.2</span> Batch, Streaming, and Distributed Workflows</h2>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -638,8 +671,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="from-experiment-to-reproducible-pipeline" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="from-experiment-to-reproducible-pipeline"><span class="header-section-number">16.3</span> From Experiment to Reproducible Pipeline</h2>
+<section id="from-experiment-to-reproducible-pipeline" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="from-experiment-to-reproducible-pipeline"><span class="header-section-number">17.3</span> From Experiment to Reproducible Pipeline</h2>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -659,8 +692,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="deployment-monitoring-and-drift" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="deployment-monitoring-and-drift"><span class="header-section-number">16.4</span> Deployment, Monitoring, and Drift</h2>
+<section id="deployment-monitoring-and-drift" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="deployment-monitoring-and-drift"><span class="header-section-number">17.4</span> Deployment, Monitoring, and Drift</h2>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -680,8 +713,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="privacy-security-and-misuse" class="level2" data-number="16.5">
-<h2 data-number="16.5" class="anchored" data-anchor-id="privacy-security-and-misuse"><span class="header-section-number">16.5</span> Privacy, Security, and Misuse</h2>
+<section id="privacy-security-and-misuse" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="privacy-security-and-misuse"><span class="header-section-number">17.5</span> Privacy, Security, and Misuse</h2>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -701,8 +734,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="energy-sustainability-and-proportionality" class="level2" data-number="16.6">
-<h2 data-number="16.6" class="anchored" data-anchor-id="energy-sustainability-and-proportionality"><span class="header-section-number">16.6</span> Energy, Sustainability, and Proportionality</h2>
+<section id="energy-sustainability-and-proportionality" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="energy-sustainability-and-proportionality"><span class="header-section-number">17.6</span> Energy, Sustainability, and Proportionality</h2>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
@@ -722,8 +755,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="responsible-decisions-and-human-oversight" class="level2" data-number="16.7">
-<h2 data-number="16.7" class="anchored" data-anchor-id="responsible-decisions-and-human-oversight"><span class="header-section-number">16.7</span> Responsible Decisions and Human Oversight</h2>
+<section id="responsible-decisions-and-human-oversight" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="responsible-decisions-and-human-oversight"><span class="header-section-number">17.7</span> Responsible Decisions and Human Oversight</h2>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
@@ -743,8 +776,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="summary-and-exercises" class="level2" data-number="16.8">
-<h2 data-number="16.8" class="anchored" data-anchor-id="summary-and-exercises"><span class="header-section-number">16.8</span> Summary and Exercises</h2>
+<section id="summary-and-exercises" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="summary-and-exercises"><span class="header-section-number">17.8</span> Summary and Exercises</h2>
 
 
 </section>
@@ -1153,7 +1186,7 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/15-generalization.html" class="pagination-link" aria-label="Generalization, Model Selection, and Fit">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

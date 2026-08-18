@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9a6e6ad007c27a295cfd1f08f4b733a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -277,8 +280,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../chapters/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Convolutional Neural Networks: Learning Spatial Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../chapters/10-clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
   </div>
 </li>
       </ul>
@@ -295,19 +304,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/11-text-language.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/12-search-retrieval.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/13-structural-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -324,19 +333,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/14-evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/15-generalization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/16-scaling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
   </div>
 </li>
       </ul>
@@ -504,6 +513,30 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../practice/labs/classification-patterns-assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classification Patterns and Evaluation Assignment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practice/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice 10: Convolutional Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practice/labs/mnist-mlp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: MNIST with a Multilayer Perceptron</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practice/labs/cnn-concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: CNN Concepts from Arrays to Feature Maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practice/labs/mnist-cnn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: MNIST with a Convolutional Neural Network</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -683,7 +716,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Import necessary libraries in Python:</p>
-<div id="e0914f8b" class="cell">
+<div id="b2782c33" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
@@ -708,7 +741,7 @@ window.Quarto = {
 <p>Here is a local copy of the data: <a href="../data/spam.csv">spam.csv</a>.</p>
 <section id="a.1.-load-data" class="level3">
 <h3 class="anchored" data-anchor-id="a.1.-load-data">A.1. Load Data</h3>
-<div id="c12c09fc" class="cell">
+<div id="726ed09d" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>emails <span class="op">=</span> pd.read_csv(<span class="st">"../data/spam.csv"</span>, encoding<span class="op">=</span><span class="st">"iso8859-1"</span>)</span>
@@ -719,7 +752,7 @@ window.Quarto = {
 <section id="a.2.-zipfs-law" class="level3">
 <h3 class="anchored" data-anchor-id="a.2.-zipfs-law">A.2. Zipf’s Law</h3>
 <p>Let’s tokenize the emails and count word frequencies.</p>
-<div id="c06925d4" class="cell">
+<div id="901c8a10" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
@@ -740,7 +773,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Rank the terms by their frequencies:</p>
-<div id="b4669eed" class="cell">
+<div id="18f97867" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tfs <span class="op">=</span> tfs.sort_values(by<span class="op">=</span>[<span class="st">'f'</span>], ascending<span class="op">=</span><span class="va">False</span>)</span>
@@ -749,7 +782,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Add the rank <code>r</code> column to start with 1:</p>
-<div id="3a906c42" class="cell">
+<div id="f93d1f94" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tfs[<span class="st">'k'</span>] <span class="op">=</span> tfs.index <span class="op">+</span> <span class="dv">1</span></span>
@@ -757,7 +790,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Plot the frequency <span class="math inline">\(f_t\)</span> vs.&nbsp;rank <span class="math inline">\(k_t\)</span>:</p>
-<div id="975c98d2" class="cell">
+<div id="0c8452ec" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.plot(tfs[<span class="st">'k'</span>], tfs[<span class="st">'f'</span>])</span>
@@ -767,7 +800,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Transform X and Y to log-log coordinates:</p>
-<div id="6e1cac33" class="cell">
+<div id="88fb123b" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(tfs[<span class="st">'k'</span>], tfs[<span class="st">'f'</span>])</span>
@@ -778,7 +811,7 @@ window.Quarto = {
 </div>
 <p>Now each term’s probability to occur can be estimated by:</p>
 <p><span class="math display">\[ p_t = \frac{f_t}{\sum_t f_t} \]</span></p>
-<div id="f359cc9a" class="cell">
+<div id="e28eb83c" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ttf <span class="op">=</span> tfs[<span class="st">'f'</span>].<span class="bu">sum</span>()</span>
@@ -787,7 +820,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Plot probability <span class="math inline">\(p_t\)</span> vs.&nbsp;rank <span class="math inline">\(k_t\)</span>:</p>
-<div id="3754a8c1" class="cell">
+<div id="9443b7d0" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(tfs[<span class="st">'k'</span>], tfs[<span class="st">'p'</span>])</span>
@@ -798,7 +831,7 @@ window.Quarto = {
 </div>
 <p>Does it look like a straight line on log-log coordinates? Does it follow the Zipf’s law?</p>
 <p>Let’s perform a linear regression on the log-transformed <span class="math inline">\(p_t\)</span> and <span class="math inline">\(k_t\)</span>:</p>
-<div id="43558681" class="cell">
+<div id="e31a904a" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
@@ -835,7 +868,7 @@ window.Quarto = {
 <section id="a.3.-probabilities-in-training-data" class="level3">
 <h3 class="anchored" data-anchor-id="a.3.-probabilities-in-training-data">A.3. Probabilities in Training Data</h3>
 <p>Given the above dataset, let’s split it into two random subsets: 80% training and 20% testing.</p>
-<div id="af87ef6a" class="cell">
+<div id="98868d80" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate random true (80% chance) or false values</span></span>
@@ -847,7 +880,7 @@ window.Quarto = {
 </details>
 </div>
 <p>The probability of a ham <span class="math inline">\(p(ham)\)</span> in the training data:</p>
-<div id="e641ad9f" class="cell">
+<div id="0da3a030" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the total number of instances</span></span>
@@ -861,7 +894,7 @@ window.Quarto = {
 </details>
 </div>
 <p>The probability of a spam <span class="math inline">\(p(spam)\)</span>:</p>
-<div id="6845332a" class="cell">
+<div id="a007b867" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the total number of spams</span></span>
@@ -872,7 +905,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now we vectorize the training data:</p>
-<div id="c3e241d1" class="cell">
+<div id="c33151f5" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>vect <span class="op">=</span> CountVectorizer(analyzer<span class="op">=</span><span class="st">"word"</span>)</span>
@@ -880,14 +913,14 @@ window.Quarto = {
 </details>
 </div>
 <p>And use the trained dictionary to vectorize test data:</p>
-<div id="958c9718" class="cell">
+<div id="cf31b51e" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> vect.transform(test.v2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We split the training data into spam and ham subsets:</p>
-<div id="9bc2487c" class="cell">
+<div id="5736e394" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ham_index <span class="op">=</span> train[<span class="st">'v1'</span>]<span class="op">==</span><span class="st">'ham'</span></span>
@@ -899,7 +932,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Let’s locate a term in the list of terms (dictionary):</p>
-<div id="d4f43495" class="cell">
+<div id="d2fa486b" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>terms <span class="op">=</span> vect.get_feature_names()</span>
@@ -909,7 +942,7 @@ window.Quarto = {
 </details>
 </div>
 <p>We can compute conditional probabibility of a term in the ham <span class="math inline">\(p(t|ham)\)</span>:</p>
-<div id="5c0efaea" class="cell">
+<div id="04ba7314" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>hamf <span class="op">=</span> X_hams.toarray().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
@@ -922,7 +955,7 @@ window.Quarto = {
 </div>
 <p>You see it is very unlikely for term <code>prize</code> to appear in a ham (normal email).</p>
 <p>Now let’s look at the conditional probability of the same term in the spam <span class="math inline">\(p(t|spam)\)</span>:</p>
-<div id="d7a3c026" class="cell">
+<div id="19975431" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>terms <span class="op">=</span> vect.get_feature_names()</span>
@@ -937,7 +970,7 @@ window.Quarto = {
 <p>What do <span class="math inline">\(p(prize|ham)\)</span> and <span class="math inline">\(p(prize|spam)\)</span> mean respectively?</p>
 <p>Apparently, it is much more likely to see <code>prize</code> in a spam than in a ham, i.e.&nbsp;<span class="math inline">\(p(prize|ham) \gg p(prize|spam)\)</span>.</p>
 <p>Take a look at a few other terms (words) in spam vs.&nbsp;ham to see if their conditional probabilities make sense.</p>
-<div id="0da4c9ac" class="cell">
+<div id="05687ae2" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> terms.index(<span class="st">"prize"</span>)</span>
@@ -945,7 +978,7 @@ window.Quarto = {
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>t1, t2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="8c8a4adb" class="cell">
+<div id="76ebdc24" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example to plot two term (column vectors) on x and y</span></span>
@@ -961,7 +994,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="a.4.-probabilistic-binary-model-bernoulli-naive-bayes">A.4. Probabilistic Binary Model (Bernoulli Naive Bayes)</h3>
 <p>The above probabilities form the basis of the Naive Bayes model (probabilistic classification).</p>
 <p>Now let’s train a Bernoulli Naive Bayes classifier, with binary term occurrences:</p>
-<div id="4b6598c7" class="cell">
+<div id="6709cf78" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> BernoulliNB</span>
@@ -975,14 +1008,14 @@ window.Quarto = {
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>v1p <span class="op">=</span> bNB.predict(X_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="6edc5fd0" class="cell">
+<div id="193d04b4" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v1p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Now let’s compare and compute predicted values <span class="math inline">\(v1p\)</span> and actual class labels <span class="math inline">\(v1\)</span> in the testing data. We first look at the confusion matrix:</p>
-<div id="1e8b9259" class="cell">
+<div id="1e146730" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, plot_confusion_matrix</span>
@@ -991,7 +1024,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Look at the confusion matrix here and think about these questions: + Among the four values, which one would you like to maximize for spam filtering? + Which ones would you minimize?</p>
-<div id="899ee0c9" class="cell">
+<div id="f4eeed7c" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, cohen_kappa_score </span>
@@ -1007,7 +1040,7 @@ window.Quarto = {
 <section id="a.5.-probablistic-term-frequency-model-multinomial-naive-bayes" class="level3">
 <h3 class="anchored" data-anchor-id="a.5.-probablistic-term-frequency-model-multinomial-naive-bayes">A.5. Probablistic Term Frequency Model (Multinomial Naive Bayes)</h3>
 <p>Likewise, we can train and test the Naive Bayes model with the Multinomial distribution (term frequencies).</p>
-<div id="dfcec4cc" class="cell">
+<div id="07bf9727" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> MultinomialNB</span>
@@ -1020,7 +1053,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Take a look at some of the probabilities:</p>
-<div id="41d2f2ff" class="cell" data-scrolled="true">
+<div id="3ad95996" class="cell" data-scrolled="true">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
@@ -1033,7 +1066,7 @@ window.Quarto = {
 </div>
 <p>Compare the estimated values to the same conditional probabilities we obtained earlier. Are they similar, relatively?</p>
 <p>Now let’s use the trained model (estimated probabilities) to predit on the test data:</p>
-<div id="0f5b6637" class="cell">
+<div id="252a2f0e" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>v1p <span class="op">=</span> mNB.predict(X_test)</span>
@@ -1042,7 +1075,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Evaluation with related metrics:</p>
-<div id="74d52504" class="cell">
+<div id="328add40" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>acc <span class="op">=</span> accuracy_score(v1p, test.v1)</span>
@@ -1060,7 +1093,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="b.-linear-classification-model">B. Linear Classification Model</h2>
 <p>Here is a small dataset about car evaluation: <a href="../data/cars.txt">cars.txt</a>. It is originally from UCI’s Car Evaluation Data Set (https://archive.ics.uci.edu/ml/datasets/Car+Evaluation) and has been modified (<strong>idealized</strong> for now) for demonstration here.</p>
 <p>We focus on each car’s: 1. <strong>Buying price</strong> <span class="math inline">\(b\)</span> 2. <strong>Maintenance cost</strong> <span class="math inline">\(m\)</span> 3. <strong>Car evaluation</strong>, i.e.&nbsp;class <span class="math inline">\(a\)</span> with values of accceptable (<span class="math inline">\(1\)</span>) or unacceptable <span class="math inline">\(0\)</span>.</p>
-<div id="f5c32818" class="cell">
+<div id="9e2cf44f" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>cars <span class="op">=</span> pd.read_csv(<span class="st">"../data/cars.txt"</span>, sep<span class="op">=</span><span class="st">" "</span>)</span>
@@ -1068,7 +1101,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now take a look at the car’s evaluation <span class="math inline">\(a\)</span> (acceptable vs.&nbsp;unacceptable) on the two attribute dimensions, buying price <span class="math inline">\(b\)</span> and maintenance cost <span class="math inline">\(m\)</span>:</p>
-<div id="cfd80452" class="cell">
+<div id="dcbfa041" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>positive <span class="op">=</span> cars[<span class="st">'a'</span>]<span class="op">&gt;</span><span class="dv">0</span></span>
@@ -1088,7 +1121,7 @@ window.Quarto = {
 <section id="b.1.-linear-classification-perceptron-with-idealized-data" class="level3">
 <h3 class="anchored" data-anchor-id="b.1.-linear-classification-perceptron-with-idealized-data">B.1. Linear Classification (Perceptron) with Idealized Data</h3>
 <p>Let’s use the cars data to train a perceptron:</p>
-<div id="ba1813e3" class="cell">
+<div id="95aa5cce" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Perceptron</span>
@@ -1105,7 +1138,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now we can visualize the linear function, a line on the 2-dimensional space:</p>
-<div id="e9dd3c15" class="cell">
+<div id="88c80269" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function to plot data with linear model</span></span>
@@ -1128,7 +1161,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now that the Perceptron takes 20 iterations to find the weight, let’s go through the iterations to see how the values of <span class="math inline">\([w_0, w_1, w_2]\)</span> are updated and converge.</p>
-<div id="757cb056" class="cell">
+<div id="e021feeb" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
@@ -1146,7 +1179,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now we can plot how the <span class="math inline">\(w\)</span> values change over the iterations (epochs):</p>
-<div id="c587505e" class="cell" data-tags="[&quot;hide_input&quot;]">
+<div id="60aa2d0e" class="cell" data-tags="[&quot;hide_input&quot;]">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">1</span>)</span>
@@ -1162,7 +1195,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Here is the visualized evolution of the linear function (straight line) over the iterations (epochs):</p>
-<div id="e31a3ff7" class="cell" data-tags="[&quot;hide_input&quot;]">
+<div id="daf7454b" class="cell" data-tags="[&quot;hide_input&quot;]">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fig, axs2 <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">3</span>) </span>
@@ -1181,7 +1214,7 @@ window.Quarto = {
 <section id="b.2.-linear-classification-with-not-so-ideal-data" class="level3">
 <h3 class="anchored" data-anchor-id="b.2.-linear-classification-with-not-so-ideal-data">B.2. Linear Classification with Not-So-Ideal Data</h3>
 <p>Now if we simply add a <strong>new data</strong> point <span class="math inline">\((2,2,1)\)</span> to the idealized data:</p>
-<div id="e25af870" class="cell" data-tags="[&quot;hide_input&quot;]">
+<div id="38fa1bac" class="cell" data-tags="[&quot;hide_input&quot;]">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>new <span class="op">=</span> pd.DataFrame([[<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>]], columns<span class="op">=</span>[<span class="st">'b'</span>,<span class="st">'m'</span>,<span class="st">'a'</span>])</span>
@@ -1203,7 +1236,7 @@ window.Quarto = {
 </div>
 <p>Now our training data in <code>newcars</code> have a <strong>new situation</strong> not encountered before.</p>
 <p>Let’s repeat the process: 1. Train and visualize the Perceptron model on the <code>newcars</code> data (as we did on the <code>cars</code> data earlier). 2. Do you think we will obtain a good linear function (perceptron)?</p>
-<div id="afb9ecd2" class="cell">
+<div id="0720148c" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>net1 <span class="op">=</span> Perceptron(max_iter<span class="op">=</span><span class="dv">100</span>, eta0<span class="op">=</span><span class="fl">0.15</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1214,7 +1247,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Here is the model after 100 iterations (epochs):</p>
-<div id="c9d53320" class="cell">
+<div id="31690c42" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>plot_linear(plt, <span class="st">"100 Epochs"</span>, newcars0, newcars1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1222,7 +1255,7 @@ window.Quarto = {
 </div>
 <p>Even after many iterations (epochs) of training, the linear function cannot seem to separate the two classes.</p>
 <p>The <span class="math inline">\(w\)</span> coefficients did converged but the results here are not as sastifactory.</p>
-<div id="84d74308" class="cell" data-tags="[&quot;hide_input&quot;]">
+<div id="2c89e667" class="cell" data-tags="[&quot;hide_input&quot;]">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>it, w0s, w1s, w2s <span class="op">=</span> [], [], [], []</span>
@@ -1253,7 +1286,7 @@ window.Quarto = {
 <section id="c.-non-linear-model-with-multi-layer-neural-network" class="level2">
 <h2 class="anchored" data-anchor-id="c.-non-linear-model-with-multi-layer-neural-network">C. Non-Linear Model with Multi-layer Neural Network</h2>
 <p>Now that the data cannot be linear separated, let’s try a Multi-layer Neural Network (non-linear classifier) on the data:</p>
-<div id="f7beb2d9" class="cell">
+<div id="f4edc6ab" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPClassifier</span>
@@ -1271,7 +1304,7 @@ window.Quarto = {
 <p>where <span class="math inline">\(f\)</span> is the sigmoid (logistic) function for activation:</p>
 <p><span class="math display">\[ f(s) = \frac{1}{1 + e^{-s}}\]</span></p>
 <p>Based on the coefficients obtained from the above model, we have: + From bias <span class="math inline">\(v_0\)</span> to hidden layer:</p>
-<div id="4a1f5785" class="cell">
+<div id="72dd4940" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(net2.intercepts_[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1280,7 +1313,7 @@ window.Quarto = {
 <ul>
 <li>From <span class="math inline">\(v_1\)</span> to hidden layer, i.e.&nbsp;first layer (index <span class="math inline">\(0\)</span>) and first variable (index <span class="math inline">\(0\)</span>):</li>
 </ul>
-<div id="78983212" class="cell">
+<div id="cffa80cd" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(net2.coefs_[<span class="dv">0</span>][<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1289,14 +1322,14 @@ window.Quarto = {
 <ul>
 <li>From <span class="math inline">\(v_2\)</span> to hidden layer, i.e.&nbsp;first layer (index <span class="math inline">\(0\)</span>) and second variable (index <span class="math inline">\(1\)</span>):</li>
 </ul>
-<div id="8a4d133f" class="cell">
+<div id="ba35c437" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(net2.coefs_[<span class="dv">0</span>][<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Following the model, we define a general function for the sum:</p>
-<div id="f806dcf1" class="cell">
+<div id="0fda8332" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
@@ -1315,7 +1348,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Hence, given input values such as <span class="math inline">\((v_1=2, v_2=2)\)</span>, the hidden nodes receive the following weighted sums:</p>
-<div id="e4f5c3c2" class="cell">
+<div id="0e50ff5e" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> s(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span>
@@ -1325,7 +1358,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Using the sigmoid function, the hidden layer activated values are:</p>
-<div id="a0a603b1" class="cell">
+<div id="7d8e2069" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>h1 <span class="op">=</span> sigmoid(s1)</span>
@@ -1335,7 +1368,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now if we apply this process to all instances in the <code>newcars</code> data:</p>
-<div id="6be8eefb" class="cell">
+<div id="86500ed9" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the hidden layer output</span></span>
@@ -1353,7 +1386,7 @@ window.Quarto = {
 </details>
 </div>
 <p>And we can plot the hidden layer result <span class="math inline">\(h_1\)</span> and <span class="math inline">\(h_2\)</span>, which is a non-linear transformation of <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> using a sigmoid (logistic) function. You can see here that the data are now linearly separable:</p>
-<div id="f7341360" class="cell">
+<div id="aa7b04d8" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>positive <span class="op">=</span> newcars[<span class="st">'a'</span>]<span class="op">&gt;</span><span class="dv">0</span></span>
@@ -1383,7 +1416,7 @@ window.Quarto = {
 <p>The solid line here is in fact the linear function obtained by the Multi-layer Perceptron at the output layer where:</p>
 <p><span class="math display">\[ \sum_i w_i h_i = 0\]</span></p>
 <p>With the three <span class="math inline">\(w\)</span> weights estimated here:</p>
-<div id="bfad70bd" class="cell">
+<div id="e8e516d0" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Weights (w0, w1, w2) at the output: (</span><span class="sc">{:.0f}</span><span class="st">, </span><span class="sc">{:.0f}</span><span class="st">, </span><span class="sc">{:.0f}</span><span class="st">)"</span>.<span class="bu">format</span>(w0, w1, w2))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

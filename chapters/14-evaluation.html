@@ -2,21 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="An introductory journey from data and information to machine learning, language, search, and evaluation.">
 
-<title>14&nbsp; Evaluation and Experimentation – Machine Learning: The Quest for Information and Meaning</title>
+<title>15&nbsp; Evaluation and Experimentation – Machine Learning: The Quest for Information and Meaning</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -61,10 +64,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9a6e6ad007c27a295cfd1f08f4b733a9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -94,7 +97,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -134,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -261,8 +264,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Convolutional Neural Networks: Learning Spatial Structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/10-clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clustering and Organization</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,19 +288,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/11-text-language.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text and Human Language</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/12-search-retrieval.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Search and Retrieval</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/13-structural-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -308,19 +317,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/14-evaluation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/15-generalization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/16-scaling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Scaling, Deployment, and Responsible Use</span></span></a>
   </div>
 </li>
       </ul>
@@ -492,6 +501,30 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../practice/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice 10: Convolutional Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practice/labs/mnist-mlp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: MNIST with a Multilayer Perceptron</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practice/labs/cnn-concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: CNN Concepts from Arrays to Feature Maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practice/labs/mnist-cnn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab: MNIST with a Convolutional Neural Network</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../practice/10-clustering-and-organization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practice 10: Clustering and Organization</span></a>
   </div>
@@ -610,28 +643,28 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#precision" id="toc-precision" class="nav-link active" data-scroll-target="#precision"><span class="header-section-number">14.1</span> Precision</a></li>
-  <li><a href="#recall" id="toc-recall" class="nav-link" data-scroll-target="#recall"><span class="header-section-number">14.2</span> Recall</a></li>
-  <li><a href="#sensitivity-and-specificity" id="toc-sensitivity-and-specificity" class="nav-link" data-scroll-target="#sensitivity-and-specificity"><span class="header-section-number">14.3</span> Sensitivity and Specificity</a></li>
-  <li><a href="#kappa-and-chance-agreement" id="toc-kappa-and-chance-agreement" class="nav-link" data-scroll-target="#kappa-and-chance-agreement"><span class="header-section-number">14.4</span> Kappa and Chance Agreement</a></li>
-  <li><a href="#averaging" id="toc-averaging" class="nav-link" data-scroll-target="#averaging"><span class="header-section-number">14.5</span> Averaging</a></li>
-  <li><a href="#rank-evaluation" id="toc-rank-evaluation" class="nav-link" data-scroll-target="#rank-evaluation"><span class="header-section-number">14.6</span> Rank Evaluation</a></li>
-  <li><a href="#evaluation-of-numeric-predictions" id="toc-evaluation-of-numeric-predictions" class="nav-link" data-scroll-target="#evaluation-of-numeric-predictions"><span class="header-section-number">14.7</span> Evaluation of Numeric Predictions</a>
+  <li><a href="#precision" id="toc-precision" class="nav-link active" data-scroll-target="#precision"><span class="header-section-number">15.1</span> Precision</a></li>
+  <li><a href="#recall" id="toc-recall" class="nav-link" data-scroll-target="#recall"><span class="header-section-number">15.2</span> Recall</a></li>
+  <li><a href="#sensitivity-and-specificity" id="toc-sensitivity-and-specificity" class="nav-link" data-scroll-target="#sensitivity-and-specificity"><span class="header-section-number">15.3</span> Sensitivity and Specificity</a></li>
+  <li><a href="#kappa-and-chance-agreement" id="toc-kappa-and-chance-agreement" class="nav-link" data-scroll-target="#kappa-and-chance-agreement"><span class="header-section-number">15.4</span> Kappa and Chance Agreement</a></li>
+  <li><a href="#averaging" id="toc-averaging" class="nav-link" data-scroll-target="#averaging"><span class="header-section-number">15.5</span> Averaging</a></li>
+  <li><a href="#rank-evaluation" id="toc-rank-evaluation" class="nav-link" data-scroll-target="#rank-evaluation"><span class="header-section-number">15.6</span> Rank Evaluation</a></li>
+  <li><a href="#evaluation-of-numeric-predictions" id="toc-evaluation-of-numeric-predictions" class="nav-link" data-scroll-target="#evaluation-of-numeric-predictions"><span class="header-section-number">15.7</span> Evaluation of Numeric Predictions</a>
   <ul class="collapse">
-  <li><a href="#error-metrics" id="toc-error-metrics" class="nav-link" data-scroll-target="#error-metrics"><span class="header-section-number">14.7.1</span> Error Metrics</a></li>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">14.7.2</span> Correlation</a></li>
+  <li><a href="#error-metrics" id="toc-error-metrics" class="nav-link" data-scroll-target="#error-metrics"><span class="header-section-number">15.7.1</span> Error Metrics</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">15.7.2</span> Correlation</a></li>
   </ul></li>
-  <li><a href="#experimentation" id="toc-experimentation" class="nav-link" data-scroll-target="#experimentation"><span class="header-section-number">14.8</span> Experimentation</a></li>
-  <li><a href="#on-efficiency" id="toc-on-efficiency" class="nav-link" data-scroll-target="#on-efficiency"><span class="header-section-number">14.9</span> On Efficiency</a></li>
+  <li><a href="#experimentation" id="toc-experimentation" class="nav-link" data-scroll-target="#experimentation"><span class="header-section-number">15.8</span> Experimentation</a></li>
+  <li><a href="#on-efficiency" id="toc-on-efficiency" class="nav-link" data-scroll-target="#on-efficiency"><span class="header-section-number">15.9</span> On Efficiency</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/keweimao/machine-learning-book/edit/main/chapters/14-evaluation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/keweimao/machine-learning-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html">Trustworthy and Practical Machine Learning</a></li><li class="breadcrumb-item"><a href="../chapters/14-evaluation.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="ch-evaluation" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></h1>
+<h1 class="title"><span id="ch-evaluation" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Evaluation and Experimentation</span></span></h1>
 </div>
 
 
@@ -711,8 +744,8 @@ window.Quarto = {
 \end{aligned}\]</span></p>
 <p>This solution requires virtually zero effort but its accuracy appears to be pretty good: <span class="math inline">\(99\%\)</span>. There are several reasons why an overall accuracy can be rather misleading, if not completely useless here. For one, the evaluation metric ignores the data distribution among class labels (e.g.&nbsp;fraud vs.&nbsp;non-fraud) and does not account for potential <em>chance</em> accuracy. In the above example, it is very easy to cheat and get rewarded just <em>by chance</em>. Here you simply favor the dominant class (non-fraud) to boost accuracy.</p>
 <p>Second, an evaluation metric should align properly with the purpose of the assigned task. For credit card fraud detection, one can argue that missing a <em>fraud</em> transaction is much more costly and undesirable than misclassifying a normal transaction as fraud. In other words, one should be motivated to identify most if not <em>all</em> fraud transactions; and the result should be heavily penalized if real frauds are identified as non-fraud (false negative). We shall look into these issues to see what alternatives may offer.</p>
-<section id="precision" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="precision"><span class="header-section-number">14.1</span> Precision</h2>
+<section id="precision" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="precision"><span class="header-section-number">15.1</span> Precision</h2>
 <p>Given a skewed distribution of data in the classes, it may be useful to evaluate accuracy within each predicted class. This is equivalent to a metric commonly known as <em>precision</em>, which is the fraction of those predicted positive to a class that actually belong to that class. In terms of the confusion matrix Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a>, precision is computed by:</p>
 <p><span class="math display">\[\begin{aligned}
   Precision
@@ -744,8 +777,8 @@ window.Quarto = {
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="recall" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="recall"><span class="header-section-number">14.2</span> Recall</h2>
+<section id="recall" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="recall"><span class="header-section-number">15.2</span> Recall</h2>
 <p><em>Recall</em>, a classic evaluation metric, refers to the fraction of actual positive that have been classified positive. In the example here, it is the fraction of real fraud transactions that have been identified as such. Recall can be computed in terms of the confusion matrix Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a>:</p>
 <p><span class="math display">\[\begin{aligned}
   Recall
@@ -769,14 +802,14 @@ window.Quarto = {
   &amp; = &amp; \frac{2 \cdot Precision \cdot Recall}{Precision + Recall}
 \end{aligned}\]</span></p>
 <p>With <span class="math inline">\(Precision=1\)</span> and <span class="math inline">\(Recall=0\)</span> in the above example, the harmonic mean is <span class="math inline">\(F_1=0\)</span> – here, the one zero score (recall in this case) completely dominates and the average suffers.</p>
-<p>In applications where a model can be adjusted or tuned, we can evaluate the model based on more than one pairs of precision and recall scores. A common practice is to plot the precision-recall curve. <a href="#fig-eval-pr_curve" class="quarto-xref">Figure&nbsp;<span>14.1</span></a> shows precision-recall curves of two methods, where method 1 appears to perform better as its curve is closer to the top-right (higher precision and recall).</p>
+<p>In applications where a model can be adjusted or tuned, we can evaluate the model based on more than one pairs of precision and recall scores. A common practice is to plot the precision-recall curve. <a href="#fig-eval-pr_curve" class="quarto-xref">Figure&nbsp;<span>15.1</span></a> shows precision-recall curves of two methods, where method 1 appears to perform better as its curve is closer to the top-right (higher precision and recall).</p>
 <div id="fig-eval-pr_curve" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Precision-recall curve">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eval-pr_curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/chapter14/fig-eval-pr-curve.svg" class="img-fluid figure-img" style="width:70.0%" alt="Precision-recall curve">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eval-pr_curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.1: Precision-recall curve
+Figure&nbsp;15.1: Precision-recall curve
 </figcaption>
 </figure>
 </div>
@@ -799,8 +832,8 @@ Figure&nbsp;14.1: Precision-recall curve
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="sensitivity-and-specificity" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="sensitivity-and-specificity"><span class="header-section-number">14.3</span> Sensitivity and Specificity</h2>
+<section id="sensitivity-and-specificity" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="sensitivity-and-specificity"><span class="header-section-number">15.3</span> Sensitivity and Specificity</h2>
 <p>Precision and recall are both focused on the fraction of true positive. Recall is also referred to as the <em>true positive rate</em> (TPR), sensitivity, or the probability of detection. It measures how <em>sensitive</em> a method is in identifying the actual positives.</p>
 <p>Conversely, one can also measure the <em>true negative rate</em> (TNR) or the fraction of actual negatives that have been correctly identified as such. This is often referred to as <em>specificity</em>, which is computed by:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -816,17 +849,17 @@ Figure&nbsp;14.1: Precision-recall curve
 <img src="../assets/figures/chapter14/fig-eval-roc.svg" class="img-fluid figure-img" style="width:70.0%" alt="ROC curve and area under curve (AUC)">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eval-roc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.2: ROC curve and area under curve (AUC)
+Figure&nbsp;15.2: ROC curve and area under curve (AUC)
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-eval-roc" class="quarto-xref">Figure&nbsp;<span>14.2</span></a> illustrates a plot of an ROC curve, where the diagonal line (dashed) defines the acceptable performance. To understand what the diagonal line means, imagine we create a random model that takes a 50-50 guess during classification. As a result of this random guessing, there will be an equal split between the predicted positives <span class="math inline">\(\hat{\oplus}\)</span> and predicted negatives <span class="math inline">\(\hat{\ominus}\)</span>. Hence, column values of the same row in Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a> will be identical:</p>
+<p><a href="#fig-eval-roc" class="quarto-xref">Figure&nbsp;<span>15.2</span></a> illustrates a plot of an ROC curve, where the diagonal line (dashed) defines the acceptable performance. To understand what the diagonal line means, imagine we create a random model that takes a 50-50 guess during classification. As a result of this random guessing, there will be an equal split between the predicted positives <span class="math inline">\(\hat{\oplus}\)</span> and predicted negatives <span class="math inline">\(\hat{\ominus}\)</span>. Hence, column values of the same row in Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a> will be identical:</p>
 <p><span class="math display">\[\begin{aligned}
   N_{\hat{\oplus}} &amp; = &amp; N_{\hat{\ominus}} \\
   TP &amp; = &amp; FN \\
   FP &amp; = &amp; TN
 \end{aligned}\]</span></p>
-<p>where <span class="math inline">\(N_{\hat{\oplus}}\)</span> and <span class="math inline">\(N_{\hat{\ominus}}\)</span> are the numbers of predicted positives and negatives respectively. It follows that <span class="math inline">\(TPR = FNR\)</span>, i.e.&nbsp;<span class="math inline">\(Sensitivity = 1 - Specificity\)</span> or <span class="math inline">\(Sensitivity + Specificity=1\)</span>. This equation defines the diagonal line in <a href="#fig-eval-roc" class="quarto-xref">Figure&nbsp;<span>14.2</span></a> and is the result of random guessing.</p>
+<p>where <span class="math inline">\(N_{\hat{\oplus}}\)</span> and <span class="math inline">\(N_{\hat{\ominus}}\)</span> are the numbers of predicted positives and negatives respectively. It follows that <span class="math inline">\(TPR = FNR\)</span>, i.e.&nbsp;<span class="math inline">\(Sensitivity = 1 - Specificity\)</span> or <span class="math inline">\(Sensitivity + Specificity=1\)</span>. This equation defines the diagonal line in <a href="#fig-eval-roc" class="quarto-xref">Figure&nbsp;<span>15.2</span></a> and is the result of random guessing.</p>
 <p>Below the diagonal line <span class="math inline">\(Sensitivity+Specificity=1\)</span>, the model performs worse than random and is undesirable. The farther the ROC curve is above the diagonal line, the better the performance with a greater area under curve. Therefore, the <em>area under curve</em> (AUC), i.e.&nbsp;the shaded area in the plot, is a single score that can be computed to measure the overall performance in terms of ROC.</p>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
@@ -847,8 +880,8 @@ Figure&nbsp;14.2: ROC curve and area under curve (AUC)
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="kappa-and-chance-agreement" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="kappa-and-chance-agreement"><span class="header-section-number">14.4</span> Kappa and Chance Agreement</h2>
+<section id="kappa-and-chance-agreement" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="kappa-and-chance-agreement"><span class="header-section-number">15.4</span> Kappa and Chance Agreement</h2>
 <p>So far the metrics are focused on different aspects of the confusion matrix in evaluation. However, we are yet to address one important problem in assessing the agreement between the predicted and the ground truth – chance agreement. A method may hit the correct answer simply by chance. The evaluation cannot be fairly conducted unless we find a way to discount the chance agreement.</p>
 <p>Let’s first look at some of the chances or probabilities. In binary classification, for example, the outcome is either positive (e.g.&nbsp;fraud) or negative (e.g.&nbsp;non-fraud). Based on the confusion matrix Table&nbsp;<a href="#tab-eval-cmatrix" data-reference-type="ref" data-reference="tab-eval-cmatrix">1.1</a>, the likelihood of a positive prediction vs.&nbsp;a negative prediction can be estimated:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -924,8 +957,8 @@ Figure&nbsp;14.2: ROC curve and area under curve (AUC)
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="averaging" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="averaging"><span class="header-section-number">14.5</span> Averaging</h2>
+<section id="averaging" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="averaging"><span class="header-section-number">15.5</span> Averaging</h2>
 <p>When evaluating model performance on multiple classes – even binary classification entails two classes – there are two major strategies to compute an overall score (average).</p>
 <p>Suppose precision is the evaluation metric, one can construct a confusion matrix for each class <span class="math inline">\(c\)</span> and compute its precision by:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -961,8 +994,8 @@ Figure&nbsp;14.2: ROC curve and area under curve (AUC)
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="rank-evaluation" class="level2" data-number="14.6">
-<h2 data-number="14.6" class="anchored" data-anchor-id="rank-evaluation"><span class="header-section-number">14.6</span> Rank Evaluation</h2>
+<section id="rank-evaluation" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="rank-evaluation"><span class="header-section-number">15.6</span> Rank Evaluation</h2>
 <p>There are applications where the focus is not about definitive correct vs.&nbsp;incorrect answer. In information retrieval, for example, a model may return a sorted list of search results. Such a rank list requires a different approach to evaluation.</p>
 <p>Surely one can regard a rank list as the set of correct answers and use the discussed metrics such as precision and recall. More precisely, we can create a cut-off at a certain position <span class="math inline">\(k\)</span> in the rank and use the top <span class="math inline">\(k\)</span> as the set to be evaluated. For example, precision at <span class="math inline">\(k=10\)</span> is useful to evaluate early results in web searches, where the emphasis is often on the first result page (top <span class="math inline">\(10\)</span>).</p>
 <p>If one knows the total number of relevant document <span class="math inline">\(r\)</span> (recall) for a query, the cut-off can be set at position <span class="math inline">\(r\)</span> to measure it precision. This is referred to as <em>R-Precision</em> because at this particular position precision is equal to recall. It is also possible to measure average precision by starting with the top position <span class="math inline">\(k=1\)</span> and increasing it until recall reaches <span class="math inline">\(100\%\)</span>.</p>
@@ -999,11 +1032,11 @@ Figure&nbsp;14.2: ROC curve and area under curve (AUC)
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="evaluation-of-numeric-predictions" class="level2" data-number="14.7">
-<h2 data-number="14.7" class="anchored" data-anchor-id="evaluation-of-numeric-predictions"><span class="header-section-number">14.7</span> Evaluation of Numeric Predictions</h2>
+<section id="evaluation-of-numeric-predictions" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="evaluation-of-numeric-predictions"><span class="header-section-number">15.7</span> Evaluation of Numeric Predictions</h2>
 <p>When the outcome of a model is a on a continuous scale rather than discrete values, the evaluation is no longer about <em>correct</em> answers because it is rarely possible to make predictions that are <em>exactly</em> the actual outcome. Instead, the focus should be on how closely predictions are to the actual values or how much apart they are (errors).</p>
-<section id="error-metrics" class="level3" data-number="14.7.1">
-<h3 data-number="14.7.1" class="anchored" data-anchor-id="error-metrics"><span class="header-section-number">14.7.1</span> Error Metrics</h3>
+<section id="error-metrics" class="level3" data-number="15.7.1">
+<h3 data-number="15.7.1" class="anchored" data-anchor-id="error-metrics"><span class="header-section-number">15.7.1</span> Error Metrics</h3>
 <p>Many evaluation metrics for numeric predictions are indeed based on the error terms. The mean absolute error (MAE), mean squared error (MSE), and root mean-squared error (RMSE), for example, compute mean errors in their absolute, squared, and root squared forms:</p>
 <p><span class="math display">\[\begin{aligned}
   MAE &amp; = &amp; \frac{\sum_{i=1}^{N} |\hat{v}_i - v_i|}{N} \\
@@ -1035,8 +1068,8 @@ RSE &amp; = &amp; \frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{\sum_{i=1}^{N} (\bar
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="correlation" class="level3" data-number="14.7.2">
-<h3 data-number="14.7.2" class="anchored" data-anchor-id="correlation"><span class="header-section-number">14.7.2</span> Correlation</h3>
+<section id="correlation" class="level3" data-number="15.7.2">
+<h3 data-number="15.7.2" class="anchored" data-anchor-id="correlation"><span class="header-section-number">15.7.2</span> Correlation</h3>
 <p>While RSE measures the deviation of predicted values <span class="math inline">\(\hat{v_i}\)</span> from actual values <span class="math inline">\(v_i\)</span>, standard deviations of predicted and actual values can be computed by:</p>
 <p><span class="math display">\[\begin{aligned}
   \sigma &amp; = &amp; \sqrt{\frac{\sum_{i=1}^{N} (v_i - \mu)^2}{N-1}} \\
@@ -1052,18 +1085,18 @@ RSE &amp; = &amp; \frac{\sum_{i=1}^{N} (\hat{v}_i - v_i)^2}{\sum_{i=1}^{N} (\bar
   &amp; = &amp; \frac{cov(\hat{v},v)}{\hat{\sigma}\sigma} \\
   &amp; = &amp; \frac{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})(v_i - \mu)}{\sqrt{\sum_{i=1}^{N} (v_i - \mu)^2} \sqrt{\sum_{i=1}^{N} (\hat{v}_i - \hat{\mu})^2}}
 \end{aligned}\]</span></p>
-<p>Pearson correlation measures the similarity in their variances from means and is equivalent to cosine of <span class="math inline">\(v\)</span> and <span class="math inline">\(\hat{v}\)</span> as vectors from their means. <a href="#fig-eval-cor" class="quarto-xref">Figure&nbsp;<span>14.3</span></a> illustrates the connection using a 2-dimensional space. To simplify the discussion, suppose there are only <span class="math inline">\(N=2\)</span> instances on which the actual outcomes are <span class="math inline">\((v_1, v_2)\)</span> and predicted values are <span class="math inline">\((\hat{v_1},\hat{v_2})\)</span>, with means <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\hat{\mu}\)</span> respectively.</p>
+<p>Pearson correlation measures the similarity in their variances from means and is equivalent to cosine of <span class="math inline">\(v\)</span> and <span class="math inline">\(\hat{v}\)</span> as vectors from their means. <a href="#fig-eval-cor" class="quarto-xref">Figure&nbsp;<span>15.3</span></a> illustrates the connection using a 2-dimensional space. To simplify the discussion, suppose there are only <span class="math inline">\(N=2\)</span> instances on which the actual outcomes are <span class="math inline">\((v_1, v_2)\)</span> and predicted values are <span class="math inline">\((\hat{v_1},\hat{v_2})\)</span>, with means <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\hat{\mu}\)</span> respectively.</p>
 <div id="fig-eval-cor" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Pearson correlation as cosine of vectors originated from means, with N=2 for a 2-dimensional visualization">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eval-cor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/figures/chapter14/fig-eval-cor.svg" class="img-fluid figure-img" style="width:70.0%" alt="Pearson correlation as cosine of vectors originated from means, with N=2 for a 2-dimensional visualization">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eval-cor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.3: Pearson correlation as cosine of vectors originated from means, with <span class="math inline">\(N=2\)</span> for a 2-dimensional visualization
+Figure&nbsp;15.3: Pearson correlation as cosine of vectors originated from means, with <span class="math inline">\(N=2\)</span> for a 2-dimensional visualization
 </figcaption>
 </figure>
 </div>
-<p>As shown in <a href="#fig-eval-cor" class="quarto-xref">Figure&nbsp;<span>14.3</span></a>, the actual values can be regarded as a vector pointing in the <span class="math inline">\(\vec{v} = (v_1-\mu, v_2-\mu)\)</span> direction, whereas the predicted is represented by the vector <span class="math inline">\(\vec{\hat{v}}=(\hat{v_1}-\hat{\mu}, \hat{v_2}-\hat{\mu})\)</span>. In this representation, Pearson correlation is identical to the cosine of the two vectors, i.e.&nbsp;<span class="math inline">\(cov(\hat{v}, v) = cosine(\vec{\hat{v}},\vec{v})\)</span>. Chapter&nbsp; has more on the cosine similarity.</p>
+<p>As shown in <a href="#fig-eval-cor" class="quarto-xref">Figure&nbsp;<span>15.3</span></a>, the actual values can be regarded as a vector pointing in the <span class="math inline">\(\vec{v} = (v_1-\mu, v_2-\mu)\)</span> direction, whereas the predicted is represented by the vector <span class="math inline">\(\vec{\hat{v}}=(\hat{v_1}-\hat{\mu}, \hat{v_2}-\hat{\mu})\)</span>. In this representation, Pearson correlation is identical to the cosine of the two vectors, i.e.&nbsp;<span class="math inline">\(cov(\hat{v}, v) = cosine(\vec{\hat{v}},\vec{v})\)</span>. Chapter&nbsp; has more on the cosine similarity.</p>
 <p>Because of this connection, Pearson correlation shares important characteristics with cosine. It reaches its maximum value of <span class="math inline">\(1\)</span> when errors from their mean, i.e.&nbsp;<span class="math inline">\(\hat{v_i} - \hat{\mu}\)</span> vs.&nbsp;<span class="math inline">\(v_i - \mu\)</span> for all instances, are distributed identically (in the same vector direction) – they are perfectly correlated in this case. When the errors are distributed in absolutely <em>orthogonal</em> directions, the two are perfectly independent and has no correlation. When their errors distribute in the opposite direction, they are negatively correlated, with the minimum value of <span class="math inline">\(-1\)</span> indicating perfectly opposite.</p>
 <!-- practice-link:start -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
@@ -1103,8 +1136,8 @@ Figure&nbsp;14.3: Pearson correlation as cosine of vectors originated from means
 <!-- practice-link:end -->
 </section>
 </section>
-<section id="experimentation" class="level2" data-number="14.8">
-<h2 data-number="14.8" class="anchored" data-anchor-id="experimentation"><span class="header-section-number">14.8</span> Experimentation</h2>
+<section id="experimentation" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="experimentation"><span class="header-section-number">15.8</span> Experimentation</h2>
 <p>Now that we know some of the metrics for model evaluation, how do we actually conduct the assessment with data? In the ideal world, one builds a model using training data with known outcomes and rolls out the model to be tested in the operating environment. In the real world, however, we have to make sure a model works reliably well for its purpose before it is used in production for important predictions and decision making.</p>
 <p>We often have to use existing data to test models with experiments. It is a common practice to split the data into training and testing subsets – one to build and train the model, and the other to evaluate its performance.</p>
 <p>Random sampling can be used to create the training and testing subsets. Once a model is trained, it can be experimented with the test data and evaluated using metrics suitable for related objectives. This process can be repeated to test different models or the same model with different parameters or configurations. It can be done with different random samples.</p>
@@ -1130,8 +1163,8 @@ Figure&nbsp;14.3: Pearson correlation as cosine of vectors originated from means
 </div>
 <!-- practice-link:end -->
 </section>
-<section id="on-efficiency" class="level2" data-number="14.9">
-<h2 data-number="14.9" class="anchored" data-anchor-id="on-efficiency"><span class="header-section-number">14.9</span> On Efficiency</h2>
+<section id="on-efficiency" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="on-efficiency"><span class="header-section-number">15.9</span> On Efficiency</h2>
 <p>In this chapter, we have focused on the evaluation of model <em>effectiveness</em> or, loosely speaking, how satisfactory predictions are compared to the ground truth. This is about the <em>quality</em> of a model.</p>
 <p>The other side of evaluation is on the <em>efficiency</em> of operations. This is about the time and cost necessary to train a model and to perform assigned tasks. It depends on the space and time complexity of the model, and the structure and magnitude of data the model has to work on in the production settings.</p>
 <p>A thorough evaluation should include an assessment of both effectiveness and efficiency. We will elaborate on important aspects of efficiency as well as <em>scalability</em> in Chapter .</p>
@@ -1574,12 +1607,12 @@ Järvelin, Kalervo, and Jaana Kekäläinen. 2002. <span>“Cumulated Gain-Based 
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/13-structural-analysis.html" class="pagination-link" aria-label="Graphs and Structural Analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Graphs and Structural Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/15-generalization.html" class="pagination-link" aria-label="Generalization, Model Selection, and Fit">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Generalization, Model Selection, and Fit</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
