@@ -14,7 +14,7 @@ The book now uses two complementary reading paths:
 1. **Volume I: concepts and theory** retains the continuous conceptual
    narrative.
 2. **Practice and Projects: A Companion Volume** appears before the references
-   and follows the same sixteen-chapter sequence.
+   and follows the same core-chapter sequence, including the new CNN chapter.
 
 Each substantive second- or third-level theory section ends with a collapsible
 *Put it into practice* link. The destination either identifies recovered work
@@ -23,8 +23,9 @@ link back to their corresponding theory chapters.
 
 ## Recovery result
 
-- 25 unique notebooks were selected, copied in their original `.ipynb` form,
-  and converted to `.qmd`.
+- 25 unique historical notebooks were selected, copied in their original `.ipynb`
+  form, and converted to `.qmd`. Three newly authored CNN-sequence labs were added
+  in August 2026; their QMD files are canonical and their notebooks are generated.
 - 13 required data files and 24 referenced instructional figures were copied.
 - 126 substantive theory sections have matching practice destinations.
 - 114 theory sections point to one or more recovered starting points.
@@ -57,6 +58,7 @@ multiple concepts.
 | 7. Classification | 10 | 9 | 1 | Linear classification and integrated assignment |
 | 8. Multiclass decisions | 6 | 6 | 0 | Existing classification assignments, pending multiclass refinement |
 | 9. Numeric prediction | 6 | 6 | 0 | Outlier/regression material and pattern assignment |
+| 9A. Convolutional neural networks | 8 | 8 | 0 | Matched MLP baseline, NumPy convolution concepts, and MNIST CNN comparison |
 | 10. Clustering | 11 | 11 | 0 | Yelp text-vectorization and k-means lab |
 | 11. Text and language | 10 | 9 | 1 | Two vectorization activities and integrated assignment |
 | 12. Search and retrieval | 8 | 8 | 0 | SQLite activities plus recovered ranking questions/exercise |
@@ -89,8 +91,9 @@ multiple concepts.
    analysis. Current mappings are adjacent binary-classification work.
 3. **Regression:** create an end-to-end regression notebook with fitting,
    residuals, regularization, nonlinear alternatives, and uncertainty.
-4. **Neural networks:** modernize the older linearity material into a small
-   NumPy or scikit-learn multilayer-network experiment.
+4. **Neural networks beyond CNNs:** the MLP-to-CNN sequence is now complete.
+   Later add a small framework-light MLP implementation only if it does not
+   duplicate Chapter 7, and defer broader architecture labs until core gaps close.
 5. **Information measures:** add direct numerical exercises for entropy, KL,
    Jensen–Shannon divergence, IDF, and Least Information Theory.
 6. **Hierarchical and probabilistic clustering:** the recovered clustering lab
@@ -115,6 +118,14 @@ quarto render --to pdf
 
 For ordinary editing, revise the QMD files directly. The source notebooks are
 preservation copies, not a second canonical writing format.
+
+For the three authored CNN labs, revise QMD and regenerate notebooks explicitly:
+
+```bash
+quarto convert practice/labs/mnist-mlp.qmd --output practice/notebooks/mnist-mlp.ipynb
+quarto convert practice/labs/cnn-concepts.qmd --output practice/notebooks/cnn-concepts.ipynb
+quarto convert practice/labs/mnist-cnn.qmd --output practice/notebooks/mnist-cnn.ipynb
+```
 
 ## Validation completed
 

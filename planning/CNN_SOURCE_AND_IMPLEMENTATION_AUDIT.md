@@ -1,0 +1,97 @@
+# CNN source and implementation audit
+
+Completed August 17, 2026. This audit records how the new CNN theory chapter and
+practice sequence were reconstructed from the author's DSCI 471 teaching archive.
+It is an editorial provenance record, not a claim that archived teaching files
+can be republished verbatim.
+
+## Implemented book structure
+
+- `chapters/09a-convolutional-neural-networks.qmd` is a new core chapter placed
+  after regression and before clustering.
+- `practice/09a-convolutional-neural-networks.qmd` frames a matched two-week project.
+- `practice/labs/mnist-mlp.qmd` establishes a dense-network baseline.
+- `practice/labs/cnn-concepts.qmd` develops cross-correlation, padding, stride,
+  pooling, channels, shapes, and parameter counts with NumPy.
+- `practice/labs/mnist-cnn.qmd` trains the matched CNN, compares errors, and
+  inspects learned kernels and feature maps.
+- The three QMD labs are canonical. Their `.ipynb` files are generated convenience
+  copies for interactive student use.
+
+## Author lecture sequence
+
+The Spring 2026 DSCI 471 recordings provide the main pedagogical narrative.
+
+| Transcript | Contribution retained in the new writing |
+|---|---|
+| D04–D05 | MLP/MNIST baseline, loss, validation, and training workflow |
+| D06 | Transition from flattening $28\times28$ images to preserving spatial neighborhoods; CNN motivation |
+| D07 | Grid data, grayscale/RGB channels, tensors, delayed flattening, convolutional feature extraction |
+| D08 | Kernel-as-lens intuition, convolution/pooling sequence, and hierarchy from short strokes to larger patterns |
+| D09 | Crucial distinction among channels, filters, and layers; one filter produces one output channel |
+| D10 | Input/output channel continuation and dimensional reasoning |
+
+The new chapter keeps this conceptual flow but removes lecture repetition,
+corrects transcript recognition errors (for example, MNIST and 784), and supplies
+verified equations and compact examples.
+
+## Slides and handouts reviewed
+
+The following source presentations were rendered and visually inspected:
+
+- `DSCI471/Week3/DSCI471-Week3.pptx`
+- `DSCI471/Week4/DSCI471-CNN.pptx`
+- `DSCI471/Week5/DSCI471-CNN.pptx`
+- `DSCI471/Week5/DSCI471-CNN-Part2.pptx`
+
+The following student-facing PDFs were rendered page by page and inspected:
+
+- `notebooks/DSCI471/Week3_Notebook/lab_mnist_mlp.pdf`
+- `notebooks/DSCI471/Week4_Notebook/lab_cnn_concepts.pdf`
+- `notebooks/DSCI471/Week4_Notebook/lab_mnist_cnn.pdf`
+
+The PDFs confirm the intended Jason sequence: MLP baseline, conceptual CNN work,
+then CNN on the same MNIST task. Their current source notebooks are more editable
+and were used as the primary lab seeds.
+
+## Editorial and rights decisions
+
+- `Week4/d2l_chapter7/lecture_w4_cnn.md` is detailed but closely follows *Dive
+  into Deep Learning*. It was used as a topic checklist, not converted into book
+  prose. The new chapter cites the D2L book and uses newly written explanations,
+  equations, examples, and an original architecture diagram.
+- D2L logos, screenshots, Waldo images, publisher figures, and copied architecture
+  illustrations were not imported.
+- Files under directories labeled `Milad` or otherwise associated with a
+  co-instructor were not copied. They were treated only as discovery pointers.
+  Publication use would require authorship confirmation and permission.
+- Student submissions and solution-only homework files were excluded.
+- The parameter comparison was redesigned. The source MLP and CNN examples had
+  materially different capacities; the published pair uses 109,386 and 105,866
+  parameters, respectively, so the comparison better isolates architecture.
+- The text distinguishes strict convolution from the cross-correlation operation
+  implemented by common deep-learning layers.
+- Claims that pooling creates full invariance were softened to the defensible
+  statement that it can reduce sensitivity to small positional changes.
+
+## Source hashes for the canonical lab seeds
+
+| Source | SHA-256 |
+|---|---|
+| `Week3_Notebook/lab_mnist_mlp.ipynb` | `a6a77f8157c47b8efe51cded6d48b9bfc14f97f39b707dee0bcbb4ec66c23544` |
+| `Week4_Notebook/lab_cnn_concepts.ipynb` | `44ad44dbdc721b638cc3760d84558c93422f3b97c73db82e250548ba3618d009` |
+| `Week4_Notebook/lab_mnist_cnn.ipynb` | `e0406b8b1c1e359ed8907f39766c20087750a16663c77523220cf27fd99249de` |
+| `Week5_Notebook/CNN_Visualized.ipynb` | `3bb1c45b22aae677a1c477ef27a7a94f93720a4b4052f88b4c9b9dda602da1e0` |
+| `Week4/d2l_chapter7/lecture_w4_cnn.md` | `e973a3b94543dd14332522e5924170953395b845c588df1e92e05125c90a6ca8` |
+
+## Remaining editorial work
+
+1. Execute both Keras labs in the intended student environment and record a
+   reference run without turning its metrics into guaranteed results.
+2. Ask Jason and the second student to annotate points of confusion, especially
+   channel/filter/layer distinctions and output-shape calculations.
+3. Decide after student feedback whether residual networks, data augmentation,
+   and transfer learning deserve one optional advanced lab or only cross-references.
+4. Revisit chapter length after the broader neural/representation chapter plan is
+   finalized; avoid duplicating the existing Chapter 7 backpropagation derivation.
+

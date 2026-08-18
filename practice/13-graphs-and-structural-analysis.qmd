@@ -4,7 +4,7 @@ number-sections: false
 
 # Practice 13: Graphs and Structural Analysis {#ch-practice-13 .unnumbered}
 
-**Theory connection:** [Volume I, Chapter 13](../chapters/13-structural-analysis.qmd)
+**Theory connection:** [Graphs and Structural Analysis](../chapters/13-structural-analysis.qmd)
 
 Use this chapter as the practical companion to the corresponding theory chapter.
 Recovered activities are linked where a strong match exists; other sections are

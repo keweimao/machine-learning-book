@@ -4,7 +4,7 @@ number-sections: false
 
 # Practice 11: Text and Human Language {#ch-practice-11 .unnumbered}
 
-**Theory connection:** [Volume I, Chapter 11](../chapters/11-text-language.qmd)
+**Theory connection:** [Text and Human Language](../chapters/11-text-language.qmd)
 
 Use this chapter as the practical companion to the corresponding theory chapter.
 Recovered activities are linked where a strong match exists; other sections are

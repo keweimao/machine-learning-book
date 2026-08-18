@@ -1,0 +1,281 @@
+---
+execute:
+  enabled: false
+---
+
+# Lab: MNIST with a Convolutional Neural Network {#ch-lab-mnist-cnn .unnumbered}
+
+**Theory connection:** [From Feature Maps to a Class Prediction](../../chapters/09a-convolutional-neural-networks.qmd#sec-cnn-classifier)
+
+This lab returns to the same MNIST split used by the MLP. The CNN keeps the image
+grid through two convolutional blocks, then flattens the learned feature maps for
+classification. Complete [Lab: CNN Concepts](cnn-concepts.qmd) first.
+
+Download the [Jupyter notebook](../notebooks/mnist-cnn.ipynb) to run the activity.
+The code targets current Keras 3 with a TensorFlow backend and runs on a standard
+Google Colab CPU session.
+
+## 1. Reproduce the Same Data Split {#sec-lab-cnn-data}
+
+```{python}
+import time
+import numpy as np
+import matplotlib.pyplot as plt
+import keras
+from keras import layers
+
+keras.utils.set_random_seed(42)
+
+(x_train_raw, y_train_raw), (x_test_raw, y_test) = (
+    keras.datasets.mnist.load_data()
+)
+rng = np.random.default_rng(42)
+order = rng.permutation(len(x_train_raw))
+x_train_raw = x_train_raw[order]
+y_train_raw = y_train_raw[order]
+
+x_fit_raw, x_val_raw = x_train_raw[:54000], x_train_raw[54000:]
+y_fit, y_val = y_train_raw[:54000], y_train_raw[54000:]
+
+x_fit = np.expand_dims(x_fit_raw, -1).astype("float32") / 255.0
+x_val = np.expand_dims(x_val_raw, -1).astype("float32") / 255.0
+x_test = np.expand_dims(x_test_raw, -1).astype("float32") / 255.0
+
+assert x_fit.shape == (54000, 28, 28, 1)
+assert x_val.shape == (6000, 28, 28, 1)
+assert x_test.shape == (10000, 28, 28, 1)
+print(x_fit.shape, x_val.shape, x_test.shape)
+```
+
+Compare this preprocessing with the MLP. Which axis was added, and which reshape
+was deliberately *not* performed?
+
+## 2. Build the Matched CNN {#sec-lab-cnn-model}
+
+Predict every output shape and parameter count before calling `summary()`.
+
+```{python}
+cnn_model = keras.Sequential([
+    keras.Input(shape=(28, 28, 1)),
+    layers.Conv2D(
+        16, 3, padding="same", activation="relu", name="conv_1"
+    ),
+    layers.MaxPooling2D(2, name="pool_1"),
+    layers.Conv2D(
+        32, 3, padding="same", activation="relu", name="conv_2"
+    ),
+    layers.MaxPooling2D(2, name="pool_2"),
+    layers.Flatten(name="flatten"),
+    layers.Dense(64, activation="relu", name="dense_1"),
+    layers.Dense(10, activation="softmax", name="class_output"),
+], name="mnist_cnn")
+
+cnn_model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=0.001),
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"],
+)
+
+cnn_model.summary()
+assert cnn_model.count_params() == 105866
+```
+
+The CNN and MLP have similar parameter counts, but they distribute parameters
+differently. Which CNN layer contains most of them? What architectural benefit
+comes from the earlier convolutional layers even though they are small?
+
+## 3. Train Under the Matched Protocol {#sec-lab-cnn-train}
+
+```{python}
+early_stop = keras.callbacks.EarlyStopping(
+    monitor="val_loss",
+    patience=2,
+    restore_best_weights=True,
+)
+
+start = time.perf_counter()
+cnn_history = cnn_model.fit(
+    x_fit,
+    y_fit,
+    validation_data=(x_val, y_val),
+    batch_size=128,
+    epochs=12,
+    callbacks=[early_stop],
+    verbose=1,
+)
+cnn_seconds = time.perf_counter() - start
+print(f"training time: {cnn_seconds:.1f} seconds")
+```
+
+```{python}
+def plot_history(history, title):
+    fig, axes = plt.subplots(1, 2, figsize=(9, 3.5))
+    axes[0].plot(history.history["loss"], label="train")
+    axes[0].plot(history.history["val_loss"], label="validation")
+    axes[0].set(title=f"{title}: loss", xlabel="epoch")
+    axes[1].plot(history.history["accuracy"], label="train")
+    axes[1].plot(history.history["val_accuracy"], label="validation")
+    axes[1].set(title=f"{title}: accuracy", xlabel="epoch")
+    for ax in axes:
+        ax.legend()
+    plt.tight_layout()
+
+plot_history(cnn_history, "CNN")
+```
+
+## 4. Test Evaluation and Errors {#sec-lab-cnn-evaluate}
+
+```{python}
+cnn_test_loss, cnn_test_accuracy = cnn_model.evaluate(
+    x_test, y_test, verbose=0
+)
+cnn_prob = cnn_model.predict(x_test, verbose=0)
+cnn_pred = cnn_prob.argmax(axis=1)
+
+print(f"test loss: {cnn_test_loss:.4f}")
+print(f"test accuracy: {cnn_test_accuracy:.4f}")
+```
+
+```{python}
+def confusion_counts(y_true, y_pred, n_classes=10):
+    counts = np.bincount(
+        n_classes * y_true.astype(int) + y_pred.astype(int),
+        minlength=n_classes * n_classes,
+    )
+    return counts.reshape(n_classes, n_classes)
+
+cnn_confusion = confusion_counts(y_test, cnn_pred)
+plt.figure(figsize=(6, 5))
+plt.imshow(cnn_confusion, cmap="Purples")
+plt.colorbar(label="count")
+plt.xlabel("predicted digit")
+plt.ylabel("true digit")
+plt.xticks(range(10))
+plt.yticks(range(10))
+plt.title("CNN confusion matrix")
+plt.tight_layout()
+```
+
+```{python}
+wrong = np.flatnonzero(cnn_pred != y_test)
+fig, axes = plt.subplots(2, 5, figsize=(9, 4))
+for ax, idx in zip(axes.flat, wrong[:10]):
+    confidence = cnn_prob[idx, cnn_pred[idx]]
+    ax.imshow(x_test_raw[idx], cmap="gray")
+    title = f"true {y_test[idx]} / pred {cnn_pred[idx]}"
+    ax.set_title(f"{title}\n{confidence:.2f}")
+    ax.axis("off")
+plt.tight_layout()
+```
+
+Which confusions are shared with the MLP? Which appear different? Counts are
+evidence; avoid inventing a causal explanation from a single image.
+
+## 5. Inspect Kernels and Feature Maps {#sec-lab-cnn-inspect}
+
+The first layer has 16 learned $3\times3$ kernels. Plotting them shows their
+weights, not a complete explanation of the prediction.
+
+```{python}
+first_layer = cnn_model.get_layer("conv_1")
+first_kernels, first_bias = first_layer.get_weights()
+print("kernel-bank shape:", first_kernels.shape)
+
+fig, axes = plt.subplots(2, 8, figsize=(12, 3.5))
+for i, ax in enumerate(axes.flat):
+    ax.imshow(first_kernels[:, :, 0, i], cmap="coolwarm")
+    ax.set_title(f"K{i}")
+    ax.axis("off")
+plt.suptitle("First-layer learned kernels")
+plt.tight_layout()
+```
+
+Create a model that returns intermediate activations for one correctly classified
+image and one mistake.
+
+```{python}
+feature_probe = keras.Model(
+    inputs=cnn_model.inputs,
+    outputs=[
+        cnn_model.get_layer("conv_1").output,
+        cnn_model.get_layer("conv_2").output,
+        cnn_model.get_layer("pool_2").output,
+    ],
+)
+
+correct_idx = np.flatnonzero(cnn_pred == y_test)[0]
+wrong_idx = np.flatnonzero(cnn_pred != y_test)[0]
+
+def show_feature_journey(index, maps_to_show=4):
+    one_image = x_test[index:index + 1]
+    conv1, conv2, pool2 = feature_probe.predict(
+        one_image, verbose=0
+    )
+    stages = [("conv 1", conv1), ("conv 2", conv2), ("pool 2", pool2)]
+    fig, axes = plt.subplots(3, maps_to_show + 1, figsize=(10, 6))
+    for row, (name, maps) in enumerate(stages):
+        axes[row, 0].imshow(x_test_raw[index], cmap="gray")
+        axes[row, 0].set_ylabel(name)
+        axes[row, 0].axis("off")
+        for channel in range(maps_to_show):
+            feature_map = maps[0, :, :, channel]
+            axes[row, channel + 1].imshow(
+                feature_map, cmap="magma"
+            )
+            axes[row, channel + 1].set_title(f"ch {channel}")
+            axes[row, channel + 1].axis("off")
+    title = f"true {y_test[index]} / predicted {cnn_pred[index]}"
+    plt.suptitle(title)
+    plt.tight_layout()
+
+show_feature_journey(correct_idx)
+show_feature_journey(wrong_idx)
+```
+
+Describe visible differences across stages without assigning a semantic label to
+a feature map unless you test that interpretation on many images.
+
+## 6. Complete the Matched Comparison {#sec-lab-cnn-compare}
+
+```{python}
+cnn_result = {
+    "input_shape": "28 x 28 x 1",
+    "parameters": cnn_model.count_params(),
+    "best_epoch": int(np.argmin(cnn_history.history["val_loss"]) + 1),
+    "test_loss": float(cnn_test_loss),
+    "test_accuracy": float(cnn_test_accuracy),
+    "training_seconds": float(cnn_seconds),
+}
+cnn_result
+```
+
+Copy `mlp_result` from the first notebook or enter its recorded values beside
+`cnn_result`. Address all of the following:
+
+1. Which model performed better in your run, and by how much?
+2. Which trained longer on your hardware?
+3. How were approximately equal parameter budgets distributed differently?
+4. Which evidence supports the locality/weight-sharing explanation?
+5. What additional repeated runs or datasets would strengthen your conclusion?
+
+## Optional Extension: A Small Translation Test {#sec-lab-cnn-shift}
+
+Shift images without wrapping pixels around the boundary, then compare both
+models. This examines sensitivity; it does not prove full translation invariance.
+
+```{python}
+def shift_right(images, pixels=2):
+    shifted = np.zeros_like(images)
+    shifted[:, :, pixels:, :] = images[:, :, :-pixels, :]
+    return shifted
+
+shifted_test = shift_right(x_test, pixels=2)
+shift_loss, shift_accuracy = cnn_model.evaluate(
+    shifted_test, y_test, verbose=0
+)
+print(f"original accuracy: {cnn_test_accuracy:.4f}")
+print(f"shifted accuracy:  {shift_accuracy:.4f}")
+```
+
+Explain why a convolutional feature extractor is translation equivariant while
+the complete classifier is not guaranteed to be invariant.

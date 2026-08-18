@@ -1,0 +1,221 @@
+---
+execute:
+  enabled: false
+---
+
+# Lab: MNIST with a Multilayer Perceptron {#ch-lab-mnist-mlp .unnumbered}
+
+**Theory connections:** [Multi-Layer Neural Networks](../../chapters/07-classification.qmd#multi-layer-neural-networks) and
+[Why Image Structure Changes the Model](../../chapters/09a-convolutional-neural-networks.qmd#sec-cnn-why)
+
+This lab establishes a strong nonconvolutional baseline. An MLP can perform well
+on MNIST, so the purpose is not to make it fail. The purpose is to observe exactly
+what flattening asks the model to do, then compare it fairly with a CNN.
+
+Download the [Jupyter notebook](../notebooks/mnist-mlp.ipynb) to run the activity.
+The code targets current Keras 3 with a TensorFlow backend and also runs in a
+standard Google Colab CPU session. The public book build displays but does not
+execute the training code.
+
+## Learning Goals {#sec-lab-mlp-goals}
+
+You will prepare a fixed MNIST split, train an MLP, interpret learning curves,
+evaluate untouched test data, and save evidence for the later CNN comparison.
+
+## 1. Imports and Reproducibility {#sec-lab-mlp-setup}
+
+```{python}
+import time
+import numpy as np
+import matplotlib.pyplot as plt
+import keras
+from keras import layers
+
+keras.utils.set_random_seed(42)
+```
+
+Exact floating-point results can still vary with hardware and backend operations.
+The seed makes the data order and most model choices repeatable; it does not turn
+one run into universal evidence.
+
+## 2. Load Once and Create a Fixed Validation Set {#sec-lab-mlp-data}
+
+```{python}
+(x_train_raw, y_train_raw), (x_test_raw, y_test) = (
+    keras.datasets.mnist.load_data()
+)
+
+# Shuffle once so both labs can reproduce the same 54,000/6,000 split.
+rng = np.random.default_rng(42)
+order = rng.permutation(len(x_train_raw))
+x_train_raw = x_train_raw[order]
+y_train_raw = y_train_raw[order]
+
+x_fit_raw, x_val_raw = x_train_raw[:54000], x_train_raw[54000:]
+y_fit, y_val = y_train_raw[:54000], y_train_raw[54000:]
+
+print("fit:", x_fit_raw.shape, y_fit.shape)
+print("validation:", x_val_raw.shape, y_val.shape)
+print("test:", x_test_raw.shape, y_test.shape)
+print("pixel range:", x_fit_raw.min(), "to", x_fit_raw.max())
+```
+
+The validation data may guide training decisions. The test data should remain
+untouched until the model and stopping rule are fixed.
+
+```{python}
+fig, axes = plt.subplots(2, 5, figsize=(8, 3.5))
+for ax, image, label in zip(axes.flat, x_fit_raw[:10], y_fit[:10]):
+    ax.imshow(image, cmap="gray")
+    ax.set_title(str(label))
+    ax.axis("off")
+plt.tight_layout()
+```
+
+## 3. Flatten and Scale {#sec-lab-mlp-flatten}
+
+```{python}
+x_fit = x_fit_raw.reshape(-1, 28 * 28).astype("float32") / 255.0
+x_val = x_val_raw.reshape(-1, 28 * 28).astype("float32") / 255.0
+x_test = x_test_raw.reshape(-1, 28 * 28).astype("float32") / 255.0
+
+assert x_fit.shape == (54000, 784)
+assert x_val.shape == (6000, 784)
+assert x_test.shape == (10000, 784)
+print(x_fit.shape, x_val.shape, x_test.shape)
+```
+
+Write two sentences: What information is preserved by `reshape`, and what spatial
+assumption is no longer explicit in the model input?
+
+## 4. Build a 109,386-Parameter MLP {#sec-lab-mlp-model}
+
+```{python}
+mlp_model = keras.Sequential([
+    keras.Input(shape=(784,)),
+    layers.Dense(128, activation="relu"),
+    layers.Dense(64, activation="relu"),
+    layers.Dense(10, activation="softmax"),
+], name="mnist_mlp")
+
+mlp_model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=0.001),
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"],
+)
+
+mlp_model.summary()
+assert mlp_model.count_params() == 109386
+```
+
+Verify the count by hand. For a dense layer, include one bias per output unit:
+$(n_{in}+1)n_{out}$.
+
+## 5. Train and Retain the Best Validation Weights {#sec-lab-mlp-train}
+
+```{python}
+early_stop = keras.callbacks.EarlyStopping(
+    monitor="val_loss",
+    patience=2,
+    restore_best_weights=True,
+)
+
+start = time.perf_counter()
+mlp_history = mlp_model.fit(
+    x_fit,
+    y_fit,
+    validation_data=(x_val, y_val),
+    batch_size=128,
+    epochs=12,
+    callbacks=[early_stop],
+    verbose=1,
+)
+mlp_seconds = time.perf_counter() - start
+print(f"training time: {mlp_seconds:.1f} seconds")
+```
+
+```{python}
+def plot_history(history, title):
+    fig, axes = plt.subplots(1, 2, figsize=(9, 3.5))
+    axes[0].plot(history.history["loss"], label="train")
+    axes[0].plot(history.history["val_loss"], label="validation")
+    axes[0].set(title=f"{title}: loss", xlabel="epoch")
+    axes[1].plot(history.history["accuracy"], label="train")
+    axes[1].plot(history.history["val_accuracy"], label="validation")
+    axes[1].set(title=f"{title}: accuracy", xlabel="epoch")
+    for ax in axes:
+        ax.legend()
+    plt.tight_layout()
+
+plot_history(mlp_history, "MLP")
+```
+
+Mark the epoch with the smallest validation loss. Is there evidence of
+underfitting, overfitting, or neither? Use the curves, not training accuracy alone.
+
+## 6. Evaluate Once on the Test Set {#sec-lab-mlp-evaluate}
+
+```{python}
+mlp_test_loss, mlp_test_accuracy = mlp_model.evaluate(
+    x_test, y_test, verbose=0
+)
+mlp_prob = mlp_model.predict(x_test, verbose=0)
+mlp_pred = mlp_prob.argmax(axis=1)
+
+print(f"test loss: {mlp_test_loss:.4f}")
+print(f"test accuracy: {mlp_test_accuracy:.4f}")
+```
+
+```{python}
+def confusion_counts(y_true, y_pred, n_classes=10):
+    counts = np.bincount(
+        n_classes * y_true.astype(int) + y_pred.astype(int),
+        minlength=n_classes * n_classes,
+    )
+    return counts.reshape(n_classes, n_classes)
+
+mlp_confusion = confusion_counts(y_test, mlp_pred)
+plt.figure(figsize=(6, 5))
+plt.imshow(mlp_confusion, cmap="Blues")
+plt.colorbar(label="count")
+plt.xlabel("predicted digit")
+plt.ylabel("true digit")
+plt.xticks(range(10))
+plt.yticks(range(10))
+plt.title("MLP confusion matrix")
+plt.tight_layout()
+```
+
+## 7. Inspect Mistakes {#sec-lab-mlp-errors}
+
+```{python}
+wrong = np.flatnonzero(mlp_pred != y_test)
+fig, axes = plt.subplots(2, 5, figsize=(9, 4))
+for ax, idx in zip(axes.flat, wrong[:10]):
+    confidence = mlp_prob[idx, mlp_pred[idx]]
+    ax.imshow(x_test_raw[idx], cmap="gray")
+    title = f"true {y_test[idx]} / pred {mlp_pred[idx]}"
+    ax.set_title(f"{title}\n{confidence:.2f}")
+    ax.axis("off")
+plt.tight_layout()
+```
+
+Choose three errors. For each, distinguish what you can see in the image from
+what you are inferring about the model.
+
+## Record for the CNN Comparison {#sec-lab-mlp-record}
+
+```{python}
+mlp_result = {
+    "input_shape": "784",
+    "parameters": mlp_model.count_params(),
+    "best_epoch": int(np.argmin(mlp_history.history["val_loss"]) + 1),
+    "test_loss": float(mlp_test_loss),
+    "test_accuracy": float(mlp_test_accuracy),
+    "training_seconds": float(mlp_seconds),
+}
+mlp_result
+```
+
+Do not tune this model after seeing CNN test results. If you later change it,
+start a clearly labeled second experiment and protect the test set from repeated use.

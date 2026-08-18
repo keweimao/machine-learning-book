@@ -4,7 +4,7 @@ number-sections: false
 
 # Practice 14: Evaluation and Experimentation {#ch-practice-14 .unnumbered}
 
-**Theory connection:** [Volume I, Chapter 14](../chapters/14-evaluation.qmd)
+**Theory connection:** [Evaluation and Experimentation](../chapters/14-evaluation.qmd)
 
 Use this chapter as the practical companion to the corresponding theory chapter.
 Recovered activities are linked where a strong match exists; other sections are

@@ -5937,6 +5937,508 @@ diagnostic, or interpretation task.
 
 \section{Summary, Exercises, and Lab}\label{summary-exercises-and-lab-1}
 
+\chapter{Convolutional Neural Networks: Learning Spatial
+Structure}\label{ch-cnn}
+
+An image is numerical data, but it is not merely a list of numbers. A
+pixel's meaning depends partly on the pixels around it. A short dark
+stroke beside another short dark stroke may form a corner; several
+corners may form a digit; and several parts may form an object. A useful
+image model should preserve this spatial structure long enough to learn
+from it.
+
+The \hyperref[ch-classification]{classification chapter} introduced
+multilayer neural networks as nonlinear classifiers. This chapter
+changes the \emph{architecture} of that network to match image data. A
+\textbf{convolutional neural network} (CNN) uses small, shared sets of
+weights to find local patterns wherever they occur. The same ideas apply
+to other grid-like data, but images provide the clearest introduction.
+
+By the end of the chapter, you should be able to:
+
+\begin{itemize}
+\tightlist
+\item
+  explain why immediately flattening an image discards useful
+  assumptions;
+\item
+  calculate a two-dimensional cross-correlation with a small kernel;
+\item
+  track height, width, and channels through convolution and pooling
+  layers;
+\item
+  calculate output sizes and parameter counts; and
+\item
+  explain what a CNN learns and how its learned features support
+  classification.
+\end{itemize}
+
+\section{Why Image Structure Changes the Model}\label{sec-cnn-why}
+
+Consider an MNIST image: a \(28\times28\) grid of grayscale values. A
+multilayer perceptron (MLP) reshapes that grid into a vector of length
+\(784\) before applying a dense layer. This is a valid baseline, but the
+reshaping removes the model's direct knowledge that two values were
+neighbors in the original image.
+
+Flattening does not erase pixel values. It erases the \emph{geometry
+encoded by their arrangement}. The dense layer can still learn spatial
+relations, but it must learn each relation through separate weights. A
+stroke near the upper-left and the same stroke near the lower-right
+reach different input positions and therefore different weights.
+
+A CNN introduces two useful assumptions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Locality.} Nearby values are especially likely to form a
+  meaningful pattern, so an early unit can examine a small neighborhood
+  instead of the entire image.
+\item
+  \textbf{Weight sharing.} A useful pattern can matter in more than one
+  location, so the same detector can scan across the image.
+\end{enumerate}
+
+These assumptions are an \textbf{inductive bias}: a deliberate
+restriction that helps the learner when it agrees with the data. A dense
+network asks, ``Which input position connects to which hidden unit?'' A
+convolutional layer asks, ``Does this small pattern occur here?'' CNNs
+were developed into effective systems for handwritten-document
+recognition well before the present deep-learning era (LeCun et al.
+1998), and locality and weight sharing remain their defining ideas
+(Zhang et al. 2023).
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Put it into practice}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Establish the comparison point in \hyperref[ch-lab-mnist-mlp]{Lab: MNIST
+with an MLP}, then explain what information the flattening step retains
+and what structural assumption it removes.
+
+\end{tcolorbox}
+
+\section{Images as Tensors}\label{sec-cnn-tensors}
+
+We will describe shapes in \textbf{channels-last} order because that is
+the default in the accompanying Keras labs:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2727}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3636}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3636}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Object
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+One example
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+A batch of \(B\) examples
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Grayscale image & \(H\times W\times1\) & \(B\times H\times W\times1\) \\
+RGB color image & \(H\times W\times3\) & \(B\times H\times W\times3\) \\
+Feature maps inside a CNN & \(H\times W\times C\) &
+\(B\times H\times W\times C\) \\
+\end{longtable}
+}
+
+Here \(H\) is height, \(W\) is width, and \(C\) is the number of
+channels. The batch axis says how many examples are processed together;
+it does not describe one image.
+
+The word \emph{channel} needs care. An RGB image has three input
+channels because each pixel has red, green, and blue values. A
+convolutional layer may produce dozens of output channels, each
+recording the response of a different learned filter. Channels coexist
+within one layer; they are not separate network layers.
+
+For MNIST, one raw example has shape \(28\times28\). We explicitly add a
+channel axis to obtain \(28\times28\times1\). The numerical values have
+not changed; the shape now states that there is one value at each
+spatial position.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Put it into practice}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Use \hyperref[sec-pr-cnn-shapes]{Practice 10: Convolutional Neural
+Networks} to diagnose several common shape errors before a framework
+reports them.
+
+\end{tcolorbox}
+
+\section{A Kernel as a Small Shared Detector}\label{sec-cnn-kernel}
+
+A \textbf{kernel} or \textbf{filter} is a small array of weights. It
+moves across an input, one local window at a time. At each location, we
+multiply corresponding input and kernel entries and add the products.
+The resulting number reports how strongly that local window matches the
+kernel.
+
+For a single-channel input \(\mathbf{X}\) and a kernel \(\mathbf{K}\),
+the operation used by most deep-learning libraries is
+
+\begin{equation}\protect\phantomsection\label{eq-cnn-cross-correlation}{
+Y_{i,j}=b+\sum_{u=0}^{K_h-1}\sum_{v=0}^{K_w-1}
+K_{u,v}X_{i+u,j+v},
+}\end{equation}
+
+where \(b\) is a learned bias. Strict mathematical convolution flips the
+kernel before sliding it. Equation
+Equation~\ref{eq-cnn-cross-correlation} does not, so it is formally
+\textbf{cross-correlation}. Deep-learning practice nevertheless calls
+the layer a convolutional layer. Because its weights are learned, the
+distinction does not limit what pattern the layer can learn.
+
+\subsection{A Complete Small Example}\label{sec-cnn-kernel-example}
+
+Let the \(4\times4\) input be
+
+\[
+\mathbf{X}=\begin{bmatrix}
+1&1&0&0\\
+1&1&0&0\\
+1&1&0&0\\
+1&1&0&0
+\end{bmatrix},
+\qquad
+\mathbf{K}=\begin{bmatrix}
+1&-1\\
+1&-1
+\end{bmatrix}.
+\]
+
+The kernel gives a large positive response where a light region changes
+to a dark region from left to right. At the first position, the window
+is all ones, so the response is
+
+\[1(1)+1(-1)+1(1)+1(-1)=0.\]
+
+One step to the right, the window crosses the boundary:
+
+\[1(1)+0(-1)+1(1)+0(-1)=2.\]
+
+Sliding over every valid position produces the \textbf{feature map}
+
+\[
+\mathbf{Y}=\begin{bmatrix}
+0&2&0\\
+0&2&0\\
+0&2&0
+\end{bmatrix}.
+\]
+
+The vertical line of twos marks the detected boundary. Notice the
+economy: the same four weights were used at all nine output positions.
+In a trained CNN we usually do not hand-design these values.
+Backpropagation adjusts them to reduce the task loss, just as it adjusts
+dense-layer weights. An activation such as ReLU, \(\max(0,Y_{i,j})\), is
+then commonly applied to introduce nonlinearity.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Put it into practice}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Reproduce every number, alter the input and filter, and write a general
+NumPy implementation in \hyperref[sec-lab-cnn-cross-correlation]{Lab:
+CNN Concepts}.
+
+\end{tcolorbox}
+
+\section{Padding, Stride, and Output Size}\label{sec-cnn-output-shape}
+
+Three choices determine how the kernel moves and how large the feature
+map is:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Kernel size} \((K_h,K_w)\) controls the local window.
+\item
+  \textbf{Padding} \((P_h,P_w)\) adds values---usually zeros---around
+  the boundary.
+\item
+  \textbf{Stride} \((S_h,S_w)\) controls how many positions the window
+  moves at a time.
+\end{itemize}
+
+With unit dilation, the output height and width are
+
+\begin{equation}\protect\phantomsection\label{eq-cnn-output-shape}{
+H_{out}=\left\lfloor\frac{H+2P_h-K_h}{S_h}\right\rfloor+1,
+\qquad
+W_{out}=\left\lfloor\frac{W+2P_w-K_w}{S_w}\right\rfloor+1.
+}\end{equation}
+
+For a \(28\times28\) image, a \(3\times3\) kernel, no padding, and
+stride \(1\), the result is \(26\times26\). Adding one row or column of
+padding on each side gives \(28\times28\). Frameworks call these choices
+\texttt{padding="valid"} and \texttt{padding="same"}, respectively, when
+stride is one.
+
+A larger stride reduces resolution because the layer visits fewer
+windows. For the same \(28\times28\) input, \(3\times3\) kernel, padding
+\(1\), and stride \(2\), Equation Equation~\ref{eq-cnn-output-shape}
+gives \(14\times14\). This reduction saves computation, but it also
+discards spatial detail. Output-shape arithmetic is therefore part of
+model design, not merely bookkeeping.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Put it into practice}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Predict the output before running the code in
+\hyperref[sec-lab-cnn-stride-padding]{Lab: CNN Concepts}, then use
+assertions to check the formula.
+
+\end{tcolorbox}
+
+\section{From One Channel to Many Features}\label{sec-cnn-channels}
+
+A filter must span all input channels. For an input with \(C_{in}\)
+channels, one filter has shape \(K_h\times K_w\times C_{in}\). Its
+responses across those channels are summed, so one filter produces one
+two-dimensional feature map. Using \(C_{out}\) different filters
+produces \(C_{out}\) output channels:
+
+\begin{equation}\protect\phantomsection\label{eq-cnn-multichannel}{
+Y_{i,j,d}=b_d+
+\sum_{u=0}^{K_h-1}\sum_{v=0}^{K_w-1}\sum_{c=0}^{C_{in}-1}
+K_{u,v,c,d}X_{i+u,j+v,c}.
+}\end{equation}
+
+The full kernel bank therefore has shape
+\(K_h\times K_w\times C_{in}\times C_{out}\). Including one bias for
+each output channel, its parameter count is
+
+\begin{equation}\protect\phantomsection\label{eq-cnn-parameters}{
+(K_hK_wC_{in}+1)C_{out}.
+}\end{equation}
+
+Suppose a \(28\times28\times1\) image enters a layer with 16 same-padded
+\(3\times3\) filters. The output is \(28\times28\times16\), and the
+layer learns \((3\cdot3\cdot1+1)16=160\) parameters. A following layer
+with 32 filters sees all 16 incoming feature maps. Its output has 32
+channels, and it learns \((3\cdot3\cdot16+1)32=4,640\) parameters.
+
+This resolves a common confusion:
+
+\begin{itemize}
+\tightlist
+\item
+  the number of \textbf{input channels} determines each filter's depth;
+\item
+  the number of \textbf{filters} determines the number of output
+  channels; and
+\item
+  the number of \textbf{layers} tells us how many transformations are
+  composed.
+\end{itemize}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Put it into practice}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Stack channels and filter banks explicitly in
+\hyperref[sec-lab-cnn-channels]{Lab: CNN Concepts}, then verify the
+parameter count against a Keras model summary.
+
+\end{tcolorbox}
+
+\section{Pooling and Growing Receptive Fields}\label{sec-cnn-pooling}
+
+A pooling layer summarizes each local window without learning kernel
+weights. \textbf{Max pooling} keeps the largest activation;
+\textbf{average pooling} keeps the mean. With a \(2\times2\) window and
+stride \(2\), a \(28\times28\) feature map becomes \(14\times14\).
+
+Pooling has two practical effects. It lowers the cost of later layers,
+and it makes their representations less sensitive to small changes in
+feature location. This is useful stability, but it is not perfect
+invariance: moving or changing an input can still change the result,
+especially near a pooling boundary. Aggressive pooling can also erase
+small but important details.
+
+The \textbf{receptive field} of an activation is the region of the
+original input that could affect it. One \(3\times3\) layer sees a
+\(3\times3\) neighborhood. Two stride-one \(3\times3\) layers compose
+information from a \(5\times5\) region. Deeper layers can therefore
+combine short strokes into corners, corners into parts, and parts into
+larger patterns. This hierarchy is the main conceptual reason to stack
+convolutional layers.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Put it into practice}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Compare convolution and max pooling on the same feature map in
+\hyperref[sec-lab-cnn-pooling]{Lab: CNN Concepts}, including a case
+where pooling removes useful detail.
+
+\end{tcolorbox}
+
+\section{From Feature Maps to a Class
+Prediction}\label{sec-cnn-classifier}
+
+A small image classifier usually has two conceptual blocks:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a \textbf{feature extractor} made of convolution, activation, and
+  downsampling;
+\item
+  a \textbf{classification head} that converts the learned
+  representation into class scores.
+\end{enumerate}
+
+The following compact MNIST model will be used in the companion labs.
+\texttt{same} padding keeps the spatial size during convolution, and
+each \(2\times2\) pooling layer halves it.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio,alt={An MNIST image of shape 28 by 28 by 1 flows through convolution, pooling, another convolution and pooling stage, flattening, a dense layer, and ten class outputs. Spatial size decreases while feature channels increase.}]{chapters/../assets/figures/chapter09a/cnn-pipeline.pdf}
+
+}
+
+\caption{\label{fig-cnn-pipeline}A compact MNIST CNN preserves spatial
+structure through two convolution and pooling blocks, then flattens the
+learned feature maps for dense classification.}
+
+\end{figure}%
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrr@{}}
+\toprule\noalign{}
+Stage & Output shape & Trainable parameters \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Input & \(28\times28\times1\) & 0 \\
+16 filters, \(3\times3\), ReLU & \(28\times28\times16\) & 160 \\
+Max pool, \(2\times2\) & \(14\times14\times16\) & 0 \\
+32 filters, \(3\times3\), ReLU & \(14\times14\times32\) & 4,640 \\
+Max pool, \(2\times2\) & \(7\times7\times32\) & 0 \\
+Flatten & 1,568 & 0 \\
+Dense, 64 units, ReLU & 64 & 100,416 \\
+Dense, 10 units, softmax & 10 & 650 \\
+\textbf{Total} & & \textbf{105,866} \\
+\end{longtable}
+}
+
+The final dense layer produces one score per digit. Softmax converts the
+scores to a probability distribution, and multiclass cross-entropy
+measures the loss. Backpropagation carries the resulting error through
+the dense head and the convolutional feature extractor. Thus a filter is
+not rewarded for looking like an edge detector; it is rewarded when its
+responses help the whole model predict the correct label.
+
+The corresponding MLP lab uses
+\(784\rightarrow128\rightarrow64\rightarrow10\), or 109,386 parameters.
+The two models are similar in size. If their behavior differs, the
+comparison highlights architectural bias rather than simply giving one
+model a much larger parameter budget.
+
+Dropout, early stopping, and validation curves help diagnose
+overfitting, but they do not replace a final evaluation on untouched
+test data. These issues are developed further in
+\hyperref[ch-generalization]{Generalization, Model Selection, and Fit}.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Put it into practice}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Train both models under a shared protocol in
+\hyperref[ch-lab-mnist-mlp]{Lab: MNIST with an MLP} and
+\hyperref[ch-lab-mnist-cnn]{Lab: MNIST with a CNN}, then compare
+accuracy, parameter count, learning curves, errors, and training cost.
+
+\end{tcolorbox}
+
+\section{Looking Inside---and Knowing the
+Limits}\label{sec-cnn-interpretation}
+
+The output of each filter is observable. We can pass an image through a
+trained model and plot selected feature maps. Early maps often respond
+to simple local changes; deeper maps combine earlier responses and are
+harder to name. Such plots are useful evidence about model behavior, but
+a bright activation is not automatically a human-interpretable
+explanation.
+
+CNNs are also not universally appropriate. Their local, shared filters
+work well when the same kind of nearby pattern can matter across
+locations. They are less natural when every feature position has a
+permanently different meaning, as in some tabular problems. Standard
+convolution is translation \emph{equivariant}: shifting an input tends
+to shift its feature map. Pooling and final aggregation may add some
+stability, but the complete classifier is not guaranteed to ignore all
+translations, rotations, scale changes, or background shifts.
+
+Useful extensions include data augmentation, residual connections, and
+transfer learning from a pretrained feature extractor. These can greatly
+expand a CNN's reach, but they do not change the central lesson of this
+chapter: architecture encodes assumptions about the structure of the
+data.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Put it into practice}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Inspect learned kernels, intermediate feature maps, and representative
+mistakes in \hyperref[sec-lab-cnn-inspect]{Lab: MNIST with a CNN}. State
+what each visualization supports---and what it does not prove.
+
+\end{tcolorbox}
+
+\section{Summary}\label{sec-cnn-summary}
+
+\begin{itemize}
+\tightlist
+\item
+  An MLP can classify images, but immediate flattening does not directly
+  exploit spatial neighborhoods.
+\item
+  A convolutional layer applies a small shared kernel across locations.
+  The library operation is usually cross-correlation, though it is
+  called convolution.
+\item
+  Padding, stride, and kernel size determine spatial output dimensions.
+\item
+  Each filter spans all input channels and produces one output channel.
+\item
+  Pooling reduces resolution, while stacked layers grow receptive fields
+  and combine simple local patterns into larger ones.
+\item
+  CNN filters are learned end to end from the task loss; they are not
+  normally prescribed by hand.
+\item
+  A fair MLP-versus-CNN comparison controls the data split, training
+  protocol, evaluation procedure, and approximate parameter budget.
+\end{itemize}
+
+\section{Exercises}\label{sec-cnn-exercises}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Apply the kernel in Section~\ref{sec-cnn-kernel-example} after
+  transposing only the input. Then transpose only the kernel. Explain
+  why these are different experiments.
+\item
+  Find the output shape for a \(32\times32\times3\) input, 24 filters of
+  size \(5\times5\), padding 2, and stride 2. Count the trainable
+  parameters.
+\item
+  A layer receives 12 input channels and produces 20 output channels.
+  How many separate two-dimensional kernel slices are learned for a
+  \(3\times3\) layer?
+\item
+  Compare two successive \(3\times3\) stride-one convolutions with one
+  \(5\times5\) convolution. What receptive field do they share, and how
+  do their nonlinearities and parameter counts differ?
+\item
+  Give one task for which translation equivariance is useful and one for
+  which absolute position should matter. Explain how that changes your
+  model design.
+\end{enumerate}
+
 \chapter{Clustering and Organization}\label{ch-clustering}
 
 We as human organize things. An important aspect of human development is
@@ -18372,6 +18874,1117 @@ with the attributes selected from Section 2.2.
 \end{Highlighting}
 \end{Shaded}
 
+\chapter*{Practice 10: Convolutional Neural
+Networks}\label{ch-practice-cnn}
+\addcontentsline{toc}{chapter}{Practice 10: Convolutional Neural
+Networks}
+
+\markboth{Practice 10: Convolutional Neural Networks}{Practice 10:
+Convolutional Neural Networks}
+
+\textbf{Theory connection:} \hyperref[ch-cnn]{Convolutional Neural
+Networks: Learning Spatial Structure}
+
+This practice chapter is a small comparative project rather than three
+unrelated notebooks. You will solve one classification problem twice,
+pause between the models to understand the convolution operation, and
+then use evidence to explain why the results differ.
+
+\section*{Project Question}\label{sec-pr-cnn-question}
+\addcontentsline{toc}{section}{Project Question}
+
+\markright{Project Question}
+
+\begin{quote}
+What changes when a classifier preserves spatial structure and learns
+shared local features before making a class prediction?
+\end{quote}
+
+Use the same MNIST split, preprocessing scale, optimizer, batch size,
+early-stopping rule, and test set for both trained models. The MLP and
+CNN in these labs also have similar parameter counts. This makes
+architecture the main planned difference.
+
+\section*{Two-Week Sequence}\label{sec-pr-cnn-sequence}
+\addcontentsline{toc}{section}{Two-Week Sequence}
+
+\markright{Two-Week Sequence}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2857}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2143}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2143}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2857}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+Order
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Activity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Main evidence to retain
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Suggested time
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & \hyperref[ch-lab-mnist-mlp]{MNIST with an MLP} & Shapes, model
+summary, learning curves, test results, representative errors & 2--3
+hours \\
+2 & Read \hyperref[ch-cnn]{the CNN theory chapter} & Annotated worked
+example and shape calculations & 1--2 hours \\
+3 & \hyperref[ch-lab-cnn-concepts]{CNN Concepts} & Hand calculation,
+tested NumPy functions, parameter counts, explanations & 2--3 hours \\
+4 & \hyperref[ch-lab-mnist-cnn]{MNIST with a CNN} & Matched comparison,
+feature maps, error analysis, conclusion & 3--4 hours \\
+\end{longtable}
+}
+
+Do not begin by tuning whichever model performs worse. First complete
+the matched comparison. Any later improvement is a new experiment and
+should be labeled as such.
+
+\section*{Shape Clinic}\label{sec-pr-cnn-shapes}
+\addcontentsline{toc}{section}{Shape Clinic}
+
+\markright{Shape Clinic}
+
+Before coding, write the shape of each object below in channels-last
+order.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  One \(28\times28\) grayscale image.
+\item
+  A batch of 64 grayscale images.
+\item
+  One \(128\times128\) RGB image.
+\item
+  The output of 16 same-padded filters applied to an MNIST image.
+\item
+  The output after \(2\times2\) max pooling with stride 2.
+\end{enumerate}
+
+Then answer: Which axis counts examples? Which axis counts learned
+feature maps? Why is neither one a new neural-network layer?
+
+\section*{Required Comparison}\label{sec-pr-cnn-comparison}
+\addcontentsline{toc}{section}{Required Comparison}
+
+\markright{Required Comparison}
+
+Complete this table with your own run. A useful comparison includes more
+than the largest accuracy number.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrrl@{}}
+\toprule\noalign{}
+Evidence & MLP & CNN & Interpretation \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Input shape & & & \\
+First learned operation & & & \\
+Trainable parameters & & & \\
+Epoch with lowest validation loss & & & \\
+Test loss & & & \\
+Test accuracy & & & \\
+Training time & & & \\
+Two common confusions & & & \\
+\end{longtable}
+}
+
+Your conclusion should distinguish an observation (for example, one
+measured test accuracy) from an explanation (for example, locality and
+weight sharing). One run supports a careful case study; it does not
+prove that one architecture always wins.
+
+\section*{Deliverable}\label{sec-pr-cnn-deliverable}
+\addcontentsline{toc}{section}{Deliverable}
+
+\markright{Deliverable}
+
+Submit one reproducible report or repository containing:
+
+\begin{itemize}
+\tightlist
+\item
+  the three completed notebooks;
+\item
+  the matched comparison table;
+\item
+  one correct hand-worked cross-correlation;
+\item
+  at least two learning-curve plots and one confusion matrix per trained
+  model;
+\item
+  selected CNN feature maps with restrained interpretation;
+\item
+  three representative mistakes from each model; and
+\item
+  a 300--500 word conclusion answering the project question.
+\end{itemize}
+
+For an extension, replace MNIST with a small image collection of your
+own. Record how image size, color channels, class balance, and
+train/validation/test separation change the pipeline before changing the
+model.
+
+\chapter*{Lab: MNIST with a Multilayer
+Perceptron}\label{ch-lab-mnist-mlp}
+\addcontentsline{toc}{chapter}{Lab: MNIST with a Multilayer Perceptron}
+
+\markboth{Lab: MNIST with a Multilayer Perceptron}{Lab: MNIST with a
+Multilayer Perceptron}
+
+\textbf{Theory connections:}
+\hyperref[multi-layer-neural-networks]{Multi-Layer Neural Networks} and
+\hyperref[sec-cnn-why]{Why Image Structure Changes the Model}
+
+This lab establishes a strong nonconvolutional baseline. An MLP can
+perform well on MNIST, so the purpose is not to make it fail. The
+purpose is to observe exactly what flattening asks the model to do, then
+compare it fairly with a CNN.
+
+Download the \href{../notebooks/mnist-mlp.ipynb}{Jupyter notebook} to
+run the activity. The code targets current Keras 3 with a TensorFlow
+backend and also runs in a standard Google Colab CPU session. The public
+book build displays but does not execute the training code.
+
+\section*{Learning Goals}\label{sec-lab-mlp-goals}
+\addcontentsline{toc}{section}{Learning Goals}
+
+\markright{Learning Goals}
+
+You will prepare a fixed MNIST split, train an MLP, interpret learning
+curves, evaluate untouched test data, and save evidence for the later
+CNN comparison.
+
+\section*{1. Imports and Reproducibility}\label{sec-lab-mlp-setup}
+\addcontentsline{toc}{section}{1. Imports and Reproducibility}
+
+\markright{1. Imports and Reproducibility}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ time}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{import}\NormalTok{ keras}
+\ImportTok{from}\NormalTok{ keras }\ImportTok{import}\NormalTok{ layers}
+
+\NormalTok{keras.utils.set\_random\_seed(}\DecValTok{42}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Exact floating-point results can still vary with hardware and backend
+operations. The seed makes the data order and most model choices
+repeatable; it does not turn one run into universal evidence.
+
+\section*{2. Load Once and Create a Fixed Validation
+Set}\label{sec-lab-mlp-data}
+\addcontentsline{toc}{section}{2. Load Once and Create a Fixed
+Validation Set}
+
+\markright{2. Load Once and Create a Fixed Validation Set}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x\_train\_raw, y\_train\_raw), (x\_test\_raw, y\_test) }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    keras.datasets.mnist.load\_data()}
+\NormalTok{)}
+
+\CommentTok{\# Shuffle once so both labs can reproduce the same 54,000/6,000 split.}
+\NormalTok{rng }\OperatorTok{=}\NormalTok{ np.random.default\_rng(}\DecValTok{42}\NormalTok{)}
+\NormalTok{order }\OperatorTok{=}\NormalTok{ rng.permutation(}\BuiltInTok{len}\NormalTok{(x\_train\_raw))}
+\NormalTok{x\_train\_raw }\OperatorTok{=}\NormalTok{ x\_train\_raw[order]}
+\NormalTok{y\_train\_raw }\OperatorTok{=}\NormalTok{ y\_train\_raw[order]}
+
+\NormalTok{x\_fit\_raw, x\_val\_raw }\OperatorTok{=}\NormalTok{ x\_train\_raw[:}\DecValTok{54000}\NormalTok{], x\_train\_raw[}\DecValTok{54000}\NormalTok{:]}
+\NormalTok{y\_fit, y\_val }\OperatorTok{=}\NormalTok{ y\_train\_raw[:}\DecValTok{54000}\NormalTok{], y\_train\_raw[}\DecValTok{54000}\NormalTok{:]}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"fit:"}\NormalTok{, x\_fit\_raw.shape, y\_fit.shape)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"validation:"}\NormalTok{, x\_val\_raw.shape, y\_val.shape)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"test:"}\NormalTok{, x\_test\_raw.shape, y\_test.shape)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"pixel range:"}\NormalTok{, x\_fit\_raw.}\BuiltInTok{min}\NormalTok{(), }\StringTok{"to"}\NormalTok{, x\_fit\_raw.}\BuiltInTok{max}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+The validation data may guide training decisions. The test data should
+remain untouched until the model and stopping rule are fixed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{8}\NormalTok{, }\FloatTok{3.5}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ ax, image, label }\KeywordTok{in} \BuiltInTok{zip}\NormalTok{(axes.flat, x\_fit\_raw[:}\DecValTok{10}\NormalTok{], y\_fit[:}\DecValTok{10}\NormalTok{]):}
+\NormalTok{    ax.imshow(image, cmap}\OperatorTok{=}\StringTok{"gray"}\NormalTok{)}
+\NormalTok{    ax.set\_title(}\BuiltInTok{str}\NormalTok{(label))}
+\NormalTok{    ax.axis(}\StringTok{"off"}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{3. Flatten and Scale}\label{sec-lab-mlp-flatten}
+\addcontentsline{toc}{section}{3. Flatten and Scale}
+
+\markright{3. Flatten and Scale}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x\_fit }\OperatorTok{=}\NormalTok{ x\_fit\_raw.reshape(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{28} \OperatorTok{*} \DecValTok{28}\NormalTok{).astype(}\StringTok{"float32"}\NormalTok{) }\OperatorTok{/} \FloatTok{255.0}
+\NormalTok{x\_val }\OperatorTok{=}\NormalTok{ x\_val\_raw.reshape(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{28} \OperatorTok{*} \DecValTok{28}\NormalTok{).astype(}\StringTok{"float32"}\NormalTok{) }\OperatorTok{/} \FloatTok{255.0}
+\NormalTok{x\_test }\OperatorTok{=}\NormalTok{ x\_test\_raw.reshape(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{28} \OperatorTok{*} \DecValTok{28}\NormalTok{).astype(}\StringTok{"float32"}\NormalTok{) }\OperatorTok{/} \FloatTok{255.0}
+
+\ControlFlowTok{assert}\NormalTok{ x\_fit.shape }\OperatorTok{==}\NormalTok{ (}\DecValTok{54000}\NormalTok{, }\DecValTok{784}\NormalTok{)}
+\ControlFlowTok{assert}\NormalTok{ x\_val.shape }\OperatorTok{==}\NormalTok{ (}\DecValTok{6000}\NormalTok{, }\DecValTok{784}\NormalTok{)}
+\ControlFlowTok{assert}\NormalTok{ x\_test.shape }\OperatorTok{==}\NormalTok{ (}\DecValTok{10000}\NormalTok{, }\DecValTok{784}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(x\_fit.shape, x\_val.shape, x\_test.shape)}
+\end{Highlighting}
+\end{Shaded}
+
+Write two sentences: What information is preserved by \texttt{reshape},
+and what spatial assumption is no longer explicit in the model input?
+
+\section*{4. Build a 109,386-Parameter MLP}\label{sec-lab-mlp-model}
+\addcontentsline{toc}{section}{4. Build a 109,386-Parameter MLP}
+
+\markright{4. Build a 109,386-Parameter MLP}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mlp\_model }\OperatorTok{=}\NormalTok{ keras.Sequential([}
+\NormalTok{    keras.Input(shape}\OperatorTok{=}\NormalTok{(}\DecValTok{784}\NormalTok{,)),}
+\NormalTok{    layers.Dense(}\DecValTok{128}\NormalTok{, activation}\OperatorTok{=}\StringTok{"relu"}\NormalTok{),}
+\NormalTok{    layers.Dense(}\DecValTok{64}\NormalTok{, activation}\OperatorTok{=}\StringTok{"relu"}\NormalTok{),}
+\NormalTok{    layers.Dense(}\DecValTok{10}\NormalTok{, activation}\OperatorTok{=}\StringTok{"softmax"}\NormalTok{),}
+\NormalTok{], name}\OperatorTok{=}\StringTok{"mnist\_mlp"}\NormalTok{)}
+
+\NormalTok{mlp\_model.}\BuiltInTok{compile}\NormalTok{(}
+\NormalTok{    optimizer}\OperatorTok{=}\NormalTok{keras.optimizers.Adam(learning\_rate}\OperatorTok{=}\FloatTok{0.001}\NormalTok{),}
+\NormalTok{    loss}\OperatorTok{=}\StringTok{"sparse\_categorical\_crossentropy"}\NormalTok{,}
+\NormalTok{    metrics}\OperatorTok{=}\NormalTok{[}\StringTok{"accuracy"}\NormalTok{],}
+\NormalTok{)}
+
+\NormalTok{mlp\_model.summary()}
+\ControlFlowTok{assert}\NormalTok{ mlp\_model.count\_params() }\OperatorTok{==} \DecValTok{109386}
+\end{Highlighting}
+\end{Shaded}
+
+Verify the count by hand. For a dense layer, include one bias per output
+unit: \((n_{in}+1)n_{out}\).
+
+\section*{5. Train and Retain the Best Validation
+Weights}\label{sec-lab-mlp-train}
+\addcontentsline{toc}{section}{5. Train and Retain the Best Validation
+Weights}
+
+\markright{5. Train and Retain the Best Validation Weights}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{early\_stop }\OperatorTok{=}\NormalTok{ keras.callbacks.EarlyStopping(}
+\NormalTok{    monitor}\OperatorTok{=}\StringTok{"val\_loss"}\NormalTok{,}
+\NormalTok{    patience}\OperatorTok{=}\DecValTok{2}\NormalTok{,}
+\NormalTok{    restore\_best\_weights}\OperatorTok{=}\VariableTok{True}\NormalTok{,}
+\NormalTok{)}
+
+\NormalTok{start }\OperatorTok{=}\NormalTok{ time.perf\_counter()}
+\NormalTok{mlp\_history }\OperatorTok{=}\NormalTok{ mlp\_model.fit(}
+\NormalTok{    x\_fit,}
+\NormalTok{    y\_fit,}
+\NormalTok{    validation\_data}\OperatorTok{=}\NormalTok{(x\_val, y\_val),}
+\NormalTok{    batch\_size}\OperatorTok{=}\DecValTok{128}\NormalTok{,}
+\NormalTok{    epochs}\OperatorTok{=}\DecValTok{12}\NormalTok{,}
+\NormalTok{    callbacks}\OperatorTok{=}\NormalTok{[early\_stop],}
+\NormalTok{    verbose}\OperatorTok{=}\DecValTok{1}\NormalTok{,}
+\NormalTok{)}
+\NormalTok{mlp\_seconds }\OperatorTok{=}\NormalTok{ time.perf\_counter() }\OperatorTok{{-}}\NormalTok{ start}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"training time: }\SpecialCharTok{\{}\NormalTok{mlp\_seconds}\SpecialCharTok{:.1f\}}\SpecialStringTok{ seconds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ plot\_history(history, title):}
+\NormalTok{    fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{9}\NormalTok{, }\FloatTok{3.5}\NormalTok{))}
+\NormalTok{    axes[}\DecValTok{0}\NormalTok{].plot(history.history[}\StringTok{"loss"}\NormalTok{], label}\OperatorTok{=}\StringTok{"train"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{0}\NormalTok{].plot(history.history[}\StringTok{"val\_loss"}\NormalTok{], label}\OperatorTok{=}\StringTok{"validation"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{0}\NormalTok{].}\BuiltInTok{set}\NormalTok{(title}\OperatorTok{=}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{title}\SpecialCharTok{\}}\SpecialStringTok{: loss"}\NormalTok{, xlabel}\OperatorTok{=}\StringTok{"epoch"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{1}\NormalTok{].plot(history.history[}\StringTok{"accuracy"}\NormalTok{], label}\OperatorTok{=}\StringTok{"train"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{1}\NormalTok{].plot(history.history[}\StringTok{"val\_accuracy"}\NormalTok{], label}\OperatorTok{=}\StringTok{"validation"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{1}\NormalTok{].}\BuiltInTok{set}\NormalTok{(title}\OperatorTok{=}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{title}\SpecialCharTok{\}}\SpecialStringTok{: accuracy"}\NormalTok{, xlabel}\OperatorTok{=}\StringTok{"epoch"}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ ax }\KeywordTok{in}\NormalTok{ axes:}
+\NormalTok{        ax.legend()}
+\NormalTok{    plt.tight\_layout()}
+
+\NormalTok{plot\_history(mlp\_history, }\StringTok{"MLP"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Mark the epoch with the smallest validation loss. Is there evidence of
+underfitting, overfitting, or neither? Use the curves, not training
+accuracy alone.
+
+\section*{6. Evaluate Once on the Test Set}\label{sec-lab-mlp-evaluate}
+\addcontentsline{toc}{section}{6. Evaluate Once on the Test Set}
+
+\markright{6. Evaluate Once on the Test Set}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mlp\_test\_loss, mlp\_test\_accuracy }\OperatorTok{=}\NormalTok{ mlp\_model.evaluate(}
+\NormalTok{    x\_test, y\_test, verbose}\OperatorTok{=}\DecValTok{0}
+\NormalTok{)}
+\NormalTok{mlp\_prob }\OperatorTok{=}\NormalTok{ mlp\_model.predict(x\_test, verbose}\OperatorTok{=}\DecValTok{0}\NormalTok{)}
+\NormalTok{mlp\_pred }\OperatorTok{=}\NormalTok{ mlp\_prob.argmax(axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"test loss: }\SpecialCharTok{\{}\NormalTok{mlp\_test\_loss}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"test accuracy: }\SpecialCharTok{\{}\NormalTok{mlp\_test\_accuracy}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ confusion\_counts(y\_true, y\_pred, n\_classes}\OperatorTok{=}\DecValTok{10}\NormalTok{):}
+\NormalTok{    counts }\OperatorTok{=}\NormalTok{ np.bincount(}
+\NormalTok{        n\_classes }\OperatorTok{*}\NormalTok{ y\_true.astype(}\BuiltInTok{int}\NormalTok{) }\OperatorTok{+}\NormalTok{ y\_pred.astype(}\BuiltInTok{int}\NormalTok{),}
+\NormalTok{        minlength}\OperatorTok{=}\NormalTok{n\_classes }\OperatorTok{*}\NormalTok{ n\_classes,}
+\NormalTok{    )}
+    \ControlFlowTok{return}\NormalTok{ counts.reshape(n\_classes, n\_classes)}
+
+\NormalTok{mlp\_confusion }\OperatorTok{=}\NormalTok{ confusion\_counts(y\_test, mlp\_pred)}
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\NormalTok{plt.imshow(mlp\_confusion, cmap}\OperatorTok{=}\StringTok{"Blues"}\NormalTok{)}
+\NormalTok{plt.colorbar(label}\OperatorTok{=}\StringTok{"count"}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{"predicted digit"}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{"true digit"}\NormalTok{)}
+\NormalTok{plt.xticks(}\BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\NormalTok{plt.yticks(}\BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\NormalTok{plt.title(}\StringTok{"MLP confusion matrix"}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{7. Inspect Mistakes}\label{sec-lab-mlp-errors}
+\addcontentsline{toc}{section}{7. Inspect Mistakes}
+
+\markright{7. Inspect Mistakes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wrong }\OperatorTok{=}\NormalTok{ np.flatnonzero(mlp\_pred }\OperatorTok{!=}\NormalTok{ y\_test)}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{9}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ ax, idx }\KeywordTok{in} \BuiltInTok{zip}\NormalTok{(axes.flat, wrong[:}\DecValTok{10}\NormalTok{]):}
+\NormalTok{    confidence }\OperatorTok{=}\NormalTok{ mlp\_prob[idx, mlp\_pred[idx]]}
+\NormalTok{    ax.imshow(x\_test\_raw[idx], cmap}\OperatorTok{=}\StringTok{"gray"}\NormalTok{)}
+\NormalTok{    title }\OperatorTok{=} \SpecialStringTok{f"true }\SpecialCharTok{\{}\NormalTok{y\_test[idx]}\SpecialCharTok{\}}\SpecialStringTok{ / pred }\SpecialCharTok{\{}\NormalTok{mlp\_pred[idx]}\SpecialCharTok{\}}\SpecialStringTok{"}
+\NormalTok{    ax.set\_title(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{title}\SpecialCharTok{\}}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{confidence}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\NormalTok{    ax.axis(}\StringTok{"off"}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\end{Highlighting}
+\end{Shaded}
+
+Choose three errors. For each, distinguish what you can see in the image
+from what you are inferring about the model.
+
+\section*{Record for the CNN Comparison}\label{sec-lab-mlp-record}
+\addcontentsline{toc}{section}{Record for the CNN Comparison}
+
+\markright{Record for the CNN Comparison}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mlp\_result }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{"input\_shape"}\NormalTok{: }\StringTok{"784"}\NormalTok{,}
+    \StringTok{"parameters"}\NormalTok{: mlp\_model.count\_params(),}
+    \StringTok{"best\_epoch"}\NormalTok{: }\BuiltInTok{int}\NormalTok{(np.argmin(mlp\_history.history[}\StringTok{"val\_loss"}\NormalTok{]) }\OperatorTok{+} \DecValTok{1}\NormalTok{),}
+    \StringTok{"test\_loss"}\NormalTok{: }\BuiltInTok{float}\NormalTok{(mlp\_test\_loss),}
+    \StringTok{"test\_accuracy"}\NormalTok{: }\BuiltInTok{float}\NormalTok{(mlp\_test\_accuracy),}
+    \StringTok{"training\_seconds"}\NormalTok{: }\BuiltInTok{float}\NormalTok{(mlp\_seconds),}
+\NormalTok{\}}
+\NormalTok{mlp\_result}
+\end{Highlighting}
+\end{Shaded}
+
+Do not tune this model after seeing CNN test results. If you later
+change it, start a clearly labeled second experiment and protect the
+test set from repeated use.
+
+\chapter*{Lab: CNN Concepts from Arrays to Feature
+Maps}\label{ch-lab-cnn-concepts}
+\addcontentsline{toc}{chapter}{Lab: CNN Concepts from Arrays to Feature
+Maps}
+
+\markboth{Lab: CNN Concepts from Arrays to Feature Maps}{Lab: CNN
+Concepts from Arrays to Feature Maps}
+
+\textbf{Theory connection:} \hyperref[ch-cnn]{Convolutional Neural
+Networks}
+
+This lab makes the mechanics visible before a framework hides them. Most
+of the work uses only NumPy. Complete each prediction or hand
+calculation before running its code cell.
+
+Download the \href{../notebooks/cnn-concepts.ipynb}{Jupyter notebook} to
+run the activity.
+
+\section*{1. Cross-Correlation by
+Hand}\label{sec-lab-cnn-cross-correlation}
+\addcontentsline{toc}{section}{1. Cross-Correlation by Hand}
+
+\markright{1. Cross-Correlation by Hand}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\NormalTok{image }\OperatorTok{=}\NormalTok{ np.array([}
+\NormalTok{    [}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{],}
+\NormalTok{    [}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{],}
+\NormalTok{    [}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{],}
+\NormalTok{    [}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{],}
+\NormalTok{], dtype}\OperatorTok{=}\BuiltInTok{float}\NormalTok{)}
+
+\NormalTok{vertical\_boundary }\OperatorTok{=}\NormalTok{ np.array([}
+\NormalTok{    [}\DecValTok{1}\NormalTok{, }\OperatorTok{{-}}\DecValTok{1}\NormalTok{],}
+\NormalTok{    [}\DecValTok{1}\NormalTok{, }\OperatorTok{{-}}\DecValTok{1}\NormalTok{],}
+\NormalTok{], dtype}\OperatorTok{=}\BuiltInTok{float}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Write all four products for the upper-left window and for the window one
+step to its right. Predict the complete \(3\times3\) result.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{upper\_left }\OperatorTok{=}\NormalTok{ image[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{one\_step\_right }\OperatorTok{=}\NormalTok{ image[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"upper{-}left products:}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, upper\_left }\OperatorTok{*}\NormalTok{ vertical\_boundary)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"upper{-}left sum:"}\NormalTok{, np.}\BuiltInTok{sum}\NormalTok{(upper\_left }\OperatorTok{*}\NormalTok{ vertical\_boundary))}
+\NormalTok{right\_products }\OperatorTok{=}\NormalTok{ one\_step\_right }\OperatorTok{*}\NormalTok{ vertical\_boundary}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"one{-}step{-}right products:}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, right\_products)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"one{-}step{-}right sum:"}\NormalTok{, np.}\BuiltInTok{sum}\NormalTok{(right\_products))}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{2. Implement the General
+Operation}\label{sec-lab-cnn-implementation}
+\addcontentsline{toc}{section}{2. Implement the General Operation}
+
+\markright{2. Implement the General Operation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ cross\_correlate2d(image, kernel, stride}\OperatorTok{=}\DecValTok{1}\NormalTok{, padding}\OperatorTok{=}\DecValTok{0}\NormalTok{):}
+    \CommentTok{"""2D cross{-}correlation for one image channel and one kernel."""}
+\NormalTok{    image }\OperatorTok{=}\NormalTok{ np.asarray(image, dtype}\OperatorTok{=}\BuiltInTok{float}\NormalTok{)}
+\NormalTok{    kernel }\OperatorTok{=}\NormalTok{ np.asarray(kernel, dtype}\OperatorTok{=}\BuiltInTok{float}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ image.ndim }\OperatorTok{!=} \DecValTok{2} \KeywordTok{or}\NormalTok{ kernel.ndim }\OperatorTok{!=} \DecValTok{2}\NormalTok{:}
+        \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}
+            \StringTok{"image and kernel must both be two{-}dimensional"}
+\NormalTok{        )}
+    \ControlFlowTok{if}\NormalTok{ stride }\OperatorTok{\textless{}} \DecValTok{1} \KeywordTok{or}\NormalTok{ padding }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{:}
+        \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}
+            \StringTok{"stride must be positive and padding nonnegative"}
+\NormalTok{        )}
+
+\NormalTok{    padded }\OperatorTok{=}\NormalTok{ np.pad(image, padding)}
+\NormalTok{    kh, kw }\OperatorTok{=}\NormalTok{ kernel.shape}
+\NormalTok{    out\_h }\OperatorTok{=}\NormalTok{ (padded.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ kh) }\OperatorTok{//}\NormalTok{ stride }\OperatorTok{+} \DecValTok{1}
+\NormalTok{    out\_w }\OperatorTok{=}\NormalTok{ (padded.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ kw) }\OperatorTok{//}\NormalTok{ stride }\OperatorTok{+} \DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{ out\_h }\OperatorTok{\textless{}} \DecValTok{1} \KeywordTok{or}\NormalTok{ out\_w }\OperatorTok{\textless{}} \DecValTok{1}\NormalTok{:}
+        \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}\StringTok{"kernel is larger than the padded input"}\NormalTok{)}
+
+\NormalTok{    output }\OperatorTok{=}\NormalTok{ np.empty((out\_h, out\_w), dtype}\OperatorTok{=}\BuiltInTok{float}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(out\_h):}
+        \ControlFlowTok{for}\NormalTok{ j }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(out\_w):}
+\NormalTok{            row }\OperatorTok{=}\NormalTok{ i }\OperatorTok{*}\NormalTok{ stride}
+\NormalTok{            col }\OperatorTok{=}\NormalTok{ j }\OperatorTok{*}\NormalTok{ stride}
+\NormalTok{            patch }\OperatorTok{=}\NormalTok{ padded[row:row }\OperatorTok{+}\NormalTok{ kh, col:col }\OperatorTok{+}\NormalTok{ kw]}
+\NormalTok{            output[i, j] }\OperatorTok{=}\NormalTok{ np.}\BuiltInTok{sum}\NormalTok{(patch }\OperatorTok{*}\NormalTok{ kernel)}
+    \ControlFlowTok{return}\NormalTok{ output}
+
+\NormalTok{feature\_map }\OperatorTok{=}\NormalTok{ cross\_correlate2d(image, vertical\_boundary)}
+\NormalTok{expected }\OperatorTok{=}\NormalTok{ np.array([[}\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{], [}\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{], [}\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{]], dtype}\OperatorTok{=}\BuiltInTok{float}\NormalTok{)}
+\NormalTok{np.testing.assert\_array\_equal(feature\_map, expected)}
+\NormalTok{feature\_map}
+\end{Highlighting}
+\end{Shaded}
+
+Why is this formally cross-correlation rather than strict mathematical
+convolution? Confirm your answer by flipping the kernel on both axes and
+comparing the output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flipped\_kernel }\OperatorTok{=}\NormalTok{ np.flip(vertical\_boundary)}
+\NormalTok{strict\_convolution }\OperatorTok{=}\NormalTok{ cross\_correlate2d(image, flipped\_kernel)}
+\BuiltInTok{print}\NormalTok{(strict\_convolution)}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{3. Padding and Stride}\label{sec-lab-cnn-stride-padding}
+\addcontentsline{toc}{section}{3. Padding and Stride}
+
+\markright{3. Padding and Stride}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ output\_size(input\_size, kernel\_size, stride}\OperatorTok{=}\DecValTok{1}\NormalTok{, padding}\OperatorTok{=}\DecValTok{0}\NormalTok{):}
+    \ControlFlowTok{return}\NormalTok{ (input\_size }\OperatorTok{+} \DecValTok{2} \OperatorTok{*}\NormalTok{ padding }\OperatorTok{{-}}\NormalTok{ kernel\_size) }\OperatorTok{//}\NormalTok{ stride }\OperatorTok{+} \DecValTok{1}
+
+\NormalTok{cases }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{    (}\DecValTok{28}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+\NormalTok{    (}\DecValTok{28}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+\NormalTok{    (}\DecValTok{28}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+\NormalTok{]}
+\ControlFlowTok{for}\NormalTok{ n, k, s, p }\KeywordTok{in}\NormalTok{ cases:}
+    \BuiltInTok{print}\NormalTok{((n, k, s, p), }\StringTok{"{-}\textgreater{}"}\NormalTok{, output\_size(n, k, s, p))}
+\end{Highlighting}
+\end{Shaded}
+
+For each case, interpret the result before continuing. Then test the
+function against actual arrays.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dummy }\OperatorTok{=}\NormalTok{ np.zeros((}\DecValTok{28}\NormalTok{, }\DecValTok{28}\NormalTok{))}
+\NormalTok{kernel3 }\OperatorTok{=}\NormalTok{ np.ones((}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\ControlFlowTok{assert}\NormalTok{ cross\_correlate2d(dummy, kernel3).shape }\OperatorTok{==}\NormalTok{ (}\DecValTok{26}\NormalTok{, }\DecValTok{26}\NormalTok{)}
+\ControlFlowTok{assert}\NormalTok{ cross\_correlate2d(dummy, kernel3, padding}\OperatorTok{=}\DecValTok{1}\NormalTok{).shape }\OperatorTok{==}\NormalTok{ (}\DecValTok{28}\NormalTok{, }\DecValTok{28}\NormalTok{)}
+\NormalTok{stride\_two }\OperatorTok{=}\NormalTok{ cross\_correlate2d(}
+\NormalTok{    dummy, kernel3, stride}\OperatorTok{=}\DecValTok{2}\NormalTok{, padding}\OperatorTok{=}\DecValTok{1}
+\NormalTok{)}
+\ControlFlowTok{assert}\NormalTok{ stride\_two.shape }\OperatorTok{==}\NormalTok{ (}\DecValTok{14}\NormalTok{, }\DecValTok{14}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Explain why stride 2 can lose information even when the output shape is
+convenient.
+
+\section*{4. Pooling Is a Different
+Operation}\label{sec-lab-cnn-pooling}
+\addcontentsline{toc}{section}{4. Pooling Is a Different Operation}
+
+\markright{4. Pooling Is a Different Operation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ max\_pool2d(feature\_map, pool\_size}\OperatorTok{=}\DecValTok{2}\NormalTok{, stride}\OperatorTok{=}\DecValTok{2}\NormalTok{):}
+\NormalTok{    feature\_map }\OperatorTok{=}\NormalTok{ np.asarray(feature\_map)}
+\NormalTok{    out\_h }\OperatorTok{=}\NormalTok{ (feature\_map.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ pool\_size) }\OperatorTok{//}\NormalTok{ stride }\OperatorTok{+} \DecValTok{1}
+\NormalTok{    out\_w }\OperatorTok{=}\NormalTok{ (feature\_map.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ pool\_size) }\OperatorTok{//}\NormalTok{ stride }\OperatorTok{+} \DecValTok{1}
+\NormalTok{    output }\OperatorTok{=}\NormalTok{ np.empty((out\_h, out\_w), dtype}\OperatorTok{=}\NormalTok{feature\_map.dtype)}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(out\_h):}
+        \ControlFlowTok{for}\NormalTok{ j }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(out\_w):}
+\NormalTok{            row }\OperatorTok{=}\NormalTok{ i }\OperatorTok{*}\NormalTok{ stride}
+\NormalTok{            col }\OperatorTok{=}\NormalTok{ j }\OperatorTok{*}\NormalTok{ stride}
+\NormalTok{            patch }\OperatorTok{=}\NormalTok{ feature\_map[}
+\NormalTok{                row:row }\OperatorTok{+}\NormalTok{ pool\_size,}
+\NormalTok{                col:col }\OperatorTok{+}\NormalTok{ pool\_size,}
+\NormalTok{            ]}
+\NormalTok{            output[i, j] }\OperatorTok{=}\NormalTok{ np.}\BuiltInTok{max}\NormalTok{(patch)}
+    \ControlFlowTok{return}\NormalTok{ output}
+
+\NormalTok{pool\_input }\OperatorTok{=}\NormalTok{ np.array([}
+\NormalTok{    [}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{],}
+\NormalTok{    [}\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{],}
+\NormalTok{    [}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{3}\NormalTok{],}
+\NormalTok{    [}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{8}\NormalTok{],}
+\NormalTok{])}
+\NormalTok{pooled }\OperatorTok{=}\NormalTok{ max\_pool2d(pool\_input)}
+\NormalTok{np.testing.assert\_array\_equal(pooled, np.array([[}\DecValTok{6}\NormalTok{, }\DecValTok{2}\NormalTok{], [}\DecValTok{2}\NormalTok{, }\DecValTok{8}\NormalTok{]]))}
+\NormalTok{pooled}
+\end{Highlighting}
+\end{Shaded}
+
+List two differences between convolution and pooling. Your answer should
+address learned parameters and the meaning of the output.
+
+\section*{5. Multiple Input and Output
+Channels}\label{sec-lab-cnn-channels}
+\addcontentsline{toc}{section}{5. Multiple Input and Output Channels}
+
+\markright{5. Multiple Input and Output Channels}
+
+One filter spans every input channel but produces one output feature
+map. A bank of filters produces a bank of output channels.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ cross\_correlate\_channels(image, kernels, bias}\OperatorTok{=}\VariableTok{None}\NormalTok{):}
+    \CommentTok{"""Cross{-}correlate HWC input with kh{-}kw{-}Cin{-}Cout kernels."""}
+\NormalTok{    image }\OperatorTok{=}\NormalTok{ np.asarray(image, dtype}\OperatorTok{=}\BuiltInTok{float}\NormalTok{)}
+\NormalTok{    kernels }\OperatorTok{=}\NormalTok{ np.asarray(kernels, dtype}\OperatorTok{=}\BuiltInTok{float}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ image.ndim }\OperatorTok{!=} \DecValTok{3} \KeywordTok{or}\NormalTok{ kernels.ndim }\OperatorTok{!=} \DecValTok{4}\NormalTok{:}
+        \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}
+            \StringTok{"expected HWC input and kh{-}kw{-}Cin{-}Cout kernels"}
+\NormalTok{        )}
+\NormalTok{    kh, kw, c\_in, c\_out }\OperatorTok{=}\NormalTok{ kernels.shape}
+    \ControlFlowTok{if}\NormalTok{ image.shape[}\DecValTok{2}\NormalTok{] }\OperatorTok{!=}\NormalTok{ c\_in:}
+        \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}
+            \StringTok{"input channels and kernel depth do not match"}
+\NormalTok{        )}
+    \ControlFlowTok{if}\NormalTok{ bias }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+\NormalTok{        bias }\OperatorTok{=}\NormalTok{ np.zeros(c\_out)}
+
+\NormalTok{    outputs }\OperatorTok{=}\NormalTok{ []}
+    \ControlFlowTok{for}\NormalTok{ d }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(c\_out):}
+\NormalTok{        channel\_sum }\OperatorTok{=} \VariableTok{None}
+        \ControlFlowTok{for}\NormalTok{ c }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(c\_in):}
+\NormalTok{            response }\OperatorTok{=}\NormalTok{ cross\_correlate2d(}
+\NormalTok{                image[:, :, c],}
+\NormalTok{                kernels[:, :, c, d],}
+\NormalTok{            )}
+\NormalTok{            channel\_sum }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{                response}
+                \ControlFlowTok{if}\NormalTok{ channel\_sum }\KeywordTok{is} \VariableTok{None}
+                \ControlFlowTok{else}\NormalTok{ channel\_sum }\OperatorTok{+}\NormalTok{ response}
+\NormalTok{            )}
+\NormalTok{        outputs.append(channel\_sum }\OperatorTok{+}\NormalTok{ bias[d])}
+    \ControlFlowTok{return}\NormalTok{ np.stack(outputs, axis}\OperatorTok{={-}}\DecValTok{1}\NormalTok{)}
+
+\NormalTok{two\_channel\_image }\OperatorTok{=}\NormalTok{ np.stack([image, }\DecValTok{1} \OperatorTok{{-}}\NormalTok{ image], axis}\OperatorTok{={-}}\DecValTok{1}\NormalTok{)}
+\NormalTok{kernel\_bank }\OperatorTok{=}\NormalTok{ np.zeros((}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\CommentTok{\# Filter 0 reads channel 0; filter 1 reads channel 1.}
+\NormalTok{kernel\_bank[:, :, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{] }\OperatorTok{=}\NormalTok{ vertical\_boundary}
+\NormalTok{kernel\_bank[:, :, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{] }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{vertical\_boundary}
+
+\NormalTok{multi\_output }\OperatorTok{=}\NormalTok{ cross\_correlate\_channels(}
+\NormalTok{    two\_channel\_image, kernel\_bank}
+\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"input shape:"}\NormalTok{, two\_channel\_image.shape)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"kernel{-}bank shape:"}\NormalTok{, kernel\_bank.shape)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"output shape:"}\NormalTok{, multi\_output.shape)}
+\end{Highlighting}
+\end{Shaded}
+
+Change the number of filters from two to three. Which dimension changes?
+Then change the number of input channels. Which kernel dimension must
+also change?
+
+\section*{6. Count Parameters Before Asking a
+Framework}\label{sec-lab-cnn-parameters}
+\addcontentsline{toc}{section}{6. Count Parameters Before Asking a
+Framework}
+
+\markright{6. Count Parameters Before Asking a Framework}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ conv\_parameter\_count(kh, kw, c\_in, c\_out, use\_bias}\OperatorTok{=}\VariableTok{True}\NormalTok{):}
+    \ControlFlowTok{return}\NormalTok{ kh }\OperatorTok{*}\NormalTok{ kw }\OperatorTok{*}\NormalTok{ c\_in }\OperatorTok{*}\NormalTok{ c\_out }\OperatorTok{+}\NormalTok{ (c\_out }\ControlFlowTok{if}\NormalTok{ use\_bias }\ControlFlowTok{else} \DecValTok{0}\NormalTok{)}
+
+\ControlFlowTok{assert}\NormalTok{ conv\_parameter\_count(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{16}\NormalTok{) }\OperatorTok{==} \DecValTok{160}
+\ControlFlowTok{assert}\NormalTok{ conv\_parameter\_count(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{32}\NormalTok{) }\OperatorTok{==} \DecValTok{4640}
+\BuiltInTok{print}\NormalTok{(conv\_parameter\_count(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{32}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Calculate both answers by hand. Why does height or width not appear in
+the parameter formula? Contrast this with the number of multiplications
+performed.
+
+\section*{7. Optional Keras Check}\label{sec-lab-cnn-framework-check}
+\addcontentsline{toc}{section}{7. Optional Keras Check}
+
+\markright{7. Optional Keras Check}
+
+This final check requires Keras with a TensorFlow backend. The
+conceptual work above remains fully runnable with NumPy alone.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ keras}
+\ImportTok{from}\NormalTok{ keras }\ImportTok{import}\NormalTok{ layers}
+
+\NormalTok{shape\_model }\OperatorTok{=}\NormalTok{ keras.Sequential([}
+\NormalTok{    keras.Input(shape}\OperatorTok{=}\NormalTok{(}\DecValTok{28}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{1}\NormalTok{)),}
+\NormalTok{    layers.Conv2D(}\DecValTok{16}\NormalTok{, }\DecValTok{3}\NormalTok{, padding}\OperatorTok{=}\StringTok{"same"}\NormalTok{, activation}\OperatorTok{=}\StringTok{"relu"}\NormalTok{),}
+\NormalTok{    layers.MaxPooling2D(}\DecValTok{2}\NormalTok{),}
+\NormalTok{    layers.Conv2D(}\DecValTok{32}\NormalTok{, }\DecValTok{3}\NormalTok{, padding}\OperatorTok{=}\StringTok{"same"}\NormalTok{, activation}\OperatorTok{=}\StringTok{"relu"}\NormalTok{),}
+\NormalTok{    layers.MaxPooling2D(}\DecValTok{2}\NormalTok{),}
+\NormalTok{], name}\OperatorTok{=}\StringTok{"shape\_check"}\NormalTok{)}
+\NormalTok{shape\_model.summary()}
+\ControlFlowTok{assert}\NormalTok{ shape\_model.count\_params() }\OperatorTok{==} \DecValTok{4800}
+\end{Highlighting}
+\end{Shaded}
+
+Annotate each summary row with the output-shape calculation and
+parameter-count calculation that produced it.
+
+\section*{Reflection}\label{sec-lab-cnn-concepts-reflection}
+\addcontentsline{toc}{section}{Reflection}
+
+\markright{Reflection}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Why can one small kernel detect a pattern in several locations?
+\item
+  Why does one filter produce one output channel even when the input has
+  many channels?
+\item
+  What information can pooling remove?
+\item
+  Which calculation was hardest to predict without running code, and
+  what rule now resolves it?
+\end{enumerate}
+
+\chapter*{Lab: MNIST with a Convolutional Neural
+Network}\label{ch-lab-mnist-cnn}
+\addcontentsline{toc}{chapter}{Lab: MNIST with a Convolutional Neural
+Network}
+
+\markboth{Lab: MNIST with a Convolutional Neural Network}{Lab: MNIST
+with a Convolutional Neural Network}
+
+\textbf{Theory connection:} \hyperref[sec-cnn-classifier]{From Feature
+Maps to a Class Prediction}
+
+This lab returns to the same MNIST split used by the MLP. The CNN keeps
+the image grid through two convolutional blocks, then flattens the
+learned feature maps for classification. Complete
+\hyperref[ch-lab-cnn-concepts]{Lab: CNN Concepts} first.
+
+Download the \href{../notebooks/mnist-cnn.ipynb}{Jupyter notebook} to
+run the activity. The code targets current Keras 3 with a TensorFlow
+backend and runs on a standard Google Colab CPU session.
+
+\section*{1. Reproduce the Same Data Split}\label{sec-lab-cnn-data}
+\addcontentsline{toc}{section}{1. Reproduce the Same Data Split}
+
+\markright{1. Reproduce the Same Data Split}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ time}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{import}\NormalTok{ keras}
+\ImportTok{from}\NormalTok{ keras }\ImportTok{import}\NormalTok{ layers}
+
+\NormalTok{keras.utils.set\_random\_seed(}\DecValTok{42}\NormalTok{)}
+
+\NormalTok{(x\_train\_raw, y\_train\_raw), (x\_test\_raw, y\_test) }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    keras.datasets.mnist.load\_data()}
+\NormalTok{)}
+\NormalTok{rng }\OperatorTok{=}\NormalTok{ np.random.default\_rng(}\DecValTok{42}\NormalTok{)}
+\NormalTok{order }\OperatorTok{=}\NormalTok{ rng.permutation(}\BuiltInTok{len}\NormalTok{(x\_train\_raw))}
+\NormalTok{x\_train\_raw }\OperatorTok{=}\NormalTok{ x\_train\_raw[order]}
+\NormalTok{y\_train\_raw }\OperatorTok{=}\NormalTok{ y\_train\_raw[order]}
+
+\NormalTok{x\_fit\_raw, x\_val\_raw }\OperatorTok{=}\NormalTok{ x\_train\_raw[:}\DecValTok{54000}\NormalTok{], x\_train\_raw[}\DecValTok{54000}\NormalTok{:]}
+\NormalTok{y\_fit, y\_val }\OperatorTok{=}\NormalTok{ y\_train\_raw[:}\DecValTok{54000}\NormalTok{], y\_train\_raw[}\DecValTok{54000}\NormalTok{:]}
+
+\NormalTok{x\_fit }\OperatorTok{=}\NormalTok{ np.expand\_dims(x\_fit\_raw, }\OperatorTok{{-}}\DecValTok{1}\NormalTok{).astype(}\StringTok{"float32"}\NormalTok{) }\OperatorTok{/} \FloatTok{255.0}
+\NormalTok{x\_val }\OperatorTok{=}\NormalTok{ np.expand\_dims(x\_val\_raw, }\OperatorTok{{-}}\DecValTok{1}\NormalTok{).astype(}\StringTok{"float32"}\NormalTok{) }\OperatorTok{/} \FloatTok{255.0}
+\NormalTok{x\_test }\OperatorTok{=}\NormalTok{ np.expand\_dims(x\_test\_raw, }\OperatorTok{{-}}\DecValTok{1}\NormalTok{).astype(}\StringTok{"float32"}\NormalTok{) }\OperatorTok{/} \FloatTok{255.0}
+
+\ControlFlowTok{assert}\NormalTok{ x\_fit.shape }\OperatorTok{==}\NormalTok{ (}\DecValTok{54000}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\ControlFlowTok{assert}\NormalTok{ x\_val.shape }\OperatorTok{==}\NormalTok{ (}\DecValTok{6000}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\ControlFlowTok{assert}\NormalTok{ x\_test.shape }\OperatorTok{==}\NormalTok{ (}\DecValTok{10000}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(x\_fit.shape, x\_val.shape, x\_test.shape)}
+\end{Highlighting}
+\end{Shaded}
+
+Compare this preprocessing with the MLP. Which axis was added, and which
+reshape was deliberately \emph{not} performed?
+
+\section*{2. Build the Matched CNN}\label{sec-lab-cnn-model}
+\addcontentsline{toc}{section}{2. Build the Matched CNN}
+
+\markright{2. Build the Matched CNN}
+
+Predict every output shape and parameter count before calling
+\texttt{summary()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cnn\_model }\OperatorTok{=}\NormalTok{ keras.Sequential([}
+\NormalTok{    keras.Input(shape}\OperatorTok{=}\NormalTok{(}\DecValTok{28}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{1}\NormalTok{)),}
+\NormalTok{    layers.Conv2D(}
+        \DecValTok{16}\NormalTok{, }\DecValTok{3}\NormalTok{, padding}\OperatorTok{=}\StringTok{"same"}\NormalTok{, activation}\OperatorTok{=}\StringTok{"relu"}\NormalTok{, name}\OperatorTok{=}\StringTok{"conv\_1"}
+\NormalTok{    ),}
+\NormalTok{    layers.MaxPooling2D(}\DecValTok{2}\NormalTok{, name}\OperatorTok{=}\StringTok{"pool\_1"}\NormalTok{),}
+\NormalTok{    layers.Conv2D(}
+        \DecValTok{32}\NormalTok{, }\DecValTok{3}\NormalTok{, padding}\OperatorTok{=}\StringTok{"same"}\NormalTok{, activation}\OperatorTok{=}\StringTok{"relu"}\NormalTok{, name}\OperatorTok{=}\StringTok{"conv\_2"}
+\NormalTok{    ),}
+\NormalTok{    layers.MaxPooling2D(}\DecValTok{2}\NormalTok{, name}\OperatorTok{=}\StringTok{"pool\_2"}\NormalTok{),}
+\NormalTok{    layers.Flatten(name}\OperatorTok{=}\StringTok{"flatten"}\NormalTok{),}
+\NormalTok{    layers.Dense(}\DecValTok{64}\NormalTok{, activation}\OperatorTok{=}\StringTok{"relu"}\NormalTok{, name}\OperatorTok{=}\StringTok{"dense\_1"}\NormalTok{),}
+\NormalTok{    layers.Dense(}\DecValTok{10}\NormalTok{, activation}\OperatorTok{=}\StringTok{"softmax"}\NormalTok{, name}\OperatorTok{=}\StringTok{"class\_output"}\NormalTok{),}
+\NormalTok{], name}\OperatorTok{=}\StringTok{"mnist\_cnn"}\NormalTok{)}
+
+\NormalTok{cnn\_model.}\BuiltInTok{compile}\NormalTok{(}
+\NormalTok{    optimizer}\OperatorTok{=}\NormalTok{keras.optimizers.Adam(learning\_rate}\OperatorTok{=}\FloatTok{0.001}\NormalTok{),}
+\NormalTok{    loss}\OperatorTok{=}\StringTok{"sparse\_categorical\_crossentropy"}\NormalTok{,}
+\NormalTok{    metrics}\OperatorTok{=}\NormalTok{[}\StringTok{"accuracy"}\NormalTok{],}
+\NormalTok{)}
+
+\NormalTok{cnn\_model.summary()}
+\ControlFlowTok{assert}\NormalTok{ cnn\_model.count\_params() }\OperatorTok{==} \DecValTok{105866}
+\end{Highlighting}
+\end{Shaded}
+
+The CNN and MLP have similar parameter counts, but they distribute
+parameters differently. Which CNN layer contains most of them? What
+architectural benefit comes from the earlier convolutional layers even
+though they are small?
+
+\section*{3. Train Under the Matched Protocol}\label{sec-lab-cnn-train}
+\addcontentsline{toc}{section}{3. Train Under the Matched Protocol}
+
+\markright{3. Train Under the Matched Protocol}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{early\_stop }\OperatorTok{=}\NormalTok{ keras.callbacks.EarlyStopping(}
+\NormalTok{    monitor}\OperatorTok{=}\StringTok{"val\_loss"}\NormalTok{,}
+\NormalTok{    patience}\OperatorTok{=}\DecValTok{2}\NormalTok{,}
+\NormalTok{    restore\_best\_weights}\OperatorTok{=}\VariableTok{True}\NormalTok{,}
+\NormalTok{)}
+
+\NormalTok{start }\OperatorTok{=}\NormalTok{ time.perf\_counter()}
+\NormalTok{cnn\_history }\OperatorTok{=}\NormalTok{ cnn\_model.fit(}
+\NormalTok{    x\_fit,}
+\NormalTok{    y\_fit,}
+\NormalTok{    validation\_data}\OperatorTok{=}\NormalTok{(x\_val, y\_val),}
+\NormalTok{    batch\_size}\OperatorTok{=}\DecValTok{128}\NormalTok{,}
+\NormalTok{    epochs}\OperatorTok{=}\DecValTok{12}\NormalTok{,}
+\NormalTok{    callbacks}\OperatorTok{=}\NormalTok{[early\_stop],}
+\NormalTok{    verbose}\OperatorTok{=}\DecValTok{1}\NormalTok{,}
+\NormalTok{)}
+\NormalTok{cnn\_seconds }\OperatorTok{=}\NormalTok{ time.perf\_counter() }\OperatorTok{{-}}\NormalTok{ start}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"training time: }\SpecialCharTok{\{}\NormalTok{cnn\_seconds}\SpecialCharTok{:.1f\}}\SpecialStringTok{ seconds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ plot\_history(history, title):}
+\NormalTok{    fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{9}\NormalTok{, }\FloatTok{3.5}\NormalTok{))}
+\NormalTok{    axes[}\DecValTok{0}\NormalTok{].plot(history.history[}\StringTok{"loss"}\NormalTok{], label}\OperatorTok{=}\StringTok{"train"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{0}\NormalTok{].plot(history.history[}\StringTok{"val\_loss"}\NormalTok{], label}\OperatorTok{=}\StringTok{"validation"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{0}\NormalTok{].}\BuiltInTok{set}\NormalTok{(title}\OperatorTok{=}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{title}\SpecialCharTok{\}}\SpecialStringTok{: loss"}\NormalTok{, xlabel}\OperatorTok{=}\StringTok{"epoch"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{1}\NormalTok{].plot(history.history[}\StringTok{"accuracy"}\NormalTok{], label}\OperatorTok{=}\StringTok{"train"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{1}\NormalTok{].plot(history.history[}\StringTok{"val\_accuracy"}\NormalTok{], label}\OperatorTok{=}\StringTok{"validation"}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{1}\NormalTok{].}\BuiltInTok{set}\NormalTok{(title}\OperatorTok{=}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{title}\SpecialCharTok{\}}\SpecialStringTok{: accuracy"}\NormalTok{, xlabel}\OperatorTok{=}\StringTok{"epoch"}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ ax }\KeywordTok{in}\NormalTok{ axes:}
+\NormalTok{        ax.legend()}
+\NormalTok{    plt.tight\_layout()}
+
+\NormalTok{plot\_history(cnn\_history, }\StringTok{"CNN"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{4. Test Evaluation and Errors}\label{sec-lab-cnn-evaluate}
+\addcontentsline{toc}{section}{4. Test Evaluation and Errors}
+
+\markright{4. Test Evaluation and Errors}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cnn\_test\_loss, cnn\_test\_accuracy }\OperatorTok{=}\NormalTok{ cnn\_model.evaluate(}
+\NormalTok{    x\_test, y\_test, verbose}\OperatorTok{=}\DecValTok{0}
+\NormalTok{)}
+\NormalTok{cnn\_prob }\OperatorTok{=}\NormalTok{ cnn\_model.predict(x\_test, verbose}\OperatorTok{=}\DecValTok{0}\NormalTok{)}
+\NormalTok{cnn\_pred }\OperatorTok{=}\NormalTok{ cnn\_prob.argmax(axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"test loss: }\SpecialCharTok{\{}\NormalTok{cnn\_test\_loss}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"test accuracy: }\SpecialCharTok{\{}\NormalTok{cnn\_test\_accuracy}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ confusion\_counts(y\_true, y\_pred, n\_classes}\OperatorTok{=}\DecValTok{10}\NormalTok{):}
+\NormalTok{    counts }\OperatorTok{=}\NormalTok{ np.bincount(}
+\NormalTok{        n\_classes }\OperatorTok{*}\NormalTok{ y\_true.astype(}\BuiltInTok{int}\NormalTok{) }\OperatorTok{+}\NormalTok{ y\_pred.astype(}\BuiltInTok{int}\NormalTok{),}
+\NormalTok{        minlength}\OperatorTok{=}\NormalTok{n\_classes }\OperatorTok{*}\NormalTok{ n\_classes,}
+\NormalTok{    )}
+    \ControlFlowTok{return}\NormalTok{ counts.reshape(n\_classes, n\_classes)}
+
+\NormalTok{cnn\_confusion }\OperatorTok{=}\NormalTok{ confusion\_counts(y\_test, cnn\_pred)}
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\NormalTok{plt.imshow(cnn\_confusion, cmap}\OperatorTok{=}\StringTok{"Purples"}\NormalTok{)}
+\NormalTok{plt.colorbar(label}\OperatorTok{=}\StringTok{"count"}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{"predicted digit"}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{"true digit"}\NormalTok{)}
+\NormalTok{plt.xticks(}\BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\NormalTok{plt.yticks(}\BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\NormalTok{plt.title(}\StringTok{"CNN confusion matrix"}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wrong }\OperatorTok{=}\NormalTok{ np.flatnonzero(cnn\_pred }\OperatorTok{!=}\NormalTok{ y\_test)}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{9}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ ax, idx }\KeywordTok{in} \BuiltInTok{zip}\NormalTok{(axes.flat, wrong[:}\DecValTok{10}\NormalTok{]):}
+\NormalTok{    confidence }\OperatorTok{=}\NormalTok{ cnn\_prob[idx, cnn\_pred[idx]]}
+\NormalTok{    ax.imshow(x\_test\_raw[idx], cmap}\OperatorTok{=}\StringTok{"gray"}\NormalTok{)}
+\NormalTok{    title }\OperatorTok{=} \SpecialStringTok{f"true }\SpecialCharTok{\{}\NormalTok{y\_test[idx]}\SpecialCharTok{\}}\SpecialStringTok{ / pred }\SpecialCharTok{\{}\NormalTok{cnn\_pred[idx]}\SpecialCharTok{\}}\SpecialStringTok{"}
+\NormalTok{    ax.set\_title(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{title}\SpecialCharTok{\}}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{confidence}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\NormalTok{    ax.axis(}\StringTok{"off"}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\end{Highlighting}
+\end{Shaded}
+
+Which confusions are shared with the MLP? Which appear different? Counts
+are evidence; avoid inventing a causal explanation from a single image.
+
+\section*{5. Inspect Kernels and Feature
+Maps}\label{sec-lab-cnn-inspect}
+\addcontentsline{toc}{section}{5. Inspect Kernels and Feature Maps}
+
+\markright{5. Inspect Kernels and Feature Maps}
+
+The first layer has 16 learned \(3\times3\) kernels. Plotting them shows
+their weights, not a complete explanation of the prediction.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{first\_layer }\OperatorTok{=}\NormalTok{ cnn\_model.get\_layer(}\StringTok{"conv\_1"}\NormalTok{)}
+\NormalTok{first\_kernels, first\_bias }\OperatorTok{=}\NormalTok{ first\_layer.get\_weights()}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"kernel{-}bank shape:"}\NormalTok{, first\_kernels.shape)}
+
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, }\DecValTok{8}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{12}\NormalTok{, }\FloatTok{3.5}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ i, ax }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(axes.flat):}
+\NormalTok{    ax.imshow(first\_kernels[:, :, }\DecValTok{0}\NormalTok{, i], cmap}\OperatorTok{=}\StringTok{"coolwarm"}\NormalTok{)}
+\NormalTok{    ax.set\_title(}\SpecialStringTok{f"K}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\NormalTok{    ax.axis(}\StringTok{"off"}\NormalTok{)}
+\NormalTok{plt.suptitle(}\StringTok{"First{-}layer learned kernels"}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\end{Highlighting}
+\end{Shaded}
+
+Create a model that returns intermediate activations for one correctly
+classified image and one mistake.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{feature\_probe }\OperatorTok{=}\NormalTok{ keras.Model(}
+\NormalTok{    inputs}\OperatorTok{=}\NormalTok{cnn\_model.inputs,}
+\NormalTok{    outputs}\OperatorTok{=}\NormalTok{[}
+\NormalTok{        cnn\_model.get\_layer(}\StringTok{"conv\_1"}\NormalTok{).output,}
+\NormalTok{        cnn\_model.get\_layer(}\StringTok{"conv\_2"}\NormalTok{).output,}
+\NormalTok{        cnn\_model.get\_layer(}\StringTok{"pool\_2"}\NormalTok{).output,}
+\NormalTok{    ],}
+\NormalTok{)}
+
+\NormalTok{correct\_idx }\OperatorTok{=}\NormalTok{ np.flatnonzero(cnn\_pred }\OperatorTok{==}\NormalTok{ y\_test)[}\DecValTok{0}\NormalTok{]}
+\NormalTok{wrong\_idx }\OperatorTok{=}\NormalTok{ np.flatnonzero(cnn\_pred }\OperatorTok{!=}\NormalTok{ y\_test)[}\DecValTok{0}\NormalTok{]}
+
+\KeywordTok{def}\NormalTok{ show\_feature\_journey(index, maps\_to\_show}\OperatorTok{=}\DecValTok{4}\NormalTok{):}
+\NormalTok{    one\_image }\OperatorTok{=}\NormalTok{ x\_test[index:index }\OperatorTok{+} \DecValTok{1}\NormalTok{]}
+\NormalTok{    conv1, conv2, pool2 }\OperatorTok{=}\NormalTok{ feature\_probe.predict(}
+\NormalTok{        one\_image, verbose}\OperatorTok{=}\DecValTok{0}
+\NormalTok{    )}
+\NormalTok{    stages }\OperatorTok{=}\NormalTok{ [(}\StringTok{"conv 1"}\NormalTok{, conv1), (}\StringTok{"conv 2"}\NormalTok{, conv2), (}\StringTok{"pool 2"}\NormalTok{, pool2)]}
+\NormalTok{    fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{3}\NormalTok{, maps\_to\_show }\OperatorTok{+} \DecValTok{1}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{6}\NormalTok{))}
+    \ControlFlowTok{for}\NormalTok{ row, (name, maps) }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(stages):}
+\NormalTok{        axes[row, }\DecValTok{0}\NormalTok{].imshow(x\_test\_raw[index], cmap}\OperatorTok{=}\StringTok{"gray"}\NormalTok{)}
+\NormalTok{        axes[row, }\DecValTok{0}\NormalTok{].set\_ylabel(name)}
+\NormalTok{        axes[row, }\DecValTok{0}\NormalTok{].axis(}\StringTok{"off"}\NormalTok{)}
+        \ControlFlowTok{for}\NormalTok{ channel }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(maps\_to\_show):}
+\NormalTok{            feature\_map }\OperatorTok{=}\NormalTok{ maps[}\DecValTok{0}\NormalTok{, :, :, channel]}
+\NormalTok{            axes[row, channel }\OperatorTok{+} \DecValTok{1}\NormalTok{].imshow(}
+\NormalTok{                feature\_map, cmap}\OperatorTok{=}\StringTok{"magma"}
+\NormalTok{            )}
+\NormalTok{            axes[row, channel }\OperatorTok{+} \DecValTok{1}\NormalTok{].set\_title(}\SpecialStringTok{f"ch }\SpecialCharTok{\{}\NormalTok{channel}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\NormalTok{            axes[row, channel }\OperatorTok{+} \DecValTok{1}\NormalTok{].axis(}\StringTok{"off"}\NormalTok{)}
+\NormalTok{    title }\OperatorTok{=} \SpecialStringTok{f"true }\SpecialCharTok{\{}\NormalTok{y\_test[index]}\SpecialCharTok{\}}\SpecialStringTok{ / predicted }\SpecialCharTok{\{}\NormalTok{cnn\_pred[index]}\SpecialCharTok{\}}\SpecialStringTok{"}
+\NormalTok{    plt.suptitle(title)}
+\NormalTok{    plt.tight\_layout()}
+
+\NormalTok{show\_feature\_journey(correct\_idx)}
+\NormalTok{show\_feature\_journey(wrong\_idx)}
+\end{Highlighting}
+\end{Shaded}
+
+Describe visible differences across stages without assigning a semantic
+label to a feature map unless you test that interpretation on many
+images.
+
+\section*{6. Complete the Matched Comparison}\label{sec-lab-cnn-compare}
+\addcontentsline{toc}{section}{6. Complete the Matched Comparison}
+
+\markright{6. Complete the Matched Comparison}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cnn\_result }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{"input\_shape"}\NormalTok{: }\StringTok{"28 x 28 x 1"}\NormalTok{,}
+    \StringTok{"parameters"}\NormalTok{: cnn\_model.count\_params(),}
+    \StringTok{"best\_epoch"}\NormalTok{: }\BuiltInTok{int}\NormalTok{(np.argmin(cnn\_history.history[}\StringTok{"val\_loss"}\NormalTok{]) }\OperatorTok{+} \DecValTok{1}\NormalTok{),}
+    \StringTok{"test\_loss"}\NormalTok{: }\BuiltInTok{float}\NormalTok{(cnn\_test\_loss),}
+    \StringTok{"test\_accuracy"}\NormalTok{: }\BuiltInTok{float}\NormalTok{(cnn\_test\_accuracy),}
+    \StringTok{"training\_seconds"}\NormalTok{: }\BuiltInTok{float}\NormalTok{(cnn\_seconds),}
+\NormalTok{\}}
+\NormalTok{cnn\_result}
+\end{Highlighting}
+\end{Shaded}
+
+Copy \texttt{mlp\_result} from the first notebook or enter its recorded
+values beside \texttt{cnn\_result}. Address all of the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Which model performed better in your run, and by how much?
+\item
+  Which trained longer on your hardware?
+\item
+  How were approximately equal parameter budgets distributed
+  differently?
+\item
+  Which evidence supports the locality/weight-sharing explanation?
+\item
+  What additional repeated runs or datasets would strengthen your
+  conclusion?
+\end{enumerate}
+
+\section*{Optional Extension: A Small Translation
+Test}\label{sec-lab-cnn-shift}
+\addcontentsline{toc}{section}{Optional Extension: A Small Translation
+Test}
+
+\markright{Optional Extension: A Small Translation Test}
+
+Shift images without wrapping pixels around the boundary, then compare
+both models. This examines sensitivity; it does not prove full
+translation invariance.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ shift\_right(images, pixels}\OperatorTok{=}\DecValTok{2}\NormalTok{):}
+\NormalTok{    shifted }\OperatorTok{=}\NormalTok{ np.zeros\_like(images)}
+\NormalTok{    shifted[:, :, pixels:, :] }\OperatorTok{=}\NormalTok{ images[:, :, :}\OperatorTok{{-}}\NormalTok{pixels, :]}
+    \ControlFlowTok{return}\NormalTok{ shifted}
+
+\NormalTok{shifted\_test }\OperatorTok{=}\NormalTok{ shift\_right(x\_test, pixels}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{shift\_loss, shift\_accuracy }\OperatorTok{=}\NormalTok{ cnn\_model.evaluate(}
+\NormalTok{    shifted\_test, y\_test, verbose}\OperatorTok{=}\DecValTok{0}
+\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"original accuracy: }\SpecialCharTok{\{}\NormalTok{cnn\_test\_accuracy}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"shifted accuracy:  }\SpecialCharTok{\{}\NormalTok{shift\_accuracy}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Explain why a convolutional feature extractor is translation equivariant
+while the complete classifier is not guaranteed to be invariant.
+
 \chapter*{Practice 10: Clustering and
 Organization}\label{ch-practice-10}
 \addcontentsline{toc}{chapter}{Practice 10: Clustering and Organization}
@@ -18379,8 +19992,8 @@ Organization}\label{ch-practice-10}
 \markboth{Practice 10: Clustering and Organization}{Practice 10:
 Clustering and Organization}
 
-\textbf{Theory connection:} \hyperref[ch-clustering]{Volume I, Chapter
-10}
+\textbf{Theory connection:} \hyperref[ch-clustering]{Clustering and
+Organization}
 
 Use this chapter as the practical companion to the corresponding theory
 chapter. Recovered activities are linked where a strong match exists;
@@ -18847,7 +20460,7 @@ https://www.machinelearningplus.com/nlp/topic-modeling-gensim-python/
 \markboth{Practice 11: Text and Human Language}{Practice 11: Text and
 Human Language}
 
-\textbf{Theory connection:} \hyperref[ch-text]{Volume I, Chapter 11}
+\textbf{Theory connection:} \hyperref[ch-text]{Text and Human Language}
 
 Use this chapter as the practical companion to the corresponding theory
 chapter. Recovered activities are linked where a strong match exists;
@@ -19876,7 +21489,8 @@ Third model, param2 & & & \\
 \markboth{Practice 12: Search and Retrieval}{Practice 12: Search and
 Retrieval}
 
-\textbf{Theory connection:} \hyperref[ch-search]{Volume I, Chapter 12}
+\textbf{Theory connection:} \hyperref[ch-search]{Search and Information
+Retrieval}
 
 Use this chapter as the practical companion to the corresponding theory
 chapter. Recovered activities are linked where a strong match exists;
@@ -21026,7 +22640,8 @@ Analysis}
 \markboth{Practice 13: Graphs and Structural Analysis}{Practice 13:
 Graphs and Structural Analysis}
 
-\textbf{Theory connection:} \hyperref[ch-graphs]{Volume I, Chapter 13}
+\textbf{Theory connection:} \hyperref[ch-graphs]{Graphs and Structural
+Analysis}
 
 Use this chapter as the practical companion to the corresponding theory
 chapter. Recovered activities are linked where a strong match exists;
@@ -21129,8 +22744,8 @@ Experimentation}
 \markboth{Practice 14: Evaluation and Experimentation}{Practice 14:
 Evaluation and Experimentation}
 
-\textbf{Theory connection:} \hyperref[ch-evaluation]{Volume I, Chapter
-14}
+\textbf{Theory connection:} \hyperref[ch-evaluation]{Evaluation and
+Experimentation}
 
 Use this chapter as the practical companion to the corresponding theory
 chapter. Recovered activities are linked where a strong match exists;
@@ -21484,8 +23099,8 @@ Selection, and Fit}
 \markboth{Practice 15: Generalization, Model Selection, and
 Fit}{Practice 15: Generalization, Model Selection, and Fit}
 
-\textbf{Theory connection:} \hyperref[ch-generalization]{Volume I,
-Chapter 15}
+\textbf{Theory connection:} \hyperref[ch-generalization]{Generalization,
+Model Selection, and Fit}
 
 Use this chapter as the practical companion to the corresponding theory
 chapter. Recovered activities are linked where a strong match exists;
@@ -21589,7 +23204,8 @@ Responsible Use}
 \markboth{Practice 16: Scaling, Deployment, and Responsible
 Use}{Practice 16: Scaling, Deployment, and Responsible Use}
 
-\textbf{Theory connection:} \hyperref[ch-scaling]{Volume I, Chapter 16}
+\textbf{Theory connection:} \hyperref[ch-scaling]{Scaling, Deployment,
+and Responsible Use}
 
 Use this chapter as the practical companion to the corresponding theory
 chapter. Recovered activities are linked where a strong match exists;
@@ -22910,6 +24526,12 @@ Kullback, S., and R. A. Leibler. 1951. {``On Information and
 Sufficiency.''} \emph{Annals of Mathematical Statistics} 22: 79--86.
 \url{https://doi.org/10.1214/aoms/1177729694}.
 
+\bibitem[\citeproctext]{ref-LeCun:1998}
+LeCun, Yann, Léon Bottou, Yoshua Bengio, and Patrick Haffner. 1998.
+{``Gradient-Based Learning Applied to Document Recognition.''}
+\emph{Proceedings of the IEEE} 86 (11): 2278--324.
+\url{https://doi.org/10.1109/5.726791}.
+
 \bibitem[\citeproctext]{ref-Manning2008IIR}
 Manning, Christopher D., Prabhakar Raghavan, and Hinrich Schütze. 2008.
 \emph{Introduction to Information Retrieval}. Cambridge University
@@ -22973,6 +24595,10 @@ CA, USA), ICML '97, 412--20.
 Zaragoza, H., N. Craswell, M. Taylor, S. Saria, and S. E. Robertson.
 2004. {``Microsoft Cambridge at TREC 2004: Web and HARD Track.''}
 \emph{The Thirteenth Text Retrieval Conference (TREC 2004)}, 1--7.
+
+\bibitem[\citeproctext]{ref-Zhang:2023}
+Zhang, Aston, Zachary C. Lipton, Mu Li, and Alexander J. Smola. 2023.
+\emph{Dive into Deep Learning}. Cambridge University Press.
 
 \bibitem[\citeproctext]{ref-Zipf:1949}
 Zipf, George K. 1949. \emph{Human Behaviour and the Principle of Least

@@ -4,7 +4,7 @@ number-sections: false
 
 # Practice 10: Clustering and Organization {#ch-practice-10 .unnumbered}
 
-**Theory connection:** [Volume I, Chapter 10](../chapters/10-clustering.qmd)
+**Theory connection:** [Clustering and Organization](../chapters/10-clustering.qmd)
 
 Use this chapter as the practical companion to the corresponding theory chapter.
 Recovered activities are linked where a strong match exists; other sections are

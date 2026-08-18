@@ -1,0 +1,82 @@
+---
+number-sections: false
+---
+
+# Practice 10: Convolutional Neural Networks {#ch-practice-cnn .unnumbered}
+
+**Theory connection:** [Convolutional Neural Networks: Learning Spatial Structure](../chapters/09a-convolutional-neural-networks.qmd#ch-cnn)
+
+This practice chapter is a small comparative project rather than three unrelated
+notebooks. You will solve one classification problem twice, pause between the
+models to understand the convolution operation, and then use evidence to explain
+why the results differ.
+
+## Project Question {#sec-pr-cnn-question}
+
+> What changes when a classifier preserves spatial structure and learns shared
+> local features before making a class prediction?
+
+Use the same MNIST split, preprocessing scale, optimizer, batch size, early-stopping
+rule, and test set for both trained models. The MLP and CNN in these labs also
+have similar parameter counts. This makes architecture the main planned difference.
+
+## Two-Week Sequence {#sec-pr-cnn-sequence}
+
+| Order | Activity | Main evidence to retain | Suggested time |
+|---:|---|---|---:|
+| 1 | [MNIST with an MLP](labs/mnist-mlp.qmd#ch-lab-mnist-mlp) | Shapes, model summary, learning curves, test results, representative errors | 2–3 hours |
+| 2 | Read [the CNN theory chapter](../chapters/09a-convolutional-neural-networks.qmd#ch-cnn) | Annotated worked example and shape calculations | 1–2 hours |
+| 3 | [CNN Concepts](labs/cnn-concepts.qmd#ch-lab-cnn-concepts) | Hand calculation, tested NumPy functions, parameter counts, explanations | 2–3 hours |
+| 4 | [MNIST with a CNN](labs/mnist-cnn.qmd#ch-lab-mnist-cnn) | Matched comparison, feature maps, error analysis, conclusion | 3–4 hours |
+
+Do not begin by tuning whichever model performs worse. First complete the matched
+comparison. Any later improvement is a new experiment and should be labeled as such.
+
+## Shape Clinic {#sec-pr-cnn-shapes}
+
+Before coding, write the shape of each object below in channels-last order.
+
+1. One $28\times28$ grayscale image.
+2. A batch of 64 grayscale images.
+3. One $128\times128$ RGB image.
+4. The output of 16 same-padded filters applied to an MNIST image.
+5. The output after $2\times2$ max pooling with stride 2.
+
+Then answer: Which axis counts examples? Which axis counts learned feature maps?
+Why is neither one a new neural-network layer?
+
+## Required Comparison {#sec-pr-cnn-comparison}
+
+Complete this table with your own run. A useful comparison includes more than the
+largest accuracy number.
+
+| Evidence | MLP | CNN | Interpretation |
+|---|---:|---:|---|
+| Input shape | | | |
+| First learned operation | | | |
+| Trainable parameters | | | |
+| Epoch with lowest validation loss | | | |
+| Test loss | | | |
+| Test accuracy | | | |
+| Training time | | | |
+| Two common confusions | | | |
+
+Your conclusion should distinguish an observation (for example, one measured test
+accuracy) from an explanation (for example, locality and weight sharing). One run
+supports a careful case study; it does not prove that one architecture always wins.
+
+## Deliverable {#sec-pr-cnn-deliverable}
+
+Submit one reproducible report or repository containing:
+
+- the three completed notebooks;
+- the matched comparison table;
+- one correct hand-worked cross-correlation;
+- at least two learning-curve plots and one confusion matrix per trained model;
+- selected CNN feature maps with restrained interpretation;
+- three representative mistakes from each model; and
+- a 300–500 word conclusion answering the project question.
+
+For an extension, replace MNIST with a small image collection of your own. Record
+how image size, color channels, class balance, and train/validation/test separation
+change the pipeline before changing the model.

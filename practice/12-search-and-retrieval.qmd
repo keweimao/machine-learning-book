@@ -4,7 +4,7 @@ number-sections: false
 
 # Practice 12: Search and Retrieval {#ch-practice-12 .unnumbered}
 
-**Theory connection:** [Volume I, Chapter 12](../chapters/12-search-retrieval.qmd)
+**Theory connection:** [Search and Information Retrieval](../chapters/12-search-retrieval.qmd)
 
 Use this chapter as the practical companion to the corresponding theory chapter.
 Recovered activities are linked where a strong match exists; other sections are

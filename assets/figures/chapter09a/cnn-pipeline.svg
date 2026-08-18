@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="330" viewBox="0 0 1200 330" role="img" aria-labelledby="title desc">
+  <title id="title">A compact convolutional neural network for MNIST</title>
+  <desc id="desc">An MNIST image flows through convolution, pooling, a second convolution and pooling block, flattening, a dense layer, and ten class probabilities. Spatial dimensions shrink while channel depth grows.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4b5563"/>
+    </marker>
+    <style>
+      .stage { fill: #eef5fb; stroke: #2c6e9f; stroke-width: 2; rx: 10; }
+      .pool { fill: #f3f0fa; stroke: #7353a3; stroke-width: 2; rx: 10; }
+      .head { fill: #f7f4e8; stroke: #8a6d1f; stroke-width: 2; rx: 10; }
+      .label { font: 600 20px Arial, sans-serif; fill: #1f2937; text-anchor: middle; }
+      .shape { font: 17px Arial, sans-serif; fill: #374151; text-anchor: middle; }
+      .group { font: 600 18px Arial, sans-serif; fill: #374151; text-anchor: middle; }
+      .arrow { stroke: #4b5563; stroke-width: 2.5; marker-end: url(#arrow); }
+      .brace { stroke: #6b7280; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <text class="group" x="300" y="30">Learn spatial features</text>
+  <path class="brace" d="M70 45 V55 H535 V45"/>
+  <text class="group" x="715" y="30">Convert representation</text>
+  <path class="brace" d="M570 45 V55 H860 V45"/>
+  <text class="group" x="1030" y="30">Classify</text>
+  <path class="brace" d="M895 45 V55 H1160 V45"/>
+
+  <rect class="stage" x="25" y="105" width="120" height="105"/>
+  <text class="label" x="85" y="145">Input</text>
+  <text class="shape" x="85" y="178">28×28×1</text>
+
+  <line class="arrow" x1="145" y1="158" x2="175" y2="158"/>
+  <rect class="stage" x="180" y="85" width="145" height="145"/>
+  <text class="label" x="252" y="132">Conv + ReLU</text>
+  <text class="shape" x="252" y="165">16 filters</text>
+  <text class="shape" x="252" y="194">28×28×16</text>
+
+  <line class="arrow" x1="325" y1="158" x2="355" y2="158"/>
+  <rect class="pool" x="360" y="105" width="125" height="105"/>
+  <text class="label" x="422" y="145">Max pool</text>
+  <text class="shape" x="422" y="178">14×14×16</text>
+
+  <line class="arrow" x1="485" y1="158" x2="515" y2="158"/>
+  <rect class="stage" x="520" y="85" width="145" height="145"/>
+  <text class="label" x="592" y="132">Conv + ReLU</text>
+  <text class="shape" x="592" y="165">32 filters</text>
+  <text class="shape" x="592" y="194">14×14×32</text>
+
+  <line class="arrow" x1="665" y1="158" x2="695" y2="158"/>
+  <rect class="pool" x="700" y="105" width="125" height="105"/>
+  <text class="label" x="762" y="145">Max pool</text>
+  <text class="shape" x="762" y="178">7×7×32</text>
+
+  <line class="arrow" x1="825" y1="158" x2="855" y2="158"/>
+  <rect class="head" x="860" y="105" width="115" height="105"/>
+  <text class="label" x="917" y="145">Flatten</text>
+  <text class="shape" x="917" y="178">1,568</text>
+
+  <line class="arrow" x1="975" y1="158" x2="1005" y2="158"/>
+  <rect class="head" x="1010" y="105" width="90" height="105"/>
+  <text class="label" x="1055" y="145">Dense</text>
+  <text class="shape" x="1055" y="178">64</text>
+
+  <line class="arrow" x1="1100" y1="158" x2="1125" y2="158"/>
+  <rect class="head" x="1130" y="105" width="60" height="105"/>
+  <text class="label" x="1160" y="145">Out</text>
+  <text class="shape" x="1160" y="178">10</text>
+
+  <text class="shape" x="600" y="282">Height and width decrease; learned feature channels increase before final classification.</text>
+</svg>

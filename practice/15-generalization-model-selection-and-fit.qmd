@@ -4,7 +4,7 @@ number-sections: false
 
 # Practice 15: Generalization, Model Selection, and Fit {#ch-practice-15 .unnumbered}
 
-**Theory connection:** [Volume I, Chapter 15](../chapters/15-generalization.qmd)
+**Theory connection:** [Generalization, Model Selection, and Fit](../chapters/15-generalization.qmd)
 
 Use this chapter as the practical companion to the corresponding theory chapter.
 Recovered activities are linked where a strong match exists; other sections are
