@@ -489,25 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../practice/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Practice 10: Convolutional Neural Networks</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practice/labs/mnist-mlp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: MNIST with a Multilayer Perceptron</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practice/labs/cnn-concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: CNN Concepts from Arrays to Feature Maps</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practice/labs/mnist-cnn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: MNIST with a Convolutional Neural Network</span></a>
+ <span class="menu-text">Practicum: From Pixels to CNN Features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -680,7 +662,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Repetition</strong> enables the program to repeat something many times.</li>
 </ul>
 <p>Today we discuss the <strong>selection</strong> programming structure in Python. Let’s start with an example:</p>
-<div id="722daf6b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="998d9aae" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"What is your name? "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -688,7 +670,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Here the program displays a message and asks the user to enter his or her name. To make this more personal, we can change the program to display <code>What's your name, sir?</code> for a male, and <code>What's your name, madam?</code> for a female.</p>
 <p>So instead of asking for the name, we ask for the user’s gender first:</p>
-<div id="e1ef76d7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="0385d742" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gender <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Are you a lady (L) or a gentleman (M)? Enter L or M: "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -700,7 +682,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now if one enters <code>L</code> and hits Enter, the variable <code>gender</code> will contain this value and we shall display a message concerning a lady.</p>
 <p>In Python, we can use an <code>if... elif... else</code> structure to find out the condition and act accordingly.</p>
 <p>For the problem here, we can have:</p>
-<div id="a174d2ef" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="44d7fdb3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> gender<span class="op">==</span><span class="st">"L"</span>:</span>
@@ -717,7 +699,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="if-elif-else-structure" class="level2">
 <h2 class="anchored" data-anchor-id="if-elif-else-structure">IF… ELIF… ELSE… Structure</h2>
 <p>Back to the program, <code>L</code> is not the only situation because the user may be a man and enters <code>M</code>, or, if she or he does not want to tell, the value of <code>gender</code> can be <strong>anything else</strong>. Let’s expand on the above to include the other two situations:</p>
-<div id="0cababd2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="93f425cd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gender <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Are you a lady (L) or a gentleman (M)? Enter L or M: "</span>)</span>
@@ -735,7 +717,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> gender<span class="op">==</span><span class="st">"L"</span> <span class="kw">or</span> gender<span class="op">==</span><span class="st">"l"</span>:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Here <code>or</code> is a logical <strong>OR</strong> operator – the entire condition is true if any one of the conditions (“L” or “l”) is true. In other programs, you may need the <code>and</code> operator, which turns true when both conditions are true.</p>
 <p>Likewise, can you revise the code for a boy (“M” <code>or</code> “m”)?</p>
-<div id="8b3f0418" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="a37e9bae" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code and try it here...</span></span>

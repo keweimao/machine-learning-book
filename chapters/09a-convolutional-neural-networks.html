@@ -502,25 +502,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../practice/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Practice 10: Convolutional Neural Networks</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../practice/labs/mnist-mlp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: MNIST with a Multilayer Perceptron</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../practice/labs/cnn-concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: CNN Concepts from Arrays to Feature Maps</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../practice/labs/mnist-cnn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: MNIST with a Convolutional Neural Network</span></a>
+ <span class="menu-text">Practicum: From Pixels to CNN Features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -653,7 +635,7 @@ window.Quarto = {
   <li><a href="#sec-cnn-channels" id="toc-sec-cnn-channels" class="nav-link" data-scroll-target="#sec-cnn-channels"><span class="header-section-number">10.5</span> From One Channel to Many Features</a></li>
   <li><a href="#sec-cnn-pooling" id="toc-sec-cnn-pooling" class="nav-link" data-scroll-target="#sec-cnn-pooling"><span class="header-section-number">10.6</span> Pooling and Growing Receptive Fields</a></li>
   <li><a href="#sec-cnn-classifier" id="toc-sec-cnn-classifier" class="nav-link" data-scroll-target="#sec-cnn-classifier"><span class="header-section-number">10.7</span> From Feature Maps to a Class Prediction</a></li>
-  <li><a href="#sec-cnn-interpretation" id="toc-sec-cnn-interpretation" class="nav-link" data-scroll-target="#sec-cnn-interpretation"><span class="header-section-number">10.8</span> Looking Inside—and Knowing the Limits</a></li>
+  <li><a href="#sec-cnn-interpretation" id="toc-sec-cnn-interpretation" class="nav-link" data-scroll-target="#sec-cnn-interpretation"><span class="header-section-number">10.8</span> Looking Inside and Knowing the Limits</a></li>
   <li><a href="#sec-cnn-summary" id="toc-sec-cnn-summary" class="nav-link" data-scroll-target="#sec-cnn-summary"><span class="header-section-number">10.9</span> Summary</a></li>
   <li><a href="#sec-cnn-exercises" id="toc-sec-cnn-exercises" class="nav-link" data-scroll-target="#sec-cnn-exercises"><span class="header-section-number">10.10</span> Exercises</a></li>
   </ul>
@@ -695,6 +677,16 @@ window.Quarto = {
 <h2 data-number="10.1" class="anchored" data-anchor-id="sec-cnn-why"><span class="header-section-number">10.1</span> Why Image Structure Changes the Model</h2>
 <p>Consider an MNIST image: a <span class="math inline">\(28\times28\)</span> grid of grayscale values. A multilayer perceptron (MLP) reshapes that grid into a vector of length <span class="math inline">\(784\)</span> before applying a dense layer. This is a valid baseline, but the reshaping removes the model’s direct knowledge that two values were neighbors in the original image.</p>
 <p>Flattening does not erase pixel values. It erases the <em>geometry encoded by their arrangement</em>. The dense layer can still learn spatial relations, but it must learn each relation through separate weights. A stroke near the upper-left and the same stroke near the lower-right reach different input positions and therefore different weights.</p>
+<div id="fig-cnn-flattening" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A digit seven appears on a 28 by 28 image grid at left and as a line plot of 784 pixel intensities at right.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cnn-flattening-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/flatten-grid-versus-vector.png" class="img-fluid figure-img" style="width:88.0%" alt="A digit seven appears on a 28 by 28 image grid at left and as a line plot of 784 pixel intensities at right.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cnn-flattening-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Flattening preserves every pixel value but converts two-dimensional neighborhoods into positions along a one-dimensional vector.
+</figcaption>
+</figure>
+</div>
 <p>A CNN introduces two useful assumptions:</p>
 <ol type="1">
 <li><strong>Locality.</strong> Nearby values are especially likely to form a meaningful pattern, so an early unit can examine a small neighborhood instead of the entire image.</li>
@@ -711,7 +703,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Establish the comparison point in <a href="../practice/labs/mnist-mlp.html#ch-lab-mnist-mlp">Lab: MNIST with an MLP</a>, then explain what information the flattening step retains and what structural assumption it removes.</p>
+<p>Establish the comparison point in <a href="../practice/09a-convolutional-neural-networks.html#sec-pr-cnn-mlp">Part I of the CNN practicum</a>, then explain what information the flattening step retains and what structural assumption it removes.</p>
 </div>
 </div>
 </section>
@@ -762,7 +754,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use <a href="../practice/09a-convolutional-neural-networks.html#sec-pr-cnn-shapes">Practice 10: Convolutional Neural Networks</a> to diagnose several common shape errors before a framework reports them.</p>
+<p>Use the <a href="../practice/09a-convolutional-neural-networks.html#sec-pr-cnn-setup">CNN practicum setup</a> to diagnose several common shape errors before a framework reports them.</p>
 </div>
 </div>
 </section>
@@ -804,6 +796,18 @@ K_{u,v}X_{i+u,j+v},
 \end{bmatrix}.
 \]</span></p>
 <p>The vertical line of twos marks the detected boundary. Notice the economy: the same four weights were used at all nine output positions. In a trained CNN we usually do not hand-design these values. Backpropagation adjusts them to reduce the task loss, just as it adjusts dense-layer weights. An activation such as ReLU, <span class="math inline">\(\max(0,Y_{i,j})\)</span>, is then commonly applied to introduce nonlinearity.</p>
+<p>Hand-designed kernels are nevertheless useful for learning. In <a href="#fig-cnn-hand-kernel-response" class="quarto-xref">Figure&nbsp;<span>10.2</span></a>, vertical, horizontal, and diagonal kernels produce bright responses where a local stroke agrees with their weights. The same kernel responds at multiple positions because its weights are shared.</p>
+<div id="fig-cnn-hand-kernel-response" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Rows for handwritten digits one and seven show feature maps from vertical, horizontal, and diagonal kernels.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cnn-hand-kernel-response-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/hand-kernel-activations-1-7.png" class="img-fluid figure-img" style="width:96.0%" alt="Rows for handwritten digits one and seven show feature maps from vertical, horizontal, and diagonal kernels.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cnn-hand-kernel-response-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: Hand-designed kernels applied to MNIST examples of 1 and 7. Bright positions are positive local responses after ReLU, not class probabilities.
+</figcaption>
+</figure>
+</div>
+<p>A crucial caution follows from the figure: several kernels respond to parts of both digits. One filter reports local evidence; it does not decide the class. Classification emerges from combining many feature maps across layers.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -814,7 +818,7 @@ K_{u,v}X_{i+u,j+v},
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Reproduce every number, alter the input and filter, and write a general NumPy implementation in <a href="../practice/labs/cnn-concepts.html#sec-lab-cnn-cross-correlation">Lab: CNN Concepts</a>.</p>
+<p>Reproduce every number, alter the input and filter, and write a general NumPy implementation in <a href="../practice/09a-convolutional-neural-networks.html#sec-pr-cnn-cross-correlation">Part II of the CNN practicum</a>.</p>
 </div>
 </div>
 </section>
@@ -824,7 +828,7 @@ K_{u,v}X_{i+u,j+v},
 <p>Three choices determine how the kernel moves and how large the feature map is:</p>
 <ul>
 <li><strong>Kernel size</strong> <span class="math inline">\((K_h,K_w)\)</span> controls the local window.</li>
-<li><strong>Padding</strong> <span class="math inline">\((P_h,P_w)\)</span> adds values—usually zeros—around the boundary.</li>
+<li><strong>Padding</strong> <span class="math inline">\((P_h,P_w)\)</span> adds values, usually zeros, around the boundary.</li>
 <li><strong>Stride</strong> <span class="math inline">\((S_h,S_w)\)</span> controls how many positions the window moves at a time.</li>
 </ul>
 <p>With unit dilation, the output height and width are</p>
@@ -845,7 +849,7 @@ W_{out}=\left\lfloor\frac{W+2P_w-K_w}{S_w}\right\rfloor+1.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Predict the output before running the code in <a href="../practice/labs/cnn-concepts.html#sec-lab-cnn-stride-padding">Lab: CNN Concepts</a>, then use assertions to check the formula.</p>
+<p>Predict the output before running the code in <a href="../practice/09a-convolutional-neural-networks.html#sec-pr-cnn-concepts">Part II of the CNN practicum</a>, then use assertions to check the formula.</p>
 </div>
 </div>
 </section>
@@ -878,7 +882,7 @@ K_{u,v,c,d}X_{i+u,j+v,c}.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Stack channels and filter banks explicitly in <a href="../practice/labs/cnn-concepts.html#sec-lab-cnn-channels">Lab: CNN Concepts</a>, then verify the parameter count against a Keras model summary.</p>
+<p>Track channels and verify parameter counts in <a href="../practice/09a-convolutional-neural-networks.html#sec-pr-cnn-pooling">Part II of the CNN practicum</a>, then verify the parameter count against a Keras model summary.</p>
 </div>
 </div>
 </section>
@@ -897,7 +901,7 @@ K_{u,v,c,d}X_{i+u,j+v,c}.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Compare convolution and max pooling on the same feature map in <a href="../practice/labs/cnn-concepts.html#sec-lab-cnn-pooling">Lab: CNN Concepts</a>, including a case where pooling removes useful detail.</p>
+<p>Compare convolution and max pooling on the same feature map in <a href="../practice/09a-convolutional-neural-networks.html#sec-pr-cnn-pooling">Part II of the CNN practicum</a>, including a case where pooling removes useful detail.</p>
 </div>
 </div>
 </section>
@@ -915,7 +919,7 @@ K_{u,v,c,d}X_{i+u,j+v,c}.
 <img src="../assets/figures/chapter09a/cnn-pipeline.svg" class="img-fluid figure-img" style="width:100.0%" alt="An MNIST image of shape 28 by 28 by 1 flows through convolution, pooling, another convolution and pooling stage, flattening, a dense layer, and ten class outputs. Spatial size decreases while feature channels increase.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cnn-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.1: A compact MNIST CNN preserves spatial structure through two convolution and pooling blocks, then flattens the learned feature maps for dense classification.
+Figure&nbsp;10.3: A compact MNIST CNN preserves spatial structure through two convolution and pooling blocks, then flattens the learned feature maps for dense classification.
 </figcaption>
 </figure>
 </div>
@@ -977,7 +981,18 @@ Figure&nbsp;10.1: A compact MNIST CNN preserves spatial structure through two co
 </table>
 <p>The final dense layer produces one score per digit. Softmax converts the scores to a probability distribution, and multiclass cross-entropy measures the loss. Backpropagation carries the resulting error through the dense head and the convolutional feature extractor. Thus a filter is not rewarded for looking like an edge detector; it is rewarded when its responses help the whole model predict the correct label.</p>
 <p>The corresponding MLP lab uses <span class="math inline">\(784\rightarrow128\rightarrow64\rightarrow10\)</span>, or 109,386 parameters. The two models are similar in size. If their behavior differs, the comparison highlights architectural bias rather than simply giving one model a much larger parameter budget.</p>
-<p>Dropout, early stopping, and validation curves help diagnose overfitting, but they do not replace a final evaluation on untouched test data. These issues are developed further in <a href="../chapters/15-generalization.html#ch-generalization">Generalization, Model Selection, and Fit</a>.</p>
+<p>In one controlled full-MNIST run of the companion practicum, the MLP reached 97.56% test accuracy and made 244 errors; the CNN reached 98.75% and made 125 errors. The CNN therefore reduced the observed error count by 119, or about 49%, while using slightly fewer parameters. This is a case study, not a universal performance guarantee, but it is consistent with the benefit of matching the architecture to image structure.</p>
+<div id="fig-cnn-observed-results" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Bar charts show higher test accuracy and fewer errors for the CNN, while the two models have similar parameter counts.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cnn-observed-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/mlp-cnn-results.png" class="img-fluid figure-img" style="width:92.0%" alt="Bar charts show higher test accuracy and fewer errors for the CNN, while the two models have similar parameter counts.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cnn-observed-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.4: A matched comparison of MNIST test accuracy, test errors, and parameter count.
+</figcaption>
+</figure>
+</div>
+<p>Dropout, early stopping, and validation curves help diagnose overfitting, but they do not replace a final evaluation on untouched test data. These issues are developed further in <a href="../chapters/15-generalization.html#ch-generalization">Generalization, Model Selection, and Fit</a>. In the matched run above, training loss kept falling after validation loss reached its minimum for both models. That divergence is stronger evidence of overfitting than training accuracy by itself; the companion practicum plots and interprets the complete curves.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -988,13 +1003,24 @@ Figure&nbsp;10.1: A compact MNIST CNN preserves spatial structure through two co
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Train both models under a shared protocol in <a href="../practice/labs/mnist-mlp.html#ch-lab-mnist-mlp">Lab: MNIST with an MLP</a> and <a href="../practice/labs/mnist-cnn.html#ch-lab-mnist-cnn">Lab: MNIST with a CNN</a>, then compare accuracy, parameter count, learning curves, errors, and training cost.</p>
+<p>Train both models under a shared protocol in <a href="../practice/09a-convolutional-neural-networks.html#sec-pr-cnn-results">Part I and Part III of the CNN practicum</a>, then compare accuracy, parameter count, learning curves, errors, and training cost.</p>
 </div>
 </div>
 </section>
 <section id="sec-cnn-interpretation" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="sec-cnn-interpretation"><span class="header-section-number">10.8</span> Looking Inside—and Knowing the Limits</h2>
+<h2 data-number="10.8" class="anchored" data-anchor-id="sec-cnn-interpretation"><span class="header-section-number">10.8</span> Looking Inside and Knowing the Limits</h2>
 <p>The output of each filter is observable. We can pass an image through a trained model and plot selected feature maps. Early maps often respond to simple local changes; deeper maps combine earlier responses and are harder to name. Such plots are useful evidence about model behavior, but a bright activation is not automatically a human-interpretable explanation.</p>
+<p><a href="#fig-cnn-learned-maps" class="quarto-xref">Figure&nbsp;<span>10.5</span></a> compares two learned first-layer kernels on examples of 1 and 7. The channels were selected using their <em>average relative activation</em> across all test examples of those two classes, rather than because one image looked persuasive. Even then, neither map is a literal “1 detector” or “7 detector.” Each is one component of a distributed representation.</p>
+<div id="fig-cnn-learned-maps" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two learned three by three kernels appear above activation heatmaps for a digit one and a digit seven.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cnn-learned-maps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/learned-kernels-feature-maps-1-7.png" class="img-fluid figure-img" style="width:68.0%" alt="Two learned three by three kernels appear above activation heatmaps for a digit one and a digit seven.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cnn-learned-maps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.5: Two learned first-layer kernels and their activation maps for representative handwritten 1 and 7 examples.
+</figcaption>
+</figure>
+</div>
 <p>CNNs are also not universally appropriate. Their local, shared filters work well when the same kind of nearby pattern can matter across locations. They are less natural when every feature position has a permanently different meaning, as in some tabular problems. Standard convolution is translation <em>equivariant</em>: shifting an input tends to shift its feature map. Pooling and final aggregation may add some stability, but the complete classifier is not guaranteed to ignore all translations, rotations, scale changes, or background shifts.</p>
 <p>Useful extensions include data augmentation, residual connections, and transfer learning from a pretrained feature extractor. These can greatly expand a CNN’s reach, but they do not change the central lesson of this chapter: architecture encodes assumptions about the structure of the data.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Put it into practice">
@@ -1007,7 +1033,7 @@ Figure&nbsp;10.1: A compact MNIST CNN preserves spatial structure through two co
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Inspect learned kernels, intermediate feature maps, and representative mistakes in <a href="../practice/labs/mnist-cnn.html#sec-lab-cnn-inspect">Lab: MNIST with a CNN</a>. State what each visualization supports—and what it does not prove.</p>
+<p>Inspect hand-designed kernels, learned feature maps, and representative mistakes in <a href="../practice/09a-convolutional-neural-networks.html#sec-pr-cnn-activations">Part IV of the CNN practicum</a>. State what each visualization supports and what it does not prove.</p>
 </div>
 </div>
 </section>

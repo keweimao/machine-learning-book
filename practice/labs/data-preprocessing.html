@@ -489,25 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../practice/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Practice 10: Convolutional Neural Networks</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practice/labs/mnist-mlp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: MNIST with a Multilayer Perceptron</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practice/labs/cnn-concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: CNN Concepts from Arrays to Feature Maps</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practice/labs/mnist-cnn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: MNIST with a Convolutional Neural Network</span></a>
+ <span class="menu-text">Practicum: From Pixels to CNN Features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -696,7 +678,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>All techniques (e.g., data cleaning, integration, reduction, transformation, and discretization) related to data quality need to be properly addressed</li>
 </ul>
 <p>In this exercise, we are going to utilize a dataset distributed as a part of the Yelp Dataset Challenge (https://www.yelp.com/dataset). The ultimate goal is to create a classifier to predict the usefulness of each review by using various attributes. For instance, the count of words can be a good indicator of the usefulness of reviews because longer reviews can deliver more information than shorter reviews can do. The sentiment of reviews might be important because too positive/negative reviews might not be objective. Metrics related to social networks such as degree, betweenness, and eigenvector might be important by representing the social status of reviewers. To achieve the ultimate goal, preprocessing data is the first step. Let’s open the data. There are 1,000 tuples and 26 attributes. The names of attributes are self-explanatory.</p>
-<div id="42b461d2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="02537837" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Imports all necessary modules</span></span>
@@ -720,7 +702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="applying-descriptive-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="applying-descriptive-analysis">Applying descriptive analysis</h3>
 <p>As explained earlier, we can apply a descriptive analysis to understand the distribution of data. We can count the number of unique values as well.</p>
-<div id="201ffd05" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="9ee8a946" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Set the maximum number of columns as "None" to display all columns</span></span>
@@ -730,7 +712,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(yelp_data.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="9729168a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="32b6a172" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## In the above, only 24 attributes got results.</span></span>
@@ -740,14 +722,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>For the categorical attributes, we found that there are no cases such that all values are identical or some values occur abnormally with very high frequency.</p>
 <p>However, in the case of numeric attributes, we found that there are three missing values in the “liking” attribute. The total count of tuples is 997, although all other attributes’ count is 1,000. We can also check missing values by using Pandas’ isna method. Also, “dislike” attribute has all zero values. That said, we need to drop this attribute by using Pandas’ drop method. However, we will keep this for now.</p>
-<div id="0830bba9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="ed74ad8d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the number of data per attributes that has missing values</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(yelp_data.isna().<span class="bu">sum</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="2d71d9e1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="6634421d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## check the missing values across tuples of the "liking" attribute</span></span>
@@ -755,7 +737,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Now, let’s create a box plot to see the distribution of the “liking” attribute. This will help us to determine how to handle the missing data.</p>
-<div id="eb115d27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="48d27b20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Initialize a 6 x 6in figure</span></span>
@@ -775,7 +757,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>It seems that most of the values are zeros except for one tuple. It is skewed. Therefore, it might be better to use the median central tendency.</p>
-<div id="3f81fd8b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="8b91c738" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">## We should exclude missing tuples to get median</span></span>
@@ -793,7 +775,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="outlier-detection" class="level3">
 <h3 class="anchored" data-anchor-id="outlier-detection">Outlier Detection</h3>
 <p>We can use Z-score and IQR score to detect ourliers. There are other methods, too.</p>
-<div id="09206ff1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="9fd90ef1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">## The first attribute (review_id) and the last attribute (class) are categorical</span></span>
@@ -808,7 +790,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>The above numbers represent z scores of our data. It is difficult to say which data point is an outlier. Let’s try and define a threshold to identify an outlier. To be conservative, we will use 3 as a threshold. We can exclude 0.3% of data.</p>
-<div id="9082a0a0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="f4a7a426" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="dv">3</span></span>
@@ -817,7 +799,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The first array contains the list of row numbers, and the second array corresponding column numbers that have a Z-score higher than 3, which mean they are: z[7][1], z[18][17], z[18][23], and so on.</p>
 <p>We may want to remove tuples in which the most attributes are outliers. We can remove all tuples regardless of the number of attributes that are outliers. For this exercise, we adopt a very conservative approach. Therefore, we count the frequency of tuples that includes outliers.</p>
-<div id="899842c2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="9c5655e0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>unique_elements, counts_elements <span class="op">=</span> np.unique(np.where(z <span class="op">&gt;</span> <span class="dv">3</span>)[<span class="dv">0</span>], return_counts<span class="op">=</span><span class="va">True</span>)</span>
@@ -825,7 +807,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>The first list represents the row number when the z score is larger than 3. The second list represents the frequency of the corresponding row. The row 69 and 262 have the largest number of outliers. Therefore, we want to remove these tuples from the dataset.</p>
-<div id="01b0093f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="826b5065" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>yelp_data <span class="op">=</span> yelp_data.drop([ <span class="dv">69</span>, <span class="dv">262</span>])</span>
@@ -838,7 +820,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-integration" class="level3">
 <h3 class="anchored" data-anchor-id="data-integration">Data Integration</h3>
 <p>One potential problem in data integration is redundancies in attributes and/or tuples. As for attributes, we can check redundancies by applying correlation analysis.</p>
-<div id="7caf0457" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="84d6d655" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pcorr <span class="op">=</span> yelp_data.corr(method<span class="op">=</span><span class="st">'pearson'</span>)</span>
@@ -849,7 +831,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>It is hard to see. We can use a heatmap to visualize the correlation coefficients.</p>
-<div id="07745e4a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="ce8574df" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">10</span>))</span>
@@ -862,7 +844,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-integration-2" class="level3">
 <h3 class="anchored" data-anchor-id="data-integration-2">Data Integration 2</h3>
 <p>One common challenge in data integration is attribute construction. New attributes need to be constructed from the given ones if existing attributes do not adequately reflect the target label/value. For instance, the “area” is a better indicator of housing prices than the “length” and “width” of a house. We observed that attributes related to sentiment are sparse. Most of them are zeros. We will create new attributes from the given ones. The attributes in the left of the arrow mark are existing ones, and the attributes in the right are new ones. + joy, love, affection, liking, enthusiasm -&gt; positive_emotion + sadness, dislike, despair, horror, distress -&gt; negative_emotion</p>
-<div id="1e19be65" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="d2e4b4d3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>yelp_data[<span class="st">"positive_emotion"</span>] <span class="op">=</span> yelp_data[<span class="st">"joy"</span>] <span class="op">+</span> yelp_data[<span class="st">"love"</span>] <span class="op">+</span> yelp_data[<span class="st">"affection"</span>] <span class="op">+</span> yelp_data[<span class="st">"liking"</span>] <span class="op">+</span> yelp_data[<span class="st">"enthusiasm"</span>]</span>
@@ -878,7 +860,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="dimensionality-reduction-normalization" class="level3">
 <h3 class="anchored" data-anchor-id="dimensionality-reduction-normalization">Dimensionality Reduction + Normalization</h3>
 <p>As a method of data reduction, we can apply dimensionality reduction. We covered PCA and feature subset selection in the lecture. In this exercise, we will cover feature subset selection. We are also going to apply normalization before selecting a feature subset. We will implement the forward selection and bi-directional stepwise selection.</p>
-<div id="96161ff4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="502f53fd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Create feature matrix by dropping the review_id and label attribute</span></span>
@@ -896,7 +878,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(yelp_data[<span class="st">"class"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="8b8bc0e7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="57234006" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape[<span class="dv">1</span>])</span>
@@ -926,7 +908,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>sfs.k_feature_names_     </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="72813ff1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="938152ee" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlxtend.plotting <span class="im">import</span> plot_sequential_feature_selection <span class="im">as</span> plot_sfs</span>
@@ -940,7 +922,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Thirteen attributes were selected. Let’s try bi-directional stepwise selection (combination of forward and backward selection) and compare results.</p>
-<div id="552a0499" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="17cdccfb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Bi-directional stepwise selection</span></span>
@@ -957,7 +939,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>sfs1.k_feature_names_     </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="c31227c9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div id="110df3a3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">## performance graph (y-axis: r-squared values)</span></span>

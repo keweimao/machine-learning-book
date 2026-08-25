@@ -8,7 +8,7 @@
 
 <meta name="description" content="An introductory journey from data and information to machine learning, language, search, and evaluation.">
 
-<title>Practice 10: Convolutional Neural Networks – Machine Learning: The Quest for Information and Meaning</title>
+<title>Practicum: From Pixels to CNN Features – Machine Learning: The Quest for Information and Meaning</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,6 +27,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -37,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../practice/labs/mnist-mlp.html" rel="next">
+<link href="../practice/10-clustering-and-organization.html" rel="next">
 <link href="../practice/labs/classification-patterns-assignment.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -118,7 +153,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../practice/index.html">Practice and Projects: A Companion Volume</a></li><li class="breadcrumb-item"><a href="../practice/09a-convolutional-neural-networks.html">Practice 10: Convolutional Neural Networks</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../practice/index.html">Practice and Projects: A Companion Volume</a></li><li class="breadcrumb-item"><a href="../practice/09a-convolutional-neural-networks.html">Practicum: From Pixels to CNN Features</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -483,25 +518,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../practice/09a-convolutional-neural-networks.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Practice 10: Convolutional Neural Networks</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../practice/labs/mnist-mlp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: MNIST with a Multilayer Perceptron</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../practice/labs/cnn-concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: CNN Concepts from Arrays to Feature Maps</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../practice/labs/mnist-cnn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab: MNIST with a Convolutional Neural Network</span></a>
+ <span class="menu-text">Practicum: From Pixels to CNN Features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -624,20 +641,40 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-pr-cnn-question" id="toc-sec-pr-cnn-question" class="nav-link active" data-scroll-target="#sec-pr-cnn-question">Project Question</a></li>
-  <li><a href="#sec-pr-cnn-sequence" id="toc-sec-pr-cnn-sequence" class="nav-link" data-scroll-target="#sec-pr-cnn-sequence">Two-Week Sequence</a></li>
-  <li><a href="#sec-pr-cnn-shapes" id="toc-sec-pr-cnn-shapes" class="nav-link" data-scroll-target="#sec-pr-cnn-shapes">Shape Clinic</a></li>
-  <li><a href="#sec-pr-cnn-comparison" id="toc-sec-pr-cnn-comparison" class="nav-link" data-scroll-target="#sec-pr-cnn-comparison">Required Comparison</a></li>
-  <li><a href="#sec-pr-cnn-deliverable" id="toc-sec-pr-cnn-deliverable" class="nav-link" data-scroll-target="#sec-pr-cnn-deliverable">Deliverable</a></li>
+  <li><a href="#sec-pr-cnn-question" id="toc-sec-pr-cnn-question" class="nav-link active" data-scroll-target="#sec-pr-cnn-question">Learning Question and Evidence Rules</a></li>
+  <li><a href="#sec-pr-cnn-setup" id="toc-sec-pr-cnn-setup" class="nav-link" data-scroll-target="#sec-pr-cnn-setup">Setup: One Dataset, Three Roles</a></li>
+  <li><a href="#sec-pr-cnn-mlp" id="toc-sec-pr-cnn-mlp" class="nav-link" data-scroll-target="#sec-pr-cnn-mlp">Part I: Establish an MLP Baseline</a>
+  <ul class="collapse">
+  <li><a href="#sec-pr-cnn-flatten" id="toc-sec-pr-cnn-flatten" class="nav-link" data-scroll-target="#sec-pr-cnn-flatten">Flatten the Grid</a></li>
+  <li><a href="#sec-pr-cnn-mlp-model" id="toc-sec-pr-cnn-mlp-model" class="nav-link" data-scroll-target="#sec-pr-cnn-mlp-model">Build and Train the MLP</a></li>
+  </ul></li>
+  <li><a href="#sec-pr-cnn-concepts" id="toc-sec-pr-cnn-concepts" class="nav-link" data-scroll-target="#sec-pr-cnn-concepts">Part II: Make Convolution Visible</a>
+  <ul class="collapse">
+  <li><a href="#sec-pr-cnn-cross-correlation" id="toc-sec-pr-cnn-cross-correlation" class="nav-link" data-scroll-target="#sec-pr-cnn-cross-correlation">One Transparent Operation</a></li>
+  <li><a href="#sec-pr-cnn-hand-kernels" id="toc-sec-pr-cnn-hand-kernels" class="nav-link" data-scroll-target="#sec-pr-cnn-hand-kernels">Kernels Produce Evidence, Not Labels</a></li>
+  <li><a href="#sec-pr-cnn-pooling" id="toc-sec-pr-cnn-pooling" class="nav-link" data-scroll-target="#sec-pr-cnn-pooling">Pooling and Parameter Counting</a></li>
+  </ul></li>
+  <li><a href="#sec-pr-cnn-model" id="toc-sec-pr-cnn-model" class="nav-link" data-scroll-target="#sec-pr-cnn-model">Part III: Replace the MLP with a CNN</a>
+  <ul class="collapse">
+  <li><a href="#sec-pr-cnn-cnn-data" id="toc-sec-pr-cnn-cnn-data" class="nav-link" data-scroll-target="#sec-pr-cnn-cnn-data">Preserve the Grid and Add a Channel Axis</a></li>
+  <li><a href="#sec-pr-cnn-cnn-model" id="toc-sec-pr-cnn-cnn-model" class="nav-link" data-scroll-target="#sec-pr-cnn-cnn-model">Build a Nearly Parameter-Matched CNN</a></li>
+  <li><a href="#sec-pr-cnn-results" id="toc-sec-pr-cnn-results" class="nav-link" data-scroll-target="#sec-pr-cnn-results">Compare Outcomes, Then Explain</a></li>
+  <li><a href="#sec-pr-cnn-learning-curves" id="toc-sec-pr-cnn-learning-curves" class="nav-link" data-scroll-target="#sec-pr-cnn-learning-curves">Use Loss to Diagnose Overfitting</a></li>
+  </ul></li>
+  <li><a href="#sec-pr-cnn-activations" id="toc-sec-pr-cnn-activations" class="nav-link" data-scroll-target="#sec-pr-cnn-activations">Part IV: Return to Kernels: Learned Activations for 1 and 7</a>
+  <ul class="collapse">
+  <li><a href="#sec-pr-cnn-final-investigation" id="toc-sec-pr-cnn-final-investigation" class="nav-link" data-scroll-target="#sec-pr-cnn-final-investigation">Final Investigation</a></li>
+  </ul></li>
+  <li><a href="#sec-pr-cnn-deliverable" id="toc-sec-pr-cnn-deliverable" class="nav-link" data-scroll-target="#sec-pr-cnn-deliverable">What to Submit</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/keweimao/machine-learning-book/edit/main/practice/09a-convolutional-neural-networks.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/keweimao/machine-learning-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../practice/index.html">Practice and Projects: A Companion Volume</a></li><li class="breadcrumb-item"><a href="../practice/09a-convolutional-neural-networks.html">Practice 10: Convolutional Neural Networks</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../practice/index.html">Practice and Projects: A Companion Volume</a></li><li class="breadcrumb-item"><a href="../practice/09a-convolutional-neural-networks.html">Practicum: From Pixels to CNN Features</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="ch-practice-cnn" class="quarto-section-identifier">Practice 10: Convolutional Neural Networks</span></h1>
+<h1 class="title"><span id="ch-practice-cnn" class="quarto-section-identifier">Practicum: From Pixels to CNN Features</span></h1>
 </div>
 
 
@@ -655,144 +692,610 @@ window.Quarto = {
 
 
 <p><strong>Theory connection:</strong> <a href="../chapters/09a-convolutional-neural-networks.html#ch-cnn">Convolutional Neural Networks: Learning Spatial Structure</a></p>
-<p>This practice chapter is a small comparative project rather than three unrelated notebooks. You will solve one classification problem twice, pause between the models to understand the convolution operation, and then use evidence to explain why the results differ.</p>
+<p>This practicum tells one continuous story. You will first solve MNIST with a multilayer perceptron (MLP), stop to make convolution visible, solve the same task with a convolutional neural network (CNN), and finally inspect how kernels activate on handwritten 1s and 7s.</p>
+<p>Download the <a href="notebooks/cnn-mnist-practicum.ipynb">complete Jupyter notebook</a>. It contains the runnable code and representative executed output. The web and print book retain a concise set of results so that the explanation remains readable without requiring TensorFlow during rendering.</p>
+<p>To reproduce the authoring environment from the repository root:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3.12</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> practice/requirements-cnn.txt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab practice/notebooks/cnn-mnist-practicum.ipynb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>.venv</code> directory is intentionally ignored by Git. A standard Google Colab runtime is an easier alternative when local TensorFlow installation is inconvenient.</p>
 <section id="sec-pr-cnn-question" class="level2">
-<h2 class="anchored" data-anchor-id="sec-pr-cnn-question">Project Question</h2>
+<h2 class="anchored" data-anchor-id="sec-pr-cnn-question">Learning Question and Evidence Rules</h2>
 <blockquote class="blockquote">
-<p>What changes when a classifier preserves spatial structure and learns shared local features before making a class prediction?</p>
+<p>What changes when a classifier preserves spatial neighborhoods and reuses local detectors before making a class prediction?</p>
 </blockquote>
-<p>Use the same MNIST split, preprocessing scale, optimizer, batch size, early-stopping rule, and test set for both trained models. The MLP and CNN in these labs also have similar parameter counts. This makes architecture the main planned difference.</p>
+<p>The comparison controls the data split, scaling, optimizer, batch size, early-stopping rule, and approximate parameter budget. The architecture is the main planned difference. The validation set guides stopping; the test set is evaluated only after each model is fixed.</p>
+<p>By the end, you should be able to:</p>
+<ul>
+<li>explain what flattening preserves and what it no longer makes explicit;</li>
+<li>calculate and visualize a kernel response;</li>
+<li>distinguish a kernel, a feature map, and a class prediction;</li>
+<li>read training and validation loss as evidence about fit; and</li>
+<li>make a cautious, evidence-based MLP-versus-CNN comparison.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Representative results, not universal constants">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Representative results, not universal constants
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The displayed results come from one seeded full-data run using TensorFlow 2.20 and Keras 3.15. Small numerical differences are normal across software and hardware. Your explanations should survive those differences.</p>
+</div>
+</div>
 </section>
-<section id="sec-pr-cnn-sequence" class="level2">
-<h2 class="anchored" data-anchor-id="sec-pr-cnn-sequence">Two-Week Sequence</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Order</th>
-<th>Activity</th>
-<th>Main evidence to retain</th>
-<th style="text-align: right;">Suggested time</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td><a href="../practice/labs/mnist-mlp.html#ch-lab-mnist-mlp">MNIST with an MLP</a></td>
-<td>Shapes, model summary, learning curves, test results, representative errors</td>
-<td style="text-align: right;">2–3 hours</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td>Read <a href="../chapters/09a-convolutional-neural-networks.html#ch-cnn">the CNN theory chapter</a></td>
-<td>Annotated worked example and shape calculations</td>
-<td style="text-align: right;">1–2 hours</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td><a href="../practice/labs/cnn-concepts.html#ch-lab-cnn-concepts">CNN Concepts</a></td>
-<td>Hand calculation, tested NumPy functions, parameter counts, explanations</td>
-<td style="text-align: right;">2–3 hours</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">4</td>
-<td><a href="../practice/labs/mnist-cnn.html#ch-lab-mnist-cnn">MNIST with a CNN</a></td>
-<td>Matched comparison, feature maps, error analysis, conclusion</td>
-<td style="text-align: right;">3–4 hours</td>
-</tr>
-</tbody>
-</table>
-<p>Do not begin by tuning whichever model performs worse. First complete the matched comparison. Any later improvement is a new experiment and should be labeled as such.</p>
+<section id="sec-pr-cnn-setup" class="level2">
+<h2 class="anchored" data-anchor-id="sec-pr-cnn-setup">Setup: One Dataset, Three Roles</h2>
+<p>MNIST contains <span class="math inline">\(60{,}000\)</span> training images and <span class="math inline">\(10{,}000\)</span> test images. We shuffle the original training data once, use <span class="math inline">\(54{,}000\)</span> examples for fitting, and reserve <span class="math inline">\(6{,}000\)</span> for validation. Each image is a <span class="math inline">\(28\times28\)</span> grayscale array.</p>
+<div id="fig-pr-cnn-mnist-examples" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Ten grayscale MNIST images arranged in two rows, one for each digit from zero through nine.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pr-cnn-mnist-examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/mnist-examples.png" class="img-fluid figure-img" style="width:82.0%" alt="Ten grayscale MNIST images arranged in two rows, one for each digit from zero through nine.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pr-cnn-mnist-examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: One example from each MNIST class. The task is simple enough to train quickly, but the handwriting contains varying strokes, slants, and loops.
+</figcaption>
+</figure>
+</div>
+<div id="175d48a9" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> keras</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras <span class="im">import</span> layers</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>SEED <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>BATCH_SIZE <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>MAX_EPOCHS <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>keras.utils.set_random_seed(SEED)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>tf.config.experimental.enable_op_determinism()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>(x_train_raw, y_train_raw), (x_test_raw, y_test) <span class="op">=</span> (</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    keras.datasets.mnist.load_data()</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproduce the same 54,000/6,000 fit/validation split.</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> np.random.default_rng(SEED).permutation(<span class="bu">len</span>(x_train_raw))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>x_train_raw, y_train_raw <span class="op">=</span> x_train_raw[order], y_train_raw[order]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>x_fit_raw, x_val_raw <span class="op">=</span> x_train_raw[:<span class="dv">54000</span>], x_train_raw[<span class="dv">54000</span>:]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>y_fit, y_val <span class="op">=</span> y_train_raw[:<span class="dv">54000</span>], y_train_raw[<span class="dv">54000</span>:]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scale(images):</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> images.astype(<span class="st">"float32"</span>) <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">3.5</span>))</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> digit, axis <span class="kw">in</span> <span class="bu">enumerate</span>(axes.flat):</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> np.flatnonzero(y_fit <span class="op">==</span> digit)[<span class="dv">0</span>]</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    axis.imshow(x_fit_raw[index], cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    axis.set_title(<span class="ss">f"label </span><span class="sc">{</span>digit<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    axis.axis(<span class="st">"off"</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><strong>Check before continuing.</strong> Which set may influence the stopping epoch? Why should neither the validation set nor test set be passed to <code>model.fit</code> as training examples?</p>
 </section>
-<section id="sec-pr-cnn-shapes" class="level2">
-<h2 class="anchored" data-anchor-id="sec-pr-cnn-shapes">Shape Clinic</h2>
-<p>Before coding, write the shape of each object below in channels-last order.</p>
-<ol type="1">
-<li>One <span class="math inline">\(28\times28\)</span> grayscale image.</li>
-<li>A batch of 64 grayscale images.</li>
-<li>One <span class="math inline">\(128\times128\)</span> RGB image.</li>
-<li>The output of 16 same-padded filters applied to an MNIST image.</li>
-<li>The output after <span class="math inline">\(2\times2\)</span> max pooling with stride 2.</li>
-</ol>
-<p>Then answer: Which axis counts examples? Which axis counts learned feature maps? Why is neither one a new neural-network layer?</p>
+<section id="sec-pr-cnn-mlp" class="level2">
+<h2 class="anchored" data-anchor-id="sec-pr-cnn-mlp">Part I: Establish an MLP Baseline</h2>
+<section id="sec-pr-cnn-flatten" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-flatten">Flatten the Grid</h3>
+<p>The MLP receives a vector, not an image grid:</p>
+<div id="6f6403a9" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x_fit_mlp <span class="op">=</span> scale(x_fit_raw).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x_val_mlp <span class="op">=</span> scale(x_val_raw).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x_test_mlp <span class="op">=</span> scale(x_test_raw).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> x_fit_mlp.shape <span class="op">==</span> (<span class="dv">54000</span>, <span class="dv">784</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> x_val_mlp.shape <span class="op">==</span> (<span class="dv">6000</span>, <span class="dv">784</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> x_test_mlp.shape <span class="op">==</span> (<span class="dv">10000</span>, <span class="dv">784</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="fig-pr-cnn-flatten" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A digit seven appears on a 28 by 28 grid at left. At right, a line plot shows the same 784 pixel values after flattening.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pr-cnn-flatten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/flatten-grid-versus-vector.png" class="img-fluid figure-img" style="width:95.0%" alt="A digit seven appears on a 28 by 28 grid at left. At right, a line plot shows the same 784 pixel values after flattening.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pr-cnn-flatten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: A digit 7 represented as a two-dimensional image and as the same 784 values in row-major vector order.
+</figcaption>
+</figure>
+</div>
+<p>Flattening neither deletes nor randomizes a pixel. It changes how the model is allowed to use the values: two neighboring pixels no longer share an explicit two-dimensional neighborhood, and the same stroke in a new location reaches different dense-layer weights.</p>
+<p><strong>Explain.</strong> If pixel <span class="math inline">\((10,10)\)</span> and pixel <span class="math inline">\((10,11)\)</span> are adjacent in the grid, where do they appear in the vector? Why can the MLP still learn from them, even though it does not reuse one local detector across locations?</p>
 </section>
-<section id="sec-pr-cnn-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="sec-pr-cnn-comparison">Required Comparison</h2>
-<p>Complete this table with your own run. A useful comparison includes more than the largest accuracy number.</p>
+<section id="sec-pr-cnn-mlp-model" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-mlp-model">Build and Train the MLP</h3>
+<p>The model is intentionally ordinary and compact:</p>
+<div id="f8a35a88" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_mlp():</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    keras.utils.set_random_seed(SEED)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> keras.Sequential([</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        keras.Input(shape<span class="op">=</span>(<span class="dv">784</span>,)),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        layers.Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">"relu"</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">"relu"</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">"softmax"</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    ], name<span class="op">=</span><span class="st">"mnist_mlp"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">compile</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        optimizer<span class="op">=</span>keras.optimizers.Adam(<span class="fl">0.001</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        loss<span class="op">=</span><span class="st">"sparse_categorical_crossentropy"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        metrics<span class="op">=</span>[<span class="st">"accuracy"</span>],</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>mlp_model <span class="op">=</span> build_mlp()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> mlp_model.count_params() <span class="op">==</span> <span class="dv">109386</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>mlp_model.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Use validation loss, not training accuracy, to decide when to stop:</p>
+<div id="c6ddcd9b" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_model(model, x_fit, x_val):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    stop <span class="op">=</span> keras.callbacks.EarlyStopping(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        monitor<span class="op">=</span><span class="st">"val_loss"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        patience<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        restore_best_weights<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    start <span class="op">=</span> time.perf_counter()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> model.fit(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        x_fit,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        y_fit,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        validation_data<span class="op">=</span>(x_val, y_val),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        batch_size<span class="op">=</span>BATCH_SIZE,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        epochs<span class="op">=</span>MAX_EPOCHS,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        callbacks<span class="op">=</span>[stop],</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        verbose<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> history.history, time.perf_counter() <span class="op">-</span> start</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>mlp_history, mlp_seconds <span class="op">=</span> fit_model(</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    mlp_model, x_fit_mlp, x_val_mlp</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>mlp_loss, mlp_accuracy <span class="op">=</span> mlp_model.evaluate(</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    x_test_mlp, y_test, verbose<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>mlp_pred <span class="op">=</span> mlp_model.predict(x_test_mlp, verbose<span class="op">=</span><span class="dv">0</span>).argmax(axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Record the parameter count, stopping epoch, lowest validation loss, test loss, test accuracy, number of errors, and training time. Do not tune the MLP after looking at the CNN’s test results; that would make the comparison asymmetric.</p>
+</section>
+</section>
+<section id="sec-pr-cnn-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="sec-pr-cnn-concepts">Part II: Make Convolution Visible</h2>
+<section id="sec-pr-cnn-cross-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-cross-correlation">One Transparent Operation</h3>
+<p>A kernel produces one number per local window: multiply matching entries, add the products, and then move the same weights to the next location. The function below implements valid two-dimensional cross-correlation for one channel:</p>
+<div id="7b742fad" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_correlate2d(image, kernel, stride<span class="op">=</span><span class="dv">1</span>, padding<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    image <span class="op">=</span> np.pad(np.asarray(image, dtype<span class="op">=</span><span class="bu">float</span>), padding)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    kernel <span class="op">=</span> np.asarray(kernel, dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    kh, kw <span class="op">=</span> kernel.shape</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    out_h <span class="op">=</span> (image.shape[<span class="dv">0</span>] <span class="op">-</span> kh) <span class="op">//</span> stride <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    out_w <span class="op">=</span> (image.shape[<span class="dv">1</span>] <span class="op">-</span> kw) <span class="op">//</span> stride <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> np.empty((out_h, out_w))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(out_h):</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> col <span class="kw">in</span> <span class="bu">range</span>(out_w):</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            r, c <span class="op">=</span> row <span class="op">*</span> stride, col <span class="op">*</span> stride</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            window <span class="op">=</span> image[r:r <span class="op">+</span> kh, c:c <span class="op">+</span> kw]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            output[row, col] <span class="op">=</span> np.<span class="bu">sum</span>(window <span class="op">*</span> kernel)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Test the worked example from the theory chapter:</p>
+<div id="ea046365" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>small_image <span class="op">=</span> np.array([</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>], dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>boundary_kernel <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>], [<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>]], dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>feature_map <span class="op">=</span> cross_correlate2d(small_image, boundary_kernel)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>expected <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>]])</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>np.testing.assert_array_equal(feature_map, expected)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>feature_map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><strong>Predict before running.</strong> What changes when <code>stride=2</code>? What padding keeps a <span class="math inline">\(28\times28\)</span> image at the same spatial size with a <span class="math inline">\(3\times3\)</span> kernel and stride one? Verify both answers with array shapes.</p>
+</section>
+<section id="sec-pr-cnn-hand-kernels" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-hand-kernels">Kernels Produce Evidence, Not Labels</h3>
+<p>The next comparison uses three hand-designed <span class="math inline">\(3\times3\)</span> kernels. After cross-correlation, ReLU sets negative responses to zero. Bright locations show where a local window agrees with a kernel.</p>
+<div id="7fcfa280" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>kernels <span class="op">=</span> {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"vertical"</span>: np.array([</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        [<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>], [<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>], [<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    ]),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"horizontal"</span>: np.array([</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        [<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>], [<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>], [<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    ]),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"diagonal"</span>: np.array([</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        [<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>], [<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>], [<span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    ]),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(response):</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.maximum(response, <span class="dv">0</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> [np.flatnonzero(y_test <span class="op">==</span> digit)[<span class="dv">0</span>] <span class="cf">for</span> digit <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">7</span>)]</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row, (digit, index) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>((<span class="dv">1</span>, <span class="dv">7</span>), indices)):</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    image <span class="op">=</span> scale(x_test_raw[index])</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    axes[row, <span class="dv">0</span>].imshow(image, cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    axes[row, <span class="dv">0</span>].set_ylabel(<span class="ss">f"digit </span><span class="sc">{</span>digit<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    axes[row, <span class="dv">0</span>].axis(<span class="st">"off"</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col, (name, kernel) <span class="kw">in</span> <span class="bu">enumerate</span>(kernels.items(), start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> relu(cross_correlate2d(image, kernel))</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        axes[row, col].imshow(response, cmap<span class="op">=</span><span class="st">"magma"</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        axes[row, col].set_title(name <span class="cf">if</span> row <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">""</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        axes[row, col].axis(<span class="st">"off"</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="fig-pr-cnn-hand-kernels" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two rows compare digits one and seven. Three heatmaps in each row show activation from vertical, horizontal, and diagonal stroke kernels.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pr-cnn-hand-kernels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/hand-kernel-activations-1-7.png" class="img-fluid figure-img" style="width:100.0%" alt="Two rows compare digits one and seven. Three heatmaps in each row show activation from vertical, horizontal, and diagonal stroke kernels.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pr-cnn-hand-kernels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: A digit 1 and a digit 7 passed through vertical, horizontal, and diagonal hand-designed kernels. Bright regions mark strong positive responses.
+</figcaption>
+</figure>
+</div>
+<p>The vertical and diagonal kernels respond to parts of <em>both</em> digits. The horizontal kernel responds strongly to the top bar of this 7, but it also finds short horizontal transitions in the 1. A single feature map is therefore not a class decision. A CNN learns several filters and combines their spatial patterns across layers.</p>
+<p><strong>Experiment.</strong> Change one kernel entry at a time. For each change, predict which region will brighten or darken, then test your prediction. Finally design a kernel for a falling diagonal. State why none of these kernels alone is a reliable digit classifier.</p>
+</section>
+<section id="sec-pr-cnn-pooling" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-pooling">Pooling and Parameter Counting</h3>
+<p>Max pooling retains the largest activation in each window and learns no weights:</p>
+<div id="dff70d03" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_pool2d(feature_map, size<span class="op">=</span><span class="dv">2</span>, stride<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    out_h <span class="op">=</span> (feature_map.shape[<span class="dv">0</span>] <span class="op">-</span> size) <span class="op">//</span> stride <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    out_w <span class="op">=</span> (feature_map.shape[<span class="dv">1</span>] <span class="op">-</span> size) <span class="op">//</span> stride <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> np.empty((out_h, out_w))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(out_h):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> col <span class="kw">in</span> <span class="bu">range</span>(out_w):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>            r, c <span class="op">=</span> row <span class="op">*</span> stride, col <span class="op">*</span> stride</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>            output[row, col] <span class="op">=</span> feature_map[</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                r:r <span class="op">+</span> size, c:c <span class="op">+</span> size</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            ].<span class="bu">max</span>()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> output</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> conv_parameters(kh, kw, channels_in, channels_out):</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    weights <span class="op">=</span> kh <span class="op">*</span> kw <span class="op">*</span> channels_in <span class="op">*</span> channels_out</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    biases <span class="op">=</span> channels_out</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> weights <span class="op">+</span> biases</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> conv_parameters(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">16</span>) <span class="op">==</span> <span class="dv">160</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> conv_parameters(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">16</span>, <span class="dv">32</span>) <span class="op">==</span> <span class="dv">4640</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Why does image height not appear in the parameter formula? Why does it still affect the number of operations and the size of the feature map?</p>
+</section>
+</section>
+<section id="sec-pr-cnn-model" class="level2">
+<h2 class="anchored" data-anchor-id="sec-pr-cnn-model">Part III: Replace the MLP with a CNN</h2>
+<section id="sec-pr-cnn-cnn-data" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-cnn-data">Preserve the Grid and Add a Channel Axis</h3>
+<p>The CNN sees the same scaled values but retains their two-dimensional arrangement:</p>
+<div id="5d9703c8" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x_fit_cnn <span class="op">=</span> scale(x_fit_raw)[..., np.newaxis]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x_val_cnn <span class="op">=</span> scale(x_val_raw)[..., np.newaxis]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x_test_cnn <span class="op">=</span> scale(x_test_raw)[..., np.newaxis]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> x_fit_cnn.shape <span class="op">==</span> (<span class="dv">54000</span>, <span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> x_val_cnn.shape <span class="op">==</span> (<span class="dv">6000</span>, <span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> x_test_cnn.shape <span class="op">==</span> (<span class="dv">10000</span>, <span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="sec-pr-cnn-cnn-model" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-cnn-model">Build a Nearly Parameter-Matched CNN</h3>
+<div id="24e2de22" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_cnn():</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    keras.utils.set_random_seed(SEED)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> keras.Sequential([</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        keras.Input(shape<span class="op">=</span>(<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        layers.Conv2D(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="dv">16</span>, <span class="dv">3</span>, padding<span class="op">=</span><span class="st">"same"</span>, activation<span class="op">=</span><span class="st">"relu"</span>, name<span class="op">=</span><span class="st">"conv_1"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        layers.MaxPooling2D(<span class="dv">2</span>),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        layers.Conv2D(</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>            <span class="dv">32</span>, <span class="dv">3</span>, padding<span class="op">=</span><span class="st">"same"</span>, activation<span class="op">=</span><span class="st">"relu"</span>, name<span class="op">=</span><span class="st">"conv_2"</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        layers.MaxPooling2D(<span class="dv">2</span>),</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        layers.Flatten(),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">"relu"</span>),</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">"softmax"</span>),</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    ], name<span class="op">=</span><span class="st">"mnist_cnn"</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">compile</span>(</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        optimizer<span class="op">=</span>keras.optimizers.Adam(<span class="fl">0.001</span>),</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        loss<span class="op">=</span><span class="st">"sparse_categorical_crossentropy"</span>,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        metrics<span class="op">=</span>[<span class="st">"accuracy"</span>],</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>cnn_model <span class="op">=</span> build_cnn()</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> cnn_model.count_params() <span class="op">==</span> <span class="dv">105866</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>cnn_model.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Before viewing the summary, calculate every output shape and parameter count. Where are most CNN parameters located? What useful transformation occurs before that large dense layer?</p>
+<p>Train and evaluate under the same protocol:</p>
+<div id="3b7d8cd3" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cnn_history, cnn_seconds <span class="op">=</span> fit_model(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    cnn_model, x_fit_cnn, x_val_cnn</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>cnn_loss, cnn_accuracy <span class="op">=</span> cnn_model.evaluate(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    x_test_cnn, y_test, verbose<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>cnn_pred <span class="op">=</span> cnn_model.predict(x_test_cnn, verbose<span class="op">=</span><span class="dv">0</span>).argmax(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MLP"</span>: {</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"accuracy"</span>: mlp_accuracy,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"errors"</span>: <span class="bu">int</span>(np.<span class="bu">sum</span>(mlp_pred <span class="op">!=</span> y_test)),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"parameters"</span>: mlp_model.count_params(),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CNN"</span>: {</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"accuracy"</span>: cnn_accuracy,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"errors"</span>: <span class="bu">int</span>(np.<span class="bu">sum</span>(cnn_pred <span class="op">!=</span> y_test)),</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"parameters"</span>: cnn_model.count_params(),</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="sec-pr-cnn-results" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-results">Compare Outcomes, Then Explain</h3>
+<p>This representative run produced:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Evidence</th>
 <th style="text-align: right;">MLP</th>
 <th style="text-align: right;">CNN</th>
-<th>Interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Input shape</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>First learned operation</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
-</tr>
-<tr class="odd">
 <td>Trainable parameters</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
+<td style="text-align: right;">109,386</td>
+<td style="text-align: right;">105,866</td>
 </tr>
 <tr class="even">
-<td>Epoch with lowest validation loss</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
+<td>Epochs run</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">7</td>
 </tr>
 <tr class="odd">
+<td>Lowest-validation-loss epoch</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
 <td>Test loss</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Test accuracy</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
+<td style="text-align: right;">0.0874</td>
+<td style="text-align: right;">0.0370</td>
 </tr>
 <tr class="odd">
-<td>Training time</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
+<td>Test accuracy</td>
+<td style="text-align: right;">97.56%</td>
+<td style="text-align: right;">98.75%</td>
 </tr>
 <tr class="even">
-<td>Two common confusions</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
+<td>Misclassified test images</td>
+<td style="text-align: right;">244</td>
+<td style="text-align: right;">125</td>
+</tr>
+<tr class="odd">
+<td>Training time on the authoring machine</td>
+<td style="text-align: right;">5.4 s</td>
+<td style="text-align: right;">17.1 s</td>
 </tr>
 </tbody>
 </table>
-<p>Your conclusion should distinguish an observation (for example, one measured test accuracy) from an explanation (for example, locality and weight sharing). One run supports a careful case study; it does not prove that one architecture always wins.</p>
+<div id="fig-pr-cnn-results" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three bar charts compare MLP and CNN test accuracy, misclassified test images, and trainable parameter counts.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pr-cnn-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/mlp-cnn-results.png" class="img-fluid figure-img" style="width:100.0%" alt="Three bar charts compare MLP and CNN test accuracy, misclassified test images, and trainable parameter counts.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pr-cnn-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Test accuracy, error count, and parameter count for the matched MLP and CNN run.
+</figcaption>
+</figure>
+</div>
+<p>The CNN reduced the test error count by <span class="math inline">\(119\)</span>, a relative reduction of about <span class="math inline">\(49\%\)</span>, despite having slightly fewer parameters. This observation is consistent with the value of locality and weight sharing for images. One run does not prove that CNNs always win: the result depends on the data, protocol, implementation, and task.</p>
+<div id="36a166ec" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">3</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"MLP"</span>, <span class="st">"CNN"</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">"#6C8EBF"</span>, <span class="st">"#70AD47"</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].bar(names, [<span class="dv">100</span> <span class="op">*</span> results[n][<span class="st">"accuracy"</span>] <span class="cf">for</span> n <span class="kw">in</span> names], color<span class="op">=</span>colors)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="st">"test accuracy"</span>, ylabel<span class="op">=</span><span class="st">"percent"</span>, ylim<span class="op">=</span>(<span class="dv">95</span>, <span class="dv">100</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].bar(names, [results[n][<span class="st">"errors"</span>] <span class="cf">for</span> n <span class="kw">in</span> names], color<span class="op">=</span>colors)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="st">"test errors"</span>, ylabel<span class="op">=</span><span class="st">"count"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].bar(names, [results[n][<span class="st">"parameters"</span>] <span class="cf">for</span> n <span class="kw">in</span> names], color<span class="op">=</span>colors)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="st">"parameters"</span>, ylabel<span class="op">=</span><span class="st">"count"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Inspecting individual errors keeps the aggregate comparison connected to the images. The following code shows five mistakes from each model:</p>
+<div id="e1856aa3" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">3.8</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row, (name, predictions) <span class="kw">in</span> <span class="bu">enumerate</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    [(<span class="st">"MLP"</span>, mlp_pred), (<span class="st">"CNN"</span>, cnn_pred)]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    wrong <span class="op">=</span> np.flatnonzero(predictions <span class="op">!=</span> y_test)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> axis, index <span class="kw">in</span> <span class="bu">zip</span>(axes[row], wrong[:<span class="dv">5</span>]):</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        axis.imshow(x_test_raw[index], cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        axis.set_title(</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"true </span><span class="sc">{</span>y_test[index]<span class="sc">}</span><span class="ss"> / pred </span><span class="sc">{</span>predictions[index]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        axis.axis(<span class="st">"off"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    axes[row, <span class="dv">0</span>].set_ylabel(name)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="sec-pr-cnn-learning-curves" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-learning-curves">Use Loss to Diagnose Overfitting</h3>
+<div id="7d8e0d45" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_history(history, title):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    epochs <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(history[<span class="st">"loss"</span>]) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">3.4</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].plot(epochs, history[<span class="st">"loss"</span>], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"training"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].plot(epochs, history[<span class="st">"val_loss"</span>], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"validation"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].plot(epochs, history[<span class="st">"accuracy"</span>], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"training"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].plot(epochs, history[<span class="st">"val_accuracy"</span>], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"validation"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss">: loss"</span>, xlabel<span class="op">=</span><span class="st">"epoch"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].<span class="bu">set</span>(title<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss">: accuracy"</span>, xlabel<span class="op">=</span><span class="st">"epoch"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> axis <span class="kw">in</span> axes:</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        axis.legend()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>plot_history(mlp_history, <span class="st">"MLP"</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>plot_history(cnn_history, <span class="st">"CNN"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="fig-pr-cnn-learning-curves" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Four line charts show MLP and CNN training and validation loss and accuracy across epochs.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pr-cnn-learning-curves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/mlp-cnn-learning-curves.png" class="img-fluid figure-img" style="width:92.0%" alt="Four line charts show MLP and CNN training and validation loss and accuracy across epochs.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pr-cnn-learning-curves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Training and validation loss and accuracy for the MLP and CNN. Dashed lines mark the minimum validation loss restored by early stopping.
+</figcaption>
+</figure>
+</div>
+<p>For both models, training loss keeps falling after validation loss has stopped improving. That widening gap is evidence of overfitting: the model continues to fit the training examples without improving performance on held-out data. Accuracy alone makes the turn harder to see; cross-entropy loss reacts to changes in confidence even when the predicted class stays the same.</p>
+<p><strong>Interpret.</strong> Identify the first epoch after the minimum validation loss for each model. Explain why early stopping restores the earlier weights rather than keeping the final epoch. Then distinguish the evidence (the curve) from the diagnosis (overfitting).</p>
+</section>
+</section>
+<section id="sec-pr-cnn-activations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-pr-cnn-activations">Part IV: Return to Kernels: Learned Activations for 1 and 7</h2>
+<p>The hand-designed kernels made the mechanism transparent. We now ask what the trained CNN learned. A small <strong>probe model</strong> returns the first convolutional layer’s output instead of the final softmax probabilities:</p>
+<div id="9f80c98c" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>probe <span class="op">=</span> keras.Model(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    inputs<span class="op">=</span>cnn_model.inputs,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    outputs<span class="op">=</span>cnn_model.get_layer(<span class="st">"conv_1"</span>).output,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>feature_maps <span class="op">=</span> probe.predict(x_test_cnn, verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare each channel's share of total first-layer activation.</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>channel_means <span class="op">=</span> feature_maps.mean(axis<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>channel_share <span class="op">=</span> channel_means <span class="op">/</span> (</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    channel_means.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>) <span class="op">+</span> <span class="fl">1e-12</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>mean_for_1 <span class="op">=</span> channel_share[y_test <span class="op">==</span> <span class="dv">1</span>].mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>mean_for_7 <span class="op">=</span> channel_share[y_test <span class="op">==</span> <span class="dv">7</span>].mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>difference <span class="op">=</span> mean_for_1 <span class="op">-</span> mean_for_7</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>channel_1_relative <span class="op">=</span> <span class="bu">int</span>(np.argmax(difference))</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>channel_7_relative <span class="op">=</span> <span class="bu">int</span>(np.argmin(difference))</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(channel_1_relative, channel_7_relative)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>first_kernels, _ <span class="op">=</span> cnn_model.get_layer(<span class="st">"conv_1"</span>).get_weights()</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>channels <span class="op">=</span> [channel_1_relative, channel_7_relative]</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> [np.flatnonzero(y_test <span class="op">==</span> digit)[<span class="dv">0</span>] <span class="cf">for</span> digit <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">7</span>)]</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">7</span>))</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].text(</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">"weights learned</span><span class="ch">\n</span><span class="st">from labels"</span>,</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].axis(<span class="st">"off"</span>)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col, channel <span class="kw">in</span> <span class="bu">enumerate</span>(channels, start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    kernel <span class="op">=</span> first_kernels[:, :, <span class="dv">0</span>, channel]</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    limit <span class="op">=</span> np.<span class="bu">abs</span>(kernel).<span class="bu">max</span>()</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>, col].imshow(</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>        kernel, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, vmin<span class="op">=-</span>limit, vmax<span class="op">=</span>limit</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>, col].set_title(<span class="ss">f"kernel </span><span class="sc">{</span>channel<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>, col].axis(<span class="st">"off"</span>)</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row, (digit, index) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>((<span class="dv">1</span>, <span class="dv">7</span>), indices), start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    axes[row, <span class="dv">0</span>].imshow(x_test_raw[index], cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    axes[row, <span class="dv">0</span>].set_ylabel(<span class="ss">f"digit </span><span class="sc">{</span>digit<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    axes[row, <span class="dv">0</span>].axis(<span class="st">"off"</span>)</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col, channel <span class="kw">in</span> <span class="bu">enumerate</span>(channels, start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>        axes[row, col].imshow(</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>            feature_maps[index, :, :, channel], cmap<span class="op">=</span><span class="st">"magma"</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>        axes[row, col].axis(<span class="st">"off"</span>)</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Normalization matters here because the chosen 7 contains more illuminated pixels than the chosen 1. Without it, a class could have greater mean activation in nearly every channel simply because it contains more ink.</p>
+<div id="fig-pr-cnn-learned-activations" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two learned three by three kernels appear above activation heatmaps for a digit one and digit seven.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pr-cnn-learned-activations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/figures/chapter09a/practicum/learned-kernels-feature-maps-1-7.png" class="img-fluid figure-img" style="width:72.0%" alt="Two learned three by three kernels appear above activation heatmaps for a digit one and digit seven.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pr-cnn-learned-activations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Two learned first-layer kernels and their feature maps for a representative 1 and 7. The channels were selected by their average relative activation difference across all test examples of the two classes.
+</figcaption>
+</figure>
+</div>
+<p>The bright regions show <em>where</em> each learned kernel produces a positive response. Kernel 10 has a larger relative share of activation for 1s across the test set; kernel 0 has a larger relative share for 7s. Neither is a literal digit detector. The complete prediction combines 16 first-layer maps, 32 second-layer maps, their spatial arrangement, and the dense classification head.</p>
+<section id="sec-pr-cnn-final-investigation" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pr-cnn-final-investigation">Final Investigation</h3>
+<ol type="1">
+<li>Reproduce <a href="#fig-pr-cnn-learned-activations" class="quarto-xref">Figure&nbsp;<span>6</span></a> with a different 1 and 7. Which bright regions persist, and which change with handwriting style?</li>
+<li>Select channels using only one example rather than class averages. Explain why the resulting interpretation is less reliable.</li>
+<li>Compare a correctly classified 7 with a 7 misclassified by either model. Describe the pixels and feature maps separately from any causal claim.</li>
+<li>Shift both digits two pixels to the right without wrapping. Does the feature map shift as expected? Does the final predicted probability remain constant?</li>
+<li>Design a new box-based image like Jason’s proposed letter task. Predict which local edges or corners an early CNN layer would need before building the model.</li>
+</ol>
+</section>
 </section>
 <section id="sec-pr-cnn-deliverable" class="level2">
-<h2 class="anchored" data-anchor-id="sec-pr-cnn-deliverable">Deliverable</h2>
-<p>Submit one reproducible report or repository containing:</p>
+<h2 class="anchored" data-anchor-id="sec-pr-cnn-deliverable">What to Submit</h2>
+<p>Submit the completed notebook plus a short report containing:</p>
 <ul>
-<li>the three completed notebooks;</li>
-<li>the matched comparison table;</li>
-<li>one correct hand-worked cross-correlation;</li>
-<li>at least two learning-curve plots and one confusion matrix per trained model;</li>
-<li>selected CNN feature maps with restrained interpretation;</li>
-<li>three representative mistakes from each model; and</li>
-<li>a 300–500 word conclusion answering the project question.</li>
+<li>your MLP/CNN comparison table;</li>
+<li>one hand-worked kernel response and its matching code result;</li>
+<li>annotated training/validation loss curves;</li>
+<li>the 1-versus-7 hand-designed and learned activation comparisons;</li>
+<li>three representative errors from each model; and</li>
+<li>a 300-500 word conclusion answering the learning question.</li>
 </ul>
-<p>For an extension, replace MNIST with a small image collection of your own. Record how image size, color channels, class balance, and train/validation/test separation change the pipeline before changing the model.</p>
+<p>Your conclusion must separate <strong>observation</strong> from <strong>explanation</strong>. “The CNN made 119 fewer errors in this run” is an observation. “Locality and weight sharing helped it exploit image structure” is a plausible explanation supported by the controlled design and activation evidence, not a universal theorem about every image problem.</p>
 
 
 </section>
@@ -1205,8 +1708,8 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../practice/labs/mnist-mlp.html" class="pagination-link" aria-label="Lab: MNIST with a Multilayer Perceptron">
-        <span class="nav-page-text">Lab: MNIST with a Multilayer Perceptron</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../practice/10-clustering-and-organization.html" class="pagination-link" aria-label="Practice 10: Clustering and Organization">
+        <span class="nav-page-text">Practice 10: Clustering and Organization</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
