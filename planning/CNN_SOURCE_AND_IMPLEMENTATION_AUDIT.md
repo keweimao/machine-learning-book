@@ -1,7 +1,7 @@
 # CNN source and implementation audit
 
-Completed August 17, 2026. This audit records how the new CNN theory chapter and
-practice sequence were reconstructed from the author's DSCI 471 teaching archive.
+Completed August 17 and updated August 25, 2026. This audit records how the CNN
+theory chapter and practice sequence were reconstructed from the author's DSCI 471 teaching archive.
 It is an editorial provenance record, not a claim that archived teaching files
 can be republished verbatim.
 
@@ -9,14 +9,13 @@ can be republished verbatim.
 
 - `chapters/09a-convolutional-neural-networks.qmd` is a new core chapter placed
   after regression and before clustering.
-- `practice/09a-convolutional-neural-networks.qmd` frames a matched two-week project.
-- `practice/labs/mnist-mlp.qmd` establishes a dense-network baseline.
-- `practice/labs/cnn-concepts.qmd` develops cross-correlation, padding, stride,
-  pooling, channels, shapes, and parameter counts with NumPy.
-- `practice/labs/mnist-cnn.qmd` trains the matched CNN, compares errors, and
-  inspects learned kernels and feature maps.
-- The three QMD labs are canonical. Their `.ipynb` files are generated convenience
-  copies for interactive student use.
+- `practice/09a-convolutional-neural-networks.qmd` is one continuous practicum:
+  MLP baseline, visible CNN mechanics, matched CNN comparison, and learned
+  activation analysis for handwritten 1s and 7s.
+- `practice/notebooks/cnn-mnist-practicum.ipynb` is an executed convenience copy
+  for students; the QMD remains canonical.
+- `scripts/generate_cnn_practicum_assets.py` reproduces the published models,
+  metrics, and original figures in `assets/figures/chapter09a/practicum/`.
 
 ## Author lecture sequence
 
@@ -51,8 +50,8 @@ The following student-facing PDFs were rendered page by page and inspected:
 - `notebooks/DSCI471/Week4_Notebook/lab_mnist_cnn.pdf`
 
 The PDFs confirm the intended Jason sequence: MLP baseline, conceptual CNN work,
-then CNN on the same MNIST task. Their current source notebooks are more editable
-and were used as the primary lab seeds.
+then CNN on the same MNIST task. `Week5_Notebook/CNN_Visualized.ipynb` supplied
+the final return to learned kernels and the explicit 1-versus-7 comparison.
 
 ## Editorial and rights decisions
 
@@ -84,14 +83,19 @@ and were used as the primary lab seeds.
 | `Week5_Notebook/CNN_Visualized.ipynb` | `3bb1c45b22aae677a1c477ef27a7a94f93720a4b4052f88b4c9b9dda602da1e0` |
 | `Week4/d2l_chapter7/lecture_w4_cnn.md` | `e973a3b94543dd14332522e5924170953395b845c588df1e92e05125c90a6ca8` |
 
+## Executed reference experiment
+
+The August 25 full-data run used one seeded 54,000/6,000/10,000 split, Adam,
+batch size 128, and early stopping on validation loss. The 109,386-parameter MLP
+reached 97.56% test accuracy (244 errors); the 105,866-parameter CNN reached
+98.75% (125 errors). Both training curves and selected feature maps are retained
+as original book assets. These values are representative results, not guarantees.
+
 ## Remaining editorial work
 
-1. Execute both Keras labs in the intended student environment and record a
-   reference run without turning its metrics into guaranteed results.
-2. Ask Jason and the second student to annotate points of confusion, especially
+1. Ask Jason and the second student to annotate points of confusion, especially
    channel/filter/layer distinctions and output-shape calculations.
-3. Decide after student feedback whether residual networks, data augmentation,
+2. Decide after student feedback whether residual networks, data augmentation,
    and transfer learning deserve one optional advanced lab or only cross-references.
-4. Revisit chapter length after the broader neural/representation chapter plan is
+3. Revisit chapter length after the broader neural/representation chapter plan is
    finalized; avoid duplicating the existing Chapter 7 backpropagation derivation.
-

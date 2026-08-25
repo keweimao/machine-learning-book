@@ -3,33 +3,31 @@
   "selection_policy": "latest corrected, non-checkpoint source; rendered HTML excluded",
   "authored_adaptations": [
     {
-      "slug": "mnist-mlp",
-      "title": "MNIST with a Multilayer Perceptron",
-      "status": "newly written and modernized adaptation; QMD is canonical",
-      "primary_source": "/Users/wk77/Documents/git/teach/notebooks/DSCI471/Week3_Notebook/lab_mnist_mlp.ipynb",
-      "source_sha256": "a6a77f8157c47b8efe51cded6d48b9bfc14f97f39b707dee0bcbb4ec66c23544",
-      "qmd": "practice/labs/mnist-mlp.qmd",
-      "generated_notebook": "practice/notebooks/mnist-mlp.ipynb"
-    },
-    {
-      "slug": "cnn-concepts",
-      "title": "CNN Concepts from Arrays to Feature Maps",
-      "status": "newly written and expanded adaptation; QMD is canonical",
-      "primary_source": "/Users/wk77/Documents/git/teach/notebooks/DSCI471/Week4_Notebook/lab_cnn_concepts.ipynb",
-      "source_sha256": "44ad44dbdc721b638cc3760d84558c93422f3b97c73db82e250548ba3618d009",
-      "qmd": "practice/labs/cnn-concepts.qmd",
-      "generated_notebook": "practice/notebooks/cnn-concepts.ipynb"
-    },
-    {
-      "slug": "mnist-cnn",
-      "title": "MNIST with a Convolutional Neural Network",
-      "status": "newly written and modernized adaptation; QMD is canonical",
-      "primary_source": "/Users/wk77/Documents/git/teach/notebooks/DSCI471/Week4_Notebook/lab_mnist_cnn.ipynb",
-      "source_sha256": "e0406b8b1c1e359ed8907f39766c20087750a16663c77523220cf27fd99249de",
-      "secondary_source": "/Users/wk77/Documents/git/teach/notebooks/DSCI471/Week5_Notebook/CNN_Visualized.ipynb",
-      "secondary_source_sha256": "3bb1c45b22aae677a1c477ef27a7a94f93720a4b4052f88b4c9b9dda602da1e0",
-      "qmd": "practice/labs/mnist-cnn.qmd",
-      "generated_notebook": "practice/notebooks/mnist-cnn.ipynb"
+      "slug": "cnn-mnist-practicum",
+      "title": "From Pixels to CNN Features",
+      "status": "unified, executed adaptation; QMD is canonical",
+      "primary_sources": [
+        {
+          "path": "/Users/wk77/Documents/git/teach/notebooks/DSCI471/Week3_Notebook/lab_mnist_mlp.ipynb",
+          "sha256": "a6a77f8157c47b8efe51cded6d48b9bfc14f97f39b707dee0bcbb4ec66c23544"
+        },
+        {
+          "path": "/Users/wk77/Documents/git/teach/notebooks/DSCI471/Week4_Notebook/lab_cnn_concepts.ipynb",
+          "sha256": "44ad44dbdc721b638cc3760d84558c93422f3b97c73db82e250548ba3618d009"
+        },
+        {
+          "path": "/Users/wk77/Documents/git/teach/notebooks/DSCI471/Week4_Notebook/lab_mnist_cnn.ipynb",
+          "sha256": "e0406b8b1c1e359ed8907f39766c20087750a16663c77523220cf27fd99249de"
+        },
+        {
+          "path": "/Users/wk77/Documents/git/teach/notebooks/DSCI471/Week5_Notebook/CNN_Visualized.ipynb",
+          "sha256": "3bb1c45b22aae677a1c477ef27a7a94f93720a4b4052f88b4c9b9dda602da1e0"
+        }
+      ],
+      "qmd": "practice/09a-convolutional-neural-networks.qmd",
+      "executed_notebook": "practice/notebooks/cnn-mnist-practicum.ipynb",
+      "asset_generator": "scripts/generate_cnn_practicum_assets.py",
+      "results": "assets/figures/chapter09a/practicum/results.json"
     }
   ],
   "labs": [

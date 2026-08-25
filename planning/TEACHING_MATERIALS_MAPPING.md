@@ -84,9 +84,10 @@ re-estimated after each conversion wave.
 
 ## Recommended new core chapter
 
-**Implementation update (August 17, 2026):** the CNN portion is now implemented
-as `chapters/09a-convolutional-neural-networks.qmd` with a three-lab matched
-practice sequence. Treat the broader sections below as a remaining
+**Implementation update (August 25, 2026):** the CNN portion is now implemented
+as `chapters/09a-convolutional-neural-networks.qmd` with one executed, matched
+practicum covering the MLP baseline, convolution mechanics, CNN comparison, and
+1-versus-7 feature maps. Treat the broader sections below as a remaining
 representation-learning plan; do not duplicate the completed convolution,
 pooling, channel, shape, or MNIST material.
 

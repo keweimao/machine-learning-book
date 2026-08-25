@@ -119,12 +119,12 @@ quarto render --to pdf
 For ordinary editing, revise the QMD files directly. The source notebooks are
 preservation copies, not a second canonical writing format.
 
-For the three authored CNN labs, revise QMD and regenerate notebooks explicitly:
+For the unified CNN practicum, revise the canonical QMD, regenerate the notebook,
+and execute it in the isolated environment:
 
 ```bash
-quarto convert practice/labs/mnist-mlp.qmd --output practice/notebooks/mnist-mlp.ipynb
-quarto convert practice/labs/cnn-concepts.qmd --output practice/notebooks/cnn-concepts.ipynb
-quarto convert practice/labs/mnist-cnn.qmd --output practice/notebooks/mnist-cnn.ipynb
+quarto convert practice/09a-convolutional-neural-networks.qmd --output practice/notebooks/cnn-mnist-practicum.ipynb
+.venv/bin/jupyter nbconvert --to notebook --execute --inplace practice/notebooks/cnn-mnist-practicum.ipynb
 ```
 
 ## Validation completed

@@ -1,6 +1,7 @@
 /_book/
 /.quarto/
 /.jupyter_cache/
+/.venv/
 /tmp/
 /.ipynb_checkpoints/
 /.DS_Store

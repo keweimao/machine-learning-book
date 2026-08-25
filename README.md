@@ -7,10 +7,10 @@ This is the 2026 single-source edition of Weimao Ke's book project. The canonica
 - All substantive LaTeX chapters have been migrated without intentionally rewriting the author's prose.
 - The substantial clustering chapter, previously disabled because of a LaTeX build error, is restored, and a new CNN chapter now precedes it.
 - Original figures, data, code, tables, and BibTeX references are under `assets/` and `references.bib`.
-- A second, substantial **Practice and Projects** volume follows the theory chapters. It contains aligned practice chapters, recovered labs and assignments, original notebooks, required datasets, and explicit scaffolds for missing activities. The new CNN sequence includes a matched MLP baseline, a framework-light concepts lab, and an end-to-end CNN comparison.
+- A second, substantial **Practice and Projects** volume follows the theory chapters. It contains aligned practice chapters, recovered labs and assignments, original notebooks, required datasets, and explicit scaffolds for missing activities. The unified CNN practicum moves from an MLP baseline through visible convolution mechanics to a matched CNN comparison and learned 1-versus-7 feature maps.
 - Thin or missing chapters contain explicit development outlines. They are scaffolds, not claims that the prose has been written.
 
-The present manuscript is approximately **56% complete overall**. The CNN chapter and its three-part practice sequence are substantive drafts; several other chapters still require major development. Cross-reference migration and permissions review for third-party images remain editorial tasks.
+The present manuscript is approximately **56% complete overall**. The CNN chapter and its executed four-part practicum are substantive drafts; several other chapters still require major development. Cross-reference migration and permissions review for third-party images remain editorial tasks.
 
 The migrated project has been successfully rendered as a searchable HTML book and a LaTeX-backed PDF. Volume I now contains seventeen theory chapters; the companion practice volume adds aligned activities and recovered notebooks without interrupting the conceptual narrative. These are working editorial builds, not a production-ready typeset edition: recovered code still needs dependency modernization and figure permissions still need review.
 

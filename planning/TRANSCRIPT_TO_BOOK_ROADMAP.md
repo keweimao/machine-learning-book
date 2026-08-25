@@ -405,9 +405,10 @@ dependencies and creates reusable examples before later chapters need them.
 - Move CNN/RNN/GAN details to optional boxes/Practice.
 - End with embeddings/attention as the bridge to Chapters 11–12.
 
-**August 17 implementation decision:** CNN now has a dedicated, concise core
-chapter plus a matched MLP/concepts/CNN practice sequence. D06–D10 supplied the
-authorial flow. This satisfies the planned architecture example without requiring
+**August 25 implementation update:** CNN now has a dedicated, concise core
+chapter plus one matched, executed practicum. D06–D10 supplied the authorial
+flow, while the Week 5 visualization notebook supplied the final 1-versus-7
+activation comparison. This satisfies the planned architecture example without requiring
 the eventual representation-learning chapter to repeat convolution mechanics.
 RNN/GAN details remain optional, and embeddings/attention should still be placed
 where they best support the language and retrieval chapters.

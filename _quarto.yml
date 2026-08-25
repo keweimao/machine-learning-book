@@ -66,9 +66,6 @@ book:
         - practice/09-numeric-prediction-and-regression.qmd
         - practice/labs/classification-patterns-assignment.qmd
         - practice/09a-convolutional-neural-networks.qmd
-        - practice/labs/mnist-mlp.qmd
-        - practice/labs/cnn-concepts.qmd
-        - practice/labs/mnist-cnn.qmd
         - practice/10-clustering-and-organization.qmd
         - practice/labs/clustering.qmd
         - practice/11-text-and-human-language.qmd

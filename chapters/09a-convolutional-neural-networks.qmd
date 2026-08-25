@@ -34,6 +34,8 @@ learn each relation through separate weights. A stroke near the upper-left and
 the same stroke near the lower-right reach different input positions and
 therefore different weights.
 
+![Flattening preserves every pixel value but converts two-dimensional neighborhoods into positions along a one-dimensional vector.](../assets/figures/chapter09a/practicum/flatten-grid-versus-vector.png){#fig-cnn-flattening fig-alt="A digit seven appears on a 28 by 28 image grid at left and as a line plot of 784 pixel intensities at right." width="88%"}
+
 A CNN introduces two useful assumptions:
 
 1. **Locality.** Nearby values are especially likely to form a meaningful
@@ -51,7 +53,7 @@ handwritten-document recognition well before the present deep-learning era
 [@Zhang:2023].
 
 ::: {.callout-tip title="Put it into practice"}
-Establish the comparison point in [Lab: MNIST with an MLP](../practice/labs/mnist-mlp.qmd#ch-lab-mnist-mlp),
+Establish the comparison point in [Part I of the CNN practicum](../practice/09a-convolutional-neural-networks.qmd#sec-pr-cnn-mlp),
 then explain what information the flattening step retains and what structural
 assumption it removes.
 :::
@@ -81,7 +83,7 @@ axis to obtain $28\times28\times1$. The numerical values have not changed; the
 shape now states that there is one value at each spatial position.
 
 ::: {.callout-tip title="Put it into practice"}
-Use [Practice 10: Convolutional Neural Networks](../practice/09a-convolutional-neural-networks.qmd#sec-pr-cnn-shapes)
+Use the [CNN practicum setup](../practice/09a-convolutional-neural-networks.qmd#sec-pr-cnn-setup)
 to diagnose several common shape errors before a framework reports them.
 :::
 
@@ -150,9 +152,20 @@ usually do not hand-design these values. Backpropagation adjusts them to reduce
 the task loss, just as it adjusts dense-layer weights. An activation such as
 ReLU, $\max(0,Y_{i,j})$, is then commonly applied to introduce nonlinearity.
 
+Hand-designed kernels are nevertheless useful for learning. In
+@fig-cnn-hand-kernel-response, vertical, horizontal, and diagonal kernels
+produce bright responses where a local stroke agrees with their weights. The
+same kernel responds at multiple positions because its weights are shared.
+
+![Hand-designed kernels applied to MNIST examples of 1 and 7. Bright positions are positive local responses after ReLU, not class probabilities.](../assets/figures/chapter09a/practicum/hand-kernel-activations-1-7.png){#fig-cnn-hand-kernel-response fig-alt="Rows for handwritten digits one and seven show feature maps from vertical, horizontal, and diagonal kernels." width="96%"}
+
+A crucial caution follows from the figure: several kernels respond to parts of
+both digits. One filter reports local evidence; it does not decide the class.
+Classification emerges from combining many feature maps across layers.
+
 ::: {.callout-tip title="Put it into practice"}
 Reproduce every number, alter the input and filter, and write a general NumPy
-implementation in [Lab: CNN Concepts](../practice/labs/cnn-concepts.qmd#sec-lab-cnn-cross-correlation).
+implementation in [Part II of the CNN practicum](../practice/09a-convolutional-neural-networks.qmd#sec-pr-cnn-cross-correlation).
 :::
 
 ## Padding, Stride, and Output Size {#sec-cnn-output-shape}
@@ -160,7 +173,7 @@ implementation in [Lab: CNN Concepts](../practice/labs/cnn-concepts.qmd#sec-lab-
 Three choices determine how the kernel moves and how large the feature map is:
 
 - **Kernel size** $(K_h,K_w)$ controls the local window.
-- **Padding** $(P_h,P_w)$ adds values—usually zeros—around the boundary.
+- **Padding** $(P_h,P_w)$ adds values, usually zeros, around the boundary.
 - **Stride** $(S_h,S_w)$ controls how many positions the window moves at a time.
 
 With unit dilation, the output height and width are
@@ -183,7 +196,7 @@ computation, but it also discards spatial detail. Output-shape arithmetic is
 therefore part of model design, not merely bookkeeping.
 
 ::: {.callout-tip title="Put it into practice"}
-Predict the output before running the code in [Lab: CNN Concepts](../practice/labs/cnn-concepts.qmd#sec-lab-cnn-stride-padding),
+Predict the output before running the code in [Part II of the CNN practicum](../practice/09a-convolutional-neural-networks.qmd#sec-pr-cnn-concepts),
 then use assertions to check the formula.
 :::
 
@@ -221,7 +234,7 @@ This resolves a common confusion:
 - the number of **layers** tells us how many transformations are composed.
 
 ::: {.callout-tip title="Put it into practice"}
-Stack channels and filter banks explicitly in [Lab: CNN Concepts](../practice/labs/cnn-concepts.qmd#sec-lab-cnn-channels),
+Track channels and verify parameter counts in [Part II of the CNN practicum](../practice/09a-convolutional-neural-networks.qmd#sec-pr-cnn-pooling),
 then verify the parameter count against a Keras model summary.
 :::
 
@@ -247,7 +260,7 @@ reason to stack convolutional layers.
 
 ::: {.callout-tip title="Put it into practice"}
 Compare convolution and max pooling on the same feature map in
-[Lab: CNN Concepts](../practice/labs/cnn-concepts.qmd#sec-lab-cnn-pooling),
+[Part II of the CNN practicum](../practice/09a-convolutional-neural-networks.qmd#sec-pr-cnn-pooling),
 including a case where pooling removes useful detail.
 :::
 
@@ -289,23 +302,45 @@ or 109,386 parameters. The two models are similar in size. If their behavior
 differs, the comparison highlights architectural bias rather than simply giving
 one model a much larger parameter budget.
 
+In one controlled full-MNIST run of the companion practicum, the MLP reached
+97.56% test accuracy and made 244 errors; the CNN reached 98.75% and made 125
+errors. The CNN therefore reduced the observed error count by 119, or about 49%,
+while using slightly fewer parameters. This is a case study, not a universal
+performance guarantee, but it is consistent with the benefit of matching the
+architecture to image structure.
+
+![A matched comparison of MNIST test accuracy, test errors, and parameter count.](../assets/figures/chapter09a/practicum/mlp-cnn-results.png){#fig-cnn-observed-results fig-alt="Bar charts show higher test accuracy and fewer errors for the CNN, while the two models have similar parameter counts." width="92%"}
+
 Dropout, early stopping, and validation curves help diagnose overfitting, but
 they do not replace a final evaluation on untouched test data. These issues are
 developed further in [Generalization, Model Selection, and Fit](15-generalization.qmd#ch-generalization).
+In the matched run above, training loss kept falling after validation loss
+reached its minimum for both models. That divergence is stronger evidence of
+overfitting than training accuracy by itself; the companion practicum plots and
+interprets the complete curves.
 
 ::: {.callout-tip title="Put it into practice"}
-Train both models under a shared protocol in [Lab: MNIST with an MLP](../practice/labs/mnist-mlp.qmd#ch-lab-mnist-mlp)
-and [Lab: MNIST with a CNN](../practice/labs/mnist-cnn.qmd#ch-lab-mnist-cnn), then compare accuracy,
-parameter count, learning curves, errors, and training cost.
+Train both models under a shared protocol in [Part I and Part III of the CNN
+practicum](../practice/09a-convolutional-neural-networks.qmd#sec-pr-cnn-results),
+then compare accuracy, parameter count, learning curves, errors, and training
+cost.
 :::
 
-## Looking Inside—and Knowing the Limits {#sec-cnn-interpretation}
+## Looking Inside and Knowing the Limits {#sec-cnn-interpretation}
 
 The output of each filter is observable. We can pass an image through a trained
 model and plot selected feature maps. Early maps often respond to simple local
 changes; deeper maps combine earlier responses and are harder to name. Such
 plots are useful evidence about model behavior, but a bright activation is not
 automatically a human-interpretable explanation.
+
+@fig-cnn-learned-maps compares two learned first-layer kernels on examples of 1
+and 7. The channels were selected using their *average relative activation*
+across all test examples of those two classes, rather than because one image
+looked persuasive. Even then, neither map is a literal "1 detector" or "7
+detector." Each is one component of a distributed representation.
+
+![Two learned first-layer kernels and their activation maps for representative handwritten 1 and 7 examples.](../assets/figures/chapter09a/practicum/learned-kernels-feature-maps-1-7.png){#fig-cnn-learned-maps fig-alt="Two learned three by three kernels appear above activation heatmaps for a digit one and a digit seven." width="68%"}
 
 CNNs are also not universally appropriate. Their local, shared filters work
 well when the same kind of nearby pattern can matter across locations. They are
@@ -321,9 +356,9 @@ reach, but they do not change the central lesson of this chapter: architecture
 encodes assumptions about the structure of the data.
 
 ::: {.callout-tip title="Put it into practice"}
-Inspect learned kernels, intermediate feature maps, and representative mistakes
-in [Lab: MNIST with a CNN](../practice/labs/mnist-cnn.qmd#sec-lab-cnn-inspect).
-State what each visualization supports—and what it does not prove.
+Inspect hand-designed kernels, learned feature maps, and representative mistakes
+in [Part IV of the CNN practicum](../practice/09a-convolutional-neural-networks.qmd#sec-pr-cnn-activations).
+State what each visualization supports and what it does not prove.
 :::
 
 ## Summary {#sec-cnn-summary}
