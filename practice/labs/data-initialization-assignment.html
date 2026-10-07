@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -80,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e3a0307bf87dea633ae254d873c6233f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -676,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
 <p>Please import all necessary packages and setup <code>%matplotlib</code> for inline plots in the report.</p>
-<div id="de3b8087" class="cell">
+<div id="4b1ee602" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -698,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="basic-statistics-2-points" class="level2">
 <h2 class="anchored" data-anchor-id="basic-statistics-2-points">1. Basic Statistics (2 points)</h2>
 <p>Suppose that the data for analysis includes the attribute age. The age values for the data tuples are (in increasing order):</p>
-<div id="5b2287c9" class="cell">
+<div id="17081737" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> [<span class="dv">13</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">22</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">33</span>, <span class="dv">33</span>, <span class="dv">35</span>, <span class="dv">35</span>, <span class="dv">35</span>, <span class="dv">35</span>, <span class="dv">36</span>, <span class="dv">40</span>, <span class="dv">45</span>, <span class="dv">46</span>, <span class="dv">52</span>, <span class="dv">70</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -707,7 +707,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="a">
 <li>What is the mean of the data? What is the median?</li>
 </ol>
-<div id="45b38eef" class="cell">
+<div id="e91cc7d7" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use Numpy's np.mean(age)</span></span>
@@ -717,7 +717,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="a">
 <li>What is the mode of the data?</li>
 </ol>
-<div id="68f3ab58" class="cell">
+<div id="c9a55513" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use Scipy's stats.mode(age)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -726,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="a">
 <li>Plot the distribution and comment on the data’s modality (i.e., bimodal, trimodal, etc.)</li>
 </ol>
-<div id="46b84970" class="cell">
+<div id="b9e2c4e8" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use Matplotlib's plt.hist(age)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -735,7 +735,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="a">
 <li>Can you find (roughly) the first quartile (Q1) and the third quartile (Q3) of the data?</li>
 </ol>
-<div id="e4c91bff" class="cell">
+<div id="344b3b43" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try: np.percentile(age, [25, 75])</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -745,7 +745,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Give the five-number summary of the data.</p></li>
 <li><p>Show a boxplot of the data.</p></li>
 </ol>
-<div id="82752f0b" class="cell">
+<div id="0119b5c8" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try: plt.boxplot(age)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

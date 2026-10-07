@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -80,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e3a0307bf87dea633ae254d873c6233f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -708,7 +708,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="python-code-for-sqlite">Python Code for SQLite</h2>
 <section id="import-sqlite" class="level3">
 <h3 class="anchored" data-anchor-id="import-sqlite">Import SQLite</h3>
-<div id="51d7e988" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;skip&quot;}}">
+<div id="1e91af53" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;skip&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -718,7 +718,7 @@ window.Quarto = {
 <section id="load-sqlite-database" class="level3">
 <h3 class="anchored" data-anchor-id="load-sqlite-database">Load SQLite Database</h3>
 <p>To open and connect to the database file <code>college.db</code>:</p>
-<div id="fdf5edd2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;skip&quot;}}">
+<div id="74564c1e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;skip&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> <span class="st">'college.db'</span></span>
@@ -736,7 +736,7 @@ window.Quarto = {
 <section id="programs-table" class="level3">
 <h3 class="anchored" data-anchor-id="programs-table"><code>programs</code> table</h3>
 <p>Create the <code>programs</code> table structure:</p>
-<div id="0ba2c8d6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div id="00372717" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>c.execute(<span class="st">"drop table if exists programs"</span>)</span>
@@ -749,7 +749,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now we can start adding students data:</p>
-<div id="f5291cb4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div id="540c894d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>insert_sql <span class="op">=</span> <span class="st">"insert into programs (program_id, program_name, program_desc) values (?, ?, ?)"</span></span>
@@ -767,7 +767,7 @@ window.Quarto = {
 <section id="students-table" class="level3">
 <h3 class="anchored" data-anchor-id="students-table"><code>students</code> table</h3>
 <p>Create the students table:</p>
-<div id="74955799" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div id="01f41a05" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>c.execute(<span class="st">"drop table if exists students"</span>)</span>
@@ -791,7 +791,7 @@ window.Quarto = {
 5   Barack Obama,      IS,  2021
 .   ...                ..   ....</code></pre>
 <p>Let read the CSV file and load data into the <code>students</code> table:</p>
-<div id="a091796a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div id="368ac3a9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
@@ -810,7 +810,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now check out the data:</p>
-<div id="d8c8352c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div id="0795c1c6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>c.execute(<span class="st">"select * from students limit 10"</span>)</span>
@@ -820,7 +820,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now let’s count the number of records in the table:</p>
-<div id="4860efc2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;slide&quot;}}">
+<div id="8c1ee08c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;slide&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>c.execute(<span class="st">"select count(*) from students"</span>)</span>
@@ -833,7 +833,7 @@ window.Quarto = {
 <section id="group-aggregates" class="level3">
 <h3 class="anchored" data-anchor-id="group-aggregates">Group Aggregates</h3>
 <p>Perhaps, you only want to know statistics in each program:</p>
-<div id="c8ad98a5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div id="af0f5165" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""select program_id, </span></span>
@@ -854,7 +854,7 @@ window.Quarto = {
 <section id="update-student-data" class="level3">
 <h3 class="anchored" data-anchor-id="update-student-data">Update Student Data</h3>
 <p>Now that you see from the statistics some data values are unrealistic such as a class year <span class="math inline">\(&gt;2030\)</span>. Perhaps we can reset all these values to <span class="math inline">\(2030\)</span> if they are greater than that:</p>
-<div id="4c0fde88" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div id="dc2535bb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>update_sql <span class="op">=</span> <span class="st">"update students set class_year = 2030 where class_year &gt; 2030"</span></span>
@@ -863,7 +863,7 @@ window.Quarto = {
 </details>
 </div>
 <p>We can run the statistics again to see if data have been updated:</p>
-<div id="9f9e9ece" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div id="6a78429e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
@@ -885,7 +885,7 @@ window.Quarto = {
 <section id="join-tables" class="level3">
 <h3 class="anchored" data-anchor-id="join-tables">Join Tables</h3>
 <p>Suppose you want to retrieve student data with their corresponding program information (e.g.&nbsp;program name):</p>
-<div id="aa9b6369" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div id="875a7a9b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>

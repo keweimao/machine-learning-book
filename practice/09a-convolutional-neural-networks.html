@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -80,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e3a0307bf87dea633ae254d873c6233f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -741,7 +741,7 @@ Figure&nbsp;1: One example from each MNIST class. The task is simple enough to t
 </figcaption>
 </figure>
 </div>
-<div id="175d48a9" class="cell">
+<div id="9a0bc3f7" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
@@ -786,7 +786,7 @@ Figure&nbsp;1: One example from each MNIST class. The task is simple enough to t
 <section id="sec-pr-cnn-flatten" class="level3">
 <h3 class="anchored" data-anchor-id="sec-pr-cnn-flatten">Flatten the Grid</h3>
 <p>The MLP receives a vector, not an image grid:</p>
-<div id="6f6403a9" class="cell">
+<div id="4599adc0" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x_fit_mlp <span class="op">=</span> scale(x_fit_raw).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>)</span>
@@ -814,7 +814,7 @@ Figure&nbsp;2: A digit 7 represented as a two-dimensional image and as the same 
 <section id="sec-pr-cnn-mlp-model" class="level3">
 <h3 class="anchored" data-anchor-id="sec-pr-cnn-mlp-model">Build and Train the MLP</h3>
 <p>The model is intentionally ordinary and compact:</p>
-<div id="f8a35a88" class="cell">
+<div id="697180ad" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_mlp():</span>
@@ -838,7 +838,7 @@ Figure&nbsp;2: A digit 7 represented as a two-dimensional image and as the same 
 </details>
 </div>
 <p>Use validation loss, not training accuracy, to decide when to stop:</p>
-<div id="c6ddcd9b" class="cell">
+<div id="a2db98fb" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_model(model, x_fit, x_val):</span>
@@ -876,7 +876,7 @@ Figure&nbsp;2: A digit 7 represented as a two-dimensional image and as the same 
 <section id="sec-pr-cnn-cross-correlation" class="level3">
 <h3 class="anchored" data-anchor-id="sec-pr-cnn-cross-correlation">One Transparent Operation</h3>
 <p>A kernel produces one number per local window: multiply matching entries, add the products, and then move the same weights to the next location. The function below implements valid two-dimensional cross-correlation for one channel:</p>
-<div id="7b742fad" class="cell">
+<div id="7eab8581" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_correlate2d(image, kernel, stride<span class="op">=</span><span class="dv">1</span>, padding<span class="op">=</span><span class="dv">0</span>):</span>
@@ -896,7 +896,7 @@ Figure&nbsp;2: A digit 7 represented as a two-dimensional image and as the same 
 </details>
 </div>
 <p>Test the worked example from the theory chapter:</p>
-<div id="ea046365" class="cell">
+<div id="a87edf3d" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>small_image <span class="op">=</span> np.array([</span>
@@ -919,7 +919,7 @@ Figure&nbsp;2: A digit 7 represented as a two-dimensional image and as the same 
 <section id="sec-pr-cnn-hand-kernels" class="level3">
 <h3 class="anchored" data-anchor-id="sec-pr-cnn-hand-kernels">Kernels Produce Evidence, Not Labels</h3>
 <p>The next comparison uses three hand-designed <span class="math inline">\(3\times3\)</span> kernels. After cross-correlation, ReLU sets negative responses to zero. Bright locations show where a local window agrees with a kernel.</p>
-<div id="7fcfa280" class="cell">
+<div id="ca80d967" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>kernels <span class="op">=</span> {</span>
@@ -968,7 +968,7 @@ Figure&nbsp;3: A digit 1 and a digit 7 passed through vertical, horizontal, and 
 <section id="sec-pr-cnn-pooling" class="level3">
 <h3 class="anchored" data-anchor-id="sec-pr-cnn-pooling">Pooling and Parameter Counting</h3>
 <p>Max pooling retains the largest activation in each window and learns no weights:</p>
-<div id="dff70d03" class="cell">
+<div id="66a6728f" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_pool2d(feature_map, size<span class="op">=</span><span class="dv">2</span>, stride<span class="op">=</span><span class="dv">2</span>):</span>
@@ -1000,7 +1000,7 @@ Figure&nbsp;3: A digit 1 and a digit 7 passed through vertical, horizontal, and 
 <section id="sec-pr-cnn-cnn-data" class="level3">
 <h3 class="anchored" data-anchor-id="sec-pr-cnn-cnn-data">Preserve the Grid and Add a Channel Axis</h3>
 <p>The CNN sees the same scaled values but retains their two-dimensional arrangement:</p>
-<div id="5d9703c8" class="cell">
+<div id="1ce012f0" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x_fit_cnn <span class="op">=</span> scale(x_fit_raw)[..., np.newaxis]</span>
@@ -1015,7 +1015,7 @@ Figure&nbsp;3: A digit 1 and a digit 7 passed through vertical, horizontal, and 
 </section>
 <section id="sec-pr-cnn-cnn-model" class="level3">
 <h3 class="anchored" data-anchor-id="sec-pr-cnn-cnn-model">Build a Nearly Parameter-Matched CNN</h3>
-<div id="24e2de22" class="cell">
+<div id="a2b1ee56" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_cnn():</span>
@@ -1048,7 +1048,7 @@ Figure&nbsp;3: A digit 1 and a digit 7 passed through vertical, horizontal, and 
 </div>
 <p>Before viewing the summary, calculate every output shape and parameter count. Where are most CNN parameters located? What useful transformation occurs before that large dense layer?</p>
 <p>Train and evaluate under the same protocol:</p>
-<div id="3b7d8cd3" class="cell">
+<div id="7a1dc777" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cnn_history, cnn_seconds <span class="op">=</span> fit_model(</span>
@@ -1135,7 +1135,7 @@ Figure&nbsp;4: Test accuracy, error count, and parameter count for the matched M
 </figure>
 </div>
 <p>The CNN reduced the test error count by <span class="math inline">\(119\)</span>, a relative reduction of about <span class="math inline">\(49\%\)</span>, despite having slightly fewer parameters. This observation is consistent with the value of locality and weight sharing for images. One run does not prove that CNNs always win: the result depends on the data, protocol, implementation, and task.</p>
-<div id="36a166ec" class="cell">
+<div id="f0cc86ae" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">3</span>))</span>
@@ -1151,7 +1151,7 @@ Figure&nbsp;4: Test accuracy, error count, and parameter count for the matched M
 </details>
 </div>
 <p>Inspecting individual errors keeps the aggregate comparison connected to the images. The following code shows five mistakes from each model:</p>
-<div id="e1856aa3" class="cell">
+<div id="7e245138" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">3.8</span>))</span>
@@ -1172,7 +1172,7 @@ Figure&nbsp;4: Test accuracy, error count, and parameter count for the matched M
 </section>
 <section id="sec-pr-cnn-learning-curves" class="level3">
 <h3 class="anchored" data-anchor-id="sec-pr-cnn-learning-curves">Use Loss to Diagnose Overfitting</h3>
-<div id="7d8e0d45" class="cell">
+<div id="2b4d40a2" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_history(history, title):</span>
@@ -1209,7 +1209,7 @@ Figure&nbsp;5: Training and validation loss and accuracy for the MLP and CNN. Da
 <section id="sec-pr-cnn-activations" class="level2">
 <h2 class="anchored" data-anchor-id="sec-pr-cnn-activations">Part IV: Return to Kernels: Learned Activations for 1 and 7</h2>
 <p>The hand-designed kernels made the mechanism transparent. We now ask what the trained CNN learned. A small <strong>probe model</strong> returns the first convolutional layer’s output instead of the final softmax probabilities:</p>
-<div id="9f80c98c" class="cell">
+<div id="c482af0b" class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>probe <span class="op">=</span> keras.Model(</span>
